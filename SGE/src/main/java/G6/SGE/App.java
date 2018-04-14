@@ -1,4 +1,4 @@
-package G6.SGE;
+package g6.sge;
 
 /**
  * Hello world!
