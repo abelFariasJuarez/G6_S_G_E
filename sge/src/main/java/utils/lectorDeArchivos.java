@@ -15,7 +15,7 @@ public class lectorDeArchivos {
 	private BufferedReader bufferedReader;
 	
 	public lectorDeArchivos() throws FileNotFoundException {
-		archivo = new File(System.getProperty("user.dir") + "/src/main/resources/json/cuentas.json");
+		archivo = new File(System.getProperty("user.dir") + "/src/test/prueba.json");
 		fileReader = new FileReader(archivo);
 		bufferedReader = new BufferedReader(fileReader);
 	}

@@ -9,7 +9,13 @@ public class Cliente extends UsuarioSGE {
 	Integer telefono;
 	Categoria categoria;
 	List<Dispositivo> dispositivos = new ArrayList<Dispositivo>();
-
+public Cliente(String _tipodoc,Integer _nrodoc,Integer _telefono) {
+	tipodoc=_tipodoc;
+	nrodoc=_nrodoc;
+	telefono=_telefono;
+	
+}
+	
 	public boolean tengoAlgunDispositivoON() {
 		return true;
 	}
@@ -25,4 +31,17 @@ public class Cliente extends UsuarioSGE {
 	Integer cantDispositivos() {
 		return null;
 	}
+
+	
+	
+	public String Dni() {
+		return tipodoc;
+		}
+	public int nroDoc() {
+		return nrodoc;
+		}
+	public int telefono() {
+		return telefono;
+		}
+	
 }
