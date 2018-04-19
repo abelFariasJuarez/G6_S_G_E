@@ -5,17 +5,17 @@ import java.util.List;
 import sge.Cliente;
 
 public class RepositorioDeClientes {
-	private static RepositorioDeClientes repo;
+	private static RepositorioDeClientes repoClientes;
 	public  List<Cliente> Clientes = new ArrayList<Cliente>();
 
 	private RepositorioDeClientes() {
 	};
 
 	public static RepositorioDeClientes getinstance() {
-		if (repo == null) {
-			repo = new RepositorioDeClientes();
+		if (repoClientes == null) {
+			repoClientes = new RepositorioDeClientes();
 		}
-		return repo;
+		return repoClientes;
 	}
 
 	public void guardarCliente(Cliente cliente) {

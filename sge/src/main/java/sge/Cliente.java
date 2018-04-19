@@ -2,6 +2,8 @@ package sge;
 
 import java.util.ArrayList;
 import java.util.List;
+import sge.Dispositivo;
+
 
 public class Cliente extends UsuarioSGE {
 	String tipodoc;
@@ -9,10 +11,11 @@ public class Cliente extends UsuarioSGE {
 	Integer telefono;
 	Categoria categoria;
 	List<Dispositivo> dispositivos = new ArrayList<Dispositivo>();
-public Cliente(String _tipodoc,Integer _nrodoc,Integer _telefono) {
+public Cliente(String _tipodoc,Integer _nrodoc,Integer _telefono,List<Dispositivo> _dispositivos) {
 	tipodoc=_tipodoc;
 	nrodoc=_nrodoc;
 	telefono=_telefono;
+	dispositivos=_dispositivos;
 	
 }
 	
