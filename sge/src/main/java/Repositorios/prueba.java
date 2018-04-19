@@ -15,7 +15,8 @@ public class prueba {
 
 		for (Cliente client : repo.Clientes()) {
 			System.out
-					.println("Tipo Doc:"+ client.Dni()+"   " + "Nro Doc:" + client.nroDoc() +"   "+ "telefono:" + client.telefono());
+					.println("Tipo Doc:"+ client.Dni()+"   " + "Nro Doc:" + client.nroDoc() +"   "+ "telefono:" + client.telefono()+ "Dispositivos:" );
+			client.mostrarDispositivos();
 		}
 
 	}

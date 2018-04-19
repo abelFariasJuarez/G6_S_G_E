@@ -18,7 +18,13 @@ public Cliente(String _tipodoc,Integer _nrodoc,Integer _telefono,List<Dispositiv
 	dispositivos=_dispositivos;
 	
 }
+public Cliente(String _tipodoc,Integer _nrodoc,Integer _telefono) {
+	tipodoc=_tipodoc;
+	nrodoc=_nrodoc;
+	telefono=_telefono;
 	
+	
+}
 	public boolean tengoAlgunDispositivoON() {
 		return true;
 	}
@@ -35,7 +41,9 @@ public Cliente(String _tipodoc,Integer _nrodoc,Integer _telefono,List<Dispositiv
 		return null;
 	}
 
-	
+
+		
+
 	
 	public String Dni() {
 		return tipodoc;
@@ -46,5 +54,11 @@ public Cliente(String _tipodoc,Integer _nrodoc,Integer _telefono,List<Dispositiv
 	public int telefono() {
 		return telefono;
 		}
+	
+	public void mostrarDispositivos() {
+		for (Dispositivo disp : dispositivos) {
+			System.out.println(disp.getNombre());
+		}
+	}
 	
 }
