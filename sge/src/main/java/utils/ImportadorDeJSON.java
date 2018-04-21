@@ -8,7 +8,6 @@ import Repositorios.RepositorioDeClientes;
 import java.io.IOException;
 import java.util.TimerTask;
 
-
 @SuppressWarnings("unused")
 public class ImportadorDeJSON {
 
@@ -19,8 +18,8 @@ public class ImportadorDeJSON {
 				Gson gson = new Gson();
 				Cliente cliente = gson.fromJson(lectorDeArchivos.leerSiguiente(), Cliente.class);
 				RepositorioDeClientes.getinstance().guardarCliente(cliente);
-				
-}
+
+			}
 			lectorDeArchivos.cerrar();
 		} catch (IOException e) {
 			e.printStackTrace();
