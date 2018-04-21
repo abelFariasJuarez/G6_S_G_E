@@ -1,1 +1,14 @@
+
+#
+
+target/
+
+RemoteSystemsTempFiles/
+
+.project
+
+.settings/
+
+.classpath
+
 /target/
