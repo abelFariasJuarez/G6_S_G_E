@@ -1,1 +1,53 @@
-{"tipodoc":"Dni","nrodoc":21321012,"telefono":154331231,"dispositivos":[{"nombre":"abel","consumoPorHora":1,"encedido":true},{"nombre":"martin","consumoPorHora":2,"encedido":false}]}
+[
+  {
+    "tipodoc": "Dni",
+    "nrodoc": 21321012,
+    "telefono": 154331231,
+    "dispositivos": [
+      {
+        "nombre": "abel",
+        "consumoPorHora": 1,
+        "encedido": true
+      },
+      {
+        "nombre": "martin",
+        "consumoPorHora": 2,
+        "encedido": false
+      }
+    ]
+  },
+  {
+    "tipodoc": "Dni",
+    "nrodoc": 21321012,
+    "telefono": 154331232,
+    "dispositivos": [
+      {
+        "nombre": "abel",
+        "consumoPorHora": 1,
+        "encedido": true
+      },
+      {
+        "nombre": "martin",
+        "consumoPorHora": 2,
+        "encedido": false
+      }
+    ]
+  },
+  {
+    "tipodoc": "Dni",
+    "nrodoc": 21321013,
+    "telefono": 154331233,
+    "dispositivos": [
+      {
+        "nombre": "abel",
+        "consumoPorHora": 1,
+        "encedido": true
+      },
+      {
+        "nombre": "martin",
+        "consumoPorHora": 2,
+        "encedido": false
+      }
+    ]
+  }
+]

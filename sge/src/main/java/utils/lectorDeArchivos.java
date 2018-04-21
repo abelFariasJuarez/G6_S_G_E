@@ -6,14 +6,12 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
-
 public class lectorDeArchivos {
 
-	
 	private File archivo;
 	private FileReader fileReader;
 	private BufferedReader bufferedReader;
-	
+
 	public lectorDeArchivos() throws FileNotFoundException {
 		archivo = new File(System.getProperty("user.dir") + "/src/test/prueba.json");
 		fileReader = new FileReader(archivo);
@@ -27,12 +25,11 @@ public class lectorDeArchivos {
 	public String leerSiguiente() throws IOException {
 		return bufferedReader.readLine();
 	}
-	
-	public void cerrar( ) throws IOException {
+
+	public void cerrar() throws IOException {
 		bufferedReader.close();
 		fileReader.close();
 		// archivo.delete();
 	}
-	
-	
+
 }
