@@ -1,6 +1,9 @@
 package sge;
 
 import Repositorios.RepositorioDeDispositivos;
+
+
+
 import Repositorios.RepositorioDeClientes;
 
 public class App {
@@ -26,5 +29,6 @@ public class App {
 		for (Dispositivo disp : repo2.Dispositivos()) {
 			disp.presentate();
 		}
+
 	}
 }
