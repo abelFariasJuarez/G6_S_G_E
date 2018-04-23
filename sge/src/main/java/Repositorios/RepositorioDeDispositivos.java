@@ -11,8 +11,8 @@ import utils.ImportadorDeJsonDispositivo;
 public class RepositorioDeDispositivos {
 
 	private static RepositorioDeDispositivos repoDispositivos;
-	
-	public  List<Dispositivo> Dispositivos = new ArrayList<Dispositivo>();
+
+	public List<Dispositivo> Dispositivos = new ArrayList<Dispositivo>();
 
 	private RepositorioDeDispositivos() {
 	};
@@ -24,16 +24,14 @@ public class RepositorioDeDispositivos {
 		return repoDispositivos;
 	}
 
-	
 	public void guardarDispositivo(Dispositivo dispositivo) {
-		Dispositivos.add(dispositivo);		
+		Dispositivos.add(dispositivo);
 	}
 
-	public  List<Dispositivo> Dispositivos() {
+	public List<Dispositivo> Dispositivos() {
 		return Dispositivos;
 	}
 
-	
 	public void cargarDispositivos() {
 		ImportadorDeJsonDispositivo json = new ImportadorDeJsonDispositivo();
 
@@ -43,9 +41,7 @@ public class RepositorioDeDispositivos {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 	}
 
-	
-	
 }

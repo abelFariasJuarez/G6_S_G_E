@@ -13,7 +13,7 @@ public class lectorDeArchivos {
 	private BufferedReader bufferedReader;
 
 	public lectorDeArchivos(String archi) throws FileNotFoundException {
-		archivo = new File(System.getProperty("user.dir") + "/src/test/"+archi);
+		archivo = new File(System.getProperty("user.dir") + "/src/test/" + archi);
 		fileReader = new FileReader(archivo);
 		bufferedReader = new BufferedReader(fileReader);
 	}

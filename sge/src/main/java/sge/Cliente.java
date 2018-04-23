@@ -19,8 +19,6 @@ public class Cliente extends UsuarioSGE {
 
 	}
 
-
-
 	public String getTipoDoc() {
 		return tipodoc;
 	}
@@ -34,11 +32,10 @@ public class Cliente extends UsuarioSGE {
 	}
 
 	public Categoria getCategoria() {
-		
+
 		return categoria;
 	}
 
-	
 	public void addDispositivo(Dispositivo dispositivo) {
 		dispositivos.add(dispositivo);
 
@@ -48,6 +45,7 @@ public class Cliente extends UsuarioSGE {
 		dispositivos.remove(dispositivo);
 
 	}
+
 	public boolean tengoAlgunDispositivoON() {
 		return dispositivos.stream().anyMatch(dis -> dis.estoyON());
 
@@ -65,12 +63,9 @@ public class Cliente extends UsuarioSGE {
 		return dispositivos.size();
 	}
 
-	public void presentarme() {
+	public void presentate() {
 		System.out.println("Tipo Doc:" + this.tipodoc + "   " + "Nro Doc:" + this.nrodoc + "   " + "telefono:"
-				+ this.telefono + "Dispositivos:");	
+				+ this.telefono + "Dispositivos:");
 	}
-
-
-
 
 }

@@ -7,19 +7,18 @@ import java.util.List;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-
 import Repositorios.RepositorioDeDispositivos;
 import sge.Dispositivo;
 
 public class ImportadorDeJsonDispositivo {
 
-public List<Dispositivo> getDispositivos() throws IOException {
-	String dispositivosJSON = "";
+	public List<Dispositivo> getDispositivos() throws IOException {
+		String dispositivosJSON = "";
 
-	lectorDeArchivos lectorDeArchivos = new lectorDeArchivos("pruebadispositivo.json");
-	while (!lectorDeArchivos.lecturaFinalizada()) {
-		dispositivosJSON = dispositivosJSON + lectorDeArchivos.leerSiguiente();
-	}
+		lectorDeArchivos lectorDeArchivos = new lectorDeArchivos("pruebadispositivo.json");
+		while (!lectorDeArchivos.lecturaFinalizada()) {
+			dispositivosJSON = dispositivosJSON + lectorDeArchivos.leerSiguiente();
+		}
 		lectorDeArchivos.cerrar();
 
 		Gson gson = new Gson();
@@ -38,11 +37,11 @@ public List<Dispositivo> getDispositivos() throws IOException {
 				Dispositivo dispositivo = gson.fromJson(lectorDeArchivos.leerSiguiente(), Dispositivo.class);
 				RepositorioDeDispositivos.getinstance().guardarDispositivo(dispositivo);
 
-		}
-		lectorDeArchivos.cerrar();
+			}
+			lectorDeArchivos.cerrar();
 		} catch (IOException e) {
-		e.printStackTrace();
+			e.printStackTrace();
+		}
 	}
-	}
-	
+
 }

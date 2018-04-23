@@ -8,7 +8,7 @@ import utils.ImportadorDeJSONCliente;
 
 public class RepositorioDeClientes {
 	private static RepositorioDeClientes repoClientes;
-	public  List<Cliente> clientes = new ArrayList<Cliente>();
+	public List<Cliente> clientes = new ArrayList<Cliente>();
 
 	private RepositorioDeClientes() {
 	};
@@ -25,7 +25,7 @@ public class RepositorioDeClientes {
 
 	}
 
-	public  List<Cliente> Clientes() {
+	public List<Cliente> Clientes() {
 		return clientes;
 	}
 
@@ -38,6 +38,6 @@ public class RepositorioDeClientes {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 	}
 }

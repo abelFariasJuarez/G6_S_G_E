@@ -1,6 +1,5 @@
 package sge;
 
-
 import java.util.Date;
 
 public abstract class UsuarioSGE {
