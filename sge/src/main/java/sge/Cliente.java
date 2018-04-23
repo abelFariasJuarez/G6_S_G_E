@@ -19,45 +19,58 @@ public class Cliente extends UsuarioSGE {
 
 	}
 
-	public Cliente(String _tipodoc, Integer _nrodoc, Integer _telefono) {
-		tipodoc = _tipodoc;
-		nrodoc = _nrodoc;
-		telefono = _telefono;
 
-	}
 
-	public boolean tengoAlgunDispositivoON() {
-		return true;
-	}
-
-	public Integer cantDispositivosON() {
-		return null;
-	}
-
-	Integer cantDispositivosOFF() {
-		return null;
-	}
-
-	Integer cantDispositivos() {
-		return null;
-	}
-
-	public String Dni() {
+	public String getTipoDoc() {
 		return tipodoc;
 	}
 
-	public int nroDoc() {
+	public int getNroDoc() {
 		return nrodoc;
 	}
 
-	public int telefono() {
+	public int getTelefono() {
 		return telefono;
 	}
 
-	public void mostrarDispositivos() {
-		for (Dispositivo disp : dispositivos) {
-			System.out.println("\t"+ disp.getNombre() + " " + disp.toString());
-		}
+	public Categoria getCategoria() {
+		
+		return categoria;
 	}
+
+	
+	public void addDispositivo(Dispositivo dispositivo) {
+		dispositivos.add(dispositivo);
+
+	}
+
+	public void removeDispositivo(Dispositivo dispositivo) {
+		dispositivos.remove(dispositivo);
+
+	}
+	public boolean tengoAlgunDispositivoON() {
+		return dispositivos.stream().anyMatch(dis -> dis.estoyON());
+
+	}
+
+	public Integer cantDispositivosON() {
+		return (int) dispositivos.stream().filter(dis -> dis.estoyON() == true).count();
+	}
+
+	Integer cantDispositivosOFF() {
+		return (int) dispositivos.stream().filter(dis -> dis.estoyON() == false).count();
+	}
+
+	Integer cantDispositivos() {
+		return dispositivos.size();
+	}
+
+	public void presentarme() {
+		System.out.println("Tipo Doc:" + this.tipodoc + "   " + "Nro Doc:" + this.nrodoc + "   " + "telefono:"
+				+ this.telefono + "Dispositivos:");	
+	}
+
+
+
 
 }

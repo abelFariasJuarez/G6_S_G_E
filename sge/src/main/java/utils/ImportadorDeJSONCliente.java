@@ -15,13 +15,13 @@ import java.io.IOException;
 import java.util.TimerTask;
 
 @SuppressWarnings("unused")
-public class ImportadorDeJSON {
+public class ImportadorDeJSONCliente {
 
 	public List<Cliente> getClientes() throws IOException {
 
 		String clientesJSON = "";
 
-		lectorDeArchivos lectorDeArchivos = new lectorDeArchivos();
+		lectorDeArchivos lectorDeArchivos = new lectorDeArchivos("pruebacliente.json");
 		while (!lectorDeArchivos.lecturaFinalizada()) {
 			clientesJSON = clientesJSON + lectorDeArchivos.leerSiguiente();
 		}
@@ -37,7 +37,7 @@ public class ImportadorDeJSON {
 
 	public void run() {
 		try {
-			lectorDeArchivos lectorDeArchivos = new lectorDeArchivos();
+			lectorDeArchivos lectorDeArchivos = new lectorDeArchivos("pruebacliente.json");
 			while (!lectorDeArchivos.lecturaFinalizada()) {
 				Gson gson = new Gson();
 				Cliente cliente = gson.fromJson(lectorDeArchivos.leerSiguiente(), Cliente.class);

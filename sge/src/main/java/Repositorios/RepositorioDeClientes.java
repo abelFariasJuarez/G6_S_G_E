@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import sge.Cliente;
-import utils.ImportadorDeJSON;
+import utils.ImportadorDeJSONCliente;
 
 public class RepositorioDeClientes {
 	private static RepositorioDeClientes repoClientes;
@@ -30,7 +30,7 @@ public class RepositorioDeClientes {
 	}
 
 	public void cargarClientes() {
-		ImportadorDeJSON json = new ImportadorDeJSON();
+		ImportadorDeJSONCliente json = new ImportadorDeJSONCliente();
 
 		try {
 			this.clientes.addAll(json.getClientes());
