@@ -16,9 +16,8 @@ public class TestAdministrador {
 	@Test
 	public void MesesAdministrando() {
 		
-		Administrador admin = new Administrador();
-		
-		admin.setFechaingreso(LocalDate.of(2015, Month.APRIL, 19));
+		Administrador admin = new Administrador("pedro","saraska","lavalle 148",LocalDate.of(2015, Month.APRIL, 19),"pepe","pasti");
+
 		
 		
 		

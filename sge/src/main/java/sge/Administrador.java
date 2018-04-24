@@ -8,6 +8,13 @@ import java.time.Period;
 //import java.util.GregorianCalendar;
 
 public class Administrador extends UsuarioSGE {
+	
+	public Administrador(String _nombre, String _apellido, String _domicilio, LocalDate _fechaIngreso, String _username,
+			String _password) {
+		super(_nombre, _apellido, _domicilio, _fechaIngreso, _username, _password);
+	
+	}
+
 	Integer nroAdminID;
 
 	public int cantMesesAdministrando() {

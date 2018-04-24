@@ -10,6 +10,15 @@ public abstract class UsuarioSGE {
 	LocalDate fechaIngreso;
 	String username;
 	String password;
+	
+	UsuarioSGE(String _nombre,String _apellido,String _domicilio,LocalDate _fechaIngreso,String _username,String _password){
+		nombre=_nombre;
+		apellido=_apellido;
+		domicilio=_domicilio;
+		fechaIngreso=_fechaIngreso;
+		username=_username;
+		password=_password;
+	}
 
 	public String getNombre() {
 		return nombre;

@@ -1,8 +1,8 @@
 package sge;
 
 public class Dispositivo {
+	
 	public Dispositivo(String nombre, Integer consumoPorHora, boolean encendido) {
-		
 		this.nombre = nombre;
 		this.consumoPorHora = consumoPorHora;
 		this.encendido = encendido;

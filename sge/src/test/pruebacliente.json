@@ -1,67 +1,35 @@
 [
   {
+    "nombre":"Carlos",
+    "apellido":"Sanazki",
+    "domicilio":"condarco 148",
+     "fechaIngreso": {
+      "year": 2017,
+      "month": 4,
+      "day": 7
+    },
+    "username":"cazana",
+    "password":"menTOL2017",
     "tipodoc": "Dni",
     "nrodoc": 21321012,
     "telefono": 154331231,
-    "fechaingreso": {
-      "year": 2017,
-      "month": 4,
-      "day": 7
-    },
+   
     "dispositivos": [
       {
-        "nombre": "abel",
+        "nombre": "heladera",
         "consumoPorHora": 1,
-        "encedido": true
+        "encendido": true
       },
       {
-        "nombre": "martin",
+        "nombre": "microondas",
         "consumoPorHora": 2,
-        "encedido": false
+        "encendido": false
       }
-    ]
-  },
-  {
-    "tipodoc": "Dni",
-    "nrodoc": 21321012,
-    "telefono": 154331232,
-    "fechaingreso": {
-      "year": 2017,
-      "month": 4,
-      "day": 1
-    },
-    "dispositivos": [
+      ,
       {
-        "nombre": "abel",
-        "consumoPorHora": 1,
-        "encedido": true
-      },
-      {
-        "nombre": "martin",
+        "nombre": "computadora",
         "consumoPorHora": 2,
-        "encedido": false
-      }
-    ]
-  },
-  {
-    "tipodoc": "Dni",
-    "nrodoc": 21321013,
-    "telefono": 154331233,
-    "fechaingreso": {
-      "year": 2017,
-      "month": 5,
-      "day": 7
-    },
-    "dispositivos": [
-      {
-        "nombre": "abel",
-        "consumoPorHora": 1,
-        "encedido": true
-      },
-      {
-        "nombre": "martin",
-        "consumoPorHora": 2,
-        "encedido": false
+        "encendido": true
       }
     ]
   }

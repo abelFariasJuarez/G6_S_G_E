@@ -54,14 +54,14 @@ public class TestCliente {
 	public void cantDispositivosOn() {
 
 
-		assertEquals(Integer.valueOf(3), cli.cantDispositivosON());
+		assertEquals(Integer.valueOf(2), cli.cantDispositivosON());
 
 	}
 
 	@Test
 	public void cantDispositivosOFF() {
 
-		assertEquals(Integer.valueOf(2), cli.cantDispositivosOFF());
+		assertEquals(Integer.valueOf(1), cli.cantDispositivosOFF());
 
 	}
 
@@ -69,7 +69,7 @@ public class TestCliente {
 	public void cantDispositivos() {
 
 
-		assertEquals(Integer.valueOf(5), cli.cantDispositivos());
+		assertEquals(Integer.valueOf(3), cli.cantDispositivos());
 
 	}
 
