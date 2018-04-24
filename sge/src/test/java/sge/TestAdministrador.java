@@ -15,8 +15,12 @@ public class TestAdministrador {
 	
 	@Test
 	public void MesesAdministrando() {
-		Administrador admin=new Administrador();
+		
+		Administrador admin = new Administrador();
+		
 		admin.setFechaingreso(LocalDate.of(2015, Month.APRIL, 19));
+		
+		
 		
 		assertEquals(36,admin.cantMesesAdministrando());	
 	

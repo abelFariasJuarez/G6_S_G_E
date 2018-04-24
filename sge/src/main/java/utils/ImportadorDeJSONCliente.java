@@ -1,6 +1,8 @@
 package utils;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import com.google.gson.reflect.TypeToken;
 
 import java.io.FileNotFoundException;
@@ -26,7 +28,7 @@ public class ImportadorDeJSONCliente {
 		}
 		lectorDeArchivos.cerrar();
 
-		Gson gson = new Gson();
+		Gson gson = new  Gson();/*Builder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").create();*/
 		Type tipoListaEmpleados = new TypeToken<List<Cliente>>() {
 		}.getType();
 		List<Cliente> clientes = gson.fromJson(clientesJSON, tipoListaEmpleados);

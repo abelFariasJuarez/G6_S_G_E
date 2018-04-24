@@ -1,14 +1,13 @@
 package sge;
 
 import java.time.LocalDate;
-//import java.util.Calendar;
 
 
 public abstract class UsuarioSGE {
 	String nombre;
 	String apellido;
 	String domicilio;
-	LocalDate fechaingreso;
+	LocalDate fechaIngreso;
 	String username;
 	String password;
 
@@ -36,12 +35,12 @@ public abstract class UsuarioSGE {
 		this.domicilio = domicilio;
 	}
 
-	public LocalDate getFechaingreso() {
-		return fechaingreso;
+	public LocalDate getFechaIngreso() {
+		return fechaIngreso;
 	}
 
 	public void setFechaingreso(LocalDate fechaingreso) {
-		this.fechaingreso = fechaingreso;
+		this.fechaIngreso = fechaingreso;
 	}
 
 	public String getUsername() {

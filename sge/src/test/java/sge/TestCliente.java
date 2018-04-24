@@ -2,27 +2,45 @@ package sge;
 
 import static org.junit.Assert.*;
 
-import java.util.ArrayList;
 
+import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
+import Repositorios.RepositorioDeClientes;
 
 public class TestCliente {
 
+	RepositorioDeClientes repo = RepositorioDeClientes.getinstance();
+	List<Cliente> Clientes ;
+	Cliente cli ;
 	
-	Cliente cli;
 	
 	@Before
 	public void setUp() {
+		repo.cargarClientes();
+		cli = repo.clientes.get(0);
+		Clientes = repo.clientes;
 		
-		cli = new Cliente("DNI", 38522013, 1144320119, new ArrayList<Dispositivo>());
-		cli.addDispositivo(new Dispositivo("heladera", 12, true));
-		cli.addDispositivo(new Dispositivo("microondas", 15, false));
-		cli.addDispositivo(new Dispositivo("monitor", 12, false));
-		cli.addDispositivo(new Dispositivo("heladera", 12, true));
-		cli.addDispositivo(new Dispositivo("Estufa Electrica", 12, true));
+		
 	}
 	
+	/*@Test
+	public void mostrarClientesYDispositivos() {
+		
+		for (Cliente client : Clientes) {
+			client.presentate();
+			for (Dispositivo disp : client.dispositivos) {
+				disp.presentate();
+			}
+
+		}
+	}*/
+	
+	@Test
+	public void hayClientes(){
+		
+		assertEquals(true,!Clientes.isEmpty());
+	}
 	
 	@Test
 	public void algunDispositivoOn() {
