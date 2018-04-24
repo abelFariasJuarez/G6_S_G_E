@@ -5,49 +5,31 @@
     "telefono": 154331231,
     "dispositivos": [
       {
-        "nombre": "abel",
+        "nombre": "Dispositivo 1",
         "consumoPorHora": 1,
         "encedido": true
       },
       {
-        "nombre": "martin",
+        "nombre": "Dispositivo 2",
         "consumoPorHora": 2,
-        "encedido": false
-      }
-    ]
-  },
-  {
-    "tipodoc": "Dni",
-    "nrodoc": 21321012,
-    "telefono": 154331232,
-    "dispositivos": [
-      {
-        "nombre": "abel",
-        "consumoPorHora": 1,
         "encedido": true
       },
-      {
-        "nombre": "martin",
+        {
+        "nombre": "Dispositivo 3",
         "consumoPorHora": 2,
-        "encedido": false
-      }
-    ]
-  },
-  {
-    "tipodoc": "Dni",
-    "nrodoc": 21321013,
-    "telefono": 154331233,
-    "dispositivos": [
-      {
-        "nombre": "abel",
-        "consumoPorHora": 1,
         "encedido": true
       },
-      {
-        "nombre": "martin",
+            {
+        "nombre": "Dispositivo 4",
+        "consumoPorHora": 2,
+        "encedido": false
+      },
+            {
+        "nombre": "Dispositivo 5",
         "consumoPorHora": 2,
         "encedido": false
       }
+        
     ]
   }
 ]

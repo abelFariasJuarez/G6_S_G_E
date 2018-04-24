@@ -12,7 +12,7 @@ public class Administrador extends UsuarioSGE {
 
 	public int cantMesesAdministrando() {
 		 LocalDate today = LocalDate.now();
-		 Period age = Period.between(fechaingreso, today);
+		 Period age = Period.between(fechaIngreso, today);
 		 int months = age.getMonths()+(age.getYears()*12);
 		 return months;
 	}

@@ -1,6 +1,10 @@
 package sge;
 
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import sge.Dispositivo;
 
@@ -10,15 +14,24 @@ public class Cliente extends UsuarioSGE {
 	Integer telefono;
 	Categoria categoria;
 	List<Dispositivo> dispositivos = new ArrayList<Dispositivo>();
-
-	public Cliente(String _tipodoc, Integer _nrodoc, Integer _telefono, List<Dispositivo> _dispositivos) {
+	LocalDate fechaAlta;
+	
+	public Cliente(String _tipodoc, Integer _nrodoc, Integer _telefono, List<Dispositivo> _dispositivos/*, String _fechaAlta*/) {
 		tipodoc = _tipodoc;
 		nrodoc = _nrodoc;
 		telefono = _telefono;
 		dispositivos = _dispositivos;
-
+		//LocalDate _fecha = obtenerFecha(_fechaAlta);
+		//fechaAlta = _fecha;
 	}
 
+/*	private LocalDate obtenerFecha(String _fechaAlta) {
+		
+	    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+	    LocalDate dateTime = LocalDate.parse(_fechaAlta, formatter);
+		return dateTime;
+	}
+*/
 	public String getTipoDoc() {
 		return tipodoc;
 	}
@@ -64,8 +77,11 @@ public class Cliente extends UsuarioSGE {
 	}
 
 	public void presentate() {
-		System.out.println("Tipo Doc:" + this.tipodoc + "   " + "Nro Doc:" + this.nrodoc + "   " + "telefono:"
-				+ this.telefono + "Dispositivos:");
+		System.out.println("Tipo Doc:" + this.tipodoc + "\n" + "Nro Doc:" + this.nrodoc + "\n" + "telefono:" + this.telefono +"\n"+"Fecha de alta: "+this.fechaAlta +"\n"+ "Dispositivos:");
 	}
 
+		
+		
+	
+	
 }

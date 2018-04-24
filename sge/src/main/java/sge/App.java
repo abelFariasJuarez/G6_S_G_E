@@ -8,7 +8,7 @@ import Repositorios.RepositorioDeClientes;
 
 public class App {
 	public static void main(String[] args) {
-		System.out.println("Hello World!");
+		
 
 		// Lo dejamos acá o lo pasamos a test?
 		RepositorioDeClientes repo = RepositorioDeClientes.getinstance();
