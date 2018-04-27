@@ -1,2 +1,2 @@
-[{"nombre":"Heladera","consumoPorHora":10,"encendido":false},
-{"nombre":"microondas","consumoPorHora":15,"encendido":true}]
+[{"nombre":"Heladera","consumoPorHora":10,"encendido":false,"horasPrendido":10},
+{"nombre":"microondas","consumoPorHora":15,"encendido":true,"horasPrendido":10}]

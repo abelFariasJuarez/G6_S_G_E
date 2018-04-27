@@ -16,7 +16,7 @@ public class TestDispositivos {
 	public void setUp() {
 	repo2.cargarDispositivos();
 	Dispositivos = repo2.Dispositivos();
-	
+	 
 	for (Dispositivo disp : Dispositivos) {
 		disp.presentate();
 	}

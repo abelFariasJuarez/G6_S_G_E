@@ -11,6 +11,16 @@ public class Dispositivo {
 	private String nombre;
 	private Integer consumoPorHora;
 	private boolean encendido;
+	private Integer horasEncendido;
+	
+	
+	public Integer getHorasEncendido() {
+		return horasEncendido;
+	}
+
+	public void setHorasEncendido(Integer horasEncendido) {
+		this.horasEncendido = horasEncendido;
+	}
 
 	public boolean estoyON() {
 		return encendido;
@@ -27,5 +37,9 @@ public class Dispositivo {
 	public void presentate() {
 		System.out.println("\t" + this.nombre + " " + this.consumoPorHora + "  " + this.encendido);
 
+	}
+	
+	public Integer informarConsumo(){
+		return (this.getconsumoPorHora()*this.getHorasEncendido());
 	}
 }

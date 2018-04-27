@@ -8,6 +8,6 @@ public class Categoria {
 	Float cotaSuperior;
 
 	public boolean tePerteneceEsteCliente(Cliente unCliente) {
-		return true;
+		return unCliente.getCategoria()== this;
 	}
 }

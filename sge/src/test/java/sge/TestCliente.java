@@ -72,5 +72,9 @@ public class TestCliente {
 		assertEquals(Integer.valueOf(3), cli.cantDispositivos());
 
 	}
-
+	
+	@Test
+	public void cantidadConsumo() {
+		assertEquals(Integer.valueOf(50),cli.consumoTotal());
+	}
 }

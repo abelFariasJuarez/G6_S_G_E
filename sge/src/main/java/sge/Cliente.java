@@ -73,4 +73,7 @@ public class Cliente extends UsuarioSGE {
 				+ "telefono:" + this.telefono + "  "+ "Fecha de alta:" + this.fechaIngreso+"\n" + "Dispositivos:");
 	}
 
+	public Integer consumoTotal() {
+		return (int) dispositivos.stream().mapToInt(dis -> dis.informarConsumo()).sum();
+	}
 }

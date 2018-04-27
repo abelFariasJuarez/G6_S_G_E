@@ -18,18 +18,22 @@
       {
         "nombre": "heladera",
         "consumoPorHora": 1,
-        "encendido": true
+        "encendido": true,
+       "horasEncendido":10
       },
       {
         "nombre": "microondas",
         "consumoPorHora": 2,
-        "encendido": false
+        "encendido": false,
+        "horasEncendido":10
+        
       }
       ,
       {
         "nombre": "computadora",
         "consumoPorHora": 2,
-        "encendido": true
+        "encendido": true,
+        "horasEncendido":10
       }
     ]
   }
