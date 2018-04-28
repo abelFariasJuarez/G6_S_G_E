@@ -69,11 +69,12 @@ public class Cliente extends UsuarioSGE {
 	public void presentate() {
 		System.out.println("nombre:" + this.nombre + "  " + "apellido:" + this.apellido + "  " + "FechaIngreso:"
 				+ this.fechaIngreso + "  " + "username:" + this.username + "  " + "password:" + this.password + "\n"
-				+ "Domicilio:" + this.domicilio +"  " + "Tipo Doc:" + this.tipodoc + "  " + "Nro Doc:" + this.nrodoc +""
-				+ "telefono:" + this.telefono + "  "+ "Fecha de alta:" + this.fechaIngreso+"\n" + "Dispositivos:");
+				+ "Domicilio:" + this.domicilio + "  " + "Tipo Doc:" + this.tipodoc + "  " + "Nro Doc:" + this.nrodoc
+				+ "" + "telefono:" + this.telefono + "  " + "Fecha de alta:" + this.fechaIngreso + "\n"
+				+ "Dispositivos:");
 	}
 
-	public Integer consumoTotal() {
-		return (int) dispositivos.stream().mapToInt(dis -> dis.informarConsumo()).sum();
+	public Float consumo() {
+		return (float) this.dispositivos.stream().mapToDouble(dis -> dis.informarConsumo()).sum();
 	}
 }

@@ -2,23 +2,23 @@ package sge;
 
 public class Dispositivo {
 	
-	public Dispositivo(String nombre, Integer consumoPorHora, boolean encendido) {
+	public Dispositivo(String nombre, Float consumoPorHora, boolean encendido) {
 		this.nombre = nombre;
 		this.consumoPorHora = consumoPorHora;
 		this.encendido = encendido;
 	}
 
 	private String nombre;
-	private Integer consumoPorHora;
+	private Float consumoPorHora;
 	private boolean encendido;
-	private Integer horasEncendido;
+	private Float horasEncendido;
 	
 	
-	public Integer getHorasEncendido() {
+	public Float getHorasEncendido() {
 		return horasEncendido;
 	}
 
-	public void setHorasEncendido(Integer horasEncendido) {
+	public void setHorasEncendido(Float horasEncendido) {
 		this.horasEncendido = horasEncendido;
 	}
 
@@ -30,7 +30,7 @@ public class Dispositivo {
 		return nombre;
 	}
 
-	public Integer getconsumoPorHora() {
+	public Float getconsumoPorHora() {
 		return consumoPorHora;
 	}
 
@@ -39,7 +39,7 @@ public class Dispositivo {
 
 	}
 	
-	public Integer informarConsumo(){
+	public Float informarConsumo(){
 		return (this.getconsumoPorHora()*this.getHorasEncendido());
 	}
 }
