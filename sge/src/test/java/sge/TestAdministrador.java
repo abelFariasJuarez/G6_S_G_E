@@ -20,12 +20,6 @@ public class TestAdministrador {
 		assertEquals(36, admin.cantMesesAdministrando());
 
 	}
-
-	// opcion alternativa
-	// public void MesesAdministrando() {
-	// Administrador admin=new Administrador();
-	// admin.setFechaingreso(new GregorianCalendar(2016,Calendar.MARCH,11));
-	// assertEquals(25,admin.cantMesesAdministrando());
-	// }
-
+	
 }
+

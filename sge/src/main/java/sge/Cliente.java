@@ -55,11 +55,11 @@ public class Cliente extends UsuarioSGE {
 	}
 
 	public Integer cantDispositivosON() {
-		return (int) dispositivos.stream().filter(dis -> dis.estoyON() == true).count();
+		return (int) dispositivos.stream().filter(dis -> dis.estoyON()).count();
 	}
 
 	Integer cantDispositivosOFF() {
-		return (int) dispositivos.stream().filter(dis -> dis.estoyON() == false).count();
+		return (int) dispositivos.stream().filter(dis -> !dis.estoyON()).count();
 	}
 
 	Integer cantDispositivos() {
@@ -67,10 +67,10 @@ public class Cliente extends UsuarioSGE {
 	}
 
 	public void presentate() {
-		System.out.println("nombre:" + this.nombre + "  " + "apellido:" + this.apellido + "  " + "FechaIngreso:"
-				+ this.fechaIngreso + "  " + "username:" + this.username + "  " + "password:" + this.password + "\n"
-				+ "Domicilio:" + this.domicilio + "  " + "Tipo Doc:" + this.tipodoc + "  " + "Nro Doc:" + this.nrodoc
-				+ "" + "telefono:" + this.telefono + "  " + "Fecha de alta:" + this.fechaIngreso + "\n"
+		System.out.println("nombre:" + nombre + "  " + "apellido:" + apellido + "  " + "FechaIngreso:"
+				+ fechaIngreso + "  " + "username:" + username + "  " + "password:" + password + "\n"
+				+ "Domicilio:" + domicilio + "  " + "Tipo Doc:" + tipodoc + "  " + "Nro Doc:" + nrodoc
+				+ "" + "telefono:" +telefono + "  " + "Fecha de alta:" + fechaIngreso + "\n"
 				+ "Dispositivos:");
 	}
 

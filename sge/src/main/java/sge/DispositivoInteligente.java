@@ -4,7 +4,7 @@ public class DispositivoInteligente extends Dispositivo {
 
 	public DispositivoInteligente(String nombre, Float consumoPorHora, boolean encedido) {
 		super(nombre, consumoPorHora, encedido);
-		// TODO Auto-generated constructor stub
+	
 	}
 
 }

@@ -10,7 +10,7 @@ public class App {
 	public static void main(String[] args) {
 		
 
-		// Lo dejamos acá o lo pasamos a test?
+		
 		RepositorioDeClientes repo = RepositorioDeClientes.getinstance();
 		repo.cargarClientes();
 
