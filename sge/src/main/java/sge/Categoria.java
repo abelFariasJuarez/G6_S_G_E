@@ -31,4 +31,10 @@ public class Categoria {
 	private boolean menorCotaSuperior(Float float1) {
 		return (cotaSuperior == null) || cotaSuperior >= float1;
 	}
+	
+	
+	public float CostoEstimado(Cliente user) {
+		return cargoFijo+cargoVariable*user.consumo();
+	}
+	
 }
