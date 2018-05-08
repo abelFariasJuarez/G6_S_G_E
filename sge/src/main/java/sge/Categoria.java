@@ -7,18 +7,19 @@ public class Categoria {
 	Float cotaInferior;
 	Float cotaSuperior;
 
-
-	public Categoria(String _cod, Float _fijo, Float _variable, Float _inf, Float _sup) {
-		codigo = _cod;
-		cargoFijo = _fijo;
-		cargoVariable = _variable;
-		cotaInferior = _inf;
-		cotaSuperior = _sup;
+	public Categoria(String codigo, Float cargoFijo, Float cargoVariable, Float cotaInferior, Float cotaSuperior) {
+		this.codigo = codigo;
+		this.cargoFijo = cargoFijo;
+		this.cargoVariable = cargoVariable;
+		this.cotaInferior = cotaInferior;
+		this.cotaSuperior = cotaSuperior;
 	}
+
 
 	public boolean estaEnTuRangoSuConsumo(Cliente unCliente) {
 		return estaEnTuRango(unCliente.consumo());
 	}
+
 
 	public boolean estaEnTuRango(Float float1) {
 		return this.mayorCotaInferior(float1) && this.menorCotaSuperior(float1);
@@ -33,8 +34,8 @@ public class Categoria {
 	}
 	
 	
-	public float CostoEstimado(Cliente user) {
-		return cargoFijo+cargoVariable*user.consumo();
+	public Float CostoEstimado(Cliente user) {
+		return (float) cargoFijo+cargoVariable*user.consumo();
 	}
 	
 }

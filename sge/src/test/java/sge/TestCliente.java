@@ -12,13 +12,13 @@ public class TestCliente {
 	RepositorioDeClientes repo = RepositorioDeClientes.getinstance();
 	List<Cliente> Clientes;
 	Cliente cli;
-
+	Categoria unacategoria;
 	@Before
 	public void setUp() {
 		repo.cargarClientes();
 		cli = repo.clientes.get(0);
 		Clientes = repo.clientes;
-
+		unacategoria = new Categoria("r1",18.76f, 0.644f,0f,150.0f);
 	}
 
 	/*
@@ -67,5 +67,10 @@ public class TestCliente {
 	@Test
 	public void cantidadConsumo() {
 		assertEquals(Float.valueOf(50), cli.consumo());
+	}
+	
+	@Test
+	public void estimacionFactura() {
+		assertEquals(Float.valueOf(50.96f), unacategoria.CostoEstimado(cli));
 	}
 }
