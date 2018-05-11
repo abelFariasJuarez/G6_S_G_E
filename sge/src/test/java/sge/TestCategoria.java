@@ -6,7 +6,7 @@ import org.junit.Test;
 
 public class TestCategoria {
 
-	
+
 	@Test
 	public void testCategoriaEsDeTuRango() {
 		Float fijo = 13.f;
@@ -33,7 +33,7 @@ public class TestCategoria {
 	public void testCategoriaMenorEsDeTuRango() {
 		Float fijo = 13.f;
 		Float variable = 0.05f;
-		Float inf = null;
+		Float inf = 0f;
 		Float sup = 1.5f;
 
 		Categoria unaCate = new Categoria("R0", fijo, variable, inf, sup);
@@ -44,7 +44,7 @@ public class TestCategoria {
 	public void testCategoriaMenorNoEsDeTuRango() {
 		Float fijo = 13.f;
 		Float variable = 0.05f;
-		Float inf = null;
+		Float inf = 0f;
 		Float sup = 1.5f;
 
 		Categoria unaCate = new Categoria("R0", fijo, variable, inf, sup);
@@ -56,7 +56,7 @@ public class TestCategoria {
 		Float fijo = 13.f;
 		Float variable = 0.05f;
 		Float inf = 20f;
-		Float sup = null;
+		Float sup =Float.MAX_VALUE;
 
 		Categoria unaCate = new Categoria("R0", fijo, variable, inf, sup);
 		assertEquals(true, unaCate.estaEnTuRango(21f));
@@ -67,7 +67,7 @@ public class TestCategoria {
 		Float fijo = 13.f;
 		Float variable = 0.05f;
 		Float inf = 20f;
-		Float sup = null;
+		Float sup = Float.MAX_VALUE;
 
 		Categoria unaCate = new Categoria("R0", fijo, variable, inf, sup);
 		assertEquals(false, unaCate.estaEnTuRango(2f));

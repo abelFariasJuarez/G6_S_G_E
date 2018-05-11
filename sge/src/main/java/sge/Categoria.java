@@ -24,11 +24,11 @@ public class Categoria {
 	}
 
 	private boolean mayorCotaInferior(Float float1) {
-		return (cotaInferior == null) || cotaInferior < float1;
+		return (cotaInferior == 0f) || cotaInferior < float1;
 	}
 
 	private boolean menorCotaSuperior(Float float1) {
-		return (cotaSuperior == null) || cotaSuperior >= float1;
+		return (cotaSuperior == Float.MAX_VALUE) || cotaSuperior >= float1;
 	}
 
 	public Float CostoEstimado(Cliente user) {
