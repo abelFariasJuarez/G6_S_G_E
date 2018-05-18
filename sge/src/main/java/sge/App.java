@@ -1,34 +1,43 @@
 package sge;
 
-import Repositorios.RepositorioDeDispositivos;
+
+import java.time.LocalDate;
 
 
 
-import Repositorios.RepositorioDeClientes;
 
 public class App {
+
+
 	public static void main(String[] args) {
 		
 
 		
-		RepositorioDeClientes repo = RepositorioDeClientes.getinstance();
-		repo.cargarClientes();
+		Cliente cli = new Cliente("Pedro","Ramon","Plaza",LocalDate.of(1989, 11, 11),"pedro","nikita","dni",31032123,115322011);
 
-		for (Cliente client : repo.Clientes()) {
-			client.presentate();
-			for (Dispositivo disp : client.dispositivos) {
-				disp.presentate();
-			}
+		Dispositivo diselectronico=new DispositivoInteligente("heladera",15f,true);
+		Dispositivo disestandar=new DispositivoEstandarConcreto("microondas",12f);
+		Dispositivo moulo=new Modulo((DispositivoEstandar) disestandar,false);
+	
+		
+	
+	
+		System.out.println("pepe");
+		cli.addDispositivo(disestandar);
+		cli.addDispositivo(diselectronico);
+		cli.addDispositivo(diselectronico);
+		cli.addDispositivo(moulo);
+		
+		System.out.println( cli.cantDispositivosOFF());
+		System.out.println(cli.cantDispositivosON());
 
-		}
 
-		System.out.println("Hello World!");
+		
+	
 
-		RepositorioDeDispositivos repo2 = RepositorioDeDispositivos.getinstance();
-		repo2.cargarDispositivos();
-		for (Dispositivo disp : repo2.Dispositivos()) {
-			disp.presentate();
-		}
 
-	}
 }
+	}
+
+
+

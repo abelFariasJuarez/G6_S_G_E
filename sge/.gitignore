@@ -10,3 +10,4 @@ RemoteSystemsTempFiles/
 .classpath
 
 /target/
+/bin/
