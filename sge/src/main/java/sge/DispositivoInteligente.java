@@ -1,5 +1,8 @@
 package sge;
 
+
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 public class DispositivoInteligente extends Dispositivo implements IInteligente {
@@ -20,7 +23,15 @@ public class DispositivoInteligente extends Dispositivo implements IInteligente 
 	private boolean encendido;
 	public List<Sensor> sensores;
 	public EstadoDispositivo estado;
+	public List<Intervalo> intervalos=new ArrayList<Intervalo>();
 	
+	
+	
+	public double consumoNHoras(double horas){
+		LocalDateTime instanteComienzo=LocalDateTime.now().minusHours((long) horas);
+		
+		return intervalos.stream().filter(i->i.pertenece(instanteComienzo)).mapToDouble(i -> i.informarConsumo(this,instanteComienzo)).sum();
+	}
 	@Override
 	public void setEncendido(boolean encendido) {
 		this.encendido = encendido;

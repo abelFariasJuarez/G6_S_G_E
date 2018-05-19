@@ -20,6 +20,12 @@ public class EstadoAhorroDeEnergia implements EstadoDispositivo {
 		
 	}
 
+	@Override
+	public long factor() {
+		// TODO Auto-generated method stub
+		return (long) 0.7;
+	}
+
 
 
 }

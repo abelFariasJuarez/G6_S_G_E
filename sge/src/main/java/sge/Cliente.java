@@ -3,6 +3,7 @@ package sge;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 public class Cliente extends UsuarioSGE {
 
@@ -59,16 +60,21 @@ public class Cliente extends UsuarioSGE {
 
 	}
 
+	public Stream<Dispositivo> misInteligentes()
+	{
+		return dispositivos.stream().filter(dis->dis instanceof IInteligente);
+	}
+	
 	public boolean tengoAlgunDispositivoON() {
-		return  dispositivos.stream().filter(dis->dis instanceof IInteligente).anyMatch(dis->( (IInteligente) dis).estoyON());
+		return  this.misInteligentes().anyMatch(dis->( (IInteligente) dis).estoyON());
 	}
 
 	public Integer cantDispositivosON() {
-		return  (int)  dispositivos.stream().filter(dis->dis instanceof IInteligente).filter(dis->((IInteligente) dis).estoyON()).count();
+		return  (int)  this.misInteligentes().filter(dis-> ((IInteligente) dis).estoyON()).count();
 	}
 
 	public Integer cantDispositivosOFF() {
-		return  (int)  dispositivos.stream().filter(dis->dis instanceof IInteligente).filter(dis->((IInteligente) dis).estoyOFF()).count();
+		return  (int)  this.misInteligentes().filter(dis->((IInteligente) dis).estoyOFF()).count();
 	}
 	public List<Dispositivo> getDispositivos() {
 		return dispositivos;

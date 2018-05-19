@@ -1,6 +1,6 @@
 package sge;
 
-public class Modulo extends DecoradorModulo {
+public class Modulo extends DispositivoConModulo {
 
 	public Modulo(DispositivoEstandar _dis, boolean _encendido) {
 		super(_dis, _encendido);

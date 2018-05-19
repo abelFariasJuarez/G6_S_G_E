@@ -2,10 +2,12 @@ package sge;
 
 public class EstadoApagado implements EstadoDispositivo {
 
+	//dispositivo inteligente o con modulo
 	@Override
 	public void prender(IInteligente dispositivoInteligente) {
 		dispositivoInteligente.setEstado(new EstadoPrendido());
 		dispositivoInteligente.setEncendido(true);
+		
 		
 	}
 
@@ -17,6 +19,12 @@ public class EstadoApagado implements EstadoDispositivo {
 	@Override
 	public void ahorroDeEnergia(IInteligente dispositivoInteligente) {
 		
+	}
+
+	@Override
+	public long factor() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 

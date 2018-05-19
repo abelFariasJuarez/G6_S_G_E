@@ -1,6 +1,6 @@
 package sge;
 
-public class Dispositivo {
+public  class Dispositivo {
 
 	public Dispositivo(String _nombre, Float _consumoPorHora) {
 		nombre = _nombre;

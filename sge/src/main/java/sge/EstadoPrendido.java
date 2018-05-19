@@ -20,6 +20,12 @@ public class EstadoPrendido implements EstadoDispositivo {
 		dispositivoInteligente.setEstado(new EstadoAhorroDeEnergia());		
 	}
 
+	@Override
+	public long factor() {
+		// TODO Auto-generated method stub
+		return 1;
+	}
+
 	
 
 	

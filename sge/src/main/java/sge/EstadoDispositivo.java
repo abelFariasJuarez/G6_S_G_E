@@ -9,4 +9,8 @@ public interface EstadoDispositivo {
 
 	public void ahorroDeEnergia(IInteligente dispositivoInteligente);
 
+	public long factor();
+
+	
+
 }

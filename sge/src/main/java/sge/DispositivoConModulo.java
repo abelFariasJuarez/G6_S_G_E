@@ -2,18 +2,17 @@ package sge;
 
 import java.util.List;
 
-public abstract class DecoradorModulo extends DispositivoEstandar implements IInteligente {
-	
-	public DecoradorModulo(DispositivoEstandar _dis,boolean _encendido) {
-	dispo=_dis;
-	encendido=_encendido;
-	if(encendido==true) {
-		this.setEstado(new EstadoPrendido());	
-	}else {
-		this.setEstado(new EstadoApagado());
+public abstract class DispositivoConModulo extends DispositivoEstandar implements IInteligente {
+	// decorator
+	public DispositivoConModulo(DispositivoEstandar _dis, boolean _encendido) {
+		dispo = _dis;
+		encendido = _encendido;
+		if (encendido) {
+			this.setEstado(new EstadoPrendido());
+		} else {
+			this.setEstado(new EstadoApagado());
+		}
 	}
-	}
-
 
 	private boolean encendido;
 	public List<Sensor> sensores;
