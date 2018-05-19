@@ -15,7 +15,7 @@ public class Intervalo {
 
 	}
 
-	public long tiempoDesdeInstante(LocalDateTime instanteComienzo){
+	public double tiempoDesdeInstante(LocalDateTime instanteComienzo){
 		LocalDateTime desde;
 		if(inicio.compareTo(instanteComienzo)>=0) {
 			desde = inicio;
@@ -29,8 +29,7 @@ public class Intervalo {
 
 	public double informarConsumo(DispositivoInteligente dispositivoInteligente,LocalDateTime instante) {
 	
-		long tiempo = this.tiempoDesdeInstante(instante);
-		long factorEstado = estado.factor();
-		return tiempo * dispositivoInteligente.getconsumoPorHora() * factorEstado;
+		double tiempo = this.tiempoDesdeInstante(instante);
+		return tiempo * estado.consumoFinal(dispositivoInteligente.getConsumoPorHora());
 	}
 }

@@ -53,7 +53,7 @@ public class App {
 		 * 
 		 * 
 		 */
-		Sensor temperatura = new Sensor(4,1000);
+		/*Sensor temperatura = new Sensor(4,1000);
 		Sensor humedad = new Sensor(15,2000);
 		
 		Regla reglaA = new Regla("A");
@@ -63,7 +63,9 @@ public class App {
 		humedad.subscribe(reglaA);
 
 		temperatura.subscribe(reglaB);
-
+*/
+		DispositivoInteligente unDis = new DispositivoInteligente("heladera",3.5f,true);
+		unDis.consumo_ultimas_n_horas(1.5);
 		//temperatura.waitUntilTerminated();
 		//humedad.waitUntilTerminated();
 	}

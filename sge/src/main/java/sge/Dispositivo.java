@@ -17,7 +17,7 @@ public  class Dispositivo {
 		return nombre;
 	}
 
-	public Float getconsumoPorHora() {
+	public Float getConsumoPorHora() {
 		return consumoPorHora;
 	}
 
@@ -27,7 +27,7 @@ public  class Dispositivo {
 	}
 
 	public Float informarConsumo() {
-		return this.getconsumoPorHora();
+		return this.getConsumoPorHora();
 	}
 
 }

@@ -1,11 +1,14 @@
 package sge;
 
-public class EstadoPrendido implements EstadoDispositivo {
+public class EstadoPrendido extends EstadoDispositivo {
+	
+	EstadoPrendido()
+	{
+		factor = 1;
+	}
 
 	@Override
-	public void prender(IInteligente dispositivoInteligente) {
-		
-		
+	public void prender(IInteligente dispositivoInteligente) {		
 	}
 
 	@Override
@@ -19,15 +22,5 @@ public class EstadoPrendido implements EstadoDispositivo {
 	public void ahorroDeEnergia(IInteligente dispositivoInteligente) {
 		dispositivoInteligente.setEstado(new EstadoAhorroDeEnergia());		
 	}
-
-	@Override
-	public long factor() {
-		// TODO Auto-generated method stub
-		return 1;
-	}
-
-	
-
-	
 
 }

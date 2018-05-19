@@ -1,16 +1,21 @@
 package sge;
 
-public interface EstadoDispositivo {
+public abstract class EstadoDispositivo {
 
+	double factor;
 
-	public void prender(IInteligente dispositivoInteligente);
+	public abstract void prender(IInteligente dispositivoInteligente);
 
-	public void apagar(IInteligente dispositivoInteligente);
+	public abstract void apagar(IInteligente dispositivoInteligente);
 
-	public void ahorroDeEnergia(IInteligente dispositivoInteligente);
+	public abstract void ahorroDeEnergia(IInteligente dispositivoInteligente);
 
-	public long factor();
+	public double factor() {
+		return factor;
+	}
 
-	
+	public double consumoFinal(Float consumoPorHora) {
+		return factor * consumoPorHora;
+	}
 
 }

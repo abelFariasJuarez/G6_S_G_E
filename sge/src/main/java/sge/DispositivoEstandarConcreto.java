@@ -11,7 +11,7 @@ public class DispositivoEstandarConcreto extends DispositivoEstandar{
 
 	@Override
 	public Float informarConsumo() {
-		return this.getconsumoPorHora()*this.getHorasEncendido();
+		return this.getConsumoPorHora()*this.getHorasEncendido();
 	}
 
 }
