@@ -16,7 +16,7 @@ public class DispositivoInteligente extends Dispositivo implements IInteligente 
 		}
 
 	}
-
+	
 	private boolean encendido;
 	public List<Sensor> sensores;
 	public EstadoDispositivo estado;

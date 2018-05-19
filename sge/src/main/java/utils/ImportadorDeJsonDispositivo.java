@@ -24,6 +24,7 @@ public class ImportadorDeJsonDispositivo {
 		Gson gson = new Gson();
 		Type tipoListaDispositivos = new TypeToken<List<Dispositivo>>() {
 		}.getType();
+		
 		List<Dispositivo> dispositivos = gson.fromJson(dispositivosJSON, tipoListaDispositivos);
 
 		return dispositivos;
