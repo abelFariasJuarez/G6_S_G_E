@@ -57,7 +57,7 @@ public abstract class DispositivoConModulo extends DispositivoEstandar implement
 	}
 
 	@Override
-	public Float informarConsumo() {
+	public Double informarConsumo() {
 		// TODO Auto-generated method stub
 		return null;
 	}

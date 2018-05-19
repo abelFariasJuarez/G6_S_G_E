@@ -9,6 +9,7 @@ public class EstadoPrendido extends EstadoDispositivo {
 
 	@Override
 	public void prender(IInteligente dispositivoInteligente) {		
+		
 	}
 
 	@Override

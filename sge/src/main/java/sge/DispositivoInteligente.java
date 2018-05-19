@@ -11,7 +11,7 @@ public class DispositivoInteligente extends Dispositivo implements IInteligente 
 	public EstadoDispositivo estado;
 	public List<Intervalo> intervalos = new ArrayList<Intervalo>();
 
-	public DispositivoInteligente(String _nombre, Float _consumoPorHora, boolean _encendido) {
+	public DispositivoInteligente(String _nombre, Double _consumoPorHora, boolean _encendido) {
 		super(_nombre, _consumoPorHora);
 		encendido = _encendido;
 		if (encendido == true) {
@@ -23,11 +23,13 @@ public class DispositivoInteligente extends Dispositivo implements IInteligente 
 	}
 
 	public double consumo_ultimas_n_horas(double horas) {
-
 		LocalDateTime instanteComienzo = LocalDateTime.now().minusMinutes((long) (horas * 60));
+		return this.consumo_periodo(instanteComienzo,LocalDateTime.now());
+	}
 
-		return intervalos.stream().filter(i -> i.pertenece(instanteComienzo))
-				.mapToDouble(i -> i.informarConsumo(this, instanteComienzo)).sum();
+	public double consumo_periodo(LocalDateTime instanteDesde, LocalDateTime instanteHasta) {
+		return intervalos.stream().filter(i -> i.dentroDePeriodo(instanteDesde,instanteHasta))
+				.mapToDouble(i -> i.informarConsumo(this, instanteDesde,instanteHasta)).sum();
 	}
 
 	@Override
@@ -71,6 +73,10 @@ public class DispositivoInteligente extends Dispositivo implements IInteligente 
 	public void presentate() {
 		super.presentate();
 		System.out.println("Encendido:" + encendido);
+	}
+
+	public void addIntervalo(Intervalo inter) {
+		intervalos.add(inter);	
 	}
 
 }

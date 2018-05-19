@@ -10,8 +10,8 @@ public class App {
 		Cliente cli = new Cliente("Pedro", "Ramon", "Plaza", LocalDate.of(1989, 11, 11), "pedro", "nikita", "dni",
 				31032123, 115322011);
 
-		Dispositivo diselectronico = new DispositivoInteligente("heladera", 15f, true);
-		Dispositivo disestandar = new DispositivoEstandarConcreto("microondas", 12f);
+		Dispositivo diselectronico = new DispositivoInteligente("heladera", 15.0, true);
+		Dispositivo disestandar = new DispositivoEstandarConcreto("microondas", 12.0);
 		Dispositivo moulo = new Modulo((DispositivoEstandar) disestandar, false);
 
 		System.out.println("pepe");
@@ -64,7 +64,7 @@ public class App {
 
 		temperatura.subscribe(reglaB);
 */
-		DispositivoInteligente unDis = new DispositivoInteligente("heladera",3.5f,true);
+		DispositivoInteligente unDis = new DispositivoInteligente("heladera",3.5,true);
 		unDis.consumo_ultimas_n_horas(1.5);
 		//temperatura.waitUntilTerminated();
 		//humedad.waitUntilTerminated();

@@ -13,22 +13,14 @@ public class TestCliente {
 	List<Cliente> Clientes;
 	Cliente cli;
 	Categoria unaCategoria;
+
 	@Before
 	public void setUp() {
 		repo.cargarClientes();
 		cli = repo.clientes.get(0);
 		Clientes = repo.clientes;
-		unaCategoria = new Categoria("r1",18.76f, 0.644f,0f,150.0f);
+		unaCategoria = new Categoria("r1", 18.76f, 0.644f, 0f, 150.0f);
 	}
-
-	/*
-	 * @Test public void mostrarClientesYDispositivos() {
-	 * 
-	 * for (Cliente client : Clientes) { client.presentate(); for (Dispositivo disp
-	 * : client.dispositivos) { disp.presentate(); }
-	 * 
-	 * } }
-	 */
 
 	@Test
 	public void hayClientes() {
@@ -68,7 +60,7 @@ public class TestCliente {
 	public void cantidadConsumo() {
 		assertEquals(Float.valueOf(50), cli.consumo());
 	}
-	
+
 	@Test
 	public void estimacionFactura() {
 		assertEquals(Float.valueOf(50.96f), unaCategoria.CostoEstimado(cli));

@@ -4,7 +4,7 @@ public abstract class  DispositivoEstandar extends Dispositivo {
 
 	
 	
-	public DispositivoEstandar(String _nombre, Float _consumoPorHora) {
+	public DispositivoEstandar(String _nombre, Double _consumoPorHora) {
 		super(_nombre, _consumoPorHora);
 		
 		
@@ -23,5 +23,5 @@ public abstract class  DispositivoEstandar extends Dispositivo {
 	}
 
 	
-	public abstract Float informarConsumo();
+	public abstract Double informarConsumo();
 }

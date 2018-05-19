@@ -2,7 +2,7 @@ package sge;
 
 public  class Dispositivo {
 
-	public Dispositivo(String _nombre, Float _consumoPorHora) {
+	public Dispositivo(String _nombre, Double _consumoPorHora) {
 		nombre = _nombre;
 		consumoPorHora = _consumoPorHora;
 	}
@@ -11,13 +11,13 @@ public  class Dispositivo {
 	
 
 	private String nombre;
-	private Float consumoPorHora;
+	private Double consumoPorHora;
 
 	public String getNombre() {
 		return nombre;
 	}
 
-	public Float getConsumoPorHora() {
+	public Double getConsumoPorHora() {
 		return consumoPorHora;
 	}
 
@@ -26,7 +26,7 @@ public  class Dispositivo {
 
 	}
 
-	public Float informarConsumo() {
+	public Double informarConsumo() {
 		return this.getConsumoPorHora();
 	}
 

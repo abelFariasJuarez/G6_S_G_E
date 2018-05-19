@@ -2,7 +2,7 @@ package sge;
 
 public class DispositivoEstandarConcreto extends DispositivoEstandar{
 
-	public DispositivoEstandarConcreto(String _nombre, Float _consumoPorHora) {
+	public DispositivoEstandarConcreto(String _nombre, Double _consumoPorHora) {
 		super(_nombre, _consumoPorHora);
 		// TODO Auto-generated constructor stub
 	}
@@ -10,7 +10,7 @@ public class DispositivoEstandarConcreto extends DispositivoEstandar{
 
 
 	@Override
-	public Float informarConsumo() {
+	public Double informarConsumo() {
 		return this.getConsumoPorHora()*this.getHorasEncendido();
 	}
 
