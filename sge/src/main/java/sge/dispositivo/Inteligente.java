@@ -4,11 +4,13 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.google.gson.annotations.SerializedName;
+
 import sge.regla.Sensor;
 
 public abstract class Inteligente extends Dispositivo {
-
-	private boolean encendido;
+	
+	public boolean encendido;
 	public List<Sensor> sensores;
 	public EstadoDispositivo estado;
 	public List<Intervalo> intervalos = new ArrayList<Intervalo>();
@@ -83,5 +85,11 @@ public abstract class Inteligente extends Dispositivo {
 	
 	private void addIntervalo(Intervalo inter) {
 		intervalos.add(inter);
+	}
+
+	@Override
+	public void presentate() {
+		System.out.println("\t" + nombre + " " + consumoPorHora + "  "+encendido);
+
 	}
 }

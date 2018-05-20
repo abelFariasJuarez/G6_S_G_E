@@ -10,8 +10,8 @@ public  class Dispositivo {
 	};
 	
 
-	private String nombre;
-	private Double consumoPorHora;
+	protected String nombre;
+	protected Double consumoPorHora;
 
 	public String getNombre() {
 		return nombre;
