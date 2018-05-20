@@ -14,8 +14,9 @@ public abstract class EstadoDispositivo {
 		return factor;
 	}
 
-	public double consumoFinal(Double consumoPorHora) {
-		return factor * consumoPorHora;
+	public double consumoFinal(double consumoPorHora) {
+		double value = factor * consumoPorHora;
+		return value;
 	}
 
 }

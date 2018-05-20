@@ -1,6 +1,9 @@
 package sge;
 
+import static org.junit.Assert.assertTrue;
+
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 
 public class App {
@@ -64,8 +67,14 @@ public class App {
 
 		temperatura.subscribe(reglaB);
 */
-		DispositivoInteligente unDis = new DispositivoInteligente("heladera",3.5,true);
-		unDis.consumo_ultimas_n_horas(1.5);
+		DispositivoInteligente unDispo = new DispositivoInteligente("heladera", 2.3, true);
+		Intervalo inter = new Intervalo();
+		unDispo.addIntervalo(inter);
+
+		inter.setInicio(LocalDateTime.now().minusHours(1));
+		inter.setFin(LocalDateTime.now());
+		inter.setEstado(new EstadoPrendido());
+		System.out.println(unDispo.consumo_ultimas_n_horas(1));
 		//temperatura.waitUntilTerminated();
 		//humedad.waitUntilTerminated();
 	}

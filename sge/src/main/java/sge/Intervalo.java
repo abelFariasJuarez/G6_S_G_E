@@ -27,7 +27,7 @@ public class Intervalo {
 		}
 
 		Duration duration = Duration.between(desde, hasta);
-		return duration.getSeconds() / 3600;
+		return duration.getSeconds() / 3600.0;
 	}
 
 	public double informarConsumo(DispositivoInteligente dispositivoInteligente, LocalDateTime instante,
@@ -38,7 +38,9 @@ public class Intervalo {
 	}
 
 	public boolean dentroDePeriodo(LocalDateTime instanteDesde, LocalDateTime instanteHasta) {
-		return inicio.compareTo(instanteDesde) <= 0 && fin.compareTo(instanteHasta) >= 0;
+
+		return (instanteDesde.isBefore(inicio) || instanteDesde.isEqual(inicio))
+				&& (instanteHasta.isAfter(fin) || instanteHasta.isEqual(fin));
 	}
 
 	public void setInicio(LocalDateTime ini) {

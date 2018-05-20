@@ -24,12 +24,14 @@ public class DispositivoInteligente extends Dispositivo implements IInteligente 
 
 	public double consumo_ultimas_n_horas(double horas) {
 		LocalDateTime instanteComienzo = LocalDateTime.now().minusMinutes((long) (horas * 60));
-		return this.consumo_periodo(instanteComienzo,LocalDateTime.now());
+		return this.consumo_periodo(instanteComienzo, LocalDateTime.now());
 	}
 
 	public double consumo_periodo(LocalDateTime instanteDesde, LocalDateTime instanteHasta) {
-		return intervalos.stream().filter(i -> i.dentroDePeriodo(instanteDesde,instanteHasta))
-				.mapToDouble(i -> i.informarConsumo(this, instanteDesde,instanteHasta)).sum();
+		double valueReturn = intervalos.stream().filter(i -> i.dentroDePeriodo(instanteDesde, instanteHasta))
+				.mapToDouble(i -> i.informarConsumo(this, instanteDesde, instanteHasta)).sum();
+
+		return valueReturn;
 	}
 
 	@Override
@@ -76,7 +78,7 @@ public class DispositivoInteligente extends Dispositivo implements IInteligente 
 	}
 
 	public void addIntervalo(Intervalo inter) {
-		intervalos.add(inter);	
+		intervalos.add(inter);
 	}
 
 }
