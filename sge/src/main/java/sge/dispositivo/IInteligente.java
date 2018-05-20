@@ -1,4 +1,4 @@
-package sge;
+package sge.dispositivo;
 
 public interface IInteligente {
 	public void setEncendido(boolean encendido);

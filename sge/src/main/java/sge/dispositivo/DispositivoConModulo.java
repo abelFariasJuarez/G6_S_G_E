@@ -1,6 +1,8 @@
-package sge;
+package sge.dispositivo;
 
 import java.util.List;
+
+import sge.regla.Sensor;
 
 public abstract class DispositivoConModulo extends DispositivoEstandar implements IInteligente {
 	// decorator

@@ -1,4 +1,4 @@
-package sge;
+package sge.dispositivo;
 
 import java.time.Duration;
 

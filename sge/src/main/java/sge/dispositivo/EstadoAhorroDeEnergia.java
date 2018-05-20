@@ -1,27 +1,26 @@
-package sge;
+package sge.dispositivo;
 
-public class EstadoPrendido extends EstadoDispositivo {
-	
-	EstadoPrendido()
-	{
-		factor = 1;
+public class EstadoAhorroDeEnergia extends EstadoDispositivo {
+
+	EstadoAhorroDeEnergia() {
+		factor = 0.7;
 	}
 
 	@Override
 	public void prender(IInteligente dispositivoInteligente) {
 		super.prender(dispositivoInteligente);
-		//no hacemos nada		
+		dispositivoInteligente.setEstado(new EstadoPrendido());
 	}
 
 	@Override
 	public void apagar(IInteligente dispositivoInteligente) {
 		super.apagar(dispositivoInteligente);
-		dispositivoInteligente.setEstado(new EstadoApagado());		
+		dispositivoInteligente.setEstado(new EstadoApagado());
 	}
 
 	@Override
 	public void ahorroDeEnergia(IInteligente dispositivoInteligente) {
-		dispositivoInteligente.setEstado(new EstadoAhorroDeEnergia());		
+		// No hacemos nada
 	}
 
 }

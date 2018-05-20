@@ -1,4 +1,4 @@
-package sge;
+package sge.regla;
 
 import static java.lang.Thread.currentThread;
 

@@ -1,4 +1,4 @@
-package sge;
+package sge.regla;
 
 public class Condicion {
 

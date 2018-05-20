@@ -1,11 +1,12 @@
-package sge;
+package sge.dispositivo;
 
-public class EstadoAhorroDeEnergia extends EstadoDispositivo {
+public class EstadoApagado extends EstadoDispositivo {
 
-	EstadoAhorroDeEnergia() {
-		factor = 0.7;
+	EstadoApagado() {
+		factor = 0;
 	}
 
+	// dispositivo inteligente o con modulo
 	@Override
 	public void prender(IInteligente dispositivoInteligente) {
 		super.prender(dispositivoInteligente);
@@ -14,13 +15,12 @@ public class EstadoAhorroDeEnergia extends EstadoDispositivo {
 
 	@Override
 	public void apagar(IInteligente dispositivoInteligente) {
-		super.apagar(dispositivoInteligente);
-		dispositivoInteligente.setEstado(new EstadoApagado());
+		// no hacemos nada
 	}
 
 	@Override
 	public void ahorroDeEnergia(IInteligente dispositivoInteligente) {
-		// No hacemos nada
+		super.ahorroDeEnergia(dispositivoInteligente);
+		dispositivoInteligente.setEstado(new EstadoAhorroDeEnergia());
 	}
-
 }

@@ -1,8 +1,10 @@
-package sge;
+package sge.dispositivo;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+
+import sge.regla.Sensor;
 
 public class DispositivoInteligente extends Dispositivo implements IInteligente {
 

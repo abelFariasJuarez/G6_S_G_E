@@ -1,4 +1,4 @@
-package sge;
+package sge.dispositivo;
 
 public class DispositivoEstandarConcreto extends DispositivoEstandar{
 

@@ -1,11 +1,12 @@
 package sge;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 import java.time.LocalDateTime;
 
 import org.junit.Test;
+
+import sge.dispositivo.*;
 
 public class TestDispositivoInteligente {
 
@@ -70,16 +71,16 @@ public class TestDispositivoInteligente {
 
 	@Test
 	public void prendidoPeroNoUltimaHora() {
-		DispositivoInteligente unDispo = new DispositivoInteligente("heladera", 2.3, true);
-		Intervalo inter1 = new Intervalo();
-		unDispo.addIntervalo(inter1);
+		DispositivoInteligente unDispo = new DispositivoInteligente("heladera", 2.3, false);
+		// el constructor ya me da un dispo en estado prendido
+
 
 		LocalDateTime desde = LocalDateTime.parse("2018-05-19T20:00:00.775887700");
 		LocalDateTime hasta = LocalDateTime.parse("2018-05-19T21:00:00.775887700");
 
-		inter1.setInicio(desde);
-		inter1.setFin(hasta);
-		inter1.setEstado(new EstadoPrendido());
+		/* codigo duro solo para poder hacer el test Abel Farias */
+		unDispo.intervalos.get(0).setInicio(desde);
+		unDispo.intervalos.get(0).setFin(hasta);
 
 		assertEquals(0.0, unDispo.consumo_ultimas_n_horas(1), 0);
 	}

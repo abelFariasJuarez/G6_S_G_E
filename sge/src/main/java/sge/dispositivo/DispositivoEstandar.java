@@ -1,4 +1,4 @@
-package sge;
+package sge.dispositivo;
 
 public abstract class  DispositivoEstandar extends Dispositivo {
 
