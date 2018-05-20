@@ -14,14 +14,12 @@ public class App {
 				31032123, 115322011);
 
 		Dispositivo diselectronico = new DispositivoInteligente("heladera", 15.0, true);
-		Dispositivo disestandar = new DispositivoEstandarConcreto("microondas", 12.0);
-		Dispositivo moulo = new Modulo((DispositivoEstandar) disestandar, false);
+		Dispositivo disestandar = new DispositivoEstandar("microondas", 12.0);
 
 		System.out.println("pepe");
 		cli.addDispositivo(disestandar);
 		cli.addDispositivo(diselectronico);
 		cli.addDispositivo(diselectronico);
-		cli.addDispositivo(moulo);
 
 		System.out.println(cli.cantDispositivosOFF());
 		System.out.println(cli.cantDispositivosON());

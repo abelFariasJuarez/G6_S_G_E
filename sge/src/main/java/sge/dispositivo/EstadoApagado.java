@@ -8,18 +8,18 @@ public class EstadoApagado extends EstadoDispositivo {
 
 	// dispositivo inteligente o con modulo
 	@Override
-	public void prender(IInteligente dispositivoInteligente) {
+	public void prender(Inteligente dispositivoInteligente) {
 		super.prender(dispositivoInteligente);
 		dispositivoInteligente.setEstado(new EstadoPrendido());
 	}
 
 	@Override
-	public void apagar(IInteligente dispositivoInteligente) {
+	public void apagar(Inteligente dispositivoInteligente) {
 		// no hacemos nada
 	}
 
 	@Override
-	public void ahorroDeEnergia(IInteligente dispositivoInteligente) {
+	public void ahorroDeEnergia(Inteligente dispositivoInteligente) {
 		super.ahorroDeEnergia(dispositivoInteligente);
 		dispositivoInteligente.setEstado(new EstadoAhorroDeEnergia());
 	}

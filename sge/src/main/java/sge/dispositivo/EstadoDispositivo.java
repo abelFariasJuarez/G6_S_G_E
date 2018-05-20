@@ -4,15 +4,15 @@ public abstract class EstadoDispositivo {
 
 	double factor;
 
-	public void prender(IInteligente dispositivoInteligente) {
+	public void prender(Inteligente dispositivoInteligente) {
 		dispositivoInteligente.setEncendido(true);
 	}
 
-	public void apagar(IInteligente dispositivoInteligente) {
+	public void apagar(Inteligente dispositivoInteligente) {
 		dispositivoInteligente.setEncendido(false);
 	}
 
-	public void ahorroDeEnergia(IInteligente dispositivoInteligente) {
+	public void ahorroDeEnergia(Inteligente dispositivoInteligente) {
 		dispositivoInteligente.setEncendido(true);
 	}
 

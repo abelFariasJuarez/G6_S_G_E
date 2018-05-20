@@ -30,7 +30,7 @@ public class Intervalo {
 		return duration.getSeconds() / 3600.0;
 	}
 
-	public double informarConsumo(DispositivoInteligente dispositivoInteligente, LocalDateTime instante,
+	public double informarConsumo(Inteligente dispositivoInteligente, LocalDateTime instante,
 			LocalDateTime instanteHasta) {
 
 		double tiempo = this.tiempoEnHorasValidoEntre(instante, instanteHasta);

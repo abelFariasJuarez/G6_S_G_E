@@ -7,19 +7,19 @@ public class EstadoAhorroDeEnergia extends EstadoDispositivo {
 	}
 
 	@Override
-	public void prender(IInteligente dispositivoInteligente) {
+	public void prender(Inteligente dispositivoInteligente) {
 		super.prender(dispositivoInteligente);
 		dispositivoInteligente.setEstado(new EstadoPrendido());
 	}
 
 	@Override
-	public void apagar(IInteligente dispositivoInteligente) {
+	public void apagar(Inteligente dispositivoInteligente) {
 		super.apagar(dispositivoInteligente);
 		dispositivoInteligente.setEstado(new EstadoApagado());
 	}
 
 	@Override
-	public void ahorroDeEnergia(IInteligente dispositivoInteligente) {
+	public void ahorroDeEnergia(Inteligente dispositivoInteligente) {
 		// No hacemos nada
 	}
 

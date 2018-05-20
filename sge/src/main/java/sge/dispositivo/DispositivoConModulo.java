@@ -1,67 +1,27 @@
 package sge.dispositivo;
 
-import java.util.List;
-
-import sge.regla.Sensor;
-
-public abstract class DispositivoConModulo extends DispositivoEstandar implements IInteligente {
-	// decorator
-	public DispositivoConModulo(DispositivoEstandar _dis, boolean _encendido) {
-		dispo = _dis;
-		encendido = _encendido;
-		if (encendido) {
-			this.setEstado(new EstadoPrendido());
-		} else {
-			this.setEstado(new EstadoApagado());
-		}
-	}
-
-	private boolean encendido;
-	public List<Sensor> sensores;
-	public EstadoDispositivo estado;
+public class DispositivoConModulo extends Inteligente {
+	private static Integer puntos = 10;
 	private DispositivoEstandar dispo;
 
-	@Override
-	public void setEncendido(boolean encendido) {
-		this.encendido = encendido;
-
+	// decorator|adapter
+	public DispositivoConModulo(DispositivoEstandar _dis, boolean _encendido) {
+		super("", 0.0, _encendido);
+		dispo = _dis;
 	}
 
 	@Override
-	public void setEstado(EstadoDispositivo _estado) {
-		estado = _estado;
+	public String getNombre() {
+		return dispo.getNombre();
 	}
 
 	@Override
-	public boolean estoyON() {
-		return encendido == true;
+	public Double getConsumoPorHora() {
+		return dispo.getConsumoPorHora();
 	}
 
-	@Override
-	public boolean estoyOFF() {
-		return encendido == false;
-	}
-
-	@Override
-	public void prender() {
-		estado.prender(this);
-	}
-
-	@Override
-	public void apagar() {
-		estado.apagar(this);
-	}
-
-	@Override
-	public void ahorroDeEnergia() {
-		estado.ahorroDeEnergia(this);
-
-	}
-
-	@Override
-	public Double informarConsumo() {
-		// TODO Auto-generated method stub
-		return null;
+	public void presentate() {
+		System.out.println("\t" + this.getNombre() + " " + this.getConsumoPorHora() + "  ");
 	}
 
 	public DispositivoEstandar getDispo() {
@@ -71,5 +31,4 @@ public abstract class DispositivoConModulo extends DispositivoEstandar implement
 	public void setDispo(DispositivoEstandar dispo) {
 		this.dispo = dispo;
 	}
-
 }

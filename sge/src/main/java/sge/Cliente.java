@@ -64,19 +64,19 @@ public class Cliente extends UsuarioSGE {
 
 	public Stream<Dispositivo> misInteligentes()
 	{
-		return dispositivos.stream().filter(dis->dis instanceof IInteligente);
+		return dispositivos.stream().filter(dis->dis instanceof Inteligente);
 	}
 	
 	public boolean tengoAlgunDispositivoON() {
-		return  this.misInteligentes().anyMatch(dis->( (IInteligente) dis).estoyON());
+		return  this.misInteligentes().anyMatch(dis->( (Inteligente) dis).estoyON());
 	}
 
 	public Integer cantDispositivosON() {
-		return  (int)  this.misInteligentes().filter(dis-> ((IInteligente) dis).estoyON()).count();
+		return  (int)  this.misInteligentes().filter(dis-> ((Inteligente) dis).estoyON()).count();
 	}
 
 	public Integer cantDispositivosOFF() {
-		return  (int)  this.misInteligentes().filter(dis->((IInteligente) dis).estoyOFF()).count();
+		return  (int)  this.misInteligentes().filter(dis->((Inteligente) dis).estoyOFF()).count();
 	}
 	public List<Dispositivo> getDispositivos() {
 		return dispositivos;
@@ -96,7 +96,21 @@ public class Cliente extends UsuarioSGE {
 				+ "Dispositivos:");
 	}
 
+	public void agrega_modulo_a_estandar(DispositivoEstandar comun) {
+        if ( !dispositivos.contains(comun))
+            throw new RuntimeException("solo se puede convertir dispositivos registrados");
+        
+          DispositivoConModulo conModulo = new DispositivoConModulo(comun, false);
+        dispositivos.remove(comun);
+        dispositivos.add(conModulo);
+        this.sumarPuntos(DispositivoConModulo.puntos());
+	}
+	
+	private void sumarPuntos(Integer puntos) {
+		// TODO Auto-generated method stub
+		
+	}
 	public Float consumo() {
-		return (float) this.dispositivos.stream().mapToDouble(dis -> dis.informarConsumo()).sum();
+		return (float) dispositivos.stream().mapToDouble(dis -> dis.informarConsumo()).sum();
 	}
 }
