@@ -22,7 +22,7 @@ public class Intervalo {
 			desde = instanteComienzo;
 		}
 
-		if (fin.isAfter(instanteFin)) {
+		if (fin == null || fin.isAfter(instanteFin)) {
 			hasta = instanteFin;
 		}
 
@@ -37,10 +37,18 @@ public class Intervalo {
 		return tiempo * estado.consumoFinal(dispositivoInteligente.getConsumoPorHora());
 	}
 
-	public boolean dentroDePeriodo(LocalDateTime instanteDesde, LocalDateTime instanteHasta) {
+	public boolean estoyDentroDePeriodo(LocalDateTime instanteDesde, LocalDateTime instanteHasta) {
 
-		return (instanteDesde.isBefore(inicio) || instanteDesde.isEqual(inicio))
-				&& (instanteHasta.isAfter(fin) || instanteHasta.isEqual(fin));
+		return this.mi_inicio_es_despues_o_igual_a(instanteDesde) &&
+				this.mi_fin_es_antes_o_igual_a(instanteHasta);
+	}
+
+	private boolean mi_inicio_es_despues_o_igual_a(LocalDateTime instanteDesde) {
+		return instanteDesde.isBefore(inicio) || instanteDesde.isEqual(inicio);
+	}
+
+	private boolean mi_fin_es_antes_o_igual_a(LocalDateTime instanteHasta) {
+		return fin == null || instanteHasta.isAfter(fin) || instanteHasta.isEqual(fin);
 	}
 
 	public void setInicio(LocalDateTime ini) {

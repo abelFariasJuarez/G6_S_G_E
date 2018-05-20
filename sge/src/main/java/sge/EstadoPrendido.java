@@ -8,15 +8,15 @@ public class EstadoPrendido extends EstadoDispositivo {
 	}
 
 	@Override
-	public void prender(IInteligente dispositivoInteligente) {		
-		
+	public void prender(IInteligente dispositivoInteligente) {
+		super.prender(dispositivoInteligente);
+		//no hacemos nada		
 	}
 
 	@Override
 	public void apagar(IInteligente dispositivoInteligente) {
-		dispositivoInteligente.setEstado(new EstadoApagado());
-		dispositivoInteligente.setEncendido(false);
-		
+		super.apagar(dispositivoInteligente);
+		dispositivoInteligente.setEstado(new EstadoApagado());		
 	}
 
 	@Override

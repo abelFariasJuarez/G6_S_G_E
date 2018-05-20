@@ -13,13 +13,14 @@ public class DispositivoInteligente extends Dispositivo implements IInteligente 
 
 	public DispositivoInteligente(String _nombre, Double _consumoPorHora, boolean _encendido) {
 		super(_nombre, _consumoPorHora);
-		encendido = _encendido;
-		if (encendido == true) {
-			this.setEstado(new EstadoPrendido());
+		// para que se genere el primer intervalo prendido, primero lo apago y despues lo prendo afarias
+		if (_encendido) {
+			estado = new EstadoApagado();
+			this.prender();
 		} else {
-			this.setEstado(new EstadoApagado());
+			estado = new EstadoPrendido();
+			this.apagar();
 		}
-
 	}
 
 	public double consumo_ultimas_n_horas(double horas) {
@@ -28,7 +29,7 @@ public class DispositivoInteligente extends Dispositivo implements IInteligente 
 	}
 
 	public double consumo_periodo(LocalDateTime instanteDesde, LocalDateTime instanteHasta) {
-		double valueReturn = intervalos.stream().filter(i -> i.dentroDePeriodo(instanteDesde, instanteHasta))
+		double valueReturn = intervalos.stream().filter(i -> i.estoyDentroDePeriodo(instanteDesde, instanteHasta))
 				.mapToDouble(i -> i.informarConsumo(this, instanteDesde, instanteHasta)).sum();
 
 		return valueReturn;
@@ -42,7 +43,25 @@ public class DispositivoInteligente extends Dispositivo implements IInteligente 
 
 	@Override
 	public void setEstado(EstadoDispositivo _estado) {
+		
+		this.cerrarUltimoAbrirNuevoIntervalo(_estado);
 		estado = _estado;
+
+	}
+
+	private void cerrarUltimoAbrirNuevoIntervalo(EstadoDispositivo _estado) {
+		LocalDateTime esteInstante = LocalDateTime.now();
+
+		if (!intervalos.isEmpty()) {
+			Intervalo ultimoIntervalo = intervalos.get(intervalos.size() - 1);
+			ultimoIntervalo.setFin(esteInstante);
+		}
+
+		Intervalo nuevoIntervalo = new Intervalo();
+		nuevoIntervalo.setInicio(esteInstante);
+		nuevoIntervalo.setEstado(_estado);
+		
+		this.addIntervalo(nuevoIntervalo);
 	}
 
 	@Override

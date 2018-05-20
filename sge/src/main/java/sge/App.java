@@ -68,12 +68,6 @@ public class App {
 		temperatura.subscribe(reglaB);
 */
 		DispositivoInteligente unDispo = new DispositivoInteligente("heladera", 2.3, true);
-		Intervalo inter = new Intervalo();
-		unDispo.addIntervalo(inter);
-
-		inter.setInicio(LocalDateTime.now().minusHours(1));
-		inter.setFin(LocalDateTime.now());
-		inter.setEstado(new EstadoPrendido());
 		System.out.println(unDispo.consumo_ultimas_n_horas(1));
 		//temperatura.waitUntilTerminated();
 		//humedad.waitUntilTerminated();
