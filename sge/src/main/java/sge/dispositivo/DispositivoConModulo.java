@@ -31,4 +31,8 @@ public class DispositivoConModulo extends Inteligente {
 	public void setDispo(DispositivoEstandar dispo) {
 		this.dispo = dispo;
 	}
+
+	public static Integer puntos() {
+		return puntos;
+	}
 }

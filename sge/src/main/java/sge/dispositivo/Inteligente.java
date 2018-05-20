@@ -7,8 +7,6 @@ import java.util.List;
 import sge.regla.Sensor;
 
 public abstract class Inteligente extends Dispositivo {
-	private static Integer puntos;
-
 
 	private boolean encendido;
 	public List<Sensor> sensores;
@@ -85,9 +83,5 @@ public abstract class Inteligente extends Dispositivo {
 	
 	private void addIntervalo(Intervalo inter) {
 		intervalos.add(inter);
-	}
-	
-	public static Integer puntos() {
-		return puntos;
 	}
 }

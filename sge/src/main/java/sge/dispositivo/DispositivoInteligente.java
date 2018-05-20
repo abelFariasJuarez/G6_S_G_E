@@ -6,5 +6,8 @@ public class DispositivoInteligente extends Inteligente {
 	public DispositivoInteligente(String _nombre, Double _consumoPorHora, boolean _encendido) {
 		super(_nombre, _consumoPorHora, _encendido);
 	}
-
+	
+	public static Integer puntos() {
+		return puntos;
+	}
 }
