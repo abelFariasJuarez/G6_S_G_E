@@ -7,7 +7,6 @@ import java.util.List;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import com.google.gson.typeadapters.RuntimeTypeAdapterFactory;
 
 import sge.dispositivo.Dispositivo;
 import sge.dispositivo.DispositivoEstandar;

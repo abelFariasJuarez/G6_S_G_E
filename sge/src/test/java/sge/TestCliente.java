@@ -21,6 +21,9 @@ public class TestCliente {
 		cli = repo.clientes.get(0);
 		Clientes = repo.clientes;
 		unaCategoria = new Categoria("r1", 18.76f, 0.644f, 0f, 150.0f);
+		for (Cliente cli : Clientes) {
+			cli.presentate();
+		}
 	}
 
 	@Test
@@ -61,7 +64,7 @@ public class TestCliente {
 	@Test
 	public void conversion_a_inteligente_diez_puntos() {
 		DispositivoEstandar comun = new DispositivoEstandar("microondas", 12.0);
-		Cliente unCliente = new Cliente(null, null, null, null, null, null, null, null, null);
+		Cliente unCliente = new Cliente(null, null, null, null, null, null, null, null, null,null);
 		unCliente.addDispositivo(comun);
 		unCliente.agrega_modulo_a_estandar(comun);
 
@@ -71,7 +74,7 @@ public class TestCliente {
 	@Test
 	public void conversion_a_inteligente_con_modulo_apagado() {
 		DispositivoEstandar comun = new DispositivoEstandar("microondas", 12.0);
-		Cliente unCliente = new Cliente(null, null, null, null, null, null, null, null, null);
+		Cliente unCliente = new Cliente(null, null, null, null, null, null, null, null, null,null);
 		unCliente.addDispositivo(comun);
 		DispositivoConModulo conModulo = unCliente.agrega_modulo_a_estandar(comun);
 

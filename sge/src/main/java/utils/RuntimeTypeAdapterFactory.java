@@ -1,4 +1,4 @@
-package com.google.gson.typeadapters;
+package utils;
 
 import java.io.IOException;
 import java.util.LinkedHashMap;
