@@ -14,7 +14,7 @@ public class Regla implements Subscriber<Integer> {
 	private String name;
 	private List<Subscription> subscriptions =new ArrayList<Subscription>();
 	private List<Condicion> condiciones = new ArrayList<Condicion>();
-
+	private List<Actuador>	actuadores=new ArrayList<Actuador>();
 	public Regla(String name) {
 		this.name = name;
 	}
@@ -42,7 +42,7 @@ System.out.println("sensor se activa");
 	}
 
 	private void ejecutarAcciones() {
-		// TODO Auto-generated method stub
+		actuadores.forEach(a->a.ejecutarAccion());
 
 	}
 

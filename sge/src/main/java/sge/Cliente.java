@@ -23,15 +23,15 @@ public class Cliente extends UsuarioSGE {
 		telefono = _telefono;
 		dispositivos = _dispositivos;
 	}
-
 	public Cliente(String _nombre, String _apellido, String _domicilio, LocalDate _fechaIngreso, String _username,
 			String _password, String _tipodoc, Integer _nrodoc, Integer _telefono) {
 		super(_nombre, _apellido, _domicilio, _fechaIngreso, _username, _password);
 		tipodoc = _tipodoc;
 		nrodoc = _nrodoc;
 		telefono = _telefono;
-
+	
 	}
+
 
 
 

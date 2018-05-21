@@ -1,11 +1,14 @@
 package sge.dispositivo;
 
+import com.google.gson.annotations.SerializedName;
+
 public class DispositivoEstandar extends Dispositivo {
 
 	public DispositivoEstandar(String _nombre, Double _consumoPorHora) {
 		super(_nombre, _consumoPorHora);
 	}
-
+	@SerializedName ("type")
+	private String type;
 	public DispositivoEstandar() {
 	};
 
