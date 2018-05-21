@@ -9,11 +9,6 @@ public class Intervalo {
 	LocalDateTime fin;
 	EstadoDispositivo estado;
 
-	public boolean pertenece(LocalDateTime instanteComienzo) {
-		return fin.compareTo(instanteComienzo) >= 0;
-
-	}
-
 	public double tiempoEnHorasValidoEntre(LocalDateTime instanteComienzo, LocalDateTime instanteFin) {
 		LocalDateTime desde = inicio;
 		LocalDateTime hasta = fin;
