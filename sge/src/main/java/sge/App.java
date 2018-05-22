@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import sge.dispositivo.*;
+import sge.regla.comparador.*;
+
 
 
 public class App {
@@ -23,51 +25,10 @@ public class App {
 
 		System.out.println(cli.cantDispositivosOFF());
 		System.out.println(cli.cantDispositivosON());
-
-		/*
-		 * Sensor publisher = new Sensor(4, 5);
-		 * 
-		 * // Create a subscriber and register it with the publisher.
-		 * 
-		 * Condicion<Integer> subscriber = new Condicion<>(); Condicion<Integer>
-		 * subscriber2 = new Condicion<>();
-		 * 
-		 * publisher.subscribe(subscriber); publisher.subscribe(subscriber2);
-		 * 
-		 * Sensor t=new Sensor(4,5); Sensor x=new Sensor(2,5); Sensor r=new Sensor(3,5);
-		 * 
-		 * 
-		 * 
-		 * 
-		 * // Publish several data items and then close the publisher.
-		 * 
-		 * System.out.println("Publishing data items..."); Integer[] items =
-		 * {t.v,x.v,r.v}; Arrays.asList(items).stream().forEach(i ->
-		 * publisher.submit(i));
-		 * 
-		 * 
-		 * publisher.close();
-		 * 
-		 * 
-		 * 
-		 * try { synchronized("A") { "A".wait(); } } catch (InterruptedException ie) {
-		 * 
-		 * 
-		 */
-		/*Sensor temperatura = new Sensor(4,1000);
-		Sensor humedad = new Sensor(15,2000);
 		
-		Regla reglaA = new Regla("A");
-		Regla reglaB = new Regla("B");
-
-		temperatura.subscribe(reglaA);
-		humedad.subscribe(reglaA);
-
-		temperatura.subscribe(reglaB);
-*/
-		DispositivoInteligente unDispo = new DispositivoInteligente("heladera", 2.3, true);
-		System.out.println(unDispo.consumo_ultimas_n_horas(1));
-		//temperatura.waitUntilTerminated();
-		//humedad.waitUntilTerminated();
+		Comparador c = new Mayor();
+		System.out.println(c.comparar(1.1,0.1));
+		
+		
 	}
 }
