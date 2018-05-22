@@ -24,6 +24,7 @@ public class Regla implements CambiaPorElSensor{
 	public void accionarSiCorresponde() {
 		if (this.verificarCondiciones()) {
 			this.ejecutarAcciones();
+			
 		}
 		System.out.println("sensor se activa");
 	}
