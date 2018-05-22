@@ -1,40 +1,26 @@
 package sge.regla;
 
-import static java.lang.Thread.currentThread;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.Flow.Subscriber;
-import java.util.concurrent.Flow.Subscription;
 
-public class Regla implements Subscriber<Integer> {
 
-	private static final String LOG_MESSAGE_FORMAT = "Subscriber %s >> [%s] %s%n";
+public class Regla implements CambiaPorElSensor{
+
 
 	private String name;
-	private List<Subscription> subscriptions = new ArrayList<Subscription>();
 	private List<Condicion> condiciones = new ArrayList<Condicion>();
 	private List<Actuador> actuadores = new ArrayList<Actuador>();
 
-	public Regla(String name) {
-		this.name = name;
+	public Regla(String _name) {
+
+		name = _name;
+
 	}
-
-	@Override
-	public void onSubscribe(Subscription subscription) {
-		log("Subscribed");
-		subscriptions.add(subscription);
-		log("Requesting new items...");
-		subscription.request(1);
-	}
-
-	@Override
-	public void onNext(Integer item) {
-
+	public void update(){
 		this.accionarSiCorresponde();
-
 	}
-
+	
 	public void accionarSiCorresponde() {
 		if (this.verificarCondiciones()) {
 			this.ejecutarAcciones();
@@ -42,32 +28,24 @@ public class Regla implements Subscriber<Integer> {
 		System.out.println("sensor se activa");
 	}
 
+	
+	
 	private void ejecutarAcciones() {
 		actuadores.forEach(a -> a.ejecutarAccion());
 
 	}
 
+	
+	
 	private boolean verificarCondiciones() {
 		return condiciones.stream().allMatch(cond -> cond.meCumplo());
 
 	}
 
-	@Override
-	public void onComplete() {
-		log("Complete!");
-	}
-
-	@Override
-	public void onError(Throwable t) {
-		log("Subscriber Error >> %s", t);
-	}
-
-	private void log(String message, Object... args) {
-		String fullMessage = String.format(LOG_MESSAGE_FORMAT, this.name, currentThread().getName(), message);
-
-		System.out.printf(fullMessage, args);
-	}
-
+	
+	
+	
+	
 	public void agregarCondicion(Condicion unaCondicion) {
 		condiciones.add(unaCondicion);
 	}
@@ -75,4 +53,30 @@ public class Regla implements Subscriber<Integer> {
 	public void agregarActuador(Actuador unActuador) {
 		actuadores.add(unActuador);
 	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String _name) {
+		name = _name;
+	}
+
+	public List<Condicion> getCondiciones() {
+		return condiciones;
+	}
+
+	public void setCondiciones(List<Condicion> _condiciones) {
+		condiciones = _condiciones;
+	}
+
+	public List<Actuador> getActuadores() {
+		return actuadores;
+	}
+
+	public void setActuadores(List<Actuador> _actuadores) {
+		actuadores = _actuadores;
+	}
 }
+
+
