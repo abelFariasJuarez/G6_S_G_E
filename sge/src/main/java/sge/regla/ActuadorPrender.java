@@ -1,9 +1,8 @@
 package sge.regla;
 
-
 import sge.dispositivo.Inteligente;
 
-public class ActuadorPrender implements Actuador{
+public class ActuadorPrender implements Actuador {
 
 	private Inteligente dispositivo;
 

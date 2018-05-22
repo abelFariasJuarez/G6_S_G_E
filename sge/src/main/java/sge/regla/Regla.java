@@ -12,9 +12,10 @@ public class Regla implements Subscriber<Integer> {
 	private static final String LOG_MESSAGE_FORMAT = "Subscriber %s >> [%s] %s%n";
 
 	private String name;
-	private List<Subscription> subscriptions =new ArrayList<Subscription>();
+	private List<Subscription> subscriptions = new ArrayList<Subscription>();
 	private List<Condicion> condiciones = new ArrayList<Condicion>();
-	private List<Actuador>	actuadores=new ArrayList<Actuador>();
+	private List<Actuador> actuadores = new ArrayList<Actuador>();
+
 	public Regla(String name) {
 		this.name = name;
 	}
@@ -35,14 +36,14 @@ public class Regla implements Subscriber<Integer> {
 	}
 
 	public void accionarSiCorresponde() {
-		//if (this.verificarCondiciones()) {
-			//this.ejecutarAcciones();
-		//}
-System.out.println("sensor se activa");
+		if (this.verificarCondiciones()) {
+			this.ejecutarAcciones();
+		}
+		System.out.println("sensor se activa");
 	}
 
 	private void ejecutarAcciones() {
-		actuadores.forEach(a->a.ejecutarAccion());
+		actuadores.forEach(a -> a.ejecutarAccion());
 
 	}
 
@@ -65,5 +66,13 @@ System.out.println("sensor se activa");
 		String fullMessage = String.format(LOG_MESSAGE_FORMAT, this.name, currentThread().getName(), message);
 
 		System.out.printf(fullMessage, args);
+	}
+
+	public void agregarCondicion(Condicion unaCondicion) {
+		condiciones.add(unaCondicion);
+	}
+
+	public void agregarActuador(Actuador unActuador) {
+		actuadores.add(unActuador);
 	}
 }

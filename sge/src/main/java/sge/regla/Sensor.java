@@ -25,9 +25,10 @@ public class Sensor implements Publisher<Integer> {
 	private final CompletableFuture<Void> terminated = new CompletableFuture<>();
 	double medicion;
 	double tiempoDeEspera;
-	public Sensor(double _medicion,double _tiempoDeEspera) {
+
+	public Sensor(double _medicion, double _tiempoDeEspera) {
 		medicion = _medicion;
-		tiempoDeEspera=_tiempoDeEspera;
+		tiempoDeEspera = _tiempoDeEspera;
 	}
 
 	public void setMedicion(int _medicion) {
@@ -103,9 +104,9 @@ public class Sensor implements Publisher<Integer> {
 		}
 
 		public void tomarMedicion() {
-			//ponemos valor fijo de prueba
+			// ponemos valor fijo de prueba
 			medicion = 15;
-			System.out.println("tiempo de espera es:"+" "+tiempoDeEspera);
+			System.out.println("tiempo de espera es:" + " " + tiempoDeEspera);
 
 		}
 

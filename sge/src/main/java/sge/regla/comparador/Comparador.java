@@ -1,11 +1,11 @@
 package sge.regla.comparador;
 
+import java.util.function.BiFunction;
+
 public abstract class Comparador {
-	protected double valorEsperado;
-	protected double medicion;
-	public Comparador(double _valorEsperado,double _medicion) {
-		valorEsperado=_valorEsperado;
-				medicion=_medicion;
+	BiFunction<Double, Double, Boolean> cmp;
+	
+	public boolean comparar(double valorActual, double valorEsperado) {
+		return cmp.apply(valorActual,valorEsperado);
 	}
-	public abstract boolean comparacion(double valorEsperado2, double medicion);
 }
