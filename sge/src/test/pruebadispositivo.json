@@ -1,2 +1,4 @@
-[{"nombre":"Heladera","consumoPorHora":10,"encendido":false,"horasPrendido":10},
-{"nombre":"microondas","consumoPorHora":15,"encendido":true,"horasPrendido":10}]
+[{"type":"estandar","nombre":"Heladera","consumoPorHora":10,"username":"cazana","horasEncendido":4},
+{"type":"inteligente","nombre":"Televisor","consumoPorHora":10,"username":"cazana","encendido":true},
+{"type":"inteligente","nombre":"Microondas","consumoPorHora":11,"username":"cazana","encendido":false},
+{"type":"estandar","nombre":"Heladera","consumoPorHora":10,"username":"cazanax","horasEncendido":1}]

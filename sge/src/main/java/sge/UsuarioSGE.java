@@ -2,11 +2,14 @@ package sge;
 
 import java.time.LocalDate;
 
+import com.google.gson.annotations.SerializedName;
+
 public abstract class UsuarioSGE {
 	String nombre;
 	String apellido;
 	String domicilio;
 	LocalDate fechaIngreso;
+	@SerializedName("username")
 	String username;
 	String password;
 

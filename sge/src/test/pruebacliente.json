@@ -13,28 +13,22 @@
     "tipodoc": "Dni",
     "nrodoc": 21321012,
     "telefono": 154331231,
-   
-    "dispositivos": [
-      {
-        "nombre": "heladera",
-        "consumoPorHora": 1,
-        "encendido": true,
-       "horasEncendido":10
-      },
-      {
-        "nombre": "microondas",
-        "consumoPorHora": 2,
-        "encendido": false,
-        "horasEncendido":10
-        
-      }
-      ,
-      {
-        "nombre": "computadora",
-        "consumoPorHora": 2,
-        "encendido": true,
-        "horasEncendido":10
-      }
-    ]
+   "dispositivos":[]
+  },
+  {
+    "nombre":"Carlos",
+    "apellido":"Sanazki",
+    "domicilio":"condarco 148",
+     "fechaIngreso": {
+      "year": 2017,
+      "month": 4,
+      "day": 7
+    },
+    "username":"cazanax",
+    "password":"menTOL2017",
+    "tipodoc": "Dni",
+    "nrodoc": 21321012,
+    "telefono": 154331231,
+   "dispositivos":[]
   }
 ]

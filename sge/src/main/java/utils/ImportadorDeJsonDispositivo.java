@@ -5,13 +5,17 @@ import java.lang.reflect.Type;
 import java.util.List;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
-
-import sge.Dispositivo;
+import sge.Cliente;
+import sge.dispositivo.Dispositivo;
+import sge.dispositivo.DispositivoEstandar;
+import sge.dispositivo.DispositivoInteligente;
 
 public class ImportadorDeJsonDispositivo {
-
+	
+	
 	public List<Dispositivo> getDispositivos() throws IOException {
 		String dispositivosJSON = "";
 
@@ -21,9 +25,20 @@ public class ImportadorDeJsonDispositivo {
 		}
 		lectorDeArchivos.cerrar();
 
-		Gson gson = new Gson();
+
 		Type tipoListaDispositivos = new TypeToken<List<Dispositivo>>() {
 		}.getType();
+		
+		RuntimeTypeAdapterFactory<Dispositivo> dispositivoAdapterFactory = RuntimeTypeAdapterFactory
+				.of(Dispositivo.class, "type");
+
+		dispositivoAdapterFactory.registerSubtype(DispositivoInteligente.class ,"inteligente");
+		dispositivoAdapterFactory.registerSubtype(DispositivoEstandar.class ,"estandar");
+		
+	
+	
+		
+		Gson gson = new GsonBuilder().registerTypeAdapterFactory(dispositivoAdapterFactory).create();
 		List<Dispositivo> dispositivos = gson.fromJson(dispositivosJSON, tipoListaDispositivos);
 
 		return dispositivos;
