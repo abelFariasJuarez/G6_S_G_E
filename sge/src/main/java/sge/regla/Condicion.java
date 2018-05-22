@@ -14,7 +14,7 @@ public class Condicion {
 		comp = _comp;
 	}
 
-	public boolean verificar() {
+	public boolean meCumplo() {
 		return comp.comparar(sensor.getMedicion(), valorEsperado);
 	}
 

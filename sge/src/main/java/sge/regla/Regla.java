@@ -48,7 +48,7 @@ public class Regla implements Subscriber<Integer> {
 	}
 
 	private boolean verificarCondiciones() {
-		return condiciones.stream().allMatch(cond -> cond.verificar());
+		return condiciones.stream().allMatch(cond -> cond.meCumplo());
 
 	}
 
