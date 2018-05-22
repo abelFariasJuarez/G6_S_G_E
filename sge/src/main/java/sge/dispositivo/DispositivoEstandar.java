@@ -1,5 +1,8 @@
 package sge.dispositivo;
 
+import java.time.Duration;
+import java.time.LocalDateTime;
+
 import com.google.gson.annotations.SerializedName;
 
 public class DispositivoEstandar extends Dispositivo {
@@ -26,5 +29,10 @@ public class DispositivoEstandar extends Dispositivo {
 	public Double informarConsumo() {
 		return this.getConsumoPorHora() * this.getHorasEncendido();
 	}
+	
+	public Double consumo_periodo(LocalDateTime instanteDesde, LocalDateTime instanteHasta) {
+		Duration duration = Duration.between(instanteDesde, instanteHasta);
+		return consumoPorHora * ((double)horasEncendido) * (duration.getSeconds() / 3600.0 / 24.0) ;
+	}	
 
 }

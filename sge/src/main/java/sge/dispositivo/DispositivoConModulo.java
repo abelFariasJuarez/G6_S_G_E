@@ -1,8 +1,11 @@
 package sge.dispositivo;
 
+import java.time.LocalDateTime;
+
 public class DispositivoConModulo extends Inteligente {
 	private static Integer puntos = 10;
 	private DispositivoEstandar dispo;
+	private LocalDateTime instanteDeTransformacion;
 
 	// decorator|adapter
 	public DispositivoConModulo(DispositivoEstandar _dis, boolean _encendido) {
@@ -34,5 +37,13 @@ public class DispositivoConModulo extends Inteligente {
 
 	public static Integer puntos() {
 		return puntos;
+	}
+	
+	public void setInstanteDeTransformacion(LocalDateTime _instanteDeTransformacion) {
+		instanteDeTransformacion = _instanteDeTransformacion;
+	}
+
+	public double consumo_periodo(LocalDateTime instanteDesde, LocalDateTime instanteHasta) {
+		return super.consumo_periodo(instanteDeTransformacion, instanteHasta) + dispo.consumo_periodo(instanteDesde, instanteDeTransformacion);
 	}
 }

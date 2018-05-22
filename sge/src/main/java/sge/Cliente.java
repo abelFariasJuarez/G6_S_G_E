@@ -1,6 +1,7 @@
 package sge;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
@@ -104,7 +105,9 @@ public class Cliente extends UsuarioSGE {
 		DispositivoConModulo conModulo = new DispositivoConModulo(comun, false);
 		dispositivos.remove(comun);
 		dispositivos.add(conModulo);
+		conModulo.setInstanteDeTransformacion(LocalDateTime.now());
 		this.sumarPuntos(DispositivoConModulo.puntos());
+		
 		
 		return conModulo;
 	}
@@ -112,12 +115,16 @@ public class Cliente extends UsuarioSGE {
 	private void sumarPuntos(Integer _puntos) {
 		puntos += _puntos;
 	}
-
+/*
 	public Float consumo() {
 		return (float) dispositivos.stream().mapToDouble(dis -> dis.informarConsumo()).sum();
 	}
-
+*/
 	public  Integer getPuntos() {
 		return puntos;
+	}
+	
+	public float consumoEnPeriodo(LocalDateTime inicioPeriodo, LocalDateTime finPeriodo) {
+		return (float) dispositivos.stream().mapToDouble(dis -> dis.consumo_periodo(inicioPeriodo, finPeriodo)).sum();
 	}
 }

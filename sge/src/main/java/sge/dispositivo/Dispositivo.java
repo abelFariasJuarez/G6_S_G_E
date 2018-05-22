@@ -1,5 +1,7 @@
 package sge.dispositivo;
 
+import java.time.LocalDateTime;
+
 public  class Dispositivo {
 
 	public Dispositivo(String _nombre, Double _consumoPorHora) {
@@ -28,6 +30,10 @@ public  class Dispositivo {
 
 	public Double informarConsumo() {
 		return this.getConsumoPorHora();
+	}
+	
+	public Double consumo_periodo(LocalDateTime inicioPeriodo, LocalDateTime finPeriodo) {
+		return 0.0;
 	}
 
 }
