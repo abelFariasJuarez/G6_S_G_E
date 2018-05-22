@@ -27,11 +27,11 @@ public class DispositivoConModulo extends Inteligente {
 		System.out.println("\t" + this.getNombre() + " " + this.getConsumoPorHora() + "  ");
 	}
 
-	public DispositivoEstandar getDispo() {
+	public DispositivoEstandar getEstandar() {
 		return dispo;
 	}
 
-	public void setDispo(DispositivoEstandar dispo) {
+	public void setEstandar(DispositivoEstandar dispo) {
 		this.dispo = dispo;
 	}
 
