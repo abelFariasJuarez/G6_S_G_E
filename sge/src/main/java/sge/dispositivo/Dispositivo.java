@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 
 import com.google.gson.annotations.SerializedName;
 
-public  class Dispositivo {
+public class Dispositivo {
 
 	public Dispositivo(String _nombre, Double _consumoPorHora,String _username) {
 		nombre = _nombre;

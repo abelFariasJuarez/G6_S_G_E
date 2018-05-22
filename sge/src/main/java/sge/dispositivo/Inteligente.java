@@ -26,7 +26,9 @@ public abstract class Inteligente extends Dispositivo {
 			this.apagar();
 		}
 	}
-	
+	public void setIntervalo(List<Intervalo> intervalo) {
+		intervalos=intervalo;
+	}
 	public void setEncendido(boolean encendido) {
 		this.encendido = encendido;
 	}
