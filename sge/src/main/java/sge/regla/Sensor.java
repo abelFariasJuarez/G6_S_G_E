@@ -11,7 +11,7 @@ public class Sensor {
 	String nombre;
 	AvisoCambioSensor aviso = new AvisoCambioSensor();
 
-	public void activarSensor() {
+	public void activar() {
 		long tiempoEspera = (long) tiempoDeEspera;
 
 		Date ahora = new Date();

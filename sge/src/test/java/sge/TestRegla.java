@@ -15,11 +15,10 @@ public class TestRegla {
 	@Test
 	public void cumpleCondicionesPrender() {
 
-		// Regla unRegla = new Regla("regla 1");
+		
 		DispositivoInteligente unAire = new DispositivoInteligente("AireAcondicionado", 2.3, "perez", false);
 		// el constructor ya me da un dispo en estado apagado
-		// assertEquals(true,unAire.estoyOFF());
-		// Regla unRegla = new Regla("regla 1");
+		
 
 		Sensor temperatura = new Sensor(40.0, 10000.0, "temperatura");
 		Sensor humedad = new Sensor(100.0, 5000.0, "humedad");
@@ -34,9 +33,8 @@ public class TestRegla {
 		Actuador prenderAire = new ActuadorPrender(unAire);
 		unRegla.agregarActuador(prenderAire);
 
-		humedad.activarSensor();
-		temperatura.activarSensor();
-		// temperatura.actualizarMedicion();
+	
+		temperatura.actualizarMedicion();
 
 		assertEquals(true, unAire.estoyON());
 
@@ -58,8 +56,7 @@ public class TestRegla {
 		unRegla.agregarActuador(ApagarAire);
 
 		temperatura2.setMedicion(10);
-		temperatura2.activarSensor();
-		// temperatura.actualizarMedicion();
+		
 
 		assertEquals(false, unAire.estoyOFF());
 
