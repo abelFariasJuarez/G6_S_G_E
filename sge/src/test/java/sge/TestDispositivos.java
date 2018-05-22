@@ -1,6 +1,8 @@
 package sge;
 
 import static org.junit.Assert.*;
+
+import java.time.LocalDateTime;
 import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
@@ -28,6 +30,15 @@ public class TestDispositivos {
 	public void hayDispositivos() {
 		assertEquals(false,Dispositivos.isEmpty());
 		
+	}
+	@Test
+	public void ConsumoDispositivoEstandar() {
+		DispositivoEstandar disestandar = new DispositivoEstandar("microondas", 12.0);
+		LocalDateTime desde = LocalDateTime.parse("2018-05-18T20:30:00.775887700");
+		LocalDateTime hasta = LocalDateTime.parse("2018-06-18T20:30:00.775887700");
+		//seteo aproximado del cliente
+		 disestandar.setHorasEncendido(9.0);
+		 assertEquals(3348.0,disestandar.consumo_periodo(desde, hasta),0);
 	}
 	
 

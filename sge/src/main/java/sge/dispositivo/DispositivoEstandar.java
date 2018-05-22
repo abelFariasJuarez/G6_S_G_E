@@ -15,13 +15,13 @@ public class DispositivoEstandar extends Dispositivo {
 	public DispositivoEstandar() {
 	};
 
-	private Float horasEncendido;
+	private Double horasEncendido;
 
-	public Float getHorasEncendido() {
+	public Double getHorasEncendido() {
 		return horasEncendido;
 	}
 
-	public void setHorasEncendido(Float _horasEncendido) {
+	public void setHorasEncendido(Double _horasEncendido) {
 		horasEncendido = _horasEncendido;
 	}
 
@@ -32,7 +32,7 @@ public class DispositivoEstandar extends Dispositivo {
 	
 	public Double consumo_periodo(LocalDateTime instanteDesde, LocalDateTime instanteHasta) {
 		Duration duration = Duration.between(instanteDesde, instanteHasta);
-		return consumoPorHora * ((double)horasEncendido) * (duration.getSeconds() / 3600.0 / 24.0) ;
+		return consumoPorHora * horasEncendido * (duration.getSeconds() / 3600.0 / 24.0) ;
 	}	
 
 }

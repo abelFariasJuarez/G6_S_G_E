@@ -11,10 +11,12 @@ public  class Dispositivo {
 	public Dispositivo() {
 	};
 	
-
+	public void setInstanteDeCreacion(LocalDateTime _instanteDeCreacion) {
+		instanteDeCreacion = _instanteDeCreacion;
+	}
 	protected String nombre;
 	protected Double consumoPorHora;
-
+	protected LocalDateTime instanteDeCreacion;
 	public String getNombre() {
 		return nombre;
 	}

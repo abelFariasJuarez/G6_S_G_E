@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.google.gson.annotations.SerializedName;
+
 
 import sge.regla.Sensor;
 
@@ -61,7 +61,7 @@ public abstract class Inteligente extends Dispositivo {
 		return this.consumo_periodo(instanteComienzo, LocalDateTime.now());
 	}
 
-	public double consumo_periodo(LocalDateTime instanteDesde, LocalDateTime instanteHasta) {
+	public Double consumo_periodo(LocalDateTime instanteDesde, LocalDateTime instanteHasta) {
 		double valueReturn = intervalos.stream().filter(i -> i.estoyDentroDePeriodo(instanteDesde, instanteHasta))
 				.mapToDouble(i -> i.informarConsumo(this, instanteDesde, instanteHasta)).sum();
 
