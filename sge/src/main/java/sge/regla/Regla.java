@@ -68,7 +68,7 @@ public class Regla implements Subscriber<Integer> {
 		System.out.printf(fullMessage, args);
 	}
 
-	public void agregarCondision(Condicion unaCondicion) {
+	public void agregarCondicion(Condicion unaCondicion) {
 		condiciones.add(unaCondicion);
 	}
 
