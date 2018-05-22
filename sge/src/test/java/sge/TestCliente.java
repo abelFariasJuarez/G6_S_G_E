@@ -28,6 +28,7 @@ public class TestCliente {
 	static 	List<Dispositivo> dispos= new ArrayList<Dispositivo>();
 	static DispositivoInteligente dispo1;
 	static DispositivoInteligente dispo2;
+	
 	@BeforeClass
 	
 	public static void setUp()  {
@@ -49,6 +50,7 @@ public class TestCliente {
 			}
 		
 		}
+		
 		clientes = repo.clientes;
 		
 		
