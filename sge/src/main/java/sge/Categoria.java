@@ -1,5 +1,7 @@
 package sge;
 
+import java.time.LocalDateTime;
+
 public class Categoria {
 	String codigo;
 	Float cargoFijo;
@@ -34,5 +36,10 @@ public class Categoria {
 	public Float CostoEstimado(Cliente user) {
 		return (float) cargoFijo + cargoVariable * user.consumo();
 	}
+	
+	public double CostoEstimado(Cliente user,LocalDateTime inicioPeriodo, LocalDateTime finPeriodo) {
+		return (float) cargoFijo + cargoVariable * user.consumoEnPeriodo(inicioPeriodo, finPeriodo);
+	}
+	
 
 }

@@ -9,7 +9,7 @@ public class DispositivoConModulo extends Inteligente {
 
 	// decorator|adapter
 	public DispositivoConModulo(DispositivoEstandar _dis, boolean _encendido) {
-		super("", 0.0, _encendido);
+		super("", 0.0,"", _encendido);
 		dispo = _dis;
 	}
 

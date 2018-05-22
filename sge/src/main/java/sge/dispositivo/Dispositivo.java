@@ -2,11 +2,14 @@ package sge.dispositivo;
 
 import java.time.LocalDateTime;
 
+import com.google.gson.annotations.SerializedName;
+
 public  class Dispositivo {
 
-	public Dispositivo(String _nombre, Double _consumoPorHora) {
+	public Dispositivo(String _nombre, Double _consumoPorHora,String _username) {
 		nombre = _nombre;
 		consumoPorHora = _consumoPorHora;
+		username=_username;
 	}
 	public Dispositivo() {
 	};
@@ -17,8 +20,13 @@ public  class Dispositivo {
 	protected String nombre;
 	protected Double consumoPorHora;
 	protected LocalDateTime instanteDeCreacion;
+	@SerializedName("username")
+	protected String username;
 	public String getNombre() {
 		return nombre;
+	}
+	public String getIdUserName() {
+		return username;
 	}
 
 	public Double getConsumoPorHora() {
@@ -29,6 +37,7 @@ public  class Dispositivo {
 		System.out.println("\t" + nombre + " " + consumoPorHora + "  ");
 
 	}
+
 
 	public Double informarConsumo() {
 		return this.getConsumoPorHora();

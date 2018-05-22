@@ -15,8 +15,8 @@ public abstract class Inteligente extends Dispositivo {
 	public EstadoDispositivo estado;
 	public List<Intervalo> intervalos = new ArrayList<Intervalo>();
 	
-	public Inteligente(String _nombre, Double _consumoPorHora, boolean _encendido) {
-		super(_nombre, _consumoPorHora);
+	public Inteligente(String _nombre, Double _consumoPorHora,String _idUserName, boolean _encendido) {
+		super(_nombre, _consumoPorHora,_idUserName);
 		// para que se genere el primer intervalo prendido, primero lo apago y despues lo prendo afarias
 		if (_encendido) {
 			estado = new EstadoApagado();

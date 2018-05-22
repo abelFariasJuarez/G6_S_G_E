@@ -13,14 +13,22 @@
     "tipodoc": "Dni",
     "nrodoc": 21321012,
     "telefono": 154331231,
-   
-    "dispositivos": [
-      {
-		"type":"inteligente",
-		"nombre":"Heladera",
-		"consumoPorHora":10,
-		"encendido":true
-      }
-    ]
+   "dispositivos":[]
+  },
+  {
+    "nombre":"Carlos",
+    "apellido":"Sanazki",
+    "domicilio":"condarco 148",
+     "fechaIngreso": {
+      "year": 2017,
+      "month": 4,
+      "day": 7
+    },
+    "username":"cazanax",
+    "password":"menTOL2017",
+    "tipodoc": "Dni",
+    "nrodoc": 21321012,
+    "telefono": 154331231,
+   "dispositivos":[]
   }
 ]

@@ -9,9 +9,9 @@ public class DispositivoInteligente extends Inteligente {
 	@SerializedName ("type")
 	private String type;
 	
-	public DispositivoInteligente(String _nombre, Double _consumoPorHora, boolean _encendido) {
+	public DispositivoInteligente(String _nombre, Double _consumoPorHora,String _idUserName, boolean _encendido) {
 		
-		super(_nombre, _consumoPorHora, _encendido);
+		super(_nombre, _consumoPorHora,_idUserName, _encendido);
 
 	}
 

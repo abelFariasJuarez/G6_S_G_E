@@ -17,24 +17,13 @@ public class Cliente extends UsuarioSGE {
 	private Integer puntos = 0;
 
 	public Cliente(String _nombre, String _apellido, String _domicilio, LocalDate _fechaIngreso, String _username,
-			String _password, String _tipodoc, Integer _nrodoc, Integer _telefono, List<Dispositivo> _dispositivos) {
-		super(_nombre, _apellido, _domicilio, _fechaIngreso, _username, _password);
-		tipodoc = _tipodoc;
-		nrodoc = _nrodoc;
-		telefono = _telefono;
-		dispositivos = _dispositivos;
-	}
-	public Cliente(String _nombre, String _apellido, String _domicilio, LocalDate _fechaIngreso, String _username,
 			String _password, String _tipodoc, Integer _nrodoc, Integer _telefono) {
 		super(_nombre, _apellido, _domicilio, _fechaIngreso, _username, _password);
 		tipodoc = _tipodoc;
 		nrodoc = _nrodoc;
 		telefono = _telefono;
-	
+
 	}
-
-
-
 
 	public String getTipoDoc() {
 		return tipodoc;
@@ -96,7 +85,13 @@ public class Cliente extends UsuarioSGE {
 		System.out.println("nombre:" + nombre + "  " + "apellido:" + apellido + "  " + "FechaIngreso:" + fechaIngreso
 				+ "  " + "username:" + username + "  " + "password:" + password + "\n" + "Domicilio:" + domicilio + "  "
 				+ "Tipo Doc:" + tipodoc + "  " + "Nro Doc:" + nrodoc + "" + "telefono:" + telefono + "  "
-				+ "Fecha de alta:" + fechaIngreso + "\n" + "Dispositivos:");
+				+ "Fecha de alta:" + fechaIngreso + "\n" + "Dispositivos:" + "");
+		this.presentarDispositivos();
+	}
+
+	public void presentarDispositivos() {
+
+		dispositivos.forEach(d -> d.presentate());
 	}
 
 	public DispositivoConModulo agrega_modulo_a_estandar(DispositivoEstandar comun) {
@@ -106,10 +101,9 @@ public class Cliente extends UsuarioSGE {
 		DispositivoConModulo conModulo = new DispositivoConModulo(comun, false);
 		dispositivos.remove(comun);
 		dispositivos.add(conModulo);
-	
+
 		this.sumarPuntos(DispositivoConModulo.puntos());
-		
-		
+
 		return conModulo;
 	}
 
@@ -121,10 +115,10 @@ public class Cliente extends UsuarioSGE {
 		return (float) dispositivos.stream().mapToDouble(dis -> dis.informarConsumo()).sum();
 	}
 
-	public  Integer getPuntos() {
+	public Integer getPuntos() {
 		return puntos;
 	}
-	
+
 	public Double consumoEnPeriodo(LocalDateTime inicioPeriodo, LocalDateTime finPeriodo) {
 		return dispositivos.stream().mapToDouble(dis -> dis.consumo_periodo(inicioPeriodo, finPeriodo)).sum();
 	}
