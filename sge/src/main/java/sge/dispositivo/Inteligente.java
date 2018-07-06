@@ -94,4 +94,12 @@ public abstract class Inteligente extends Dispositivo {
 		System.out.println("\t" + nombre + " " + consumoPorHora + "  "+encendido);
 
 	}
+	@Override
+	public Double informarConsumo() {
+	return  super.getConsumoPorHora()*estado.factor();
+	}
+	
+	public Double consumoActual() {
+	return  consumoPorHora*estado.factor();
+	}
 }

@@ -3,7 +3,7 @@ package sge.dispositivo;
 public class EstadoAhorroDeEnergia extends EstadoDispositivo {
 
 	EstadoAhorroDeEnergia() {
-		factor = 0.7;
+		factor = 0.7;//Agregar a tabla de decisiones 
 	}
 
 	@Override

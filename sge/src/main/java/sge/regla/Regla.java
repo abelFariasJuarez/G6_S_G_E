@@ -26,7 +26,9 @@ public class Regla implements CambiaPorElSensor{
 			this.ejecutarAcciones();
 			
 		}
-		System.out.println("sensor se activa");
+		
+		
+		
 	}
 
 	

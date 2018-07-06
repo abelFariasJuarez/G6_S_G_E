@@ -39,7 +39,7 @@ public class Dispositivo {
 	}
 
 
-	public Double informarConsumo() {
+	public Double informarConsumo() { 
 		return this.getConsumoPorHora();
 	}
 	

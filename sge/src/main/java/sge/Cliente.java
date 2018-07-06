@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
+import posicionamiento.Ubicacion;
 import sge.dispositivo.*;
 
 public class Cliente extends UsuarioSGE {
@@ -15,13 +16,23 @@ public class Cliente extends UsuarioSGE {
 	Categoria categoria;
 	List<Dispositivo> dispositivos = new ArrayList<Dispositivo>();
 	private Integer puntos = 0;
-
+	Ubicacion ubicacion;
 	public Cliente(String _nombre, String _apellido, String _domicilio, LocalDate _fechaIngreso, String _username,
 			String _password, String _tipodoc, Integer _nrodoc, Integer _telefono) {
 		super(_nombre, _apellido, _domicilio, _fechaIngreso, _username, _password);
 		tipodoc = _tipodoc;
 		nrodoc = _nrodoc;
 		telefono = _telefono;
+		
+
+	}
+	public Cliente(String _nombre, String _apellido, String _domicilio, LocalDate _fechaIngreso, String _username,
+			String _password, String _tipodoc, Integer _nrodoc, Integer _telefono,Ubicacion _ubi) {
+		super(_nombre, _apellido, _domicilio, _fechaIngreso, _username, _password);
+		tipodoc = _tipodoc;
+		nrodoc = _nrodoc;
+		telefono = _telefono;
+		ubicacion=_ubi;
 
 	}
 	public Cliente(String _nombre, String _apellido, String _domicilio, LocalDate _fechaIngreso, String _username,
@@ -32,6 +43,9 @@ public class Cliente extends UsuarioSGE {
 		telefono = _telefono;
 		dispositivos=_dispositivos;
 
+	}
+	public Ubicacion getUbi() {
+		return ubicacion;
 	}
 	
 	public String getTipoDoc() {
@@ -66,6 +80,10 @@ public class Cliente extends UsuarioSGE {
 		return dispositivos.stream().filter(dis -> dis instanceof Inteligente);
 	}
 
+	public Double ConsumoActualDispositivosInteligentes(){
+		return this.misInteligentes().mapToDouble(dis -> ((Inteligente) dis).consumoActual()).sum();
+	
+	}
 	public boolean tengoAlgunDispositivoON() {
 		return this.misInteligentes().anyMatch(dis -> ((Inteligente) dis).estoyON());
 	}

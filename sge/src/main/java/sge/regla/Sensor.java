@@ -25,8 +25,10 @@ public class Sensor {
 
 				// tomarMedicion();
 				actualizarMedicion();
+				System.out.println("sensor se activa");
 				System.out.println("sensor" + nombre);
-				// aviso.notificar();
+				//aviso.notificar();
+				
 			}
 
 		};
