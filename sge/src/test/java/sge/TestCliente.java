@@ -56,12 +56,12 @@ public class TestCliente {
 		
 		LocalDateTime desde = LocalDateTime.parse("2018-05-19T20:00:00.000000000");
 		LocalDateTime hasta = LocalDateTime.parse("2018-05-19T22:00:00.000000000");
-		dispo2=new DispositivoInteligente("televisor", 5.0,"cazana",true);
+		dispo2=new DispositivoInteligente("televisor", 5.0,"cazana",false,true);
 		dispo2.apagar();
 		dispo2.intervalos.get(0).setInicio(desde);
 		dispo2.intervalos.get(0).setFin(hasta);
 
-		dispo1=new DispositivoInteligente("heladera", 10.0,"cazana",true);
+		dispo1=new DispositivoInteligente("heladera", 10.0,"cazana",false,true);
 		dispo1.apagar();
 		dispo1.intervalos.get(0).setInicio(desde);
 		dispo1.intervalos.get(0).setFin(hasta);
@@ -121,7 +121,7 @@ public class TestCliente {
 
 	@Test
 	public void conversion_a_inteligente_diez_puntos() {
-		DispositivoEstandar comun = new DispositivoEstandar("microondas", 12.0, "pepe",10.0);
+		DispositivoEstandar comun = new DispositivoEstandar("microondas", 12.0, "pepe",false,10.0);
 		Cliente unCliente = new Cliente("Pedro", "Ramon", "Plaza", LocalDate.of(1989, 11, 11), "pedro", "nikita", "dni",
 				31032123, 115322011);
 		unCliente.addDispositivo(comun);
@@ -135,7 +135,7 @@ public class TestCliente {
 
 		Cliente unCliente = new Cliente("Pedro", "Ramon", "Plaza", LocalDate.of(1989, 11, 11), "pedro", "nikita", "dni",
 				31032123, 115322011);
-		Dispositivo comun = new DispositivoEstandar("microondas", 12.0, "pepe",10.0);
+		Dispositivo comun = new DispositivoEstandar("microondas", 12.0, "pepe",false,10.0);
 		unCliente.addDispositivo(comun);
 		DispositivoConModulo conModulo = unCliente.agrega_modulo_a_estandar((DispositivoEstandar) comun);
 
@@ -146,7 +146,7 @@ public class TestCliente {
 	public void consultarConsumoPeriodoDelClienteConvirtiendoEstandarAModulo() {
 		Cliente clien = new Cliente("Pedro", "Ramon", "Plaza", LocalDate.of(1989, 11, 11), "pedro", "nikita", "dni",
 				31032123, 115322011);
-		DispositivoEstandar disestandar = new DispositivoEstandar("microondas", 12.0, "pepe",11.0);
+		DispositivoEstandar disestandar = new DispositivoEstandar("microondas", 12.0, "pepe",false,11.0);
 		clien.addDispositivo(disestandar);
 		disestandar.setHorasEncendido(9.0);
 		// convierto a dispositivo modulo

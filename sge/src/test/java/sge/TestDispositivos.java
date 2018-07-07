@@ -33,7 +33,7 @@ public class TestDispositivos {
 	}
 	@Test
 	public void ConsumoDispositivoEstandar() {
-		DispositivoEstandar disestandar = new DispositivoEstandar("microondas", 12.0,"perez",12.5);
+		DispositivoEstandar disestandar = new DispositivoEstandar("microondas", 12.0,"perez",false,12.5);
 		LocalDateTime desde = LocalDateTime.parse("2018-05-18T20:30:00.775887700");
 		LocalDateTime hasta = LocalDateTime.parse("2018-06-18T20:30:00.775887700");
 		//seteo aproximado del cliente

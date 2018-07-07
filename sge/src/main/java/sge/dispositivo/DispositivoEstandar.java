@@ -7,14 +7,18 @@ import com.google.gson.annotations.SerializedName;
 
 public class DispositivoEstandar extends Dispositivo {
 
-	public DispositivoEstandar(String _nombre, Double _consumoPorHora,String _idUserName,Double _horasEncendido) {
-		super(_nombre, _consumoPorHora,_idUserName);
+	public DispositivoEstandar(String _nombre, Double _consumoPorHora,String _idUserName,Boolean _bajoconsumo,Double _horasEncendido) {
+		super(_nombre, _consumoPorHora,_idUserName, _bajoconsumo);
 		horasEncendido=_horasEncendido;
+	}
+	
+	public DispositivoEstandar(String _nombre, Double _consumoPorHora,Boolean _bajoconsumo) {
+		super(_nombre, _consumoPorHora, _bajoconsumo);
+		horasEncendido=0.0;
 	}
 	@SerializedName ("type")
 	private String type;
-	public DispositivoEstandar() {
-	};
+
 
 	private Double horasEncendido;
 

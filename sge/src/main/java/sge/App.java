@@ -40,7 +40,8 @@ public class App {
 
 		
 		//Regla unRegla = new Regla("regla 1");
-		DispositivoInteligente unAire = new DispositivoInteligente("AireAcondicionado", 2.3,"perez", false);
+		//DispositivoInteligente unAire = new DispositivoInteligente("AireAcondicionado", 2.3,"perez", false,false);
+	DispositivoInteligente unAire = new DispositivoInteligente("AireAcondicionado", 2.3,"cazana", false,false);
 		// el constructor ya me da un dispo en estado apagado
 		//assertEquals(true,unAire.estoyOFF());
 		//Regla unRegla = new Regla("regla 1");

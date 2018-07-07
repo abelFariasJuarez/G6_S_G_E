@@ -20,7 +20,7 @@ public class TestAdministrador {
 
 		
 
-		assertEquals(37, admin.cantMesesAdministrando());
+		assertEquals(38, admin.cantMesesAdministrando());
 
 	}
 	

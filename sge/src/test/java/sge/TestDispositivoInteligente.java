@@ -13,7 +13,7 @@ public class TestDispositivoInteligente {
 	@Test
 	public void unaHoraPrendido() {
 
-		DispositivoInteligente unDispo = new DispositivoInteligente("heladera", 2.3,"pepe", true);
+		DispositivoInteligente unDispo = new DispositivoInteligente("heladera", 2.3,"pepe",false, true);
 		// el constructor ya me da un dispo en estado prendido
 		unDispo.apagar();
 
@@ -29,7 +29,7 @@ public class TestDispositivoInteligente {
 
 	@Test
 	public void mediaHoraApagadoMediaHoraPrendido() {
-		DispositivoInteligente unDispo = new DispositivoInteligente("heladera", 2.3,"perez", false);
+		DispositivoInteligente unDispo = new DispositivoInteligente("heladera", 2.3,"perez",false, false);
 		// el constructor ya me da un dispo en estado apagado
 		unDispo.prender();
 
@@ -49,7 +49,7 @@ public class TestDispositivoInteligente {
 
 	@Test
 	public void mediaHoraAhorroEnergiaMediaHoraPrendido() {
-		DispositivoInteligente unDispo = new DispositivoInteligente("heladera", 2.3,"pepe", false);
+		DispositivoInteligente unDispo = new DispositivoInteligente("heladera", 2.3,"pepe",false, false);
 		// el constructor ya me da un dispo en estado apagado
 		unDispo.ahorroDeEnergia();
 		unDispo.prender();
@@ -71,7 +71,7 @@ public class TestDispositivoInteligente {
 
 	@Test
 	public void prendidoPeroNoUltimaHora() {
-		DispositivoInteligente unDispo = new DispositivoInteligente("heladera", 2.3,"pepe", false);
+		DispositivoInteligente unDispo = new DispositivoInteligente("heladera", 2.3,"pepe",false, false);
 		// el constructor ya me da un dispo en estado prendido
 
 

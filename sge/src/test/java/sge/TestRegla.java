@@ -16,7 +16,7 @@ public class TestRegla {
 	public void cumpleCondicionesPrender() {
 
 		
-		DispositivoInteligente unAire = new DispositivoInteligente("AireAcondicionado", 2.3, "perez", false);
+		DispositivoInteligente unAire = new DispositivoInteligente("AireAcondicionado", 2.3, "perez", false,false);
 		// el constructor ya me da un dispo en estado apagado
 		
 
@@ -43,7 +43,7 @@ public class TestRegla {
 	@Test
 	public void noCumpleCondicionesNoApagar() {
 
-		DispositivoInteligente unAire = new DispositivoInteligente("AireAcondicionado", 2.8, "perez", true);
+		DispositivoInteligente unAire = new DispositivoInteligente("AireAcondicionado", 2.8, "perez",false, true);
 
 		Sensor temperatura2 = new Sensor(18, 2000.0, "temperatura2");
 		temperatura2.agregarObserver(unRegla);
