@@ -155,12 +155,13 @@ public class Cliente extends UsuarioSGE {
 		return dispositivos.stream().mapToDouble(dis -> dis.consumo_periodo(inicioPeriodo, finPeriodo)).sum();
 	}
 
-	public void getMejorCombinacionDispositivos() {
+	public List<Recomendacion> getMejorCombinacionDispositivos() {
 		ModuloMejorCombinacion modulo = new ModuloMejorCombinacion();
 
 		List<Recomendacion> sugerencias = modulo.calcularMejorCombinacion(this.dispositivos);
 
 		sugerencias.forEach(r -> System.out.println(r.nodo().getNombre() + " deberia usarse " + r.horas() + " horas al mes"));
+		return sugerencias;
 	}
 
 	public boolean canYouGetMejorCombinacionDispositivos() {
