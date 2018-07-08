@@ -20,7 +20,7 @@ public Transformador(Integer _id,Integer _idZona,Ubicacion _ubicacion) {
 }
 	public Float energiaSuministrada() {
 		return (float) clientes.stream().mapToDouble(c -> c.ConsumoActualDispositivosInteligentes()).sum();
-
+		
 	}
 
 	public Integer getIdZona() {

@@ -42,4 +42,10 @@ public class RepositorioDeZonas {
 		}
 
 	}
+	
+	public void bajaTransformadores() {
+		for (ZonaGeografica zona: zonas) {
+			zona.desactivarTransformadores();
+		}
+	}
 }

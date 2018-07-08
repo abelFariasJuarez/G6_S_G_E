@@ -36,7 +36,9 @@ public Integer getId() {
 public void setId(Integer id) {
 	this.id = id;
 }
-
+public void desactivarTransformadores() {
+	transformadores = null;
+}
 public Float consumoTotal() {
 return 	(float) transformadores.stream().mapToDouble(t->t.energiaSuministrada()).sum();
 }
