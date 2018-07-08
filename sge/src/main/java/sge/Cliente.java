@@ -8,6 +8,7 @@ import java.util.stream.Stream;
 
 import posicionamiento.Ubicacion;
 import sge.dispositivo.*;
+import sge.hogareficiente.*;
 
 public class Cliente extends UsuarioSGE {
 	String tipodoc;
@@ -17,37 +18,40 @@ public class Cliente extends UsuarioSGE {
 	List<Dispositivo> dispositivos = new ArrayList<Dispositivo>();
 	private Integer puntos = 0;
 	Ubicacion ubicacion;
+
 	public Cliente(String _nombre, String _apellido, String _domicilio, LocalDate _fechaIngreso, String _username,
 			String _password, String _tipodoc, Integer _nrodoc, Integer _telefono) {
 		super(_nombre, _apellido, _domicilio, _fechaIngreso, _username, _password);
 		tipodoc = _tipodoc;
 		nrodoc = _nrodoc;
 		telefono = _telefono;
-		
 
 	}
+
 	public Cliente(String _nombre, String _apellido, String _domicilio, LocalDate _fechaIngreso, String _username,
-			String _password, String _tipodoc, Integer _nrodoc, Integer _telefono,Ubicacion _ubi) {
+			String _password, String _tipodoc, Integer _nrodoc, Integer _telefono, Ubicacion _ubi) {
 		super(_nombre, _apellido, _domicilio, _fechaIngreso, _username, _password);
 		tipodoc = _tipodoc;
 		nrodoc = _nrodoc;
 		telefono = _telefono;
-		ubicacion=_ubi;
+		ubicacion = _ubi;
 
 	}
+
 	public Cliente(String _nombre, String _apellido, String _domicilio, LocalDate _fechaIngreso, String _username,
 			String _password, String _tipodoc, Integer _nrodoc, Integer _telefono, List<Dispositivo> _dispositivos) {
 		super(_nombre, _apellido, _domicilio, _fechaIngreso, _username, _password);
 		tipodoc = _tipodoc;
 		nrodoc = _nrodoc;
 		telefono = _telefono;
-		dispositivos=_dispositivos;
+		dispositivos = _dispositivos;
 
 	}
+
 	public Ubicacion getUbi() {
 		return ubicacion;
 	}
-	
+
 	public String getTipoDoc() {
 		return tipodoc;
 	}
@@ -80,10 +84,11 @@ public class Cliente extends UsuarioSGE {
 		return dispositivos.stream().filter(dis -> dis instanceof Inteligente);
 	}
 
-	public Double ConsumoActualDispositivosInteligentes(){
+	public Double ConsumoActualDispositivosInteligentes() {
 		return this.misInteligentes().mapToDouble(dis -> ((Inteligente) dis).consumoActual()).sum();
-	
+
 	}
+
 	public boolean tengoAlgunDispositivoON() {
 		return this.misInteligentes().anyMatch(dis -> ((Inteligente) dis).estoyON());
 	}
@@ -148,5 +153,23 @@ public class Cliente extends UsuarioSGE {
 
 	public Double consumoEnPeriodo(LocalDateTime inicioPeriodo, LocalDateTime finPeriodo) {
 		return dispositivos.stream().mapToDouble(dis -> dis.consumo_periodo(inicioPeriodo, finPeriodo)).sum();
+	}
+
+	public void getMejorCombinacionDispositivos() {
+		ModuloMejorCombinacion modulo = new ModuloMejorCombinacion();
+
+		List<Recomendacion> sugerencias = modulo.calcularMejorCombinacion(this.dispositivos);
+
+		sugerencias.forEach(r -> System.out.println(r.nodo().getNombre() + " deberia usarse " + r.horas() + " horas al mes"));
+	}
+
+	public boolean canYouGetMejorCombinacionDispositivos() {
+		try {
+			this.getMejorCombinacionDispositivos();
+		} catch (Exception e) {
+			return false;
+		}
+
+		return true;
 	}
 }

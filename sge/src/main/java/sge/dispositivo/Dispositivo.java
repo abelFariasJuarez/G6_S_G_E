@@ -5,6 +5,15 @@ import java.time.LocalDateTime;
 import com.google.gson.annotations.SerializedName;
 
 public class Dispositivo {
+	
+	protected String nombre;
+	protected Double consumoPorHora;
+	protected LocalDateTime instanteDeCreacion;
+	@SerializedName("username")
+	protected String username;
+	protected Boolean bajoconsumo;
+	private double mensualMinimoHoras;
+	private double mensualMaximoHoras;
 
 	public Dispositivo(String _nombre, Double _consumoPorHora, String _username, Boolean _bajoconsumo) {
 		nombre = _nombre;
@@ -17,16 +26,8 @@ public class Dispositivo {
 	public Dispositivo(String _nombre, Double _consumoPorHora, Boolean _bajoconsumo) {
 		nombre = _nombre;
 		consumoPorHora = _consumoPorHora;
-
 		bajoconsumo = _bajoconsumo;
 	}
-
-	protected String nombre;
-	protected Double consumoPorHora;
-	protected LocalDateTime instanteDeCreacion;
-	@SerializedName("username")
-	protected String username;
-	protected Boolean bajoconsumo;
 
 	public void setInstanteDeCreacion(LocalDateTime _instanteDeCreacion) {
 		instanteDeCreacion = _instanteDeCreacion;
@@ -63,6 +64,22 @@ public class Dispositivo {
 
 	public Double consumo_periodo(LocalDateTime inicioPeriodo, LocalDateTime finPeriodo) {
 		return 0.0;
+	}
+
+	public double mensualMinimoHoras() {
+		return mensualMinimoHoras;
+	}
+
+	public double mensualMaximoHoras() {
+		return mensualMaximoHoras;
+	}
+
+	public void mensualMaximoHoras(double d) {
+		mensualMaximoHoras = d;
+	}
+
+	public void mensualMinimoHoras(double d) {
+		mensualMinimoHoras = d;
 	}
 
 }

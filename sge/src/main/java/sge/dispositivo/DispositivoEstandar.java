@@ -7,6 +7,10 @@ import com.google.gson.annotations.SerializedName;
 
 public class DispositivoEstandar extends Dispositivo {
 
+	@SerializedName ("type")
+	private String type;
+	private Double horasEncendido;
+
 	public DispositivoEstandar(String _nombre, Double _consumoPorHora,String _idUserName,Boolean _bajoconsumo,Double _horasEncendido) {
 		super(_nombre, _consumoPorHora,_idUserName, _bajoconsumo);
 		horasEncendido=_horasEncendido;
@@ -16,11 +20,6 @@ public class DispositivoEstandar extends Dispositivo {
 		super(_nombre, _consumoPorHora, _bajoconsumo);
 		horasEncendido=0.0;
 	}
-	@SerializedName ("type")
-	private String type;
-
-
-	private Double horasEncendido;
 
 	public Double getHorasEncendido() {
 		return horasEncendido;
@@ -38,6 +37,6 @@ public class DispositivoEstandar extends Dispositivo {
 	public Double consumo_periodo(LocalDateTime instanteDesde, LocalDateTime instanteHasta) {
 		Duration duration = Duration.between(instanteDesde, instanteHasta);
 		return consumoPorHora * horasEncendido * (duration.getSeconds() / 3600.0 / 24.0) ;
-	}	
+	}
 
 }
