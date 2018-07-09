@@ -28,16 +28,16 @@ public class ImportadorDispositivoValido {
 		Type tipoListaDispositivos = new TypeToken<List<Dispositivo>>() {
 		}.getType();
 		
-		RuntimeTypeAdapterFactory<Dispositivo> dispositivoAdapterFactory = RuntimeTypeAdapterFactory
+		/*RuntimeTypeAdapterFactory<Dispositivo> dispositivoAdapterFactory = RuntimeTypeAdapterFactory
 				.of(Dispositivo.class, "type");
 
 		dispositivoAdapterFactory.registerSubtype(DispositivoInteligente.class ,"inteligente");
 		dispositivoAdapterFactory.registerSubtype(DispositivoEstandar.class ,"estandar");
-		
+		*/
+		Gson gson = new  Gson();
 	
-	
 		
-		Gson gson = new GsonBuilder().registerTypeAdapterFactory(dispositivoAdapterFactory).create();
+		//Gson gson = new GsonBuilder().registerTypeAdapterFactory(dispositivoAdapterFactory).create();
 		List<Dispositivo> dispositivos = gson.fromJson(dispositivosJSON, tipoListaDispositivos);
 
 		return dispositivos;

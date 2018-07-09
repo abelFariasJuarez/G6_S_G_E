@@ -8,9 +8,9 @@ public class DispositivoInteligente extends Inteligente {
 
 	private static Integer puntos = 15;
 
-	@SerializedName ("type")
+	/*@SerializedName ("type")
 	private String type;
-	
+	*/
 	public DispositivoInteligente(String _nombre, Double _consumoPorHora,String _idUserName,Boolean _bajoconsumo, Boolean _encendido) {
 		
 		super(_nombre, _consumoPorHora,_idUserName,_bajoconsumo,_encendido);

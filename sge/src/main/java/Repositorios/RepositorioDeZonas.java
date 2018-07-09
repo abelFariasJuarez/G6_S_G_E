@@ -10,7 +10,7 @@ import utils.ImportadorDeJsonZona;
 
 public class RepositorioDeZonas {
 	private static RepositorioDeZonas repoZonas;
-	public List<ZonaGeografica> zonas= new ArrayList<ZonaGeografica>();
+	private List<ZonaGeografica> zonas= new ArrayList<ZonaGeografica>();
 
 	private RepositorioDeZonas() {
 	};
