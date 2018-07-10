@@ -51,14 +51,9 @@ public class GestorCliente {
 
 	public void asignarClientesATransformadores() {
 		for (Cliente cliente : repoClientes.clientes) {
-<<<<<<< HEAD:sge/src/main/java/sge/GestorCliente.java
-			ZonaGeografica zona = repoZonas.zonas.stream().filter(s -> s.pertenece(cliente)).findFirst().get();
+			ZonaGeografica zona = repoZonas.zonas().stream().filter(s -> s.pertenece(cliente)).findFirst().get();
 			Transformador trans = Collections.min(zona.getTransformadores(),
 					Comparator.comparing(t -> t.Distancia(cliente)));
-=======
-			ZonaGeografica zona = repoZonas.zonas().stream().filter(s -> s.pertenece(cliente)).findFirst().get();
-			Transformador trans = Collections.min(zona.getTransformadores(),Comparator.comparing(t -> t.Distancia(cliente)));
->>>>>>> 5d02fa995e9367ca96fa1a49d080fe709cd6202e:sge/src/main/java/posicionamiento/GestorCliente.java
 			trans.add(cliente);
 		}
 	}
