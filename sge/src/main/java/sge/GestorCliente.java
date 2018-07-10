@@ -15,10 +15,10 @@ public class GestorCliente {
 	RepositorioDeZonas repoZonas = RepositorioDeZonas.getinstance();
 	RepositorioDeTransformadores repoTransformadores = RepositorioDeTransformadores.getinstance();
 
-	private GestorCliente() {
+	public GestorCliente() {
 		repoClientes.cargarClientes();
 		repoZonas.cargarZonas();
-		this.transformadoresAsignaciónZona();
+		this.transformadoresAsignacionZona();
 	}
 
 	/*
@@ -35,7 +35,7 @@ public class GestorCliente {
 	 * }
 	 */
 
-	public void transformadoresAsignaciónZona() {
+	public void transformadoresAsignacionZona() {
 		repoZonas.bajaTransformadores();
 		repoTransformadores.cargarTransformadores();
 		for (ZonaGeografica zona1 : repoZonas.zonas()) {
