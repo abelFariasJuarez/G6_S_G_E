@@ -15,4 +15,9 @@ public class ActuadorPrender implements Actuador {
 		dispositivo.prender();
 	}
 
+	@Override
+	public void dispositivo(Inteligente _dispositivo) {
+		dispositivo = _dispositivo;	
+	}
+
 }

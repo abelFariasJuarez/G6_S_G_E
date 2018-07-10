@@ -9,10 +9,17 @@ public class ActuadorApagar implements Actuador {
 	public ActuadorApagar(Inteligente _dispositivo) {
 		dispositivo = _dispositivo;
 	}
+	
+	public ActuadorApagar() {
+	}
 
 	@Override
 	public void ejecutarAccion() {
 		dispositivo.apagar();
+	}
 
+	@Override
+	public void dispositivo(Inteligente _dispositivo) {
+		dispositivo = _dispositivo;		
 	}
 }

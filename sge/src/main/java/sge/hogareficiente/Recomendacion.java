@@ -1,26 +1,29 @@
 package sge.hogareficiente;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import sge.dispositivo.Dispositivo;
 
 public class Recomendacion {
-	private Dispositivo nodo;
-	private double horas;
-	
-	public Recomendacion(Dispositivo _dispo, double _hora) {
-		nodo = _dispo;
-		horas = _hora;
+	double horasTotalesMensuales;
+	List<TiempoMaximoPorNodo> horasMaximasPorNodo = new ArrayList<TiempoMaximoPorNodo>();
+
+	public void agregarTiempoMaximoPorNodo(Dispositivo dispositivo, double horas) {
+		TiempoMaximoPorNodo tmpn = new TiempoMaximoPorNodo(dispositivo, horas);
+		horasMaximasPorNodo.add(tmpn);
 	}
-	
-	public Dispositivo nodo()
-	{
-		return nodo;
+
+	public void horasTotalesMensuales(Double value) {
+		horasTotalesMensuales = value;
 	}
-	
-	public double horas()
-	{
-		return horas;
+
+	public double horasMaximasPara(Dispositivo dispositivo) {
+		return horasMaximasPorNodo.stream().filter(h -> h.nodo().equals(dispositivo)).findFirst().get().horas();
+	}
+
+	public boolean esEficiente(Dispositivo i, double consumoEnPeriodoDe) {
+		return (consumoEnPeriodoDe <= this.horasMaximasPara(i));
 	}
 
 }
-
-

@@ -1,6 +1,5 @@
 package sge.hogareficiente;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.math3.optim.PointValuePair;
@@ -12,9 +11,9 @@ import sge.dispositivo.Dispositivo;
 public class ModuloMejorCombinacion {
 	private double consumoMensualMaximo = 440640;
 
-	public List<Recomendacion> calcularMejorCombinacion(List<Dispositivo> dispositivos) {
+	public Recomendacion calcularMejorCombinacion(List<Dispositivo> dispositivos) {
 			
-		List<Recomendacion> recomendaciones = new ArrayList<Recomendacion>();
+		Recomendacion reco = new Recomendacion();
 		
 		Dispositivo[] nodos = new Dispositivo[dispositivos.size()];	
 		nodos = dispositivos.toArray(nodos);
@@ -31,13 +30,15 @@ public class ModuloMejorCombinacion {
 			this.agregarRestriccionMaxMin(simplexFacade, i, nodos.length, nodos[i]);
 		}
 
-		PointValuePair solucion = simplexFacade.resolver();		
-				
+		PointValuePair solucion = simplexFacade.resolver();
+		
+		reco.horasTotalesMensuales(solucion.getValue());	
+		
 		for (int i = 0; i < nodos.length; i++) {
-			recomendaciones.add(new Recomendacion(nodos[i],solucion.getPoint()[i]));
+			reco.agregarTiempoMaximoPorNodo(nodos[i],solucion.getPoint()[i]);
 		}	
 		
-		return recomendaciones;		
+		return reco;		
 	}
 
 	private void agregarRestriccionMaxMin(SimplexFacade simplexFacade, int i, int length, Dispositivo nodo) {

@@ -32,22 +32,13 @@ public class TestModuloMejorCombinacion {
 		unCliente.addDispositivo(estandar1);
 		unCliente.addDispositivo(estandar2);
 
-		List<Recomendacion> recomendaciones = unCliente.getMejorCombinacionDispositivos();
+		Recomendacion reco = unCliente.getMejorCombinacionDispositivos();
 
-		recomendaciones.forEach(r -> {
-			if (r.nodo().equals(estandar0)) {
-				Assert.assertEquals(370, r.horas(), 0.01);
-			}
+		Assert.assertEquals(370, reco.horasMaximasPara(estandar0), 0.01);
+		
+		Assert.assertEquals(30, reco.horasMaximasPara(estandar1), 0.01);
 
-			if (r.nodo().equals(estandar1)) {
-				Assert.assertEquals(30, r.horas(), 0.01);
-			}
-
-			if (r.nodo().equals(estandar2)) {
-				Assert.assertEquals(360, r.horas(), 0.01);
-			}
-
-		});
+		Assert.assertEquals(360, reco.horasMaximasPara(estandar2), 0.01);
 
 	}
 

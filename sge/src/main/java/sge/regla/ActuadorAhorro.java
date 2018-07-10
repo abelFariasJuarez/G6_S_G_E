@@ -15,4 +15,9 @@ public class ActuadorAhorro implements Actuador {
 		dispositivo.ahorroDeEnergia();
 	}
 
+	@Override
+	public void dispositivo(Inteligente _dispositivo) {
+		dispositivo = _dispositivo;
+	}
+
 }

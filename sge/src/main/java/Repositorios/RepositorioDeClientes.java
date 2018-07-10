@@ -2,7 +2,10 @@ package Repositorios;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+
+import posicionamiento.ZonaGeografica;
 import sge.Cliente;
 import utils.ImportadorDeJSONCliente;
 
@@ -39,5 +42,9 @@ public class RepositorioDeClientes {
 			e.printStackTrace();
 		}
 
+	}
+
+	public List<Cliente> clientes() {
+		return clientes;
 	}
 }

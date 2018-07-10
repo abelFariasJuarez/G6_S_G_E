@@ -2,6 +2,7 @@ package sge;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
@@ -9,6 +10,7 @@ import java.util.stream.Stream;
 import posicionamiento.Ubicacion;
 import sge.dispositivo.*;
 import sge.hogareficiente.*;
+import sge.regla.*;
 
 public class Cliente extends UsuarioSGE {
 	String tipodoc;
@@ -17,7 +19,10 @@ public class Cliente extends UsuarioSGE {
 	Categoria categoria;
 	List<Dispositivo> dispositivos = new ArrayList<Dispositivo>();
 	private Integer puntos = 0;
-	Ubicacion ubicacion;
+	private Ubicacion ubicacion;
+	private boolean ahorroAutomatico; // o acción automática o accione por sí solo
+	private Actuador accionParaMejorarEficiencia = new ActuadorApagar();// la orden de "apagar" (podría ser acción
+																		// configurable)
 
 	public Cliente(String _nombre, String _apellido, String _domicilio, LocalDate _fechaIngreso, String _username,
 			String _password, String _tipodoc, Integer _nrodoc, Integer _telefono) {
@@ -155,13 +160,8 @@ public class Cliente extends UsuarioSGE {
 		return dispositivos.stream().mapToDouble(dis -> dis.consumo_periodo(inicioPeriodo, finPeriodo)).sum();
 	}
 
-	public List<Recomendacion> getMejorCombinacionDispositivos() {
-		ModuloMejorCombinacion modulo = new ModuloMejorCombinacion();
-
-		List<Recomendacion> sugerencias = modulo.calcularMejorCombinacion(this.dispositivos);
-
-		sugerencias.forEach(r -> System.out.println(r.nodo().getNombre() + " deberia usarse " + r.horas() + " horas al mes"));
-		return sugerencias;
+	public Recomendacion getMejorCombinacionDispositivos() {
+		return new ModuloMejorCombinacion().calcularMejorCombinacion(this.dispositivos);
 	}
 
 	public boolean canYouGetMejorCombinacionDispositivos() {
@@ -172,5 +172,29 @@ public class Cliente extends UsuarioSGE {
 		}
 
 		return true;
+	}
+
+	public void ahorroAutomatico(boolean _aho) {
+		ahorroAutomatico = _aho;
+	}
+
+	public boolean ahorroAutomaticoActivo() {
+		return ahorroAutomatico;
+	}
+
+	public void mejorarEficienciaHogar() {
+		Recomendacion sugerencia = this.getMejorCombinacionDispositivos();
+		this.misInteligentes()
+			.filter(i -> !sugerencia.esEficiente(i, this.consumoEnPeriodoDe(i)))
+			.forEach(i -> {
+				accionParaMejorarEficiencia.dispositivo((Inteligente) i);
+				accionParaMejorarEficiencia.ejecutarAccion();
+			});
+	}
+
+	private double consumoEnPeriodoDe(Dispositivo i) {
+		LocalDateTime finPeriodo = LocalDateTime.now();		
+		LocalDateTime inicioPeriodo = finPeriodo.withDayOfMonth(1);
+		return i.consumo_periodo(inicioPeriodo, finPeriodo);
 	}
 }
