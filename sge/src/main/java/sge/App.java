@@ -73,8 +73,8 @@ public class App {
 		Double yCenter = 70.3;
 		Double xPoint = 60.8;
 		Double yPoint = 70.4;
-		if (Math.sqrt (Math.pow(Xcentro-xPoint,2) + Math.pow((yCenter-yPoint), 2)) <= radio) { System.out.println ("El punto está contenido en el círculo."); }
-		else { System.out.println ("El punto no está contenido en el círculo."); }
+		if (Math.sqrt (Math.pow(Xcentro-xPoint,2) + Math.pow((yCenter-yPoint), 2)) <= radio) { System.out.println ("El punto estï¿½ contenido en el cï¿½rculo."); }
+		else { System.out.println ("El punto no estï¿½ contenido en el cï¿½rculo."); }
 		
 		
 		
@@ -97,7 +97,7 @@ public class App {
 		transformadores.add(transfo5);
 		
 		Transformador trans = Collections.min(transformadores, Comparator.comparing(t->t.Distancia(unCliente)));
-	
+		
 		System.out.println(trans.getId());
 		
 		

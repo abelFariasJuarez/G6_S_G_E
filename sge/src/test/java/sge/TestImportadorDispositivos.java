@@ -10,7 +10,7 @@ import org.junit.Test;
 import Repositorios.RepositorioDeDispositivos;
 import sge.dispositivo.Dispositivo;
 import sge.dispositivo.DispositivoInteligente;
-
+import sge.dispositivo.familia.LamparaInteligente;
 public class TestImportadorDispositivos {
 
 	RepositorioDeDispositivos repo2 = RepositorioDeDispositivos.getinstance();
@@ -27,10 +27,15 @@ public class TestImportadorDispositivos {
 	}
 	}
 	@Test
-	public void hayDispositivos() {
-		assertEquals(false, Dispositivos.isEmpty()); 
+	public void hayLamparaInteligente() {
 		
+		assertEquals(sge.dispositivo.familia.LamparaInteligente.class, Dispositivos.get(0).getClass()); 
+		assertEquals(sge.dispositivo.familia.LamparaInteligente.class, Dispositivos.get(0).getClass());
 	}
 	
+	@Test
+	public void hayMicroondas() {
+		assertEquals(sge.dispositivo.familia.Microondas.class, Dispositivos.get(3).getClass());
+	}
 	
 }
