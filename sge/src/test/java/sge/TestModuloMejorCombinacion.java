@@ -6,7 +6,7 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Test;
 
-import sge.dispositivo.DispositivoEstandar;
+import sge.dispositivo.familia.*;
 import sge.hogareficiente.Recomendacion;
 
 public class TestModuloMejorCombinacion {
@@ -15,30 +15,21 @@ public class TestModuloMejorCombinacion {
 		Cliente unCliente = new Cliente("Carlos", "Sanazki", "condarco 148", LocalDate.of(2017, 4, 7), "cazana",
 				"menToL2017", "Dni", 21321012, 1543312310);
 
-		DispositivoEstandar estandar0 = new DispositivoEstandar("Lavarropas", 0.18, "perez", true, 12.0);
-		DispositivoEstandar estandar1 = new DispositivoEstandar("Computadora", 0.875, "perez", true, 12.0);
-		DispositivoEstandar estandar2 = new DispositivoEstandar("Computadora", 0.06, "perez", true, 12.5);
+		AireAcondicionadoInteligente air = new AireAcondicionadoInteligente("Lavarropas", 0.18, true);
+		Lavarropas lava = new Lavarropas("Computadora", 0.875,true);
+		Ventilador unVenti = new Ventilador("Ventilador", 0.06, true);
 
-		estandar0.mensualMaximoHoras(370.0);
-		estandar0.mensualMinimoHoras(90.0);
-
-		estandar1.mensualMaximoHoras(30.0);
-		estandar1.mensualMinimoHoras(6.0);
-
-		estandar2.mensualMaximoHoras(360.0);
-		estandar2.mensualMinimoHoras(120.0);
-
-		unCliente.addDispositivo(estandar0);
-		unCliente.addDispositivo(estandar1);
-		unCliente.addDispositivo(estandar2);
+		unCliente.addDispositivo(air);
+		unCliente.addDispositivo(lava);
+		unCliente.addDispositivo(unVenti);
 
 		Recomendacion reco = unCliente.getMejorCombinacionDispositivos();
 
-		Assert.assertEquals(370, reco.horasMaximasPara(estandar0), 0.01);
+		Assert.assertEquals(360, reco.horasMaximasPara(air), 0.01);
 		
-		Assert.assertEquals(30, reco.horasMaximasPara(estandar1), 0.01);
+		Assert.assertEquals(30, reco.horasMaximasPara(lava), 0.01);
 
-		Assert.assertEquals(360, reco.horasMaximasPara(estandar2), 0.01);
+		Assert.assertEquals(360, reco.horasMaximasPara(unVenti), 0.01);
 
 	}
 
@@ -47,22 +38,14 @@ public class TestModuloMejorCombinacion {
 		Cliente unCliente = new Cliente("Carlos", "Sanazki", "condarco 148", LocalDate.of(2017, 4, 7), "cazana",
 				"menToL2017", "Dni", 21321012, 1543312310);
 
-		DispositivoEstandar estandar0 = new DispositivoEstandar("Lavarropas", 1800.0, "perez", true, 12.0);
-		DispositivoEstandar estandar1 = new DispositivoEstandar("Computadora", 0.875, "perez", true, 12.0);
-		DispositivoEstandar estandar2 = new DispositivoEstandar("Computadora", 0.06, "perez", true, 12.5);
+	
+		AireAcondicionadoInteligente air = new AireAcondicionadoInteligente("Lavarropas", 1000.0, true);
+		ComputadoraInteligente pc = new ComputadoraInteligente("Computadora", 2000.0,true);
+		Ventilador unVenti = new Ventilador("Ventilador", 3000.0, true);
 
-		estandar0.mensualMaximoHoras(370.0);
-		estandar0.mensualMinimoHoras(365.0);
-
-		estandar1.mensualMaximoHoras(30.0);
-		estandar1.mensualMinimoHoras(6.0);
-
-		estandar2.mensualMaximoHoras(360.0);
-		estandar2.mensualMinimoHoras(120.0);
-
-		unCliente.addDispositivo(estandar0);
-		unCliente.addDispositivo(estandar1);
-		unCliente.addDispositivo(estandar2);
+		unCliente.addDispositivo(air);
+		unCliente.addDispositivo(pc);
+		unCliente.addDispositivo(unVenti);
 
 		Assert.assertFalse(unCliente.canYouGetMejorCombinacionDispositivos());
 

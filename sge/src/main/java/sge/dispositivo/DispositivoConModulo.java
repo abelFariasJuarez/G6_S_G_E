@@ -10,10 +10,7 @@ public class DispositivoConModulo extends Inteligente {
 		// TODO Auto-generated constructor stub
 		dispo = _dis;
 	}
-
-
-
-
+	
 	private static Integer puntos = 10;
 	private DispositivoEstandar dispo;
 
@@ -55,11 +52,19 @@ public class DispositivoConModulo extends Inteligente {
 	public static Integer puntos() {
 		return puntos;
 	}
-	
-
-
 
 	public Double consumo_periodo(LocalDateTime instanteDesde, LocalDateTime instanteHasta) {
 		return super.consumo_periodo(instanteDeCreacion, instanteHasta) + dispo.consumo_periodo(instanteDesde, instanteDeCreacion);
 	}
+	
+	@Override
+	public double mensualMinimoHoras() {
+		return dispo.mensualMinimoHoras();
+	}
+
+	@Override
+	public double mensualMaximoHoras() {
+		return dispo.mensualMaximoHoras();
+	}	
+
 }

@@ -29,7 +29,6 @@ public abstract class Inteligente extends Dispositivo {
 
 	public Inteligente(String _nombre, Double _consumoPorHora, Boolean _bajoconsumo) {
 		super(_nombre, _consumoPorHora, _bajoconsumo);
-
 	}
 
 	public void setIntervalo(List<Intervalo> intervalo) {
