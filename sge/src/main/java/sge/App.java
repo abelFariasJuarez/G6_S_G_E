@@ -41,7 +41,7 @@ public class App {
 		
 		//Regla unRegla = new Regla("regla 1");
 		//DispositivoInteligente unAire = new DispositivoInteligente("AireAcondicionado", 2.3,"perez", false,false);
-	DispositivoInteligente unAire = new DispositivoInteligente("AireAcondicionado", 2.3,"cazana", false,false);
+		DispositivoInteligente unAire = new DispositivoInteligente("AireAcondicionado", 2.3,"cazana", false,false);
 		// el constructor ya me da un dispo en estado apagado
 		//assertEquals(true,unAire.estoyOFF());
 		//Regla unRegla = new Regla("regla 1");
@@ -76,7 +76,7 @@ public class App {
 		if (Math.sqrt (Math.pow(Xcentro-xPoint,2) + Math.pow((yCenter-yPoint), 2)) <= radio) { System.out.println ("El punto está contenido en el círculo."); }
 		else { System.out.println ("El punto no está contenido en el círculo."); }
 		
-	
+		
 		
 		
 		System.out.println(Math.abs(Xcentro-xPoint)+Math.abs(yCenter-yPoint));
@@ -105,20 +105,19 @@ public class App {
 		repotransfor.cargarTransformadores();
 		RepositorioDeZonas repotransfor2 = RepositorioDeZonas.getinstance();
 		repotransfor2.cargarZonas();
-	
-	
-	
-	for (ZonaGeografica zona1 : repotransfor2.zonas) {
-		for (Transformador trans1 : repotransfor.transformadores) {
-			if(zona1.getId().equals(trans1.getIdZona())) {
-				zona1.Add(trans1);
-				 repotransfor.transformadores.remove(trans1);
+		
+		
+		
+		for (ZonaGeografica zona1 : repotransfor2.zonas()) {
+			for (Transformador trans1 : repotransfor.transformadores) {
+				if(zona1.getId().equals(trans1.getIdZona())) {
+					zona1.Add(trans1);
+					repotransfor.transformadores.remove(trans1);
 			}
 		}
 	}
 	
-	System.out.println(repotransfor2.zonas.get(0).getTransformadores().size());
+	System.out.println(repotransfor2.zonas().get(0).getTransformadores().size());
 
-
-}
+	}
 }

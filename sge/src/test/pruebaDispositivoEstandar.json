@@ -1,0 +1,4 @@
+[{"type":"microondas","nombre":"Microondas convencional",
+"consumoPorHora":0.64, bajoConsumo:true},
+{"type":"plancha","nombre":"Plancha a vapor",
+"consumoPorHora":0.75,bajoConsumo:true}]

@@ -1,0 +1,6 @@
+[{"type":"lamparaInt","nombre":"Lampara de 11W",
+"consumoPorHora":0.011,bajoConsumo:true},
+{"type":"lamparaInt","nombre":"Lampara de 15W",
+"consumoPorHora":0.015,bajoConsumo:true},
+{"type":"lamparaInt","nombre":"Lampara de 20W",
+"consumoPorHora":0.02,bajoConsumo:true}]
