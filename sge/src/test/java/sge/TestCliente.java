@@ -13,6 +13,7 @@ import org.junit.Test;
 import Repositorios.RepositorioDeClientes;
 import Repositorios.RepositorioDeDispositivos;
 import sge.dispositivo.*;
+import sge.dispositivo.familia.ComputadoraInteligente;
 
 
 public class TestCliente {
@@ -38,8 +39,13 @@ public class TestCliente {
 		
 		clientes = repo.clientes;
 		unaCategoria = new Categoria("r1", 18.76f, 0.644f, 0f, 150.0f);
-	
+		
+		//------------------------------------------------------------
 		cli=clientes.get(0);
+		DispositivoInteligente pc = new DispositivoInteligente("televisor", 5.0,"cazana",false,true);
+		cli.addDispositivo(pc);
+		//------------------------------------------------------------
+		
 		cli2=clientes.get(1);
 		for (Cliente cli : repo.clientes) {
 			for (Dispositivo dis : repo2.Dispositivos) {
@@ -56,16 +62,17 @@ public class TestCliente {
 		
 		LocalDateTime desde = LocalDateTime.parse("2018-05-19T20:00:00.000000000");
 		LocalDateTime hasta = LocalDateTime.parse("2018-05-19T22:00:00.000000000");
-		dispo2=new DispositivoInteligente("televisor", 5.0,"cazana",false,true);
-		dispo2.apagar();
-		dispo2.intervalos.get(0).setInicio(desde);
-		dispo2.intervalos.get(0).setFin(hasta);
-
+		
 		dispo1=new DispositivoInteligente("heladera", 10.0,"cazana",false,true);
+		dispo2=new DispositivoInteligente("televisor", 5.0,"cazana",false,true);
+		
 		dispo1.apagar();
+		dispo2.apagar();
+		
 		dispo1.intervalos.get(0).setInicio(desde);
 		dispo1.intervalos.get(0).setFin(hasta);
-		
+		dispo2.intervalos.get(0).setInicio(desde);
+		dispo2.intervalos.get(0).setFin(hasta);
 		
 		dispos.add(dispo1);
 		dispos.add(dispo2);
@@ -100,10 +107,6 @@ public class TestCliente {
 		assertEquals(Integer.valueOf(2), unCliente.cantDispositivos());
 	}
 
-	@Test
-	public void cantidadConsumoEnUnaHora() {
-		assertEquals(15.0, unCliente.consumo(),1);
-	}
 	@Test
 	public void cantidadConsumoEnPeriodo() {
 		LocalDateTime desde = LocalDateTime.parse("2018-05-18T22:00:00.000000000");

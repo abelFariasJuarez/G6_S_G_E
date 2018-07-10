@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 
 import com.google.gson.annotations.SerializedName;
 
+import sge.dispositivo.familia.RestriccionHorasFamilia;
+
 public class Dispositivo {
 	
 	protected String nombre;
@@ -12,8 +14,7 @@ public class Dispositivo {
 	@SerializedName("username")
 	protected String username;
 	protected Boolean bajoconsumo;
-	private double mensualMinimoHoras;
-	private double mensualMaximoHoras;
+	protected RestriccionHorasFamilia restriccionHoras;
 
 	public Dispositivo(String _nombre, Double _consumoPorHora, String _username, Boolean _bajoconsumo) {
 		nombre = _nombre;
@@ -67,19 +68,15 @@ public class Dispositivo {
 	}
 
 	public double mensualMinimoHoras() {
-		return mensualMinimoHoras;
+		return restriccionHoras.minimo();
 	}
 
 	public double mensualMaximoHoras() {
-		return mensualMaximoHoras;
+		return restriccionHoras.maximo();
 	}
 
-	public void mensualMaximoHoras(double d) {
-		mensualMaximoHoras = d;
-	}
-
-	public void mensualMinimoHoras(double d) {
-		mensualMinimoHoras = d;
+	public void restriccionHoras(RestriccionHorasFamilia h) {
+		restriccionHoras = h;		
 	}
 
 }
