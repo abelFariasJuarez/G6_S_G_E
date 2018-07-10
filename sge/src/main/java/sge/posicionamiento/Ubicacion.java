@@ -1,4 +1,4 @@
-package posicionamiento;
+package sge.posicionamiento;
 
 public class Ubicacion {
 private Double latitud;

@@ -1,4 +1,4 @@
-package posicionamiento;
+package sge.posicionamiento;
 
 import java.util.ArrayList;
 import java.util.Collections;

@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import posicionamiento.ZonaGeografica;
 import sge.Cliente;
+import sge.posicionamiento.ZonaGeografica;
 import utils.ImportadorDeJSONCliente;
 
 public class RepositorioDeClientes {

@@ -4,8 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import posicionamiento.Transformador;
-
+import sge.posicionamiento.Transformador;
 import utils.ImportadorDeJsonTransformador;
 
 

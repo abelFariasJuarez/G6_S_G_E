@@ -6,8 +6,8 @@ import java.util.Comparator;
 import Repositorios.RepositorioDeClientes;
 import Repositorios.RepositorioDeTransformadores;
 import Repositorios.RepositorioDeZonas;
-import posicionamiento.*;
 import sge.Cliente;
+import sge.posicionamiento.*;
 
 public class GestorCliente {
 

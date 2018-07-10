@@ -19,10 +19,10 @@ import Repositorios.RepositorioDeDispositivos;
 import Repositorios.RepositorioDeTransformadores;
 
 import Repositorios.RepositorioDeZonas;
-import posicionamiento.Transformador;
-import posicionamiento.Ubicacion;
-import posicionamiento.ZonaGeografica;
 import sge.dispositivo.*;
+import sge.posicionamiento.Transformador;
+import sge.posicionamiento.Ubicacion;
+import sge.posicionamiento.ZonaGeografica;
 import sge.regla.Actuador;
 import sge.regla.ActuadorPrender;
 import sge.regla.Condicion;

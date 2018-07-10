@@ -7,9 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
-import posicionamiento.Ubicacion;
 import sge.dispositivo.*;
 import sge.hogareficiente.*;
+import sge.posicionamiento.Ubicacion;
 import sge.regla.*;
 
 public class Cliente extends UsuarioSGE {
