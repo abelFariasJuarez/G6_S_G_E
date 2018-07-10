@@ -9,6 +9,7 @@ import org.junit.Test;
 
 import Repositorios.RepositorioDeDispositivos;
 import sge.dispositivo.Dispositivo;
+import sge.dispositivo.DispositivoInteligente;
 
 public class TestImportadorDispositivos {
 
@@ -22,11 +23,12 @@ public class TestImportadorDispositivos {
 	 
 	for (Dispositivo disp : Dispositivos) {
 		disp.presentate();
+		System.out.println(disp.getClass());
 	}
 	}
 	@Test
 	public void hayDispositivos() {
-		assertEquals(false,Dispositivos.isEmpty());
+		assertEquals(false, Dispositivos.isEmpty()); 
 		
 	}
 	
