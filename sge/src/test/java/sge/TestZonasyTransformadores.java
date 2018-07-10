@@ -11,8 +11,10 @@ import org.junit.Test;
 
 import Repositorios.RepositorioDeDispositivos;
 import sge.dispositivo.Dispositivo;
+import sge.dispositivo.Inteligente;
 import sge.posicionamiento.Transformador;
 import sge.posicionamiento.Ubicacion;
+import sge.posicionamiento.ZonaGeografica;
 
 public class TestZonasyTransformadores {
 
@@ -32,6 +34,13 @@ public class TestZonasyTransformadores {
 	public void clientePerteneceAZona() {
 		
 		assertEquals(true,gestor.repoZonas.zonas().get(0).pertenece(unCliente)); 
+		
+	}
+	
+	@Test
+	public void esCliente() {
+		
+		assertEquals(true,gestor.repoZonas.zonas().stream().anyMatch(zona -> zona.pertenece(unCliente))); 
 		
 	}
 	

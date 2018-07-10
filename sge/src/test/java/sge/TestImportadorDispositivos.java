@@ -30,12 +30,12 @@ public class TestImportadorDispositivos {
 	public void hayLamparaInteligente() {
 		
 		assertEquals(sge.dispositivo.familia.LamparaInteligente.class, Dispositivos.get(0).getClass()); 
-		assertEquals(sge.dispositivo.familia.LamparaInteligente.class, Dispositivos.get(0).getClass());
+		//assertEquals(sge.dispositivo.DispositivoInteligente.class, Dispositivos.get(0).getClass());
 	}
 	
 	@Test
 	public void hayMicroondas() {
-		assertEquals(sge.dispositivo.familia.Microondas.class, Dispositivos.get(3).getClass());
+		assertEquals(true, Dispositivos.stream().anyMatch(disp -> disp.getClass()==sge.dispositivo.familia.Microondas.class));
 	}
 	
 }
