@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import java.time.LocalDateTime;
 import java.util.List;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import Repositorios.RepositorioDeDispositivos;
 import sge.dispositivo.*;
@@ -12,10 +13,11 @@ import sge.dispositivo.*;
 
 public class TestDispositivos {
 
-	RepositorioDeDispositivos repo2 = RepositorioDeDispositivos.getinstance();
-	List<Dispositivo> Dispositivos;
-	@Before
-	public void setUp() {
+	/* por que funciona solo con static? hay algo mal en los repo?*/
+	static RepositorioDeDispositivos repo2 = RepositorioDeDispositivos.getinstance();
+	static List<Dispositivo> Dispositivos;
+	@BeforeClass
+	public static void setUp() {
 	repo2.cargarDispositivos();
 	Dispositivos = repo2.Dispositivos();
 	 

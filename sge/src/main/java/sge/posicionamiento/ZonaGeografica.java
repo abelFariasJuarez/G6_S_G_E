@@ -25,6 +25,12 @@ public String getNombre() {
 	return nombre;
 }
 
+public Ubicacion getCentro() {
+	return centro;
+}
+public void setCentro(Ubicacion centro) {
+	this.centro = centro;
+}
 public void setNombre(String nombre) {
 	this.nombre = nombre;
 }
@@ -45,10 +51,12 @@ return 	(float) transformadores.stream().mapToDouble(t->t.energiaSuministrada())
 public boolean pertenece(Cliente cliente) {
 return	Math.sqrt (Math.pow(centro.getLongitud()-cliente.getUbi().getLongitud(),2) + Math.pow((centro.getLatitud()-cliente.getUbi().getLatitud()), 2)) <= radio;
 }
+
+
 public void asignarTransformador(Cliente cliente) {
 	
 		Transformador trans = Collections.min(transformadores, Comparator.comparing(t->t.Distancia(cliente)));
-		trans.add(cliente);
+		trans.agregar(cliente);
 	
 }
 }

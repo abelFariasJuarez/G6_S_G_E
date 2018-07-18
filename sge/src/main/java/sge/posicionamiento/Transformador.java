@@ -4,13 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import sge.Cliente;
+import sge.dispositivo.Dispositivo;
 
 public class Transformador {
-
-	List<Cliente> clientes = new ArrayList<Cliente>();
+	
+public  	List<Cliente> cli = new ArrayList<Cliente>();
+	Cliente cliente;
 	Integer id;
 	Integer idZona;
 	Ubicacion ubicacion;
+	private List<Cliente> clientes;
 	
 public Transformador(Integer _id,Integer _idZona,Ubicacion _ubicacion) {
 	id=_id;
@@ -19,10 +22,16 @@ public Transformador(Integer _id,Integer _idZona,Ubicacion _ubicacion) {
 	
 }
 	public Float energiaSuministrada() {
-		return (float) clientes.stream().mapToDouble(c -> c.ConsumoActualDispositivosInteligentes()).sum();
+		return (float) cli.stream().mapToDouble(c -> c.ConsumoActualDispositivosInteligentes()).sum();
 		
 	}
 
+	public Ubicacion getUbicacion() {
+		return ubicacion;
+	}
+	public void setUbicacion(Ubicacion ubicacion) {
+		this.ubicacion = ubicacion;
+	}
 	public Integer getIdZona() {
 		return idZona;
 	}
@@ -40,9 +49,23 @@ public Transformador(Integer _id,Integer _idZona,Ubicacion _ubicacion) {
 				+ Math.pow(ubicacion.getLongitud() - cliente.getUbi().getLongitud(),2));
 	}
 
-	public void add(Cliente cliente) {
-		clientes.add(cliente);
+	public void agregar(Cliente cliente) {
+	cli.add(cliente);
 		
 	}
+	public Cliente getCliente() {
+		return cliente;
+	}
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+	public List<Cliente> getClientes() {
+		return getClientes();
+	}
+	public void setClientes(List<Cliente> clientes) {
+		this.clientes = clientes;
+	}
+
+	
 //0.9 3.3 / 1.0 3.0
 }

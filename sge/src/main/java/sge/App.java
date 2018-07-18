@@ -81,8 +81,68 @@ public class App {
 		
 		System.out.println(Math.abs(Xcentro-xPoint)+Math.abs(yCenter-yPoint));
 		
+		// se comprueba que importa bien zonas
+		RepositorioDeZonas repoZonas = RepositorioDeZonas.getinstance();
+		repoZonas.cargarZonas();
+		
+		for(ZonaGeografica zona :repoZonas.zonas() ) {
+			System.out.println(zona.getCentro().getLatitud());}
 		
 		
+		// se comprueba que importa bien transformadores
+		RepositorioDeTransformadores repoTransformadores = RepositorioDeTransformadores.getinstance();
+		repoTransformadores.cargarTransformadores();
+		
+		
+		for(Transformador trafo :repoTransformadores.transformadores ) {
+			System.out.println(trafo.getUbicacion().getLatitud());}
+		
+		// se comprueba union zona transformador.
+		for (ZonaGeografica zona1 : repoZonas.zonas()) {
+			for (Transformador trans1 : repoTransformadores.transformadores) {
+				if (zona1.getId().equals(trans1.getIdZona())) {
+					zona1.Add(trans1);
+					
+				}
+			}
+		}
+		
+	System.out.println(repoZonas.zonas().get(0).getTransformadores().get(1).getId());
+	
+	
+	
+	
+	RepositorioDeClientes repoClientes = RepositorioDeClientes.getinstance();
+	repoClientes.cargarClientes();
+	for(Cliente cli :repoClientes.clientes) {
+		System.out.println(cli.apellido);}
+	
+	System.out.println(repoZonas.zonas().get(0).pertenece(repoClientes.clientes.get(0)));
+	System.out.println(repoZonas.zonas().get(0).pertenece(repoClientes.clientes.get(1)));
+	System.out.println(repoZonas.zonas().get(0).pertenece(repoClientes.clientes.get(2)));
+	
+	
+	//ultimas pruebas falta corregir esto nullpointer al querer agregar cliente
+	/*
+	for (Cliente clientet : repoClientes.clientes) {
+		ZonaGeografica zona = repoZonas.zonas().stream().filter(s -> s.pertenece(clientet)).findFirst().get();
+
+		Transformador trans = Collections.min(zona.getTransformadores(),Comparator.comparing(t -> t.Distancia(clientet)));
+		
+		trans.agregar(clientet);
+		System.out.println(trans.cli.size());
+	}
+*/
+
+	Transformador trans;
+	Cliente clientet=new Cliente("Carlos", "Sanazki", "condarco 148",LocalDate.of(2017,4,7), "cazana", "menToL2017", "Dni", 21321012,1543312310,new Ubicacion(0.21,2.9));
+	 Collections.min(repoTransformadores.transformadores,Comparator.comparing(t -> t.Distancia(clientet))).agregar(clientet);;
+	
+	
+
+	
+	
+	/*	
 		List<Transformador> transformadores=new ArrayList<Transformador>();
 		Cliente unCliente=new Cliente("Carlos", "Sanazki", "condarco 148",LocalDate.of(2017,4,7), "cazana", "menToL2017", "Dni", 21321012,1543312310,new Ubicacion(0.21,2.9));
 		Transformador transfo=new Transformador(3,1,new Ubicacion(1.0,3.0));
@@ -112,12 +172,12 @@ public class App {
 			for (Transformador trans1 : repotransfor.transformadores) {
 				if(zona1.getId().equals(trans1.getIdZona())) {
 					zona1.Add(trans1);
-					repotransfor.transformadores.remove(trans1);
+				
 			}
 		}
 	}
 	
 	System.out.println(repotransfor2.zonas().get(0).getTransformadores().size());
-
+*/
 	}
 }

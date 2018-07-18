@@ -1,20 +1,20 @@
 [{"id":1,
 "nombre":"boedo",
-"Ubicacion":{
+"centro":{
 "latitud":400.0,
 "longitud":330.0},
 "radio":130.0},
 
 {"id":2,
 "nombre":"san martin",
-"Ubicacion":{
+"centro":{
 "latitud":0.0,
 "longitud":0.0},
 "radio":100.0
 },
 {"id":3,
 "nombre":"villa del parque",
-"Ubicacion":{
+"centro":{
 "latitud":-400.0,
 "longitud":-500.0},
 "radio":130.0

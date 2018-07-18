@@ -32,7 +32,7 @@ public class RepositorioDeTransformadores {
 	}
 
 	public void cargarTransformadores() {
-		transformadores = null;
+		
 		ImportadorDeJsonTransformador json = new ImportadorDeJsonTransformador();
 
 		try {

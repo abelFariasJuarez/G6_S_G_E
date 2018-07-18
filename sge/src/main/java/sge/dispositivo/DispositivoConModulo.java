@@ -57,14 +57,5 @@ public class DispositivoConModulo extends Inteligente {
 		return super.consumo_periodo(instanteDeCreacion, instanteHasta) + dispo.consumo_periodo(instanteDesde, instanteDeCreacion);
 	}
 	
-	@Override
-	public double mensualMinimoHoras() {
-		return dispo.mensualMinimoHoras();
-	}
-
-	@Override
-	public double mensualMaximoHoras() {
-		return dispo.mensualMaximoHoras();
-	}	
 
 }

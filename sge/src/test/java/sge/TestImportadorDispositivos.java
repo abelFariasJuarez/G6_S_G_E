@@ -10,7 +10,7 @@ import org.junit.Test;
 import Repositorios.RepositorioDeDispositivos;
 import sge.dispositivo.Dispositivo;
 import sge.dispositivo.DispositivoInteligente;
-import sge.dispositivo.familia.LamparaInteligente;
+
 public class TestImportadorDispositivos {
 
 	RepositorioDeDispositivos repo2 = RepositorioDeDispositivos.getinstance();

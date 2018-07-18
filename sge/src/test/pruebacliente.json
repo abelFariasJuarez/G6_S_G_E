@@ -13,9 +13,13 @@
     "tipodoc": "Dni",
     "nrodoc": 21321012,
     "telefono": 154331231,
-   "dispositivos":[]
+   "dispositivos":[],
+   "ubicacion":{
+   "latitud":401.0,
+   "longitud":331.0
+  }
   },
-  {
+   {
     "nombre":"Carlos",
     "apellido":"Sanazki",
     "domicilio":"condarco 148",
@@ -29,6 +33,50 @@
     "tipodoc": "Dni",
     "nrodoc": 21321012,
     "telefono": 154331231,
-   "dispositivos":[]
+   "dispositivos":[],
+   "ubicacion":{
+   "latitud":401.0,
+   "longitud":331.0
+  	}
+  },
+   {
+    "nombre":"Carlos",
+    "apellido":"Sanazki",
+    "domicilio":"condarco 148",
+     "fechaIngreso": {
+      "year": 2017,
+      "month": 4,
+      "day": 7
+    },
+    "username":"cazanax",
+    "password":"menTOL2017",
+    "tipodoc": "Dni",
+    "nrodoc": 21321012,
+    "telefono": 154331231,
+   "dispositivos":[],
+   "ubicacion":{
+   "latitud":0.1,
+   "longitud":0.2
+  	}
+  },
+    {
+    "nombre":"Carlos",
+    "apellido":"Sanazki",
+    "domicilio":"condarco 148",
+     "fechaIngreso": {
+      "year": 2017,
+      "month": 4,
+      "day": 7
+    },
+    "username":"cazanax",
+    "password":"menTOL2017",
+    "tipodoc": "Dni",
+    "nrodoc": 21321012,
+    "telefono": 154331231,
+   "dispositivos":[],
+   "ubicacion":{
+   "latitud":-400.5,
+   "longitud":-400.6
+  	}
   }
 ]

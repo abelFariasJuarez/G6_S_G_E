@@ -13,7 +13,7 @@ import org.junit.Test;
 import Repositorios.RepositorioDeClientes;
 import Repositorios.RepositorioDeDispositivos;
 import sge.dispositivo.*;
-import sge.dispositivo.familia.ComputadoraInteligente;
+
 
 
 public class TestCliente {

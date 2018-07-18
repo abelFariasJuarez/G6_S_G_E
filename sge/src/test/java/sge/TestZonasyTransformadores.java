@@ -24,7 +24,7 @@ public class TestZonasyTransformadores {
 	@Before
 	public void setUp() {
 	
-		gestor.repoClientes.clientes().add(unCliente);
+		
 		gestor.transformadoresAsignacionZona();
 		gestor.asignarClientesATransformadores();
 		
