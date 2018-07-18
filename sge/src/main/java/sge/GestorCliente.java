@@ -54,7 +54,7 @@ public class GestorCliente {
 			ZonaGeografica zona = repoZonas.zonas().stream().filter(s -> s.pertenece(cliente)).findFirst().get();
 			Transformador trans = Collections.min(zona.getTransformadores(),
 					Comparator.comparing(t -> t.Distancia(cliente)));
-			trans.agregar(cliente);
+			trans.getClientes().add(cliente);
 		}
 	}
 

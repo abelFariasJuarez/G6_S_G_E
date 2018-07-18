@@ -15,6 +15,12 @@ List<Cliente> clientes=new ArrayList<Cliente>();
 Ubicacion centro;
 Float radio;
 
+public List<Cliente> getClientes() {
+	return clientes;
+}
+public void addCliente(Cliente cliente) {
+	clientes.add(cliente);
+}
 public void Add(Transformador trans) {
 	transformadores.add(trans);
 }
@@ -55,8 +61,9 @@ return	Math.sqrt (Math.pow(centro.getLongitud()-cliente.getUbi().getLongitud(),2
 
 public void asignarTransformador(Cliente cliente) {
 	
+	
 		Transformador trans = Collections.min(transformadores, Comparator.comparing(t->t.Distancia(cliente)));
-		trans.agregar(cliente);
+		trans.getClientes().add(cliente);
 	
 }
 }

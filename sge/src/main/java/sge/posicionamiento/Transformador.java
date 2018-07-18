@@ -8,13 +8,20 @@ import sge.dispositivo.Dispositivo;
 
 public class Transformador {
 	
-public  	List<Cliente> cli = new ArrayList<Cliente>();
-	Cliente cliente;
+public  	List<Cliente> cli ;
+
 	Integer id;
 	Integer idZona;
 	Ubicacion ubicacion;
-	private List<Cliente> clientes;
 	
+	public List<Cliente> getClientes() {
+		 
+	    if(cli==  null){
+	 
+	    	cli= new ArrayList<Cliente>();
+	    }
+	    return (ArrayList<Cliente>) cli;
+	}	
 public Transformador(Integer _id,Integer _idZona,Ubicacion _ubicacion) {
 	id=_id;
 	idZona=_idZona;
@@ -49,23 +56,10 @@ public Transformador(Integer _id,Integer _idZona,Ubicacion _ubicacion) {
 				+ Math.pow(ubicacion.getLongitud() - cliente.getUbi().getLongitud(),2));
 	}
 
-	public void agregar(Cliente cliente) {
-	cli.add(cliente);
-		
-	}
-	public Cliente getCliente() {
-		return cliente;
-	}
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
-	}
-	public List<Cliente> getClientes() {
-		return getClientes();
-	}
-	public void setClientes(List<Cliente> clientes) {
-		this.clientes = clientes;
-	}
+	
+
+
 
 	
-//0.9 3.3 / 1.0 3.0
+
 }

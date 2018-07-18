@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.Before;
@@ -123,20 +124,21 @@ public class App {
 	
 	
 	//ultimas pruebas falta corregir esto nullpointer al querer agregar cliente
-	/*
+	
 	for (Cliente clientet : repoClientes.clientes) {
 		ZonaGeografica zona = repoZonas.zonas().stream().filter(s -> s.pertenece(clientet)).findFirst().get();
 
 		Transformador trans = Collections.min(zona.getTransformadores(),Comparator.comparing(t -> t.Distancia(clientet)));
+		System.out.println(trans.getId());
+		trans.getClientes().add(clientet);
 		
-		trans.agregar(clientet);
-		System.out.println(trans.cli.size());
 	}
-*/
+	
+System.out.println( repoTransformadores.transformadores.get(3).cli.size()+" "+ repoTransformadores.transformadores.get(4).cli.size());
+	
+// funciona bien , de la primer zona se fija en su tercer transformador y aca hay dos clientes que se asignaron arriba
+System.out.println( repoZonas.zonas().get(0).getTransformadores().get(2).cli.size());
 
-	Transformador trans;
-	Cliente clientet=new Cliente("Carlos", "Sanazki", "condarco 148",LocalDate.of(2017,4,7), "cazana", "menToL2017", "Dni", 21321012,1543312310,new Ubicacion(0.21,2.9));
-	 Collections.min(repoTransformadores.transformadores,Comparator.comparing(t -> t.Distancia(clientet))).agregar(clientet);;
 	
 	
 

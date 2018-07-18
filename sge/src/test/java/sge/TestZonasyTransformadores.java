@@ -20,7 +20,7 @@ public class TestZonasyTransformadores {
 
 	List<Transformador> transformadores=new ArrayList<Transformador>();
 	GestorCliente gestor = new GestorCliente();
-	Cliente unCliente=new Cliente("Carlos", "Sanazki", "condarco 148",LocalDate.of(2017,4,7), "cazana", "menToL2017", "Dni", 21321012,1543312310,new Ubicacion(0.21,2.9));
+	Cliente unCliente=new Cliente("Carlos", "Sanazki", "condarco 148",LocalDate.of(2017,4,7), "cazana", "menToL2017", "Dni", 21321012,1543312310,new Ubicacion(413.0,325.0));
 	@Before
 	public void setUp() {
 	
