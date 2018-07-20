@@ -11,7 +11,7 @@ import utils.ImportadorDeJSONCliente;
 
 public class RepositorioDeClientes {
 	private static RepositorioDeClientes repoClientes;
-	public List<Cliente> clientes = new ArrayList<Cliente>();
+	private List<Cliente> clientes = new ArrayList<Cliente>();
 
 	private RepositorioDeClientes() {
 	};

@@ -95,12 +95,12 @@ public class App {
 		repoTransformadores.cargarTransformadores();
 		
 		
-		for(Transformador trafo :repoTransformadores.transformadores ) {
+		for(Transformador trafo :repoTransformadores.transformadores() ) {
 			System.out.println(trafo.getUbicacion().getLatitud());}
 		
 		// se comprueba union zona transformador.
 		for (ZonaGeografica zona1 : repoZonas.zonas()) {
-			for (Transformador trans1 : repoTransformadores.transformadores) {
+			for (Transformador trans1 : repoTransformadores.transformadores()) {
 				if (zona1.getId().equals(trans1.getIdZona())) {
 					zona1.Add(trans1);
 					
@@ -115,17 +115,17 @@ public class App {
 	
 	RepositorioDeClientes repoClientes = RepositorioDeClientes.getinstance();
 	repoClientes.cargarClientes();
-	for(Cliente cli :repoClientes.clientes) {
+	for(Cliente cli :repoClientes.clientes()) {
 		System.out.println(cli.apellido);}
 	
-	System.out.println(repoZonas.zonas().get(0).pertenece(repoClientes.clientes.get(0)));
-	System.out.println(repoZonas.zonas().get(0).pertenece(repoClientes.clientes.get(1)));
-	System.out.println(repoZonas.zonas().get(0).pertenece(repoClientes.clientes.get(2)));
+	System.out.println(repoZonas.zonas().get(0).pertenece(repoClientes.clientes().get(0)));
+	System.out.println(repoZonas.zonas().get(0).pertenece(repoClientes.clientes().get(1)));
+	System.out.println(repoZonas.zonas().get(0).pertenece(repoClientes.clientes().get(2)));
 	
 	
 	//ultimas pruebas falta corregir esto nullpointer al querer agregar cliente
 	
-	for (Cliente clientet : repoClientes.clientes) {
+	for (Cliente clientet : repoClientes.clientes()) {
 		ZonaGeografica zona = repoZonas.zonas().stream().filter(s -> s.pertenece(clientet)).findFirst().get();
 
 		Transformador trans = Collections.min(zona.getTransformadores(),Comparator.comparing(t -> t.Distancia(clientet)));
@@ -134,10 +134,10 @@ public class App {
 		
 	}
 	
-System.out.println( repoTransformadores.transformadores.get(3).cli.size()+" "+ repoTransformadores.transformadores.get(4).cli.size());
+System.out.println( repoTransformadores.transformadores().get(3).getCli().size()+" "+ repoTransformadores.transformadores().get(4).getCli().size());
 	
 // funciona bien , de la primer zona se fija en su tercer transformador y aca hay dos clientes que se asignaron arriba
-System.out.println( repoZonas.zonas().get(0).getTransformadores().get(2).cli.size());
+System.out.println( repoZonas.zonas().get(0).getTransformadores().get(2).getCli() .size());
 
 	
 	

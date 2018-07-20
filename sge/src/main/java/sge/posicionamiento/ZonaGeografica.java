@@ -8,12 +8,12 @@ import java.util.List;
 import sge.Cliente;
 
 public class ZonaGeografica {
-String nombre;
-Integer id;
-List<Transformador> transformadores = new ArrayList<Transformador>();
-List<Cliente> clientes=new ArrayList<Cliente>();
-Ubicacion centro;
-Float radio;
+private String nombre;
+private Integer id;
+private List<Transformador> transformadores = new ArrayList<Transformador>();
+private List<Cliente> clientes=new ArrayList<Cliente>();
+private Ubicacion centro;
+private Float radio;
 
 public List<Cliente> getClientes() {
 	return clientes;

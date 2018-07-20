@@ -37,7 +37,7 @@ public class TestCliente {
 		dispositivos = repo2.Dispositivos();
 		repo.cargarClientes();
 		
-		clientes = repo.clientes;
+		clientes = repo.clientes();
 		unaCategoria = new Categoria("r1", 18.76f, 0.644f, 0f, 150.0f);
 		
 		//------------------------------------------------------------
@@ -47,7 +47,7 @@ public class TestCliente {
 		//------------------------------------------------------------
 		
 		cli2=clientes.get(1);
-		for (Cliente cli : repo.clientes) {
+		for (Cliente cli : repo.clientes()) {
 			for (Dispositivo dis : repo2.Dispositivos) {
 				if (cli.getUsername().equals(dis.getIdUserName())) {
 					cli.addDispositivo(dis);
@@ -57,7 +57,7 @@ public class TestCliente {
 		
 		}
 		
-		clientes = repo.clientes;
+		clientes = repo.clientes();
 		
 		
 		LocalDateTime desde = LocalDateTime.parse("2018-05-19T20:00:00.000000000");

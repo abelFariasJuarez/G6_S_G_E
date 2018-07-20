@@ -10,7 +10,7 @@ import utils.ImportadorDeJsonTransformador;
 
 public class RepositorioDeTransformadores {
 	private static RepositorioDeTransformadores  repoTransformadores;
-	public List<Transformador> transformadores= new ArrayList<Transformador>();
+	private List<Transformador> transformadores= new ArrayList<Transformador>();
 
 	private RepositorioDeTransformadores() {
 	};
