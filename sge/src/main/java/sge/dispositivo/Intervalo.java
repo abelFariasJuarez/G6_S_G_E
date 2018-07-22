@@ -57,4 +57,6 @@ public class Intervalo {
 	public void setEstado(EstadoDispositivo _estado) {
 		estado = _estado;
 	}
+
+
 }

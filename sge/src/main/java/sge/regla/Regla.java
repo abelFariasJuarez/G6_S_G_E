@@ -10,7 +10,7 @@ public class Regla implements CambiaPorElSensor{
 
 	private String name;
 	private List<Condicion> condiciones = new ArrayList<Condicion>();
-	private List<Actuador> actuadores = new ArrayList<Actuador>();
+	private List<Accion> actuadores = new ArrayList<Accion>();
 
 	public Regla(String _name) {
 

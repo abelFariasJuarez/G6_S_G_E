@@ -4,10 +4,14 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import sge.regla.Regla;
 import sge.regla.Sensor;
-
+import sge.driver.DriverBasico;
+import sge.driver.RegistroDispositivos;
+import sge.driver.RegistroReglas;
 public abstract class Inteligente extends Dispositivo {
 
+	public DriverBasico driver;
 	public boolean encendido;
 	public List<Sensor> sensores;
 	public EstadoDispositivo estado;
@@ -25,6 +29,7 @@ public abstract class Inteligente extends Dispositivo {
 			estado = new EstadoPrendido();
 			this.apagar();
 		}
+	RegistroDispositivos.getInstance().registrarDispositivo(this);
 	}
 
 	public Inteligente(String _nombre, Double _consumoPorHora, Boolean _bajoconsumo) {
@@ -108,5 +113,9 @@ public abstract class Inteligente extends Dispositivo {
 
 	public Double consumoActual() {
 		return consumoPorHora * estado.factor();
+	}
+	
+	public void registrarReglas(List<Regla> lasReglas) {
+		RegistroReglas.getInstance().registrarReglas(this, lasReglas);
 	}
 }

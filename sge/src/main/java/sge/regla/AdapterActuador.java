@@ -2,9 +2,8 @@ package sge.regla;
 
 import sge.dispositivo.Inteligente;
 
-public interface Actuador {
+public interface AdapterActuador {
 	
 	void ejecutarAccion();
 	
-	public void dispositivo(Inteligente _dispositivo);
 }
