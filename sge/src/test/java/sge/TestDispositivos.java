@@ -18,7 +18,7 @@ public class TestDispositivos {
 	static List<Dispositivo> Dispositivos;
 	@BeforeClass
 	public static void setUp() {
-	repo2.cargarDispositivos();
+	repo2.cargarDispositivos("todos");
 	Dispositivos = repo2.Dispositivos();
 	 
 	for (Dispositivo disp : Dispositivos) {

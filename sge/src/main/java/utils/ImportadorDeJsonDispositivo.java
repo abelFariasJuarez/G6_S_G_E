@@ -2,6 +2,7 @@ package utils;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -14,60 +15,47 @@ import sge.dispositivo.Dispositivo;
 import sge.dispositivo.DispositivoEstandar;
 import sge.dispositivo.DispositivoInteligente;
 
-
 public class ImportadorDeJsonDispositivo {
-	
-	
-	public List<Dispositivo> getDispositivos() throws IOException {
+
+	public List<Dispositivo> agregarDispositivos(lectorDeArchivos lector) throws IOException {
+
+		String dispositivosAux = "";
+
+		while (!lector.lecturaFinalizada()) {
+			dispositivosAux = dispositivosAux + lector.leerSiguiente();
+		}
+		lector.cerrar();
+
+		Type tipoListaDispositivos = new TypeToken<List<DispositivoInteligente>>() {
+		}.getType();
+
+		Gson gson = new Gson();
+
+		return gson.fromJson(dispositivosAux, tipoListaDispositivos);
+	}
+
+	public List<Dispositivo> getDispositivos(String string) throws IOException {
 		String dispositivosInteligentes = "";
 		String dispositivosEstandar = "";
 		lectorDeArchivos lectorDeArchivos = new lectorDeArchivos("pruebaDispositivoInteligente.json");
 		lectorDeArchivos lectorDeArchivos2 = new lectorDeArchivos("pruebaDispositivoEstandar.json");
-		
-		while (!lectorDeArchivos.lecturaFinalizada()) {
-			dispositivosInteligentes = dispositivosInteligentes + lectorDeArchivos.leerSiguiente();
+		List<Dispositivo> dispositivos = new ArrayList<Dispositivo>();
+
+		if (string == "todos") {
+
+			dispositivos.addAll(this.agregarDispositivos(lectorDeArchivos));
+			dispositivos.addAll(this.agregarDispositivos(lectorDeArchivos2));
 		}
-		lectorDeArchivos.cerrar();
-		
-		
-		Type tipoListaDispositivos = new TypeToken<List<DispositivoInteligente>>() {
-		}.getType();
-		
-		
-		
-		Gson gson = new  Gson();
-		
-		List<Dispositivo> dispositivos = gson.fromJson(dispositivosInteligentes, tipoListaDispositivos);
-		
-		
-		while (!lectorDeArchivos2.lecturaFinalizada()) {
-			dispositivosEstandar = dispositivosEstandar + lectorDeArchivos2.leerSiguiente();
+
+		if (string == "inteligente") {
+			dispositivos.addAll(this.agregarDispositivos(lectorDeArchivos));
 		}
-		lectorDeArchivos.cerrar();
 
+		if (string == "estandar") {
+			dispositivos.addAll(this.agregarDispositivos(lectorDeArchivos2));
+		}
 
-		Type tipoListaDispositivos2 = new TypeToken<List<DispositivoEstandar>>() {
-		}.getType();
-
-	
-		
-	
-		
-		//List<Dispositivo> dispositivos = gson.fromJson(dispositivosInteligentes, tipoListaDispositivos);
-
-		
-		
-		
-		
-		
-		Gson gson2 = new  Gson();
-		
-		dispositivos.addAll( gson2.fromJson(dispositivosEstandar, tipoListaDispositivos2));
-		
-		
 		return dispositivos;
 	}
-
-
 
 }

@@ -32,11 +32,11 @@ public class RepositorioDeDispositivos {
 		return Dispositivos;
 	}
 
-	public void cargarDispositivos() {
+	public void cargarDispositivos(String disp) {
 		ImportadorDeJsonDispositivo json = new ImportadorDeJsonDispositivo();
 
 		try {
-			this.Dispositivos.addAll(json.getDispositivos());
+			this.Dispositivos.addAll(json.getDispositivos(disp));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

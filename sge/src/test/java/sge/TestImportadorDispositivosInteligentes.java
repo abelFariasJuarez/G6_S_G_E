@@ -11,19 +11,28 @@ import Repositorios.RepositorioDeDispositivos;
 import sge.dispositivo.Dispositivo;
 import sge.dispositivo.DispositivoInteligente;
 
-public class TestImportadorDispositivos {
+public class TestImportadorDispositivosInteligentes {
 
-	RepositorioDeDispositivos repo2 = RepositorioDeDispositivos.getinstance();
-	List<Dispositivo> Dispositivos;
+	static RepositorioDeDispositivos repo2 = RepositorioDeDispositivos.getinstance();
+	static RepositorioDeDispositivos repo = RepositorioDeDispositivos.getinstance();
+	static List<Dispositivo> Dispositivos;
 
 	@Before
 	public void setUp() {
-		repo2.cargarDispositivos();
-		Dispositivos = repo2.Dispositivos();
 
+		repo.cargarDispositivos("inteligente");
+		Dispositivos = repo.Dispositivos();
 		for (Dispositivo disp : Dispositivos) {
 			disp.presentate();
-			System.out.println(disp.getClass());
+			// System.out.println(disp.getClass());
 		}
 	}
+
+	@Test
+	public void importacionEstandar() {
+
+		assertEquals(16, Dispositivos.size());
+
+	}
+
 }

@@ -33,7 +33,7 @@ public class TestCliente {
 	@BeforeClass
 	
 	public static void setUp()  {
-		repo2.cargarDispositivos();
+		repo2.cargarDispositivos("todos");
 		dispositivos = repo2.Dispositivos();
 		repo.cargarClientes();
 		

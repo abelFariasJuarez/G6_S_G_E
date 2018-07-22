@@ -2,7 +2,6 @@ package sge;
 
 import static org.junit.Assert.*;
 
-
 import org.junit.Test;
 
 import Repositorios.RepositorioDeClientes;
@@ -18,7 +17,7 @@ public class TestImportador {
 	@Test
 	public void ImportadorJsonDispositivo() {
 		RepositorioDeDispositivos repo2 = RepositorioDeDispositivos.getinstance();
-		repo2.cargarDispositivos();
+		repo2.cargarDispositivos("todos");
 
 		assertEquals(24, repo2.Dispositivos().size());
 
@@ -40,10 +39,10 @@ public class TestImportador {
 			System.out.println(zona.getNombre());
 		}
 	}
-	
+
 	@Test
 	public void ImportadorJsonTransformador() {
-		RepositorioDeTransformadores repoTransfo=RepositorioDeTransformadores.getinstance();
+		RepositorioDeTransformadores repoTransfo = RepositorioDeTransformadores.getinstance();
 		repoTransfo.cargarTransformadores();
 		assertEquals(5, repoTransfo.transformadores().size());
 
@@ -56,7 +55,7 @@ public class TestImportador {
 	@Test
 	public void ImportadorJsonCliente() {
 		RepositorioDeClientes repoClientes = RepositorioDeClientes.getinstance();
-				repoClientes.cargarClientes();
+		repoClientes.cargarClientes();
 		assertEquals(4, repoClientes.clientes().size());
 
 		for (Cliente cli : repoClientes.clientes()) {
@@ -64,5 +63,5 @@ public class TestImportador {
 			cli.presentate();
 		}
 	}
-	
+
 }
