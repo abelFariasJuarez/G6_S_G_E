@@ -33,6 +33,7 @@ public class RepositorioDeClientes {
 	}
 
 	public void cargarClientes() {
+		clientes.clear();
 		ImportadorDeJSONCliente json = new ImportadorDeJSONCliente();
 
 		try {

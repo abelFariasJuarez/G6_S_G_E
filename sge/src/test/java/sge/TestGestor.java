@@ -23,7 +23,7 @@ public class TestGestor {
 	static GestorCliente gestor = new GestorCliente();
 	
 	@BeforeClass
-	public static void setUp() {		
+	public static void setUp() {
 		gestor.transformadoresAsignacionZona();
 		gestor.asignarClientesATransformadores();		
 	}

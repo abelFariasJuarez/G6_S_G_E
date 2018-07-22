@@ -31,8 +31,8 @@ public class RepositorioDeZonas {
 	}
 
 	public void cargarZonas() {
+		zonas.clear();
 		ImportadorDeJsonZona json = new ImportadorDeJsonZona();
-
 		try {
 			this.zonas.addAll(json.getZona());
 		} catch (IOException e) {

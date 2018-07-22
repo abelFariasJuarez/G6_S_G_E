@@ -17,9 +17,9 @@ public class GestorCliente {
 	RepositorioDeTransformadores repoTransformadores = RepositorioDeTransformadores.getinstance();
 
 	public GestorCliente() {
-		//repoClientes.cargarClientes();
-		//repoZonas.cargarZonas();
-		//repoTransformadores.cargarTransformadores();
+		repoClientes.cargarClientes();
+		repoZonas.cargarZonas();
+		repoTransformadores.cargarTransformadores();
 	}
 
 	public void transformadoresAsignacionZona() {
