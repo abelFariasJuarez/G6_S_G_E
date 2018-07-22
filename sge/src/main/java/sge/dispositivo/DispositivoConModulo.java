@@ -3,7 +3,8 @@ package sge.dispositivo;
 import java.time.LocalDateTime;
 
 public class DispositivoConModulo extends Inteligente {
-	
+	private static Integer puntos = 10;
+	private DispositivoEstandar dispo;
 	
 	public DispositivoConModulo(DispositivoEstandar _dis) {
 		super("", 0.0, _dis.bajoconsumo);
@@ -11,10 +12,6 @@ public class DispositivoConModulo extends Inteligente {
 		dispo = _dis;
 	}
 	
-	private static Integer puntos = 10;
-	private DispositivoEstandar dispo;
-
-
 	// decorator|adapter
 	public DispositivoConModulo(DispositivoEstandar _dis, Boolean _encendido,String _idUserName) {
 		super("", 0.0,"",_dis.bajoconsumo, _encendido);
@@ -55,6 +52,28 @@ public class DispositivoConModulo extends Inteligente {
 
 	public Double consumo_periodo(LocalDateTime instanteDesde, LocalDateTime instanteHasta) {
 		return super.consumo_periodo(instanteDeCreacion, instanteHasta) + dispo.consumo_periodo(instanteDesde, instanteDeCreacion);
+	}
+	
+	@Override
+	public RestriccionHorasFamilia restriccionHoras() {
+		return dispo.restriccionHoras();
+	}
+	
+	@Override
+	public void restriccionHoras(RestriccionHorasFamilia  rhf) {
+		dispo.restriccionHoras(rhf);
+	}
+	
+	@Override
+	public double mensualMinimoHoras()
+	{
+		return dispo.mensualMinimoHoras();
+	}
+	
+	@Override
+	public double mensualMaximoHoras()
+	{
+		return dispo.mensualMaximoHoras();
 	}
 	
 

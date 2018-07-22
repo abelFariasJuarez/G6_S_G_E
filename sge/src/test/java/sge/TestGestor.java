@@ -23,15 +23,11 @@ public class TestGestor {
 	static GestorCliente gestor = new GestorCliente();
 	
 	@BeforeClass
-	public static void setUp() {
-	
-		
+	public static void setUp() {		
 		gestor.transformadoresAsignacionZona();
-		gestor.asignarClientesATransformadores();
-	
-	
-		
+		gestor.asignarClientesATransformadores();		
 	}
+	
 	@Test
 	public void clientePerteneceAZona() {
 		ZonaGeografica zona=gestor.repoZonas.zonas().get(0);
@@ -51,8 +47,7 @@ public class TestGestor {
 	@Test
 	public void ClientePerteneceATransformador() {
 		Transformador transfo=gestor.repoTransformadores.transformadores().get(3);
-		assertEquals(2,transfo.getClientes().size()); 
-		
+		assertEquals(2,transfo.getClientes().size()); 		
 	}
 	
 

@@ -53,6 +53,10 @@ public abstract class Inteligente extends Dispositivo {
 	}
 
 	public void prender() {
+		if (estado == null) {
+			estado = new EstadoApagado();
+		}
+
 		estado.prender(this);
 	}
 
@@ -70,7 +74,9 @@ public abstract class Inteligente extends Dispositivo {
 	}
 
 	public Double consumo_periodo(LocalDateTime instanteDesde, LocalDateTime instanteHasta) {
-		double valueReturn = intervalos.stream().filter(i -> i.estoyDentroDePeriodo(instanteDesde, instanteHasta))
+		double valueReturn = intervalos.stream()
+				.filter(i -> i.estoyDentroDePeriodo(instanteDesde, instanteHasta)
+						|| i.periodoEstaDentroDeMi(instanteDesde, instanteHasta))
 				.mapToDouble(i -> i.informarConsumo(this, instanteDesde, instanteHasta)).sum();
 
 		return valueReturn;

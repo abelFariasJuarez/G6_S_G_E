@@ -38,6 +38,19 @@ public class Intervalo {
 				this.mi_fin_es_antes_o_igual_a(instanteHasta);
 	}
 
+	public boolean periodoEstaDentroDeMi(LocalDateTime instanteDesde, LocalDateTime instanteHasta) {
+		return this.mi_inicio_es_antes_o_igual_a(instanteDesde) &&
+				this.mi_fin_es_despues_o_igual_a(instanteHasta);
+	}
+
+	private boolean mi_fin_es_despues_o_igual_a(LocalDateTime instanteHasta) {
+		return fin == null ||instanteHasta.isBefore(fin) || instanteHasta.isEqual(fin);
+	}
+
+	private boolean mi_inicio_es_antes_o_igual_a(LocalDateTime instanteDesde) {
+		return inicio == null || instanteDesde.isAfter(inicio) || instanteDesde.isEqual(inicio);
+	}
+
 	private boolean mi_inicio_es_despues_o_igual_a(LocalDateTime instanteDesde) {
 		return instanteDesde.isBefore(inicio) || instanteDesde.isEqual(inicio);
 	}

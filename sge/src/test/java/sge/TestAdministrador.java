@@ -16,11 +16,9 @@ public class TestAdministrador {
 	Administrador admin = new Administrador("pedro", "saraska", "lavalle 148", LocalDate.of(2015, Month.APRIL, 19),
 			"pepe", "pasti");
 	@Test
-	public void MesesAdministrando() {
+	public void MesesAdministrando() {		
 
-		
-
-		assertEquals(38, admin.cantMesesAdministrando());
+		assertEquals(39, admin.cantMesesAdministrando());
 
 	}
 	

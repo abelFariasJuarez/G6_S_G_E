@@ -2,6 +2,7 @@ package sge;
 
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 
 import Repositorios.RepositorioDeClientes;
 import Repositorios.RepositorioDeTransformadores;
@@ -16,33 +17,18 @@ public class GestorCliente {
 	RepositorioDeTransformadores repoTransformadores = RepositorioDeTransformadores.getinstance();
 
 	public GestorCliente() {
-		repoClientes.cargarClientes();
-		repoZonas.cargarZonas();
-		repoTransformadores.cargarTransformadores();
+		//repoClientes.cargarClientes();
+		//repoZonas.cargarZonas();
+		//repoTransformadores.cargarTransformadores();
 	}
 
-	/*
-	 * public void asignarClienteATransformador(Cliente cliente) {
-	 * 
-	 * ZonaGeografica
-	 * zona=repoZonas.zonas.stream().filter(s->s.pertenece(cliente)).findFirst().get
-	 * ();
-	 * 
-	 * Transformador trans =
-	 * Collections.min(zona.getTransformadores(),Comparator.comparing(t->t.Distancia
-	 * (cliente))); trans.add(cliente);
-	 * 
-	 * }
-	 */
-
 	public void transformadoresAsignacionZona() {
-		
-		
+
 		for (ZonaGeografica zona1 : repoZonas.zonas()) {
 			for (Transformador trans1 : repoTransformadores.transformadores()) {
 				if (zona1.getId().equals(trans1.getIdZona())) {
 					zona1.Add(trans1);
-					
+
 				}
 			}
 		}
@@ -59,9 +45,11 @@ public class GestorCliente {
 	}
 
 	public void mejorarEficienciaHogares() {
+		this.mejorarEficienciaHogaresA(repoClientes.clientes());
+	}
 
-		repoClientes.clientes().stream()
-				.filter(c -> c.ahorroAutomaticoActivo() && c.canYouGetMejorCombinacionDispositivos())
+	public void mejorarEficienciaHogaresA(List<Cliente> clientes) {
+		clientes.stream().filter(c -> c.ahorroAutomaticoActivo() && c.canYouGetMejorCombinacionDispositivos())
 				.forEach(c -> c.mejorarEficienciaHogar());
 	}
 

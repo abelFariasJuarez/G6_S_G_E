@@ -20,7 +20,7 @@ public class Cliente extends UsuarioSGE {
 	List<Dispositivo> dispositivos = new ArrayList<Dispositivo>();
 	private Integer puntos = 0;
 	private Ubicacion ubicacion;
-	private boolean ahorroAutomatico; // o acción automática o accione por sí solo
+	private boolean ahorroAutomatico = false; // o acción automática o accione por sí solo
 	private Actuador accionParaMejorarEficiencia = new ActuadorApagar();// la orden de "apagar" (podría ser acción
 																		// configurable)
 
