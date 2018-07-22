@@ -7,7 +7,7 @@ import java.util.Observer;
 import sge.dispositivo.DispositivoInteligente;
 import sge.dispositivo.Inteligente;
 import sge.regla.*;
-@SuppressWarnings("deprecation")
+
 public class DriverBasico {
 
 	ActuadorApagar adapterApagar;

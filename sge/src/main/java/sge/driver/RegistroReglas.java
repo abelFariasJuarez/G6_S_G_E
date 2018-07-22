@@ -30,7 +30,6 @@ public class RegistroReglas {
 	    public void registrarReglas(Inteligente dispositivo, List<Regla> reglas) {
 	        this.reglas.put(dispositivo, reglas);
 	    }
-
 	    public List<Regla> getReglasParaDispositivo(Inteligente dispositivo) {
 	        return this.reglas.get(dispositivo);
 	    }

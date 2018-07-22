@@ -4,37 +4,32 @@ package sge.regla;
 import java.util.ArrayList;
 import java.util.List;
 
+import sge.dispositivo.Inteligente;
+import sge.driver.Accion;
 
-public class Regla implements CambiaPorElSensor{
+
+public class Regla{
 
 
 	private String name;
 	private List<Condicion> condiciones = new ArrayList<Condicion>();
-	private List<Accion> actuadores = new ArrayList<Accion>();
+	private List<Accion> acciones = new ArrayList<Accion>();
 
 	public Regla(String _name) {
-
 		name = _name;
+	}
 
-	}
-	public void update(){
-		this.accionarSiCorresponde();
-	}
-	
-	public void accionarSiCorresponde() {
+	public void accionarSiCorresponde(Inteligente dispo) {
 		if (this.verificarCondiciones()) {
-			this.ejecutarAcciones();
-			
+			this.ejecutarAcciones(dispo);
 		}
 		
-		
-		
 	}
 
 	
 	
-	private void ejecutarAcciones() {
-		actuadores.forEach(a -> a.ejecutarAccion());
+	private void ejecutarAcciones(Inteligente dispo) {
+		acciones.forEach(a -> a.ejecutar(dispo));
 
 	}
 
@@ -53,8 +48,8 @@ public class Regla implements CambiaPorElSensor{
 		condiciones.add(unaCondicion);
 	}
 
-	public void agregarActuador(Actuador unActuador) {
-		actuadores.add(unActuador);
+	public void agregarActuador(Accion unaAccion) {
+		acciones.add(unaAccion);
 	}
 
 	public String getName() {
@@ -73,13 +68,14 @@ public class Regla implements CambiaPorElSensor{
 		condiciones = _condiciones;
 	}
 
-	public List<Actuador> getActuadores() {
-		return actuadores;
+	public List<Accion> getAcciones() {
+		return acciones;
 	}
 
-	public void setActuadores(List<Actuador> _actuadores) {
-		actuadores = _actuadores;
+	public void setAcciones(List<Accion> _actuadores) {
+		acciones = _actuadores;
 	}
+
 }
 
 

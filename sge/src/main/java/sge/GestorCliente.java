@@ -57,12 +57,12 @@ public class GestorCliente {
 			trans.getClientes().add(cliente);
 		}
 	}
-
+/*
 	public void mejorarEficienciaHogares() {
 
 		repoClientes.clientes().stream()
 				.filter(c -> c.ahorroAutomaticoActivo() && c.canYouGetMejorCombinacionDispositivos())
 				.forEach(c -> c.mejorarEficienciaHogar());
 	}
-
+*/
 }

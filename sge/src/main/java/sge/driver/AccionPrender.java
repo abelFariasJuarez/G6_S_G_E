@@ -1,9 +1,11 @@
 package sge.driver;
 
-public class AccionPrender {
+import sge.dispositivo.Inteligente;
+
+public class AccionPrender implements Accion {
 
 	
-	void ejecutar() {
-		System.out.printf("Prender Dispo Fisico");
+	public void ejecutar(Inteligente dispo) {
+		dispo.driver.prender(dispo);
 	}
 }

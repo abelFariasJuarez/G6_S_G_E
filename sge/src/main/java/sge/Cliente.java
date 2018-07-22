@@ -20,8 +20,8 @@ public class Cliente extends UsuarioSGE {
 	List<Dispositivo> dispositivos = new ArrayList<Dispositivo>();
 	private Integer puntos = 0;
 	private Ubicacion ubicacion;
-	private boolean ahorroAutomatico; // o acción automática o accione por sí solo
-	private Actuador accionParaMejorarEficiencia = new ActuadorApagar();// la orden de "apagar" (podría ser acción
+	private boolean ahorroAutomatico; // o acciï¿½n automï¿½tica o accione por sï¿½ solo
+	//private Actuador accionParaMejorarEficiencia = new ActuadorApagar();// la orden de "apagar" (podrï¿½a ser acciï¿½n
 																		// configurable)
 
 	public Cliente(String _nombre, String _apellido, String _domicilio, LocalDate _fechaIngreso, String _username,
@@ -182,7 +182,7 @@ public class Cliente extends UsuarioSGE {
 	public boolean ahorroAutomaticoActivo() {
 		return ahorroAutomatico;
 	}
-
+/*
 	public void mejorarEficienciaHogar() {
 		Recomendacion sugerencia = this.getMejorCombinacionDispositivos();
 		this.misInteligentes()
@@ -192,7 +192,7 @@ public class Cliente extends UsuarioSGE {
 				accionParaMejorarEficiencia.ejecutarAccion();
 			});
 	}
-
+*/
 	private double consumoEnPeriodoDe(Dispositivo i) {
 		LocalDateTime finPeriodo = LocalDateTime.now();		
 		LocalDateTime inicioPeriodo = finPeriodo.withDayOfMonth(1);

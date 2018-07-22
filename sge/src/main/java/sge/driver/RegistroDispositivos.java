@@ -10,8 +10,7 @@ import java.util.Set;
 import sge.dispositivo.Inteligente;
 import sge.regla.Regla;
 
-@SuppressWarnings("deprecation")
-public class RegistroDispositivos implements Observer {
+public class RegistroDispositivos implements Observer {//Sacar el observer
 	private static RegistroDispositivos instance = null;
     private final Set<Inteligente> dispositivos;
 
@@ -33,16 +32,17 @@ public class RegistroDispositivos implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-        if (o instanceof Inteligente) {
-            this.handleDispositivoUpdate((Inteligente) o);
-        }
+     //   if (o instanceof Inteligente) {
+       //     this.handleDispositivoUpdate((Inteligente) o);
+        //}
     }
 
     // Se llama cuando un dispositivos se actualizo (medicion de sensores)
-    private void handleDispositivoUpdate(Inteligente dispo) {
+    public void accionarReglasDispositivo(Inteligente dispo) {
         List<Regla> reglas = RegistroReglas.getInstance().getReglasParaDispositivo(dispo);
 
         // disparar las reglas asociadas
-        reglas.stream().forEach(Regla::accionarSiCorresponde);
+        
+        reglas.stream().forEach(regla-> regla.accionarSiCorresponde(dispo));
     }
 }
