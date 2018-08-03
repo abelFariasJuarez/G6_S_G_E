@@ -7,13 +7,18 @@ import java.time.LocalDateTime;
 import org.junit.Test;
 
 import sge.dispositivo.*;
+import sge.driver.DriverBasico;
+import sge.regla.ActuadorAhorro;
+import sge.regla.ActuadorApagar;
+import sge.regla.ActuadorPrender;
 
 public class TestDispositivoInteligente {
 
 	@Test
 	public void unaHoraPrendido() {
+		DriverBasico driver=new DriverBasico(new ActuadorApagar(), new ActuadorPrender(), new ActuadorAhorro());
 
-		DispositivoInteligente unDispo = new DispositivoInteligente("heladera", 2.3,"pepe",false, true);
+		DispositivoInteligente unDispo = new DispositivoInteligente("heladera", 2.3,"pepe",false, true,driver);
 		// el constructor ya me da un dispo en estado prendido
 		unDispo.apagar();
 
@@ -29,7 +34,9 @@ public class TestDispositivoInteligente {
 
 	@Test
 	public void mediaHoraApagadoMediaHoraPrendido() {
-		DispositivoInteligente unDispo = new DispositivoInteligente("heladera", 2.3,"perez",false, false);
+		DriverBasico driver=new DriverBasico(new ActuadorApagar(), new ActuadorPrender(), new ActuadorAhorro());
+
+		DispositivoInteligente unDispo = new DispositivoInteligente("heladera", 2.3,"perez",false, false,driver);
 		// el constructor ya me da un dispo en estado apagado
 		unDispo.prender();
 
@@ -49,7 +56,9 @@ public class TestDispositivoInteligente {
 
 	@Test
 	public void mediaHoraAhorroEnergiaMediaHoraPrendido() {
-		DispositivoInteligente unDispo = new DispositivoInteligente("heladera", 2.3,"pepe",false, false);
+		DriverBasico driver=new DriverBasico(new ActuadorApagar(), new ActuadorPrender(), new ActuadorAhorro());
+
+		DispositivoInteligente unDispo = new DispositivoInteligente("heladera", 2.3,"pepe",false, false,driver);
 		// el constructor ya me da un dispo en estado apagado
 		unDispo.ahorroDeEnergia();
 		unDispo.prender();
@@ -71,7 +80,8 @@ public class TestDispositivoInteligente {
 
 	@Test
 	public void prendidoPeroNoUltimaHora() {
-		DispositivoInteligente unDispo = new DispositivoInteligente("heladera", 2.3,"pepe",false, false);
+		DriverBasico driver=new DriverBasico(new ActuadorApagar(), new ActuadorPrender(), new ActuadorAhorro());
+		DispositivoInteligente unDispo = new DispositivoInteligente("heladera", 2.3,"pepe",false, false,driver);
 		// el constructor ya me da un dispo en estado prendido
 
 

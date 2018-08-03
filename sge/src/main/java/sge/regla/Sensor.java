@@ -1,15 +1,17 @@
 package sge.regla;
 
 import java.util.Date;
+import java.util.Observable;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class Sensor {
+import sge.driver.RegistroSensores;
+
+public class Sensor extends Observable{
 
 	double medicion;
 	double tiempoDeEspera;
 	String nombre;
-	AvisoCambioSensor aviso = new AvisoCambioSensor();
 
 	public void activar() {
 		long tiempoEspera = (long) tiempoDeEspera;
@@ -40,15 +42,15 @@ public class Sensor {
 	}
 
 	public Sensor(double _medicion, double _tiempoDeEspera, String _nombre) {
+		super();
 		medicion = _medicion;
 		tiempoDeEspera = _tiempoDeEspera;
 		nombre = _nombre;
+		this.addObserver(RegistroSensores.getInstance());
 	}
 
 	public void actualizarMedicion() {
-
-		aviso.notificar();
-		// subscriptions.forEach(sub->sub.request(1));
+		  this.notifyObservers();	// subscriptions.forEach(sub->sub.request(1));
 	}
 
 	public double getMedicion() {
@@ -59,6 +61,7 @@ public class Sensor {
 	public void setMedicion(double _medicion) {
 
 		medicion = _medicion;
+		this.actualizarMedicion();
 	}
 
 	public void tomarMedicion() {
@@ -66,10 +69,6 @@ public class Sensor {
 		medicion = 15;
 		System.out.println("tiempo de espera es:" + " " + tiempoDeEspera);
 
-	}
-
-	public void agregarObserver(CambiaPorElSensor objeto) {
-		aviso.agregar(objeto);
 	}
 
 }

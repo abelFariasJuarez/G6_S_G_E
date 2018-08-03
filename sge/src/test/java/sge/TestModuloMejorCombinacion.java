@@ -11,15 +11,20 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import sge.dispositivo.*;
+import sge.driver.DriverBasico;
 import sge.hogareficiente.Recomendacion;
+import sge.regla.ActuadorAhorro;
+import sge.regla.ActuadorApagar;
+import sge.regla.ActuadorPrender;
 
 public class TestModuloMejorCombinacion {
 	@Test
 	public void testSistemaCompatibleDeterminado() {
 		Cliente unCliente = new Cliente("Carlos", "Sanazki", "condarco 148", LocalDate.of(2017, 4, 7), "cazana",
 				"menToL2017", "Dni", 21321012, 1543312310);
+		DriverBasico driver=new DriverBasico(new ActuadorApagar(), new ActuadorPrender(), new ActuadorAhorro());
 
-		DispositivoInteligente air = new DispositivoInteligente("heladera", 0.18,true);
+		DispositivoInteligente air = new DispositivoInteligente("heladera", 0.18,true,driver);
 		DispositivoEstandar lava = new DispositivoEstandar("lavadora", 0.875,true);
 		DispositivoEstandar unVenti = new DispositivoEstandar("Ventilador", 0.06, true);
 
@@ -43,7 +48,9 @@ public class TestModuloMejorCombinacion {
 	public void canYouGetMejorCombinacionDispositivosFalse() {
 		Cliente unCliente = new Cliente("Carlos", "Sanazki", "condarco 148", LocalDate.of(2017, 4, 7), "cazana",
 				"menToL2017", "Dni", 21321012, 1543312310);
-		DispositivoInteligente air = new DispositivoInteligente("heladera", 1000.0,true);
+		DriverBasico driver=new DriverBasico(new ActuadorApagar(), new ActuadorPrender(), new ActuadorAhorro());
+
+		DispositivoInteligente air = new DispositivoInteligente("heladera", 1000.0,true,driver);
 		DispositivoEstandar pc = new DispositivoEstandar("Computadora", 2000.0,true);
 		DispositivoEstandar unVenti = new DispositivoEstandar("Ventilador", 3000.0, true);
 		air.restriccionHoras(RestriccionHorasFamilia.AIRCONDITIONER);
@@ -62,9 +69,11 @@ public class TestModuloMejorCombinacion {
 		Cliente cliente1 = new Cliente("Carlos", "Sanazki", "condarco 148", LocalDate.of(2017, 4, 7), "cazana",
 				"menToL2017", "Dni", 21321012, 1543312310);
 		cliente1.ahorroAutomatico(true);
-		DispositivoInteligente air1 = new DispositivoInteligente("heladera", 0.18,true);
-		DispositivoInteligente lava1 = new DispositivoInteligente("lavadora", 0.875,true);
-		DispositivoInteligente unVenti1 = new DispositivoInteligente("Ventilador", 0.06, true);
+		DriverBasico driver=new DriverBasico(new ActuadorApagar(), new ActuadorPrender(), new ActuadorAhorro());
+
+		DispositivoInteligente air1 = new DispositivoInteligente("heladera", 0.18,true,driver);
+		DispositivoInteligente lava1 = new DispositivoInteligente("lavadora", 0.875,true,driver);
+		DispositivoInteligente unVenti1 = new DispositivoInteligente("Ventilador", 0.06, true,driver);
 		air1.restriccionHoras(RestriccionHorasFamilia.AIRCONDITIONER);
 		lava1.restriccionHoras(RestriccionHorasFamilia.WASHINGMACHINE);
 		unVenti1.restriccionHoras(RestriccionHorasFamilia.FAN);
@@ -79,9 +88,10 @@ public class TestModuloMejorCombinacion {
 		Cliente cliente2 = new Cliente("Carla", "Sanazki", "condarco 149", LocalDate.of(2017, 4, 7), "cazana",
 				"menToL2017", "Dni", 21321013, 1543312311);
 		cliente2.ahorroAutomatico(true);
-		DispositivoInteligente air2 = new DispositivoInteligente("heladera", 0.18,true);
-		DispositivoInteligente lava2 = new DispositivoInteligente("lavadora", 0.875,true);
-		DispositivoInteligente unVenti2 = new DispositivoInteligente("Ventilador", 0.06, true);
+
+		DispositivoInteligente air2 = new DispositivoInteligente("heladera", 0.18,true,driver);
+		DispositivoInteligente lava2 = new DispositivoInteligente("lavadora", 0.875,true,driver);
+		DispositivoInteligente unVenti2 = new DispositivoInteligente("Ventilador", 0.06, true,driver);
 		air2.restriccionHoras(RestriccionHorasFamilia.AIRCONDITIONER);
 		lava2.restriccionHoras(RestriccionHorasFamilia.WASHINGMACHINE);
 		unVenti2.restriccionHoras(RestriccionHorasFamilia.FAN);
@@ -115,9 +125,11 @@ public class TestModuloMejorCombinacion {
 		Cliente cliente2 = new Cliente("Carla", "Sanazki", "condarco 149", LocalDate.of(2017, 4, 7), "cazana",
 				"menToL2017", "Dni", 21321013, 1543312311);
 		cliente2.ahorroAutomatico(false);
-		DispositivoInteligente air2 = new DispositivoInteligente("heladera", 0.18,true);
-		DispositivoInteligente lava2 = new DispositivoInteligente("lavadora", 0.875,true);
-		DispositivoInteligente unVenti2 = new DispositivoInteligente("Ventilador", 0.06, true);
+		DriverBasico driver=new DriverBasico(new ActuadorApagar(), new ActuadorPrender(), new ActuadorAhorro());
+
+		DispositivoInteligente air2 = new DispositivoInteligente("heladera", 0.18,true,driver);
+		DispositivoInteligente lava2 = new DispositivoInteligente("lavadora", 0.875,true,driver);
+		DispositivoInteligente unVenti2 = new DispositivoInteligente("Ventilador", 0.06, true,driver);
 		air2.restriccionHoras(RestriccionHorasFamilia.AIRCONDITIONER);
 		lava2.restriccionHoras(RestriccionHorasFamilia.WASHINGMACHINE);
 		unVenti2.restriccionHoras(RestriccionHorasFamilia.FAN);

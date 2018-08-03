@@ -8,6 +8,9 @@ import java.util.List;
 import java.util.stream.Stream;
 
 import sge.dispositivo.*;
+import sge.driver.Accion;
+import sge.driver.AccionApagar;
+import sge.driver.DriverBasico;
 import sge.hogareficiente.*;
 import sge.posicionamiento.Ubicacion;
 import sge.regla.*;
@@ -20,8 +23,8 @@ public class Cliente extends UsuarioSGE {
 	List<Dispositivo> dispositivos = new ArrayList<Dispositivo>();
 	private Integer puntos = 0;
 	private Ubicacion ubicacion;
-	private boolean ahorroAutomatico = false; // o acción automática o accione por sí solo
-	private Actuador accionParaMejorarEficiencia = new ActuadorApagar();// la orden de "apagar" (podría ser acción
+	private boolean ahorroAutomatico = false; // o acciï¿½n automï¿½tica o accione por sï¿½ solo
+	private Accion accionParaMejorarEficiencia = new AccionApagar();// la orden de "apagar" (podrï¿½a ser acciï¿½n
 																		// configurable)
 
 	public Cliente(String _nombre, String _apellido, String _domicilio, LocalDate _fechaIngreso, String _username,
@@ -135,8 +138,9 @@ public class Cliente extends UsuarioSGE {
 	public DispositivoConModulo agrega_modulo_a_estandar(DispositivoEstandar comun) {
 		if (!dispositivos.contains(comun))
 			throw new RuntimeException("solo se puede convertir dispositivos registrados");
+		DriverBasico driver=new DriverBasico(new ActuadorApagar(), new ActuadorPrender(), new ActuadorAhorro());
 
-		DispositivoConModulo conModulo = new DispositivoConModulo(comun, false);
+		DispositivoConModulo conModulo = new DispositivoConModulo(comun, false,driver);
 		dispositivos.remove(comun);
 		dispositivos.add(conModulo);
 
@@ -188,8 +192,7 @@ public class Cliente extends UsuarioSGE {
 		this.misInteligentes()
 			.filter(i -> !sugerencia.esEficiente(i, this.consumoEnPeriodoDe(i)))
 			.forEach(i -> {
-				accionParaMejorarEficiencia.dispositivo((Inteligente) i);
-				accionParaMejorarEficiencia.ejecutarAccion();
+				accionParaMejorarEficiencia.ejecutar((Inteligente)i);
 			});
 	}
 

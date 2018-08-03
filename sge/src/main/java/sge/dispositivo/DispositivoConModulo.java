@@ -2,25 +2,29 @@ package sge.dispositivo;
 
 import java.time.LocalDateTime;
 
+import sge.driver.DriverBasico;
+
 public class DispositivoConModulo extends Inteligente {
 	private static Integer puntos = 10;
 	private DispositivoEstandar dispo;
 	
-	public DispositivoConModulo(DispositivoEstandar _dis) {
-		super("", 0.0, _dis.bajoconsumo);
+	public DispositivoConModulo(DispositivoEstandar _dis,DriverBasico driver) {
+		
+		super("", 0.0, _dis.bajoconsumo,driver);
 		// TODO Auto-generated constructor stub
 		dispo = _dis;
 	}
 	
 	// decorator|adapter
-	public DispositivoConModulo(DispositivoEstandar _dis, Boolean _encendido,String _idUserName) {
-		super("", 0.0,"",_dis.bajoconsumo, _encendido);
+	public DispositivoConModulo(DispositivoEstandar _dis, Boolean _encendido,String _idUserName,DriverBasico driver) {
+		
+		super("", 0.0,"",_dis.bajoconsumo, _encendido,driver);
 		dispo = _dis;
 	}
 	
 	
-	public DispositivoConModulo(DispositivoEstandar _dis, Boolean _encendido) {
-		super("", 0.0,"",_dis.bajoconsumo, _encendido);
+	public DispositivoConModulo(DispositivoEstandar _dis, Boolean _encendido,DriverBasico driver) {
+		super("", 0.0,"",_dis.bajoconsumo, _encendido,driver);
 		dispo = _dis;
 	}
 

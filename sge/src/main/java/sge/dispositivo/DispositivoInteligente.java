@@ -1,6 +1,6 @@
 package sge.dispositivo;
 
-import com.google.gson.annotations.SerializedName;
+import sge.driver.DriverBasico;
 
 public class DispositivoInteligente extends Inteligente {
 
@@ -10,13 +10,13 @@ public class DispositivoInteligente extends Inteligente {
 	 * @SerializedName ("type") private String type;
 	 */
 	public DispositivoInteligente(String _nombre, Double _consumoPorHora, String _idUserName, Boolean _bajoconsumo,
-			Boolean _encendido) {
-		super(_nombre, _consumoPorHora, _idUserName, _bajoconsumo, _encendido);
+			Boolean _encendido,DriverBasico driver) {
+		super(_nombre, _consumoPorHora, _idUserName, _bajoconsumo, _encendido,driver);
 
 	}
 
-	public DispositivoInteligente(String _nombre, Double _consumoPorHora, Boolean _bajoconsumo) {
-		super(_nombre, _consumoPorHora, _bajoconsumo);
+	public DispositivoInteligente(String _nombre, Double _consumoPorHora, Boolean _bajoconsumo,DriverBasico driver) {
+		super(_nombre, _consumoPorHora, _bajoconsumo,driver);
 	}
 
 	public static Integer puntos() {

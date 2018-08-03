@@ -4,20 +4,36 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import sge.driver.DriverBasico;
+import sge.driver.RegistroDispositivos;
+import sge.driver.RegistroSensores;
 import sge.regla.Sensor;
 
 public abstract class Inteligente extends Dispositivo {
 
 	public boolean encendido;
-	public List<Sensor> sensores;
+	public List<Sensor> sensores= new ArrayList<Sensor>();
 	public EstadoDispositivo estado;
 	public List<Intervalo> intervalos = new ArrayList<Intervalo>();
+	public DriverBasico driver;
+	
+	
+	
+	public List<Sensor> getSensores() {
+		return sensores;
+	}
+	
+	public void agregarSensor(Sensor sensor) {
+		sensores.add(sensor);
+		RegistroSensores.getInstance().registrarSensor(sensor, this);
+	}
 
 	public Inteligente(String _nombre, Double _consumoPorHora, String _idUserName, Boolean _bajoconsumo,
-			Boolean _encendido) {
+			Boolean _encendido,DriverBasico _driver) {
 		super(_nombre, _consumoPorHora, _idUserName, _bajoconsumo);
 		// para que se genere el primer intervalo prendido, primero lo apago y despues
 		// lo prendo afarias
+		driver=_driver;
 		if (_encendido) {
 			estado = new EstadoApagado();
 			this.prender();
@@ -25,10 +41,15 @@ public abstract class Inteligente extends Dispositivo {
 			estado = new EstadoPrendido();
 			this.apagar();
 		}
+		
+		RegistroDispositivos.getInstance().registrarDispositivo(this);
 	}
 
-	public Inteligente(String _nombre, Double _consumoPorHora, Boolean _bajoconsumo) {
+	public Inteligente(String _nombre, Double _consumoPorHora, Boolean _bajoconsumo,DriverBasico _driver) {
 		super(_nombre, _consumoPorHora, _bajoconsumo);
+		driver=_driver;
+		RegistroDispositivos.getInstance().registrarDispositivo(this);
+
 	}
 
 	public void setIntervalo(List<Intervalo> intervalo) {
@@ -58,14 +79,17 @@ public abstract class Inteligente extends Dispositivo {
 		}
 
 		estado.prender(this);
+		driver.apagar(this);
 	}
 
 	public void apagar() {
 		estado.apagar(this);
+		driver.apagar(this);
 	}
 
 	public void ahorroDeEnergia() {
 		estado.ahorroDeEnergia(this);
+		driver.ahorroDeEnergia(this);
 	}
 
 	public double consumo_ultimas_n_horas(double horas) {
@@ -114,5 +138,13 @@ public abstract class Inteligente extends Dispositivo {
 
 	public Double consumoActual() {
 		return consumoPorHora * estado.factor();
+	}
+
+	public DriverBasico getDriver() {
+		return driver;
+	}
+
+	public void setDriver(DriverBasico driver) {
+		this.driver = driver;
 	}
 }

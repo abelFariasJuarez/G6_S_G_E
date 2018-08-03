@@ -1,30 +1,23 @@
 package sge;
 
-import static org.junit.Assert.assertEquals;
-
-import java.time.Duration;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Optional;
-import java.util.concurrent.TimeUnit;
-
-import org.junit.Before;
-import org.junit.Test;
 
 import Repositorios.RepositorioDeClientes;
-import Repositorios.RepositorioDeDispositivos;
 import Repositorios.RepositorioDeTransformadores;
 
 import Repositorios.RepositorioDeZonas;
 import sge.dispositivo.*;
+import sge.driver.AccionPrender;
+import sge.driver.DriverBasico;
+import sge.driver.RegistroReglas;
+import sge.driver.RegistroSensores;
 import sge.posicionamiento.Transformador;
-import sge.posicionamiento.Ubicacion;
 import sge.posicionamiento.ZonaGeografica;
-import sge.regla.Actuador;
+import sge.regla.ActuadorAhorro;
+import sge.regla.ActuadorApagar;
 import sge.regla.ActuadorPrender;
 import sge.regla.Condicion;
 import sge.regla.Regla;
@@ -39,26 +32,32 @@ public class App {
 
 	Regla unRegla = new Regla("regla 1");
 
-		
+	DriverBasico driver=new DriverBasico(new ActuadorApagar(), new ActuadorPrender(), new ActuadorAhorro());
+
 		//Regla unRegla = new Regla("regla 1");
 		//DispositivoInteligente unAire = new DispositivoInteligente("AireAcondicionado", 2.3,"perez", false,false);
-		DispositivoInteligente unAire = new DispositivoInteligente("AireAcondicionado", 2.3,"cazana", false,false);
+		DispositivoInteligente unAire = new DispositivoInteligente("AireAcondicionado", 2.3,"cazana", false,false,driver);
 		// el constructor ya me da un dispo en estado apagado
 		//assertEquals(true,unAire.estoyOFF());
 		//Regla unRegla = new Regla("regla 1");
 		
 		Sensor temperatura = new Sensor(30.0, 10000,"temperatura");
 		Sensor humedad = new Sensor(100.0, 5000,"humedad");
-		humedad.agregarObserver(unRegla);
-		temperatura.agregarObserver(unRegla);
 		Condicion condTemp = new Condicion(temperatura, new Mayor(), 32.0);
 		Condicion condHume = new Condicion(humedad, new Mayor(), 90.0);
 
+		
+		
 		unRegla.agregarCondicion(condTemp);
 		unRegla.agregarCondicion(condHume);
 		
-		Actuador prenderAire = new ActuadorPrender(unAire);
-		unRegla.agregarActuador(prenderAire);
+		List<Regla> reglas=new ArrayList<Regla>();
+		reglas.add(unRegla);
+		RegistroReglas.getInstance().registrarReglas(unAire, reglas);
+		RegistroSensores.getInstance().registrarSensor(humedad, unAire);
+		RegistroSensores.getInstance().registrarSensor(temperatura, unAire);
+		AccionPrender prenderAire = new AccionPrender();
+		unRegla.agregarAccion(prenderAire);
 		
 		humedad.activar();
 		temperatura.setMedicion(40);

@@ -2,22 +2,16 @@ package sge.regla;
 
 import sge.dispositivo.Inteligente;
 
-public class ActuadorPrender implements Actuador {
+public class ActuadorPrender implements AdapterActuador {
 
-	private Inteligente dispositivo;
 
-	public ActuadorPrender(Inteligente _dispositivo) {
-		dispositivo = _dispositivo;
-	}
 
 	@Override
 	public void ejecutarAccion() {
-		dispositivo.prender();
+
+		System.out.printf("Accion sobre el dispo fisico");
+
 	}
 
-	@Override
-	public void dispositivo(Inteligente _dispositivo) {
-		dispositivo = _dispositivo;	
-	}
 
 }
