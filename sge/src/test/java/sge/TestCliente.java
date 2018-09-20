@@ -10,8 +10,9 @@ import java.util.List;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
-import Repositorios.RepositorioDeClientes;
-import Repositorios.RepositorioDeDispositivos;
+
+import sge.repositorios.RepositorioDeClientes;
+import sge.repositorios.RepositorioDeDispositivos;
 import sge.dispositivo.*;
 import sge.driver.DriverBasico;
 import sge.regla.ActuadorAhorro;

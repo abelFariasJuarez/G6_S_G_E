@@ -5,8 +5,6 @@ import com.google.gson.GsonBuilder;
 
 import com.google.gson.reflect.TypeToken;
 
-import Repositorios.RepositorioDeClientes;
-
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;

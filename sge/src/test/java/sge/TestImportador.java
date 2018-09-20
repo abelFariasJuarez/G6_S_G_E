@@ -4,10 +4,10 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import Repositorios.RepositorioDeClientes;
-import Repositorios.RepositorioDeDispositivos;
-import Repositorios.RepositorioDeTransformadores;
-import Repositorios.RepositorioDeZonas;
+import sge.repositorios.RepositorioDeClientes;
+import sge.repositorios.RepositorioDeDispositivos;
+import sge.repositorios.RepositorioDeTransformadores;
+import sge.repositorios.RepositorioDeZonas;
 import sge.dispositivo.Dispositivo;
 import sge.posicionamiento.Transformador;
 import sge.posicionamiento.ZonaGeografica;

@@ -9,8 +9,8 @@ import java.util.List;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import Repositorios.RepositorioDeClientes;
-import Repositorios.RepositorioDeTransformadores;
+import sge.repositorios.RepositorioDeClientes;
+import sge.repositorios.RepositorioDeTransformadores;
 import sge.posicionamiento.Transformador;
 import sge.posicionamiento.ZonaGeografica;
 

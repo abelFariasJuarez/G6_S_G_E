@@ -1,4 +1,4 @@
-package Repositorios;
+package sge.repositorios;
 
 import java.io.IOException;
 import java.util.ArrayList;

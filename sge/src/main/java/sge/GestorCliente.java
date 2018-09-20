@@ -4,11 +4,11 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import Repositorios.RepositorioDeClientes;
-import Repositorios.RepositorioDeTransformadores;
-import Repositorios.RepositorioDeZonas;
 import sge.Cliente;
 import sge.posicionamiento.*;
+import sge.repositorios.RepositorioDeClientes;
+import sge.repositorios.RepositorioDeTransformadores;
+import sge.repositorios.RepositorioDeZonas;
 
 public class GestorCliente {
 

@@ -5,10 +5,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import Repositorios.RepositorioDeClientes;
-import Repositorios.RepositorioDeTransformadores;
 
-import Repositorios.RepositorioDeZonas;
 import sge.dispositivo.*;
 import sge.driver.AccionPrender;
 import sge.driver.DriverBasico;
@@ -23,6 +20,9 @@ import sge.regla.Condicion;
 import sge.regla.Regla;
 import sge.regla.Sensor;
 import sge.regla.comparador.*;
+import sge.repositorios.RepositorioDeClientes;
+import sge.repositorios.RepositorioDeTransformadores;
+import sge.repositorios.RepositorioDeZonas;
 
 public class App {
 
