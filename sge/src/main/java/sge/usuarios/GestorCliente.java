@@ -1,10 +1,9 @@
-package sge;
+package sge.usuarios;
 
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import sge.Cliente;
 import sge.posicionamiento.*;
 import sge.repositorios.RepositorioDeClientes;
 import sge.repositorios.RepositorioDeTransformadores;

@@ -23,6 +23,7 @@ import sge.regla.comparador.*;
 import sge.repositorios.RepositorioDeClientes;
 import sge.repositorios.RepositorioDeTransformadores;
 import sge.repositorios.RepositorioDeZonas;
+import sge.usuarios.Cliente;
 
 public class App {
 
@@ -115,7 +116,7 @@ public class App {
 	RepositorioDeClientes repoClientes = RepositorioDeClientes.getinstance();
 	repoClientes.cargarClientes();
 	for(Cliente cli :repoClientes.clientes()) {
-		System.out.println(cli.apellido);}
+		System.out.println(cli.getApellido());}
 	
 	System.out.println(repoZonas.zonas().get(0).pertenece(repoClientes.clientes().get(0)));
 	System.out.println(repoZonas.zonas().get(0).pertenece(repoClientes.clientes().get(1)));

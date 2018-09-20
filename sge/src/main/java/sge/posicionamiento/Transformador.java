@@ -3,8 +3,8 @@ package sge.posicionamiento;
 import java.util.ArrayList;
 import java.util.List;
 
-import sge.Cliente;
 import sge.dispositivo.Dispositivo;
+import sge.usuarios.Cliente;
 
 public class Transformador {
 

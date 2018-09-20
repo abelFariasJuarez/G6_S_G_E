@@ -5,13 +5,14 @@ import com.google.gson.GsonBuilder;
 
 import com.google.gson.reflect.TypeToken;
 
+import sge.usuarios.Cliente;
+
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.List;
 import java.util.TimerTask;
-import sge.Cliente;
 import java.io.IOException;
 import java.util.TimerTask;
 

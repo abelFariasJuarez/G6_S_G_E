@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import sge.Cliente;
+import sge.usuarios.Cliente;
 
 public class ZonaGeografica {
 private String nombre;

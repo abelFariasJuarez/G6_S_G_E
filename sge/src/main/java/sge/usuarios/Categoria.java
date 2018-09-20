@@ -1,4 +1,4 @@
-package sge;
+package sge.usuarios;
 
 import java.time.LocalDateTime;
 
