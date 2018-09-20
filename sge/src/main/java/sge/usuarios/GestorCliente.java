@@ -11,20 +11,20 @@ import sge.repositorios.RepositorioDeZonas;
 
 public class GestorCliente {
 
-	RepositorioDeClientes repoClientes = RepositorioDeClientes.getinstance();
-	RepositorioDeZonas repoZonas = RepositorioDeZonas.getinstance();
-	RepositorioDeTransformadores repoTransformadores = RepositorioDeTransformadores.getinstance();
+	private RepositorioDeClientes repoClientes = RepositorioDeClientes.getinstance();
+	private RepositorioDeZonas repoZonas = RepositorioDeZonas.getinstance();
+	private RepositorioDeTransformadores repoTransformadores = RepositorioDeTransformadores.getinstance();
 
 	public GestorCliente() {
-		repoClientes.cargarClientes();
-		repoZonas.cargarZonas();
-		repoTransformadores.cargarTransformadores();
+		getRepoClientes().cargarClientes();
+		getRepoZonas().cargarZonas();
+		getRepoTransformadores().cargarTransformadores();
 	}
 
 	public void transformadoresAsignacionZona() {
 
-		for (ZonaGeografica zona1 : repoZonas.zonas()) {
-			for (Transformador trans1 : repoTransformadores.transformadores()) {
+		for (ZonaGeografica zona1 : getRepoZonas().zonas()) {
+			for (Transformador trans1 : getRepoTransformadores().transformadores()) {
 				if (zona1.getId().equals(trans1.getIdZona())) {
 					zona1.Add(trans1);
 
@@ -35,8 +35,8 @@ public class GestorCliente {
 	}
 
 	public void asignarClientesATransformadores() {
-		for (Cliente cliente : repoClientes.clientes()) {
-			ZonaGeografica zona = repoZonas.zonas().stream().filter(s -> s.pertenece(cliente)).findFirst().get();
+		for (Cliente cliente : getRepoClientes().clientes()) {
+			ZonaGeografica zona = getRepoZonas().zonas().stream().filter(s -> s.pertenece(cliente)).findFirst().get();
 			Transformador trans = Collections.min(zona.getTransformadores(),
 					Comparator.comparing(t -> t.Distancia(cliente)));
 			trans.getClientes().add(cliente);
@@ -44,12 +44,36 @@ public class GestorCliente {
 	}
 
 	public void mejorarEficienciaHogares() {
-		this.mejorarEficienciaHogaresA(repoClientes.clientes());
+		this.mejorarEficienciaHogaresA(getRepoClientes().clientes());
 	}
 
 	public void mejorarEficienciaHogaresA(List<Cliente> clientes) {
 		clientes.stream().filter(c -> c.ahorroAutomaticoActivo() && c.canYouGetMejorCombinacionDispositivos())
 				.forEach(c -> c.mejorarEficienciaHogar());
+	}
+
+	public RepositorioDeZonas getRepoZonas() {
+		return repoZonas;
+	}
+
+	public void setRepoZonas(RepositorioDeZonas repoZonas) {
+		this.repoZonas = repoZonas;
+	}
+
+	public RepositorioDeClientes getRepoClientes() {
+		return repoClientes;
+	}
+
+	public void setRepoClientes(RepositorioDeClientes repoClientes) {
+		this.repoClientes = repoClientes;
+	}
+
+	public RepositorioDeTransformadores getRepoTransformadores() {
+		return repoTransformadores;
+	}
+
+	public void setRepoTransformadores(RepositorioDeTransformadores repoTransformadores) {
+		this.repoTransformadores = repoTransformadores;
 	}
 
 }

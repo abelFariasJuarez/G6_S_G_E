@@ -9,6 +9,8 @@ import java.time.Month;
 
 import org.junit.Test;
 
+import sge.usuarios.Administrador;
+
 public class TestAdministrador {
 
 	

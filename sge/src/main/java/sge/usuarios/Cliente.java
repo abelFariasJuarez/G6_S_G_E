@@ -118,7 +118,7 @@ public class Cliente extends UsuarioSGE {
 		this.dispositivos = dispositivos;
 	}
 
-	Integer cantDispositivos() {
+	public Integer cantDispositivos() {
 		return dispositivos.size();
 	}
 

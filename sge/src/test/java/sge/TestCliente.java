@@ -13,6 +13,8 @@ import org.junit.Test;
 
 import sge.repositorios.RepositorioDeClientes;
 import sge.repositorios.RepositorioDeDispositivos;
+import sge.usuarios.Categoria;
+import sge.usuarios.Cliente;
 import sge.dispositivo.*;
 import sge.driver.DriverBasico;
 import sge.regla.ActuadorAhorro;

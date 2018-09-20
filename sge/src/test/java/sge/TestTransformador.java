@@ -11,6 +11,7 @@ import org.junit.Test;
 
 import sge.repositorios.RepositorioDeClientes;
 import sge.repositorios.RepositorioDeTransformadores;
+import sge.usuarios.Cliente;
 import sge.posicionamiento.Transformador;
 import sge.posicionamiento.ZonaGeografica;
 

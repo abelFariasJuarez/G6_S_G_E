@@ -16,6 +16,8 @@ import sge.hogareficiente.Recomendacion;
 import sge.regla.ActuadorAhorro;
 import sge.regla.ActuadorApagar;
 import sge.regla.ActuadorPrender;
+import sge.usuarios.Cliente;
+import sge.usuarios.GestorCliente;
 
 public class TestModuloMejorCombinacion {
 	@Test
