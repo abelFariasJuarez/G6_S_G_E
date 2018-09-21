@@ -1,8 +1,42 @@
-[{"nombre":"Televisor Color de tubo fluorescentede 21","consumoPorHora":0.075,bajoConsumo:false},
-{"nombre":"Televisor Color de tubo fluorescente de 29 a 34","consumoPorHora":0.175,bajoConsumo:false},
-{"nombre":"Televisor LCD de 40","consumoPorHora":0.18,bajoConsumo:false},
-{"nombre":"Lavarropas automatico de 5 kg con calentamiento de agua","consumoPorHora":0.875,bajoConsumo:false},
-{"nombre":"Lavarropas semi-automatico de 5 kg","consumoPorHora":0.1275,bajoConsumo:true},
-{"nombre":"Ventilador de pie","consumoPorHora":0.09,bajoConsumo:true},
-{"nombre":"Microondas convencional","consumoPorHora":0.64, bajoConsumo:true},
-{"nombre":"Plancha a vapor","consumoPorHora":0.75,bajoConsumo:true}]
+[  
+   {  
+      "nombre":"Televisor Color de tubo fluorescentede 21",
+      "consumoPorHora":0.075,
+      "bajoConsumo":false
+   },
+   {  
+      "nombre":"Televisor Color de tubo fluorescente de 29 a 34",
+      "consumoPorHora":0.175,
+      "bajoConsumo":false
+   },
+   {  
+      "nombre":"Televisor LCD de 40",
+      "consumoPorHora":0.18,
+      "bajoConsumo":false
+   },
+   {  
+      "nombre":"Lavarropas automatico de 5 kg con calentamiento de agua",
+      "consumoPorHora":0.875,
+      "bajoConsumo":false
+   },
+   {  
+      "nombre":"Lavarropas semi-automatico de 5 kg",
+      "consumoPorHora":0.1275,
+      "bajoConsumo":true
+   },
+   {  
+      "nombre":"Ventilador de pie",
+      "consumoPorHora":0.09,
+      "bajoConsumo":true
+   },
+   {  
+      "nombre":"Microondas convencional",
+      "consumoPorHora":0.64,
+      "bajoConsumo":true
+   },
+   {  
+      "nombre":"Plancha a vapor",
+      "consumoPorHora":0.75,
+      "bajoConsumo":true
+   }
+  ]

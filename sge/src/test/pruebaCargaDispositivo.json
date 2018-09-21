@@ -1,48 +1,146 @@
-[{"type":"inteligente","nombre":"Aire acondicionado de 3500 frigorias",
-"consumoPorHora":1.613,bajoConsumo:false},
-{"type":"inteligente","nombre":"Aire acondicionado de 2200 frigorias",
-"consumoPorHora":1.013,bajoConsumo:true},
-{"type":"estandar","nombre":"Televisor Color de tubo fluorescentede 21"",
-"consumoPorHora":0.075,bajoConsumo:false},
-{"type":"estandar","nombre":"Televisor Color de tubo fluorescente de 29" a 34"",
-"consumoPorHora":0.175,bajoConsumo:false},
-{"type":"estandar","nombre":"Televisor LCD de 40"",
-"consumoPorHora":0.18,bajoConsumo:false},
-{"type":"inteligente","nombre":"Televisor LED 24"",
-"consumoPorHora":0.04,bajoConsumo:true},
-{"type":"inteligente","nombre":"Televisor LED 32"",
-"consumoPorHora":0.055,bajoConsumo:true},
-{"type":"inteligente","nombre":"Televisor LED 40"",
-"consumoPorHora":0.08,bajoConsumo:true},
-{"type":"inteligente","nombre":"Heladera con freezer",
-"consumoPorHora":0.09,bajoConsumo:true},
-{"type":"inteligente","nombre":"Heladera sin freezer",
-"consumoPorHora":0.075,bajoConsumo:true},
-{"type":"Estandar","nombre":"Lavarropas automatico de 5 kg con calentamiento de agua",
-"consumoPorHora":0.875,bajoConsumo:false},
-{"type":"inteligente","nombre":"Lavarropas automatico de 5 kg",
-"consumoPorHora":0.175,bajoConsumo:true},
-"type":"Estandar","nombre":"Lavarropas semi-automatico de 5 kg",
-"consumoPorHora":0.1275,bajoConsumo:true},
-{"type":"estandar","nombre":"Ventilador de pie",
-"consumoPorHora":0.09,bajoConsumo:true},
-{"type":"inteligente","nombre":"Ventilador de techo
-","consumoPorHora":0.06,bajoConsumo:true},
-{"type":"inteligente","nombre":"Lampara halogena de 40W",
-"consumoPorHora":0.04,bajoConsumo:false},
-{"type":"inteligente","nombre":"Lampara halogena de 60W",
-"consumoPorHora":0.06,bajoConsumo:false},
-{"type":"inteligente","nombre":"Lampara halogena de 100W",
-"consumoPorHora":0.015,bajoConsumo:false},
-{"type":"inteligente","nombre":"Lampara de 11W",
-"consumoPorHora":0.011,bajoConsumo:true},
-{"type":"inteligente","nombre":"Lampara de 15W",
-"consumoPorHora":0.015,bajoConsumo:true},
-{"type":"inteligente","nombre":"Lampara de 20W",
-"consumoPorHora":0.02,bajoConsumo:true},
-{"type":"inteligente","nombre":"PC de escritorio",
-"consumoPorHora":0.4,bajoConsumo:true},
-{"type":"estandar","nombre":"Microondas convencional",
-"consumoPorHora":0.64, bajoConsumo:true},
-{"type":"estandar","nombre":"Plancha a vapor",
-"consumoPorHora":0.75,bajoConsumo:true}]
+[  
+   {  
+      "type":"inteligente",
+      "nombre":"Aire acondicionado de 3500 frigorias",
+      "consumoPorHora":1.613,
+      "bajoConsumo":false
+   },
+   {  
+      "type":"inteligente",
+      "nombre":"Aire acondicionado de 2200 frigorias",
+      "consumoPorHora":1.013,
+      "bajoConsumo":true
+   },
+   {  
+      "type":"estandar",
+      "nombre":"Televisor Color de tubo fluorescentede 21",
+      "consumoPorHora":0.075,
+      "bajoConsumo":false
+   },
+   {  
+      "type":"estandar",
+      "nombre":"Televisor Color de tubo fluorescente de 29 a 34",
+      "consumoPorHora":0.175,
+      "bajoConsumo":false
+   },
+   {  
+      "type":"estandar",
+      "nombre":"Televisor LCD de 40",
+      "consumoPorHora":0.18,
+      "bajoConsumo":false
+   },
+   {  
+      "type":"inteligente",
+      "nombre":"Televisor LED 24",
+      "consumoPorHora":0.04,
+      "bajoConsumo":true
+   },
+   {  
+      "type":"inteligente",
+      "nombre":"Televisor LED 32",
+      "consumoPorHora":0.055,
+      "bajoConsumo":true
+   },
+   {  
+      "type":"inteligente",
+      "nombre":"Televisor LED 40",
+      "consumoPorHora":0.08,
+      "bajoConsumo":true
+   },
+   {  
+      "type":"inteligente",
+      "nombre":"Heladera con freezer",
+      "consumoPorHora":0.09,
+      "bajoConsumo":true
+   },
+   {  
+      "type":"inteligente",
+      "nombre":"Heladera sin freezer",
+      "consumoPorHora":0.075,
+      "bajoConsumo":true
+   },
+   {  
+      "type":"Estandar",
+      "nombre":"Lavarropas automatico de 5 kg con calentamiento de agua",
+      "consumoPorHora":0.875,
+      "bajoConsumo":false
+   },
+   {  
+      "type":"inteligente",
+      "nombre":"Lavarropas automatico de 5 kg",
+      "consumoPorHora":0.175,
+      "bajoConsumo":true
+   },
+   {  
+      "type":"Estandar",
+      "nombre":"Lavarropas semi-automatico de 5 kg",
+      "consumoPorHora":0.1275,
+      "bajoConsumo":true
+   },
+   {  
+      "type":"estandar",
+      "nombre":"Ventilador de pie",
+      "consumoPorHora":0.09,
+      "bajoConsumo":true
+   },
+   {  
+      "type":"inteligente",
+      "nombre":"Ventilador de techo",
+      "consumoPorHora":0.06,
+      "bajoConsumo":true
+   },
+   {  
+      "type":"inteligente",
+      "nombre":"Lampara halogena de 40W",
+      "consumoPorHora":0.04,
+      "bajoConsumo":false
+   },
+   {  
+      "type":"inteligente",
+      "nombre":"Lampara halogena de 60W",
+      "consumoPorHora":0.06,
+      "bajoConsumo":false
+   },
+   {  
+      "type":"inteligente",
+      "nombre":"Lampara halogena de 100W",
+      "consumoPorHora":0.015,
+      "bajoConsumo":false
+   },
+   {  
+      "type":"inteligente",
+      "nombre":"Lampara de 11W",
+      "consumoPorHora":0.011,
+      "bajoConsumo":true
+   },
+   {  
+      "type":"inteligente",
+      "nombre":"Lampara de 15W",
+      "consumoPorHora":0.015,
+      "bajoConsumo":true
+   },
+   {  
+      "type":"inteligente",
+      "nombre":"Lampara de 20W",
+      "consumoPorHora":0.02,
+      "bajoConsumo":true
+   },
+   {  
+      "type":"inteligente",
+      "nombre":"PC de escritorio",
+      "consumoPorHora":0.4,
+      "bajoConsumo":true
+   },
+   {  
+      "type":"estandar",
+      "nombre":"Microondas convencional",
+      "consumoPorHora":0.64,
+      "bajoConsumo":true
+   },
+   {  
+      "type":"estandar",
+      "nombre":"Plancha a vapor",
+      "consumoPorHora":0.75,
+      "bajoConsumo":true
+   }
+]
