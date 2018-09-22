@@ -7,7 +7,7 @@ import java.util.List;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import sge.posicionamiento.Transformador;
+import sge.modelo.posicionamiento.Transformador;
 
 
 public class ImportadorDeJsonTransformador {

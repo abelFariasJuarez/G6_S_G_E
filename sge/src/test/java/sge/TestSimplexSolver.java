@@ -2,7 +2,7 @@ package sge;
 
 import org.junit.*;
 
-import sge.hogareficiente.SimplexFacade;
+import sge.modelo.hogareficiente.SimplexFacade;
 
 import org.apache.commons.math3.optim.*;
 

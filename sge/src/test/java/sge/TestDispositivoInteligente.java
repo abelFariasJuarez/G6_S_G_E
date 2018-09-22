@@ -6,11 +6,11 @@ import java.time.LocalDateTime;
 
 import org.junit.Test;
 
-import sge.dispositivo.*;
-import sge.driver.DriverBasico;
-import sge.regla.ActuadorAhorro;
-import sge.regla.ActuadorApagar;
-import sge.regla.ActuadorPrender;
+import sge.modelo.dispositivo.*;
+import sge.modelo.driver.DriverBasico;
+import sge.modelo.regla.ActuadorAhorro;
+import sge.modelo.regla.ActuadorApagar;
+import sge.modelo.regla.ActuadorPrender;
 
 public class TestDispositivoInteligente {
 

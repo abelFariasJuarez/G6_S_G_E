@@ -7,9 +7,9 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
+import sge.modelo.dispositivo.Dispositivo;
+import sge.modelo.dispositivo.DispositivoInteligente;
 import sge.repositorios.RepositorioDeDispositivos;
-import sge.dispositivo.Dispositivo;
-import sge.dispositivo.DispositivoInteligente;
 
 public class TestImportadorDispositivosInteligentes {
 

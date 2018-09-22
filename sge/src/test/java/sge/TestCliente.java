@@ -13,13 +13,13 @@ import org.junit.Test;
 
 import sge.repositorios.RepositorioDeClientes;
 import sge.repositorios.RepositorioDeDispositivos;
-import sge.usuarios.Categoria;
-import sge.usuarios.Cliente;
-import sge.dispositivo.*;
-import sge.driver.DriverBasico;
-import sge.regla.ActuadorAhorro;
-import sge.regla.ActuadorApagar;
-import sge.regla.ActuadorPrender;
+import sge.modelo.dispositivo.*;
+import sge.modelo.driver.DriverBasico;
+import sge.modelo.regla.ActuadorAhorro;
+import sge.modelo.regla.ActuadorApagar;
+import sge.modelo.regla.ActuadorPrender;
+import sge.modelo.usuarios.Categoria;
+import sge.modelo.usuarios.Cliente;
 
 
 

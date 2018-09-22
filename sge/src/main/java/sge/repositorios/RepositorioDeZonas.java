@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import sge.posicionamiento.ZonaGeografica;
+import sge.modelo.posicionamiento.ZonaGeografica;
 import utils.ImportadorDeJsonZona;
 
 public class RepositorioDeZonas {

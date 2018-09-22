@@ -5,25 +5,24 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-
-import sge.dispositivo.*;
-import sge.driver.AccionPrender;
-import sge.driver.DriverBasico;
-import sge.driver.RegistroReglas;
-import sge.driver.RegistroSensores;
-import sge.posicionamiento.Transformador;
-import sge.posicionamiento.ZonaGeografica;
-import sge.regla.ActuadorAhorro;
-import sge.regla.ActuadorApagar;
-import sge.regla.ActuadorPrender;
-import sge.regla.Condicion;
-import sge.regla.Regla;
-import sge.regla.Sensor;
-import sge.regla.comparador.*;
+import sge.modelo.dispositivo.*;
+import sge.modelo.driver.AccionPrender;
+import sge.modelo.driver.DriverBasico;
+import sge.modelo.driver.RegistroReglas;
+import sge.modelo.driver.RegistroSensores;
+import sge.modelo.posicionamiento.Transformador;
+import sge.modelo.posicionamiento.ZonaGeografica;
+import sge.modelo.regla.ActuadorAhorro;
+import sge.modelo.regla.ActuadorApagar;
+import sge.modelo.regla.ActuadorPrender;
+import sge.modelo.regla.Condicion;
+import sge.modelo.regla.Regla;
+import sge.modelo.regla.Sensor;
+import sge.modelo.regla.comparador.*;
+import sge.modelo.usuarios.Cliente;
 import sge.repositorios.RepositorioDeClientes;
 import sge.repositorios.RepositorioDeTransformadores;
 import sge.repositorios.RepositorioDeZonas;
-import sge.usuarios.Cliente;
 
 public class App {
 
@@ -134,10 +133,10 @@ public class App {
 		
 	}
 	
-System.out.println( repoTransformadores.transformadores().get(3).getCli().size()+" "+ repoTransformadores.transformadores().get(4).getCli().size());
+System.out.println( repoTransformadores.transformadores().get(3).getClientes().size()+" "+ repoTransformadores.transformadores().get(4).getClientes().size());
 	
 // funciona bien , de la primer zona se fija en su tercer transformador y aca hay dos clientes que se asignaron arriba
-System.out.println( repoZonas.zonas().get(0).getTransformadores().get(2).getCli() .size());
+System.out.println( repoZonas.zonas().get(0).getTransformadores().get(2).getClientes() .size());
 
 	
 	

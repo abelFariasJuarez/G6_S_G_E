@@ -4,7 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import sge.usuarios.Categoria;
+import sge.modelo.usuarios.Categoria;
 
 public class TestCategoria {
 

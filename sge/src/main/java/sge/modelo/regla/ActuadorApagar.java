@@ -1,0 +1,16 @@
+package sge.modelo.regla;
+
+import sge.modelo.dispositivo.Inteligente;
+
+public class ActuadorApagar implements AdapterActuador {
+
+
+
+	@Override
+	public void ejecutarAccion() {
+		System.out.printf("Accion sobre el dispo fisico");
+
+	}
+
+
+}

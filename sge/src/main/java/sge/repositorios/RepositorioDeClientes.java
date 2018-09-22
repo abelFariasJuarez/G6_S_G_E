@@ -5,11 +5,11 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import sge.posicionamiento.ZonaGeografica;
-import sge.usuarios.Cliente;
+import sge.modelo.posicionamiento.ZonaGeografica;
+import sge.modelo.usuarios.Cliente;
 import utils.ImportadorDeJSONCliente;
 
-public class RepositorioDeClientes {
+public class RepositorioDeClientes extends Repositorio{
 	private static RepositorioDeClientes repoClientes;
 	private List<Cliente> clientes = new ArrayList<Cliente>();
 

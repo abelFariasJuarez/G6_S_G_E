@@ -10,14 +10,14 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Test;
 
-import sge.dispositivo.*;
-import sge.driver.DriverBasico;
-import sge.hogareficiente.Recomendacion;
-import sge.regla.ActuadorAhorro;
-import sge.regla.ActuadorApagar;
-import sge.regla.ActuadorPrender;
-import sge.usuarios.Cliente;
-import sge.usuarios.GestorCliente;
+import sge.modelo.dispositivo.*;
+import sge.modelo.driver.DriverBasico;
+import sge.modelo.hogareficiente.Recomendacion;
+import sge.modelo.regla.ActuadorAhorro;
+import sge.modelo.regla.ActuadorApagar;
+import sge.modelo.regla.ActuadorPrender;
+import sge.modelo.usuarios.Cliente;
+import sge.modelo.usuarios.GestorCliente;
 
 public class TestModuloMejorCombinacion {
 	@Test
@@ -70,7 +70,7 @@ public class TestModuloMejorCombinacion {
 		
 		Cliente cliente1 = new Cliente("Carlos", "Sanazki", "condarco 148", LocalDate.of(2017, 4, 7), "cazana",
 				"menToL2017", "Dni", 21321012, 1543312310);
-		cliente1.ahorroAutomatico(true);
+		cliente1.setAhorroAutomatico(true);
 		DriverBasico driver=new DriverBasico(new ActuadorApagar(), new ActuadorPrender(), new ActuadorAhorro());
 
 		DispositivoInteligente air1 = new DispositivoInteligente("heladera", 0.18,true,driver);
@@ -89,7 +89,7 @@ public class TestModuloMejorCombinacion {
 		
 		Cliente cliente2 = new Cliente("Carla", "Sanazki", "condarco 149", LocalDate.of(2017, 4, 7), "cazana",
 				"menToL2017", "Dni", 21321013, 1543312311);
-		cliente2.ahorroAutomatico(true);
+		cliente2.setAhorroAutomatico(true);
 
 		DispositivoInteligente air2 = new DispositivoInteligente("heladera", 0.18,true,driver);
 		DispositivoInteligente lava2 = new DispositivoInteligente("lavadora", 0.875,true,driver);
@@ -126,7 +126,7 @@ public class TestModuloMejorCombinacion {
 			
 		Cliente cliente2 = new Cliente("Carla", "Sanazki", "condarco 149", LocalDate.of(2017, 4, 7), "cazana",
 				"menToL2017", "Dni", 21321013, 1543312311);
-		cliente2.ahorroAutomatico(false);
+		cliente2.setAhorroAutomatico(false);
 		DriverBasico driver=new DriverBasico(new ActuadorApagar(), new ActuadorPrender(), new ActuadorAhorro());
 
 		DispositivoInteligente air2 = new DispositivoInteligente("heladera", 0.18,true,driver);

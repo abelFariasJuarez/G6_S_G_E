@@ -7,14 +7,14 @@ import java.util.List;
 
 import org.junit.Test;
 
-import sge.dispositivo.DispositivoInteligente;
-import sge.driver.AccionApagar;
-import sge.driver.AccionPrender;
-import sge.driver.DriverBasico;
-import sge.driver.RegistroReglas;
-import sge.driver.RegistroSensores;
-import sge.regla.*;
-import sge.regla.comparador.*;
+import sge.modelo.dispositivo.DispositivoInteligente;
+import sge.modelo.driver.AccionApagar;
+import sge.modelo.driver.AccionPrender;
+import sge.modelo.driver.DriverBasico;
+import sge.modelo.driver.RegistroReglas;
+import sge.modelo.driver.RegistroSensores;
+import sge.modelo.regla.*;
+import sge.modelo.regla.comparador.*;
 
 public class TestRegla {
 

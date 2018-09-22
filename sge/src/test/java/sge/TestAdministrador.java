@@ -9,7 +9,7 @@ import java.time.Month;
 
 import org.junit.Test;
 
-import sge.usuarios.Administrador;
+import sge.modelo.usuarios.Administrador;
 
 public class TestAdministrador {
 

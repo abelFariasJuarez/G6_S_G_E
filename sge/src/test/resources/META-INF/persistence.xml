@@ -7,7 +7,11 @@
   
     <persistence-unit name="db" transaction-type="RESOURCE_LOCAL">
     	<provider>org.hibernate.ejb.HibernatePersistence</provider>
-    	  	
+    	
+		<class>sge.modelo.posicionamiento.Transformador</class>
+		<class>sge.modelo.posicionamiento.Ubicacion</class>
+		<class>sge.modelo.usuarios.UsuarioSGE</class> 
+		<class>sge.modelo.usuarios.Cliente</class>    	
     	 
         <properties> 
 	    <property name="hibernate.archive.autodetection" value="class"/>        

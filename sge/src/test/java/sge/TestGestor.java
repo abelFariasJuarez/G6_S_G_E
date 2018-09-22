@@ -11,13 +11,13 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import sge.repositorios.RepositorioDeDispositivos;
-import sge.usuarios.Cliente;
-import sge.usuarios.GestorCliente;
-import sge.dispositivo.Dispositivo;
-import sge.dispositivo.Inteligente;
-import sge.posicionamiento.Transformador;
-import sge.posicionamiento.Ubicacion;
-import sge.posicionamiento.ZonaGeografica;
+import sge.modelo.dispositivo.Dispositivo;
+import sge.modelo.dispositivo.Inteligente;
+import sge.modelo.posicionamiento.Transformador;
+import sge.modelo.posicionamiento.Ubicacion;
+import sge.modelo.posicionamiento.ZonaGeografica;
+import sge.modelo.usuarios.Cliente;
+import sge.modelo.usuarios.GestorCliente;
 
 public class TestGestor {
 

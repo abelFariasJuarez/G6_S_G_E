@@ -8,10 +8,10 @@ import sge.repositorios.RepositorioDeClientes;
 import sge.repositorios.RepositorioDeDispositivos;
 import sge.repositorios.RepositorioDeTransformadores;
 import sge.repositorios.RepositorioDeZonas;
-import sge.usuarios.Cliente;
-import sge.dispositivo.Dispositivo;
-import sge.posicionamiento.Transformador;
-import sge.posicionamiento.ZonaGeografica;
+import sge.modelo.dispositivo.Dispositivo;
+import sge.modelo.posicionamiento.Transformador;
+import sge.modelo.posicionamiento.ZonaGeografica;
+import sge.modelo.usuarios.Cliente;
 
 public class TestImportador {
 

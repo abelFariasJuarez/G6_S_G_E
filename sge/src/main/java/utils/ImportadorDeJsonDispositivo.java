@@ -10,9 +10,9 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
-import sge.dispositivo.Dispositivo;
-import sge.dispositivo.DispositivoEstandar;
-import sge.dispositivo.DispositivoInteligente;
+import sge.modelo.dispositivo.Dispositivo;
+import sge.modelo.dispositivo.DispositivoEstandar;
+import sge.modelo.dispositivo.DispositivoInteligente;
 
 public class ImportadorDeJsonDispositivo {
 

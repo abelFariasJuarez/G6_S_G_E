@@ -4,11 +4,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import sge.posicionamiento.Transformador;
+import javax.persistence.EntityManager;
+
+import sge.modelo.posicionamiento.Transformador;
 import utils.ImportadorDeJsonTransformador;
 
 
-public class RepositorioDeTransformadores {
+public class RepositorioDeTransformadores extends Repositorio {
 	private static RepositorioDeTransformadores  repoTransformadores;
 	private List<Transformador> transformadores= new ArrayList<Transformador>();
 

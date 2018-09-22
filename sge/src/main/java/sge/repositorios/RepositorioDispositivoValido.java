@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import sge.dispositivo.Dispositivo;
+import sge.modelo.dispositivo.Dispositivo;
 import utils.ImportadorDispositivoValido;
 
 public class RepositorioDispositivoValido {

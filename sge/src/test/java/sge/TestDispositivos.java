@@ -8,8 +8,8 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import sge.modelo.dispositivo.*;
 import sge.repositorios.RepositorioDeDispositivos;
-import sge.dispositivo.*;
 
 
 public class TestDispositivos {

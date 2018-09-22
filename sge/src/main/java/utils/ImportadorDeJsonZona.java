@@ -8,7 +8,7 @@ import java.util.List;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import sge.posicionamiento.ZonaGeografica;
+import sge.modelo.posicionamiento.ZonaGeografica;
 
 
 public class ImportadorDeJsonZona {

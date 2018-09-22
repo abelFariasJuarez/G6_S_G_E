@@ -9,11 +9,11 @@ import java.util.List;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import sge.modelo.posicionamiento.Transformador;
+import sge.modelo.posicionamiento.ZonaGeografica;
+import sge.modelo.usuarios.Cliente;
 import sge.repositorios.RepositorioDeClientes;
 import sge.repositorios.RepositorioDeTransformadores;
-import sge.usuarios.Cliente;
-import sge.posicionamiento.Transformador;
-import sge.posicionamiento.ZonaGeografica;
 
 public class TestTransformador {
 	static RepositorioDeTransformadores repoT=RepositorioDeTransformadores.getinstance();

@@ -4,8 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import sge.dispositivo.*;
-
+import sge.modelo.dispositivo.*;
 import utils.ImportadorDeJsonDispositivo;
 
 public class RepositorioDeDispositivos {

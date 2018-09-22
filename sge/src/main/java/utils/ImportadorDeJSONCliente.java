@@ -5,7 +5,7 @@ import com.google.gson.GsonBuilder;
 
 import com.google.gson.reflect.TypeToken;
 
-import sge.usuarios.Cliente;
+import sge.modelo.usuarios.Cliente;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
