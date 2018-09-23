@@ -12,21 +12,21 @@ import javax.persistence.MappedSuperclass;
 public class Persistible implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	protected Long id;
+	protected Long oid;
 
 	protected Persistible() {
 	}
 
-	@Column(name = "id")
-	public Long getId() {
-		return id;
+	@Column(name = "oid")
+	public Long getOid() {
+		return oid;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setOid(Long id) {
+		this.oid = id;
 	}
 
 	public String toString() {
-		return getId() + "-" + this.getClass().getSimpleName();
+		return getOid() + "-" + this.getClass().getSimpleName();
 	}
 }

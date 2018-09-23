@@ -107,7 +107,7 @@ public class App {
 			}
 		}
 		
-	System.out.println(repoZonas.zonas().get(0).getTransformadores().get(1).getId());
+	System.out.println(repoZonas.zonas().get(0).getTransformadores().get(1).getOid());
 	
 	
 	
@@ -128,7 +128,7 @@ public class App {
 		ZonaGeografica zona = repoZonas.zonas().stream().filter(s -> s.pertenece(clientet)).findFirst().get();
 
 		Transformador trans = Collections.min(zona.getTransformadores(),Comparator.comparing(t -> t.Distancia(clientet)));
-		System.out.println(trans.getId());
+		System.out.println(trans.getOid());
 		trans.getClientes().add(clientet);
 		
 	}

@@ -5,18 +5,57 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+import sge.modelo.Persistible;
 import sge.modelo.usuarios.Cliente;
 
-public class ZonaGeografica {
-	private String nombre;
-	private Integer id;
-	private List<Transformador> transformadores = new ArrayList<Transformador>();
-	private List<Cliente> clientes = new ArrayList<Cliente>();
-	private Ubicacion centro;
-	private Float radio;
+@Entity
+@Table(name = "ZonaGeografica")
+public class ZonaGeografica extends Persistible {
 
+	@Column(name = "nombre")
+	private String nombre;
+	
+	@Column(name = "id")
+	private Integer id;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	private Ubicacion centro;
+	
+	@Column(name = "radio")
+	private Float radio;	
+	
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<Transformador> transformadores = new ArrayList<Transformador>();
+	
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<Cliente> clientes = new ArrayList<Cliente>();
+
+	
 	public List<Cliente> getClientes() {
 		return clientes;
+	}
+	
+	public Float getRadio() {
+		return radio;
+	}
+
+	public void setRadio(Float radio) {
+		this.radio = radio;
+	}
+
+	public void setTransformadores(List<Transformador> transformadores) {
+		this.transformadores = transformadores;
+	}
+
+	public void setClientes(List<Cliente> clientes) {
+		this.clientes = clientes;
 	}
 
 	public void addCliente(Cliente cliente) {

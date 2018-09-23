@@ -26,7 +26,6 @@ public class RepositorioDeTransformadores extends Repositorio {
 
 	public void guardarZona(Transformador transfo) {
 		transformadores.add(transfo);
-
 	}
 
 	public List<Transformador> transformadores() {
@@ -40,7 +39,6 @@ public class RepositorioDeTransformadores extends Repositorio {
 		try {
 			this.transformadores.addAll(json.getTransformadores());
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

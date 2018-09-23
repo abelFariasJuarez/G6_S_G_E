@@ -7,7 +7,7 @@ import java.util.List;
 import sge.modelo.posicionamiento.ZonaGeografica;
 import utils.ImportadorDeJsonZona;
 
-public class RepositorioDeZonas {
+public class RepositorioDeZonas extends Repositorio {
 	private static RepositorioDeZonas repoZonas;
 	private List<ZonaGeografica> zonas= new ArrayList<ZonaGeografica>();
 
@@ -36,7 +36,6 @@ public class RepositorioDeZonas {
 		try {
 			this.zonas.addAll(json.getZona());
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
