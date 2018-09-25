@@ -1,43 +1,51 @@
 package sge.modelo.dispositivo;
 
-public enum RestriccionHorasFamilia {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
-	AIRCONDITIONER(90.0,360.0),
+import sge.modelo.Persistible;
 
-	LAMP(90.0,360.0),
+@Entity
+@Table(name = "RestriccionHorasFamilia")
+public class RestriccionHorasFamilia extends Persistible{
+	
+	@Column(name = "codigo")
+	private String codigo;
+	@Column(name = "minimo")
+	private double minimo;
+	@Column(name = "maximo")
+	private double maximo;
+  
 
-	TV(90.0,360.0),
+	public RestriccionHorasFamilia(String codigo, double minimo, double maximo) {
+		super();
+		this.codigo = codigo;
+		this.minimo = minimo;
+		this.maximo = maximo;
+	}
+	
+	public RestriccionHorasFamilia() {
+		super();
+	}
 
-	WASHINGMACHINE(6.0,30.0),
-
-	COMPUTER(60.0,360.0),
-
-	MICROWAVE(3.0,15.0),
-
-	GRIDDLE(3.0,30.0),
-
-	FAN(120.0,360.0),
-
-	REFRIGERATOR(0.0, Double.MAX_VALUE);
-
-	//Campos tipo constante
-
-    private final double minimo;
-
-    private final double maximo;   
-
-    RestriccionHorasFamilia(double min, double max)
-
-    {
-
-    	minimo = min;
-
-    	maximo = max;
-
-    }    
-
-    public double minimo() { return minimo; }
-
-    public double maximo() { return maximo; }
+	public String getCodigo() {
+		return codigo;
+	}
+	public void setCodigo(String codigo) {
+		this.codigo = codigo;
+	}
+	public double getMinimo() {
+		return minimo;
+	}
+	public void setMinimo(double minimo) {
+		this.minimo = minimo;
+	}
+	public double getMaximo() {
+		return maximo;
+	}
+	public void setMaximo(double maximo) {
+		this.maximo = maximo;
+	}  
 
 }

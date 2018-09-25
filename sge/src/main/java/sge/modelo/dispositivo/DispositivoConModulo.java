@@ -59,13 +59,13 @@ public class DispositivoConModulo extends Inteligente {
 	}
 	
 	@Override
-	public RestriccionHorasFamilia restriccionHoras() {
-		return dispo.restriccionHoras();
+	public RestriccionHorasFamilia getRestriccionHoras() {
+		return dispo.getRestriccionHoras();
 	}
 	
 	@Override
-	public void restriccionHoras(RestriccionHorasFamilia  rhf) {
-		dispo.restriccionHoras(rhf);
+	public void setRestriccionHoras(RestriccionHorasFamilia rhf) {
+		dispo.setRestriccionHoras(rhf);
 	}
 	
 	@Override

@@ -1,5 +1,12 @@
 package sge.modelo.dispositivo;
 
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@DiscriminatorValue("E")
+@Table(name="EstadoAhorroDeEnergia")
 public class EstadoAhorroDeEnergia extends EstadoDispositivo {
 
 	EstadoAhorroDeEnergia() {

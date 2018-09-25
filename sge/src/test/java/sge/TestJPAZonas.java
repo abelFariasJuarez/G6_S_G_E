@@ -18,15 +18,12 @@ import sge.repositorios.RepositorioDeZonas;
 
 public class TestJPAZonas {
 
-	private static final String PERSISTENCE_UNIT_NAME = "db";
-	private EntityManagerFactory emFactory;
 	private Repositorio repositorio;
 
 	@Before
 	public void setUp() throws Exception {
-		emFactory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
 		repositorio = RepositorioDeZonas.getinstance();
-		repositorio.setEntityManager(emFactory.createEntityManager());
+		repositorio.abrir();
 	}
 
 	@Test
@@ -70,7 +67,6 @@ public class TestJPAZonas {
 	@After
 	public void tearDown() throws Exception {
 		repositorio.cerrar();
-		emFactory.close();
 	}
 
 }

@@ -11,38 +11,37 @@ import org.junit.Test;
 import sge.modelo.dispositivo.*;
 import sge.repositorios.RepositorioDeDispositivos;
 
-
 public class TestDispositivos {
 
-	/* por que funciona solo con static? hay algo mal en los repo?*/
+	/* por que funciona solo con static? hay algo mal en los repo? */
 	static RepositorioDeDispositivos repo2 = RepositorioDeDispositivos.getinstance();
 	static List<Dispositivo> Dispositivos;
+
 	@BeforeClass
 	public static void setUp() {
-	repo2.cargarDispositivos("todos");
-	Dispositivos = repo2.Dispositivos();
-	 
-	for (Dispositivo disp : Dispositivos) {
-		disp.presentate();
-	}
-	
+		repo2.cargarDispositivos("todos");
+		Dispositivos = repo2.Dispositivos();
+
+		for (Dispositivo disp : Dispositivos) {
+			disp.presentate();
+		}
 
 	}
-	
+
 	@Test
 	public void hayDispositivos() {
-		assertEquals(false,Dispositivos.isEmpty());
-		
+		assertEquals(false, Dispositivos.isEmpty());
+
 	}
+
 	@Test
 	public void ConsumoDispositivoEstandar() {
-		DispositivoEstandar disestandar = new DispositivoEstandar("microondas", 12.0,"perez",false,12.5);
+		DispositivoEstandar disestandar = new DispositivoEstandar("microondas", 12.0, "perez", false, 12.5);
 		LocalDateTime desde = LocalDateTime.parse("2018-05-18T20:30:00.775887700");
 		LocalDateTime hasta = LocalDateTime.parse("2018-06-18T20:30:00.775887700");
-		//seteo aproximado del cliente
-		 disestandar.setHorasEncendido(9.0);
-		 assertEquals(3348.0,disestandar.consumo_periodo(desde, hasta),0);
+		// seteo aproximado del cliente
+		disestandar.setHorasEncendido(9.0);
+		assertEquals(3348.0, disestandar.consumo_periodo(desde, hasta), 0);
 	}
-	
 
 }

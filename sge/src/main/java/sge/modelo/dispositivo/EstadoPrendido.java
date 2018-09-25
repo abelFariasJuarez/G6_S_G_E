@@ -1,5 +1,12 @@
 package sge.modelo.dispositivo;
 
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@DiscriminatorValue("P")
+@Table(name="EstadoPrendido")
 public class EstadoPrendido extends EstadoDispositivo {
 	
 	EstadoPrendido()

@@ -3,13 +3,31 @@ package sge.modelo.dispositivo;
 import java.time.Duration;
 import java.time.LocalDateTime;
 
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+
 import com.google.gson.annotations.SerializedName;
 
+@Entity
+@DiscriminatorValue("E")
+@Table(name="DispositivoEstandar")
 public class DispositivoEstandar extends Dispositivo {
 
 	@SerializedName ("type")
+	@Transient
 	private String type;
+
+	@Column(name = "horasEncendido")	
 	private Double horasEncendido;
+
+	public DispositivoEstandar() {
+	}
 
 	public DispositivoEstandar(String _nombre, Double _consumoPorHora,String _idUserName,Boolean _bajoconsumo,Double _horasEncendido) {
 		super(_nombre, _consumoPorHora,_idUserName, _bajoconsumo);
