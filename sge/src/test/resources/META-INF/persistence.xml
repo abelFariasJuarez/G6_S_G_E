@@ -15,7 +15,13 @@
 		<class>sge.modelo.dispositivo.EstadoAhorroDeEnergia</class>		
 		<class>sge.modelo.dispositivo.EstadoApagado</class>
 		<class>sge.modelo.dispositivo.EstadoPrendido</class>	
-		<class>sge.modelo.dispositivo.RestriccionHorasFamilia</class>	
+		<class>sge.modelo.dispositivo.RestriccionHorasFamilia</class>
+		<class>sge.modelo.dispositivo.Intervalo</class>
+		<class>sge.modelo.dispositivo.Inteligente</class>		
+		<class>sge.modelo.dispositivo.DispositivoInteligente</class>
+		<class>sge.modelo.dispositivo.DispositivoEstandar</class>
+		<class>sge.modelo.dispositivo.DispositivoConModulo</class>
+					
 		<class>sge.modelo.usuarios.UsuarioSGE</class> 
 		<class>sge.modelo.usuarios.Cliente</class>
 		    	

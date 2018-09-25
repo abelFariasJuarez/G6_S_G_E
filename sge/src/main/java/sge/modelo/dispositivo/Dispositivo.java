@@ -2,11 +2,14 @@ package sge.modelo.dispositivo;
 
 import java.time.LocalDateTime;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -23,7 +26,7 @@ public abstract class Dispositivo extends Persistible {
 	@SerializedName("username")
 	@Transient
 	protected String username;
-	@Transient
+	@ManyToOne(cascade = CascadeType.MERGE)
 	protected RestriccionHorasFamilia restriccionHoras;
 	@Column(name = "nombre")
 	protected String nombre;

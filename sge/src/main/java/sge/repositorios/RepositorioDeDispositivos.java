@@ -7,7 +7,7 @@ import java.util.List;
 import sge.modelo.dispositivo.*;
 import utils.ImportadorDeJsonDispositivo;
 
-public class RepositorioDeDispositivos {
+public class RepositorioDeDispositivos extends Repositorio {
 
 	private static RepositorioDeDispositivos repoDispositivos;
 

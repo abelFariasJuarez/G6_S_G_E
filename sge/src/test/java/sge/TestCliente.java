@@ -78,10 +78,10 @@ public class TestCliente {
 		dispo1.apagar();
 		dispo2.apagar();
 		
-		dispo1.intervalos.get(0).setInicio(desde);
-		dispo1.intervalos.get(0).setFin(hasta);
-		dispo2.intervalos.get(0).setInicio(desde);
-		dispo2.intervalos.get(0).setFin(hasta);
+		dispo1.getIntervalos().get(0).setInicio(desde);
+		dispo1.getIntervalos().get(0).setFin(hasta);
+		dispo2.getIntervalos().get(0).setInicio(desde);
+		dispo2.getIntervalos().get(0).setFin(hasta);
 		
 		dispos.add(dispo1);
 		dispos.add(dispo2);
@@ -172,10 +172,10 @@ public class TestCliente {
 		LocalDateTime desde_prendido = LocalDateTime.parse("2018-06-17T20:30:00.775887700");
 		LocalDateTime hasta_prendido = LocalDateTime.parse("2018-06-18T20:30:00.775887700");
 		// le seteo cuando empiezan y cuando terminan
-		dismodulo.intervalos.get(0).setInicio(desde_apagado);
-		dismodulo.intervalos.get(0).setFin(hasta_apagado);
-		dismodulo.intervalos.get(1).setInicio(desde_prendido);
-		dismodulo.intervalos.get(1).setFin(hasta_prendido);
+		dismodulo.getIntervalos().get(0).setInicio(desde_apagado);
+		dismodulo.getIntervalos().get(0).setFin(hasta_apagado);
+		dismodulo.getIntervalos().get(1).setInicio(desde_prendido);
+		dismodulo.getIntervalos().get(1).setFin(hasta_prendido);
 		// Desde-Hasta donde quiero el periodo
 		LocalDateTime desde = LocalDateTime.parse("2018-05-18T20:30:00.775887700");
 		LocalDateTime hasta = LocalDateTime.parse("2018-06-18T20:30:00.775887700");

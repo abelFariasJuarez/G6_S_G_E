@@ -115,7 +115,7 @@ public class TestModuloMejorCombinacion {
 		 * codigo duro solo para poder hacer el test, esto va a hacer que el lavaropas
 		 * este prendido desde el 19/05/2018, es decir muchas horas prendio Abel Farias
 		 */
-		lava2.intervalos.get(0).setInicio(desde);
+		lava2.getIntervalos().get(0).setInicio(desde);
 
 		GestorCliente unGestor = new GestorCliente();
 
@@ -157,7 +157,7 @@ public class TestModuloMejorCombinacion {
 		 * codigo duro solo para poder hacer el test, esto va a hacer que el lavaropas
 		 * este prendido desde el 19/05/2018, es decir muchas horas prendio Abel Farias
 		 */
-		lava2.intervalos.get(0).setInicio(desde);
+		lava2.getIntervalos().get(0).setInicio(desde);
 
 		GestorCliente unGestor = new GestorCliente();
 

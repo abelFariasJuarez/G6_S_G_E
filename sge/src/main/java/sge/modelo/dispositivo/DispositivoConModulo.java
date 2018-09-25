@@ -2,11 +2,28 @@ package sge.modelo.dispositivo;
 
 import java.time.LocalDateTime;
 
+import javax.persistence.CascadeType;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+
 import sge.modelo.driver.DriverBasico;
 
+@Entity
+@DiscriminatorValue("M")
+@Table(name="DispositivoConModulo")
 public class DispositivoConModulo extends Inteligente {
+	@Transient
 	private static Integer puntos = 10;
+	
+	@OneToOne(cascade = CascadeType.ALL)
 	private DispositivoEstandar dispo;
+	
+	public DispositivoConModulo() {
+		super();
+	}
 	
 	public DispositivoConModulo(DispositivoEstandar _dis,DriverBasico driver) {
 		
@@ -79,6 +96,6 @@ public class DispositivoConModulo extends Inteligente {
 	{
 		return dispo.mensualMaximoHoras();
 	}
-	
+
 
 }

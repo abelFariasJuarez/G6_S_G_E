@@ -11,18 +11,17 @@ import org.junit.Test;
 
 import sge.modelo.posicionamiento.Transformador;
 import sge.modelo.posicionamiento.Ubicacion;
+import sge.repositorios.Repositorio;
 import sge.repositorios.RepositorioDeTransformadores;
+import sge.repositorios.RepositorioDeZonas;
 
 public class TestJPATransformadores {
-	private static final String PERSISTENCE_UNIT_NAME = "db";
-	private EntityManagerFactory emFactory;
-	private RepositorioDeTransformadores repositorio;
+	private Repositorio repositorio;
 
 	@Before
 	public void setUp() throws Exception {
-		emFactory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
 		repositorio = RepositorioDeTransformadores.getinstance();
-		repositorio.setEntityManager(emFactory.createEntityManager());
+		repositorio.abrir();		
 	}
 
 	@Test
@@ -56,7 +55,6 @@ public class TestJPATransformadores {
 	@After
 	public void tearDown() throws Exception {
 		repositorio.cerrar();
-		emFactory.close();
 	}
 
 }

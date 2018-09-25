@@ -4,10 +4,28 @@ import java.time.Duration;
 
 import java.time.LocalDateTime;
 
-public class Intervalo {
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+import sge.modelo.Persistible;
+
+@Entity
+@Table(name = "Intervalo")
+public class Intervalo extends Persistible {
+
+	@Column(name = "inicio")
 	LocalDateTime inicio;
+	@Column(name = "fin")
 	LocalDateTime fin;
+	@OneToOne(cascade = CascadeType.ALL)
 	EstadoDispositivo estado;
+	
+	public Intervalo() {
+		super();
+	}
 
 	public double tiempoEnHorasValidoEntre(LocalDateTime instanteComienzo, LocalDateTime instanteFin) {
 		LocalDateTime desde = inicio;
@@ -70,4 +88,18 @@ public class Intervalo {
 	public void setEstado(EstadoDispositivo _estado) {
 		estado = _estado;
 	}
+
+	public LocalDateTime getInicio() {
+		return inicio;
+	}
+
+	public LocalDateTime getFin() {
+		return fin;
+	}
+
+	public EstadoDispositivo getEstado() {
+		return estado;
+	}
+	
+	
 }

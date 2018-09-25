@@ -16,15 +16,12 @@ import sge.repositorios.RepositorioDeClientes;
 
 public class TestJPAClientes {
 
-	private static final String PERSISTENCE_UNIT_NAME = "db";
-	private EntityManagerFactory emFactory;
 	private RepositorioDeClientes repositorio;
 
 	@Before
 	public void setUp() throws Exception {
-		emFactory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
 		repositorio = RepositorioDeClientes.getinstance();
-		repositorio.setEntityManager(emFactory.createEntityManager());
+		repositorio.abrir();
 	}
 
 	@Test
@@ -59,7 +56,6 @@ public class TestJPAClientes {
 	@After
 	public void tearDown() throws Exception {
 		repositorio.cerrar();
-		emFactory.close();
 	}
 
 }

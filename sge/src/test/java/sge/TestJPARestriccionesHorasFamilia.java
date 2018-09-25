@@ -27,7 +27,6 @@ public class TestJPARestriccionesHorasFamilia {
 	@Test
 	public void aPersistir() {		
 		assertEquals(true, true);
-
 	}
 
 	@After

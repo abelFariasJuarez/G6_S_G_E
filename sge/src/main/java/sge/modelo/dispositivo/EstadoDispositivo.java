@@ -1,5 +1,6 @@
 package sge.modelo.dispositivo;
 
+import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
@@ -15,7 +16,7 @@ import sge.modelo.Persistible;
 @Table(name = "EstadoDispositivo")
 public abstract class EstadoDispositivo extends Persistible{
 
-	@Transient 
+	@Column(name = "factor")
 	double factor;
 
 	public void prender(Inteligente dispositivoInteligente) {
@@ -37,6 +38,14 @@ public abstract class EstadoDispositivo extends Persistible{
 	public double consumoFinal(double consumoPorHora) {
 		double value = factor * consumoPorHora;
 		return value;
+	}
+
+	public double getFactor() {
+		return factor;
+	}
+
+	public void setFactor(double factor) {
+		this.factor = factor;
 	}
 
 }

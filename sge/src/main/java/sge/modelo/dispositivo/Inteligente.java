@@ -4,21 +4,46 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.MappedSuperclass;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+
 import sge.modelo.driver.DriverBasico;
 import sge.modelo.driver.RegistroDispositivos;
 import sge.modelo.driver.RegistroSensores;
 import sge.modelo.regla.Sensor;
 
+@Entity
+@Table(name = "Inteligente")
 public abstract class Inteligente extends Dispositivo {
 
-	public boolean encendido;
-	public List<Sensor> sensores= new ArrayList<Sensor>();
-	public EstadoDispositivo estado;
-	public List<Intervalo> intervalos = new ArrayList<Intervalo>();
-	public DriverBasico driver;
+	@Transient
+	private DriverBasico driver;
+	@Transient
+	private List<Sensor> sensores= new ArrayList<Sensor>();
 	
+	@Column(name = "encendido")
+	private boolean encendido;
+	@OneToOne(cascade = CascadeType.ALL)
+	private EstadoDispositivo estado;
+	@Column(name = "horasEncendido")
+	@OneToMany(orphanRemoval=true,cascade = CascadeType.ALL)
+	private List<Intervalo> intervalos = new ArrayList<Intervalo>();
+
 	
-	
+	public Inteligente() {
+		super();
+	}
+
 	public List<Sensor> getSensores() {
 		return sensores;
 	}
@@ -147,4 +172,29 @@ public abstract class Inteligente extends Dispositivo {
 	public void setDriver(DriverBasico driver) {
 		this.driver = driver;
 	}
+
+	public boolean isEncendido() {
+		return encendido;
+	}
+
+	public void setEncendido(boolean encendido) {
+		this.encendido = encendido;
+	}
+
+	public List<Intervalo> getIntervalos() {
+		return intervalos;
+	}
+
+	public void setIntervalos(List<Intervalo> intervalos) {
+		this.intervalos = intervalos;
+	}
+
+	public EstadoDispositivo getEstado() {
+		return estado;
+	}
+
+	public void setSensores(List<Sensor> sensores) {
+		this.sensores = sensores;
+	}
+		
 }
