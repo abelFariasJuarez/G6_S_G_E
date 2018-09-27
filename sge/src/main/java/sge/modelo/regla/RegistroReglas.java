@@ -1,11 +1,10 @@
-package sge.modelo.driver;
+package sge.modelo.regla;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import sge.modelo.dispositivo.Inteligente;
-import sge.modelo.regla.Regla;
 
 public class RegistroReglas {
 

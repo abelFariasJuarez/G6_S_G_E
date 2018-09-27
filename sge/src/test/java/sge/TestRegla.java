@@ -8,11 +8,10 @@ import java.util.List;
 import org.junit.Test;
 
 import sge.modelo.dispositivo.DispositivoInteligente;
-import sge.modelo.driver.AccionApagar;
-import sge.modelo.driver.AccionPrender;
+import sge.modelo.driver.ActuadorAhorro;
+import sge.modelo.driver.ActuadorApagar;
+import sge.modelo.driver.ActuadorPrender;
 import sge.modelo.driver.DriverBasico;
-import sge.modelo.driver.RegistroReglas;
-import sge.modelo.driver.RegistroSensores;
 import sge.modelo.regla.*;
 import sge.modelo.regla.comparador.*;
 
@@ -22,10 +21,8 @@ public class TestRegla {
 
 	@Test
 	public void cumpleCondicionesPrender() {
-
-		DriverBasico driver=new DriverBasico(new ActuadorApagar(), new ActuadorPrender(), new ActuadorAhorro());
-
-		DispositivoInteligente unAire = new DispositivoInteligente("AireAcondicionado", 2.3, "perez", false,false,driver);
+		
+		DispositivoInteligente unAire = new DispositivoInteligente("AireAcondicionado", 2.3, "perez", false,false,new DriverBasico());
 		// el constructor ya me da un dispo en estado apagado
 
 		Sensor temperatura = new Sensor(40.0, 10000.0, "temperatura");
@@ -60,8 +57,7 @@ public class TestRegla {
 	@Test
 	public void noCumpleCondicionesNoApagar() {
 		
-		DriverBasico driver=new DriverBasico(new ActuadorApagar(), new ActuadorPrender(), new ActuadorAhorro());
-		DispositivoInteligente unAire = new DispositivoInteligente("AireAcondicionado", 2.8, "perez",false, true,driver);
+		DispositivoInteligente unAire = new DispositivoInteligente("AireAcondicionado", 2.8, "perez",false, true,new DriverBasico());
 
 		Sensor temperatura2 = new Sensor(18, 2000.0, "temperatura2");
 		Condicion condTemp = new Condicion(temperatura2, new Igual(), 20.0);

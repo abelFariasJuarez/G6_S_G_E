@@ -2,17 +2,21 @@ package sge;
 
 import static org.junit.Assert.assertEquals;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import sge.modelo.dispositivo.DispositivoConModulo;
+import sge.modelo.dispositivo.DispositivoEstandar;
 import sge.modelo.dispositivo.DispositivoInteligente;
+import sge.modelo.driver.ActuadorAhorro;
+import sge.modelo.driver.ActuadorApagar;
+import sge.modelo.driver.ActuadorPrender;
 import sge.modelo.driver.DriverBasico;
-import sge.modelo.regla.ActuadorAhorro;
-import sge.modelo.regla.ActuadorApagar;
-import sge.modelo.regla.ActuadorPrender;
+import sge.modelo.usuarios.Cliente;
 import sge.repositorios.Repositorio;
 import sge.repositorios.RepositorioDeDispositivos;
 import sge.repositorios.RepositorioRestriccionHorasFamilia;
@@ -28,11 +32,10 @@ public class TestJPADispositivos {
 
 	@Test
 	public void aPersistirInteligentes() {	
-		DriverBasico driver = new DriverBasico(new ActuadorApagar(), new ActuadorPrender(), new ActuadorAhorro());
-
-		DispositivoInteligente air2 = new DispositivoInteligente("heladera", 0.18, true, driver);
-		DispositivoInteligente lava2 = new DispositivoInteligente("lavadora", 0.875, true, driver);
-		DispositivoInteligente unVenti2 = new DispositivoInteligente("Ventilador", 0.06, true, driver);
+		
+		DispositivoInteligente air2 = new DispositivoInteligente("heladera", 0.18, true, new DriverBasico());
+		DispositivoInteligente lava2 = new DispositivoInteligente("lavadora", 0.875, true, new DriverBasico());
+		DispositivoInteligente unVenti2 = new DispositivoInteligente("Ventilador", 0.06, true, new DriverBasico());
 
 		air2.setRestriccionHoras(RepositorioRestriccionHorasFamilia.getinstance().findBy("codigo", "AIRCONDITIONER"));
 		lava2.setRestriccionHoras(RepositorioRestriccionHorasFamilia.getinstance().findBy("codigo", "WASHINGMACHINE"));
@@ -53,8 +56,19 @@ public class TestJPADispositivos {
 		repositorio.persistir(lava2);
 		repositorio.persistir(unVenti2);
 	}
+	
+	@Test
+	public void aPersistirConModulo() {
+		DispositivoEstandar comun = new DispositivoEstandar("microondas", 12.0, "pepe",false,10.0);
+		Cliente unCliente = new Cliente("Pedro", "Ramon", "Plaza", LocalDate.of(1989, 11, 11), "pedro", "nikita", "dni",
+				31032123, 115322011);
+		unCliente.addDispositivo(comun);
+		
+		DispositivoConModulo conModulo = unCliente.agrega_modulo_a_estandar(comun);
+		repositorio.persistir(conModulo);
+	}
 
-	@After
+	@After	
 	public void tearDown() throws Exception {
 		repositorio.cerrar();
 	}

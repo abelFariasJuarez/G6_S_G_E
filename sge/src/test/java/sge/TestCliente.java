@@ -14,10 +14,10 @@ import org.junit.Test;
 import sge.repositorios.RepositorioDeClientes;
 import sge.repositorios.RepositorioDeDispositivos;
 import sge.modelo.dispositivo.*;
+import sge.modelo.driver.ActuadorAhorro;
+import sge.modelo.driver.ActuadorApagar;
+import sge.modelo.driver.ActuadorPrender;
 import sge.modelo.driver.DriverBasico;
-import sge.modelo.regla.ActuadorAhorro;
-import sge.modelo.regla.ActuadorApagar;
-import sge.modelo.regla.ActuadorPrender;
 import sge.modelo.usuarios.Categoria;
 import sge.modelo.usuarios.Cliente;
 
@@ -49,9 +49,7 @@ public class TestCliente {
 		
 		//------------------------------------------------------------
 		cli=clientes.get(0);
-		DriverBasico driver=new DriverBasico(new ActuadorApagar(), new ActuadorPrender(), new ActuadorAhorro());
-
-		DispositivoInteligente pc = new DispositivoInteligente("televisor", 5.0,"cazana",false,true,driver);
+		DispositivoInteligente pc = new DispositivoInteligente("televisor", 5.0,"cazana",false,true,new DriverBasico());
 		cli.addDispositivo(pc);
 		//------------------------------------------------------------
 		
@@ -72,8 +70,8 @@ public class TestCliente {
 		LocalDateTime desde = LocalDateTime.parse("2018-05-19T20:00:00.000000000");
 		LocalDateTime hasta = LocalDateTime.parse("2018-05-19T22:00:00.000000000");
 
-		dispo1=new DispositivoInteligente("heladera", 10.0,"cazana",false,true,driver);
-		dispo2=new DispositivoInteligente("televisor", 5.0,"cazana",false,true,driver);
+		dispo1=new DispositivoInteligente("heladera", 10.0,"cazana",false,true,new DriverBasico());
+		dispo2=new DispositivoInteligente("televisor", 5.0,"cazana",false,true,new DriverBasico());
 		
 		dispo1.apagar();
 		dispo2.apagar();

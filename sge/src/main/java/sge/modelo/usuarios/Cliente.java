@@ -16,8 +16,9 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import sge.modelo.dispositivo.*;
-import sge.modelo.driver.Accion;
-import sge.modelo.driver.AccionApagar;
+import sge.modelo.driver.ActuadorAhorro;
+import sge.modelo.driver.ActuadorApagar;
+import sge.modelo.driver.ActuadorPrender;
 import sge.modelo.driver.DriverBasico;
 import sge.modelo.hogareficiente.*;
 import sge.modelo.posicionamiento.Ubicacion;
@@ -166,9 +167,8 @@ public class Cliente extends UsuarioSGE {
 	public DispositivoConModulo agrega_modulo_a_estandar(DispositivoEstandar comun) {
 		if (!dispositivos.contains(comun))
 			throw new RuntimeException("solo se puede convertir dispositivos registrados");
-		DriverBasico driver=new DriverBasico(new ActuadorApagar(), new ActuadorPrender(), new ActuadorAhorro());
 
-		DispositivoConModulo conModulo = new DispositivoConModulo(comun, false,driver);
+		DispositivoConModulo conModulo = new DispositivoConModulo(comun, false,new DriverBasico());
 		dispositivos.remove(comun);
 		dispositivos.add(conModulo);
 

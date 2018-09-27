@@ -5,8 +5,6 @@ import java.util.Observable;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import sge.modelo.driver.RegistroSensores;
-
 public class Sensor extends Observable{
 
 	double medicion;

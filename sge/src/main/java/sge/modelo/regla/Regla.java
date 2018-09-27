@@ -1,54 +1,35 @@
 package sge.modelo.regla;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
 import sge.modelo.dispositivo.Inteligente;
-import sge.modelo.driver.Accion;
-
 
 public class Regla {
-
 
 	private String name;
 	private List<Condicion> condiciones = new ArrayList<Condicion>();
 	private List<Accion> acciones = new ArrayList<Accion>();
 
 	public Regla(String _name) {
-
 		name = _name;
-
 	}
-	
+
 	public void accionarSiCorresponde(Inteligente dispo) {
 		if (this.verificarCondiciones()) {
 			this.ejecutarAcciones(dispo);
-			
 		}
-		
-		
-		
+
 	}
 
-	
-	
 	private void ejecutarAcciones(Inteligente dispo) {
 		acciones.forEach(a -> a.ejecutar(dispo));
-
 	}
 
-	
-	
 	private boolean verificarCondiciones() {
 		return condiciones.stream().allMatch(cond -> cond.meCumplo());
-
 	}
 
-	
-	
-	
-	
 	public void agregarCondicion(Condicion unaCondicion) {
 		condiciones.add(unaCondicion);
 	}
@@ -82,5 +63,3 @@ public class Regla {
 	}
 
 }
-
-

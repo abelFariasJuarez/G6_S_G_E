@@ -11,11 +11,11 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import sge.modelo.dispositivo.*;
+import sge.modelo.driver.ActuadorAhorro;
+import sge.modelo.driver.ActuadorApagar;
+import sge.modelo.driver.ActuadorPrender;
 import sge.modelo.driver.DriverBasico;
 import sge.modelo.hogareficiente.Recomendacion;
-import sge.modelo.regla.ActuadorAhorro;
-import sge.modelo.regla.ActuadorApagar;
-import sge.modelo.regla.ActuadorPrender;
 import sge.modelo.usuarios.Cliente;
 import sge.modelo.usuarios.GestorCliente;
 import sge.repositorios.RepositorioRestriccionHorasFamilia;
@@ -25,9 +25,8 @@ public class TestModuloMejorCombinacion {
 	public void testSistemaCompatibleDeterminado() {
 		Cliente unCliente = new Cliente("Carlos", "Sanazki", "condarco 148", LocalDate.of(2017, 4, 7), "cazana",
 				"menToL2017", "Dni", 21321012, 1543312310);
-		DriverBasico driver = new DriverBasico(new ActuadorApagar(), new ActuadorPrender(), new ActuadorAhorro());
-
-		DispositivoInteligente air = new DispositivoInteligente("heladera", 0.18, true, driver);
+		
+		DispositivoInteligente air = new DispositivoInteligente("heladera", 0.18, true, new DriverBasico());
 		DispositivoEstandar lava = new DispositivoEstandar("lavadora", 0.875, true);
 		DispositivoEstandar unVenti = new DispositivoEstandar("Ventilador", 0.06, true);
 
@@ -51,9 +50,8 @@ public class TestModuloMejorCombinacion {
 	public void canYouGetMejorCombinacionDispositivosFalse() {
 		Cliente unCliente = new Cliente("Carlos", "Sanazki", "condarco 148", LocalDate.of(2017, 4, 7), "cazana",
 				"menToL2017", "Dni", 21321012, 1543312310);
-		DriverBasico driver = new DriverBasico(new ActuadorApagar(), new ActuadorPrender(), new ActuadorAhorro());
-
-		DispositivoInteligente air = new DispositivoInteligente("heladera", 1000.0, true, driver);
+		
+		DispositivoInteligente air = new DispositivoInteligente("heladera", 1000.0, true, new DriverBasico());
 		DispositivoEstandar pc = new DispositivoEstandar("Computadora", 2000.0, true);
 		DispositivoEstandar unVenti = new DispositivoEstandar("Ventilador", 3000.0, true);
 		
@@ -75,11 +73,10 @@ public class TestModuloMejorCombinacion {
 		Cliente cliente1 = new Cliente("Carlos", "Sanazki", "condarco 148", LocalDate.of(2017, 4, 7), "cazana",
 				"menToL2017", "Dni", 21321012, 1543312310);
 		cliente1.setAhorroAutomatico(true);
-		DriverBasico driver = new DriverBasico(new ActuadorApagar(), new ActuadorPrender(), new ActuadorAhorro());
-
-		DispositivoInteligente air1 = new DispositivoInteligente("heladera", 0.18, true, driver);
-		DispositivoInteligente lava1 = new DispositivoInteligente("lavadora", 0.875, true, driver);
-		DispositivoInteligente unVenti1 = new DispositivoInteligente("Ventilador", 0.06, true, driver);
+		
+		DispositivoInteligente air1 = new DispositivoInteligente("heladera", 0.18, true, new DriverBasico());
+		DispositivoInteligente lava1 = new DispositivoInteligente("lavadora", 0.875, true, new DriverBasico());
+		DispositivoInteligente unVenti1 = new DispositivoInteligente("Ventilador", 0.06, true, new DriverBasico());
 
 		air1.setRestriccionHoras(RepositorioRestriccionHorasFamilia.getinstance().findBy("codigo", "AIRCONDITIONER"));
 		lava1.setRestriccionHoras(RepositorioRestriccionHorasFamilia.getinstance().findBy("codigo", "WASHINGMACHINE"));
@@ -96,9 +93,9 @@ public class TestModuloMejorCombinacion {
 				"menToL2017", "Dni", 21321013, 1543312311);
 		cliente2.setAhorroAutomatico(true);
 
-		DispositivoInteligente air2 = new DispositivoInteligente("heladera", 0.18, true, driver);
-		DispositivoInteligente lava2 = new DispositivoInteligente("lavadora", 0.875, true, driver);
-		DispositivoInteligente unVenti2 = new DispositivoInteligente("Ventilador", 0.06, true, driver);
+		DispositivoInteligente air2 = new DispositivoInteligente("heladera", 0.18, true, new DriverBasico());
+		DispositivoInteligente lava2 = new DispositivoInteligente("lavadora", 0.875, true, new DriverBasico());
+		DispositivoInteligente unVenti2 = new DispositivoInteligente("Ventilador", 0.06, true, new DriverBasico());
 
 		air2.setRestriccionHoras(RepositorioRestriccionHorasFamilia.getinstance().findBy("codigo", "AIRCONDITIONER"));
 		lava2.setRestriccionHoras(RepositorioRestriccionHorasFamilia.getinstance().findBy("codigo", "WASHINGMACHINE"));
@@ -136,11 +133,10 @@ public class TestModuloMejorCombinacion {
 		Cliente cliente2 = new Cliente("Carla", "Sanazki", "condarco 149", LocalDate.of(2017, 4, 7), "cazana",
 				"menToL2017", "Dni", 21321013, 1543312311);
 		cliente2.setAhorroAutomatico(false);
-		DriverBasico driver = new DriverBasico(new ActuadorApagar(), new ActuadorPrender(), new ActuadorAhorro());
-
-		DispositivoInteligente air2 = new DispositivoInteligente("heladera", 0.18, true, driver);
-		DispositivoInteligente lava2 = new DispositivoInteligente("lavadora", 0.875, true, driver);
-		DispositivoInteligente unVenti2 = new DispositivoInteligente("Ventilador", 0.06, true, driver);
+		
+		DispositivoInteligente air2 = new DispositivoInteligente("heladera", 0.18, true, new DriverBasico());
+		DispositivoInteligente lava2 = new DispositivoInteligente("lavadora", 0.875, true, new DriverBasico());
+		DispositivoInteligente unVenti2 = new DispositivoInteligente("Ventilador", 0.06, true, new DriverBasico());
 
 		air2.setRestriccionHoras(RepositorioRestriccionHorasFamilia.getinstance().findBy("codigo", "AIRCONDITIONER"));
 		lava2.setRestriccionHoras(RepositorioRestriccionHorasFamilia.getinstance().findBy("codigo", "WASHINGMACHINE"));

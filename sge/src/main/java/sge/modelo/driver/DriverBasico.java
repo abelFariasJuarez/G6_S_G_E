@@ -5,31 +5,42 @@ import sge.modelo.regla.*;
 
 public class DriverBasico {
 
+	Inteligente miDispositivo;
 	ActuadorApagar adapterApagar;
 	ActuadorPrender adapterPrender;
 	ActuadorAhorro adapterAhorro;
 	
-	public DriverBasico(ActuadorApagar adapterApagar, ActuadorPrender adapterPrender, ActuadorAhorro adapterAhorro) {
-		super();
-		this.adapterApagar = adapterApagar;
-		this.adapterPrender = adapterPrender;
-		this.adapterAhorro = adapterAhorro;
+	public DriverBasico() {	
+		/*Creamos los drives con acciones basicas por default, 
+		 * luego si un fabricante quiere agregar mas acciones, slo se tendra que agregar mas clases*/
+		this.adapterApagar = new ActuadorApagar();
+		this.adapterPrender = new ActuadorPrender();
+		this.adapterAhorro = new ActuadorAhorro();
 	}
 
-	public void prender(Inteligente dispo) {
+	public void prender() {
+		miDispositivo.prender();
 		adapterPrender.ejecutarAccion();
 	}
 
-	public void apagar(Inteligente dispo) {
+	public void apagar() {
+		miDispositivo.apagar();
 		adapterApagar.ejecutarAccion();
 	}
 
-	public void ahorroDeEnergia(Inteligente dispo) {
+	public void ahorroDeEnergia() {
+		miDispositivo.ahorroDeEnergia();
 		adapterAhorro.ejecutarAccion();
 	}
 
 	
-	
+	public Inteligente getMiDispositivo() {
+		return miDispositivo;
+	}
+
+	public void setMiDispositivo(Inteligente miDispositivo) {
+		this.miDispositivo = miDispositivo;
+	}	
 	
 	public ActuadorApagar getAdapterApagar() {
 		return adapterApagar;

@@ -1,4 +1,4 @@
-package sge.modelo.driver;
+package sge.modelo.regla;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -6,7 +6,6 @@ import java.util.Observable;
 import java.util.Observer;
 
 import sge.modelo.dispositivo.Inteligente;
-import sge.modelo.regla.Sensor;
 
 public class RegistroSensores implements Observer{
 

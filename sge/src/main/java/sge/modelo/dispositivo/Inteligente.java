@@ -18,8 +18,8 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import sge.modelo.driver.DriverBasico;
-import sge.modelo.driver.RegistroDispositivos;
-import sge.modelo.driver.RegistroSensores;
+import sge.modelo.regla.RegistroDispositivos;
+import sge.modelo.regla.RegistroSensores;
 import sge.modelo.regla.Sensor;
 
 @Entity
@@ -58,7 +58,6 @@ public abstract class Inteligente extends Dispositivo {
 		super(_nombre, _consumoPorHora, _idUserName, _bajoconsumo);
 		// para que se genere el primer intervalo prendido, primero lo apago y despues
 		// lo prendo afarias
-		driver=_driver;
 		if (_encendido) {
 			estado = new EstadoApagado();
 			this.prender();
@@ -66,7 +65,7 @@ public abstract class Inteligente extends Dispositivo {
 			estado = new EstadoPrendido();
 			this.apagar();
 		}
-		
+		this.setDriver(_driver);
 		RegistroDispositivos.getInstance().registrarDispositivo(this);
 	}
 
@@ -102,19 +101,15 @@ public abstract class Inteligente extends Dispositivo {
 		if (estado == null) {
 			estado = new EstadoApagado();
 		}
-
 		estado.prender(this);
-		driver.apagar(this);
 	}
 
 	public void apagar() {
-		estado.apagar(this);
-		driver.apagar(this);
+		estado.apagar(this);		
 	}
 
 	public void ahorroDeEnergia() {
-		estado.ahorroDeEnergia(this);
-		driver.ahorroDeEnergia(this);
+		estado.ahorroDeEnergia(this);		
 	}
 
 	public double consumo_ultimas_n_horas(double horas) {
@@ -171,6 +166,7 @@ public abstract class Inteligente extends Dispositivo {
 
 	public void setDriver(DriverBasico driver) {
 		this.driver = driver;
+		driver.setMiDispositivo(this);
 	}
 
 	public boolean isEncendido() {

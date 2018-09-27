@@ -1,4 +1,4 @@
-package sge.modelo.regla;
+package sge.modelo.driver;
 
 import sge.modelo.dispositivo.Inteligente;
 

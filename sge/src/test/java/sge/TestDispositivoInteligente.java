@@ -7,18 +7,17 @@ import java.time.LocalDateTime;
 import org.junit.Test;
 
 import sge.modelo.dispositivo.*;
+import sge.modelo.driver.ActuadorAhorro;
+import sge.modelo.driver.ActuadorApagar;
+import sge.modelo.driver.ActuadorPrender;
 import sge.modelo.driver.DriverBasico;
-import sge.modelo.regla.ActuadorAhorro;
-import sge.modelo.regla.ActuadorApagar;
-import sge.modelo.regla.ActuadorPrender;
 
 public class TestDispositivoInteligente {
 
 	@Test
 	public void unaHoraPrendido() {
-		DriverBasico driver=new DriverBasico(new ActuadorApagar(), new ActuadorPrender(), new ActuadorAhorro());
-
-		DispositivoInteligente unDispo = new DispositivoInteligente("heladera", 2.3,"pepe",false, true,driver);
+		
+		DispositivoInteligente unDispo = new DispositivoInteligente("heladera", 2.3,"pepe",false, true,new DriverBasico());
 		// el constructor ya me da un dispo en estado prendido
 		unDispo.apagar();
 
@@ -34,9 +33,8 @@ public class TestDispositivoInteligente {
 
 	@Test
 	public void mediaHoraApagadoMediaHoraPrendido() {
-		DriverBasico driver=new DriverBasico(new ActuadorApagar(), new ActuadorPrender(), new ActuadorAhorro());
-
-		DispositivoInteligente unDispo = new DispositivoInteligente("heladera", 2.3,"perez",false, false,driver);
+		
+		DispositivoInteligente unDispo = new DispositivoInteligente("heladera", 2.3,"perez",false, false,new DriverBasico());
 		// el constructor ya me da un dispo en estado apagado
 		unDispo.prender();
 
@@ -56,9 +54,8 @@ public class TestDispositivoInteligente {
 
 	@Test
 	public void mediaHoraAhorroEnergiaMediaHoraPrendido() {
-		DriverBasico driver=new DriverBasico(new ActuadorApagar(), new ActuadorPrender(), new ActuadorAhorro());
 
-		DispositivoInteligente unDispo = new DispositivoInteligente("heladera", 2.3,"pepe",false, false,driver);
+		DispositivoInteligente unDispo = new DispositivoInteligente("heladera", 2.3,"pepe",false, false,new DriverBasico());
 		// el constructor ya me da un dispo en estado apagado
 		unDispo.ahorroDeEnergia();
 		unDispo.prender();
@@ -80,8 +77,7 @@ public class TestDispositivoInteligente {
 
 	@Test
 	public void prendidoPeroNoUltimaHora() {
-		DriverBasico driver=new DriverBasico(new ActuadorApagar(), new ActuadorPrender(), new ActuadorAhorro());
-		DispositivoInteligente unDispo = new DispositivoInteligente("heladera", 2.3,"pepe",false, false,driver);
+		DispositivoInteligente unDispo = new DispositivoInteligente("heladera", 2.3,"pepe",false, false,new DriverBasico());
 		// el constructor ya me da un dispo en estado prendido
 
 

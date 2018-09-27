@@ -1,17 +1,17 @@
-package sge.modelo.regla;
+package sge.modelo.driver;
 
 import sge.modelo.dispositivo.Inteligente;
 
-public class ActuadorAhorro implements AdapterActuador {
+public class ActuadorPrender implements AdapterActuador {
 
-	
 
 
 	@Override
 	public void ejecutarAccion() {
+
 		System.out.printf("Accion sobre el dispo fisico");
+
 	}
 
 
-	
 }
