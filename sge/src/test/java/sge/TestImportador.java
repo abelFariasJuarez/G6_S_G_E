@@ -4,7 +4,8 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import sge.repositorios.RepositorioDeClientes;
+import sge.repositorios.Clientes;
+import sge.repositorios.Repositorio;
 import sge.repositorios.RepositorioDeDispositivos;
 import sge.repositorios.RepositorioDeTransformadores;
 import sge.repositorios.RepositorioDeZonas;
@@ -55,11 +56,11 @@ public class TestImportador {
 
 	@Test
 	public void ImportadorJsonCliente() {
-		RepositorioDeClientes repoClientes = RepositorioDeClientes.getinstance();
+		Clientes repoClientes = (new Repositorio()).clientes();
 		repoClientes.cargarClientes();
-		assertEquals(4, repoClientes.clientes().size());
+		assertEquals(4, repoClientes.getClientes().size());
 
-		for (Cliente cli : repoClientes.clientes()) {
+		for (Cliente cli : repoClientes.getClientes()) {
 
 			cli.presentate();
 		}

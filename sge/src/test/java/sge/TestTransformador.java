@@ -12,12 +12,13 @@ import org.junit.Test;
 import sge.modelo.posicionamiento.Transformador;
 import sge.modelo.posicionamiento.ZonaGeografica;
 import sge.modelo.usuarios.Cliente;
-import sge.repositorios.RepositorioDeClientes;
+import sge.repositorios.Clientes;
+import sge.repositorios.Repositorio;
 import sge.repositorios.RepositorioDeTransformadores;
 
 public class TestTransformador {
 	static RepositorioDeTransformadores repoT = RepositorioDeTransformadores.getinstance();
-	static RepositorioDeClientes repoC = RepositorioDeClientes.getinstance();
+	static Clientes repoC = (new Repositorio()).clientes();
 
 	@BeforeClass
 	public static void setUp() {
@@ -31,7 +32,7 @@ public class TestTransformador {
 	public void DistanciaClienteACualquierTransformador() {
 		Transformador transfo = repoT.transformadores().get(0);
 
-		Cliente cliente = repoC.Clientes().get(1);
+		Cliente cliente = repoC.getClientes().get(1);
 		assertEquals(517.2852211304707, transfo.Distancia(cliente), 0);
 
 	}
@@ -39,7 +40,7 @@ public class TestTransformador {
 	@Test
 	public void DistanciaClienteATransformadorMasCercano() {
 		List<Transformador> transformadores = repoT.transformadores();
-		Cliente cliente = repoC.Clientes().get(1);
+		Cliente cliente = repoC.getClientes().get(1);
 		Transformador transfoCercano = Collections.min(transformadores,
 				Comparator.comparing(t -> t.Distancia(cliente)));
 

@@ -20,7 +20,8 @@ import sge.modelo.regla.Regla;
 import sge.modelo.regla.Sensor;
 import sge.modelo.regla.comparador.*;
 import sge.modelo.usuarios.Cliente;
-import sge.repositorios.RepositorioDeClientes;
+import sge.repositorios.Clientes;
+import sge.repositorios.Repositorio;
 import sge.repositorios.RepositorioDeTransformadores;
 import sge.repositorios.RepositorioDeZonas;
 
@@ -103,19 +104,19 @@ public class App {
 
 		System.out.println(repoZonas.zonas().get(0).getTransformadores().get(1).getOid());
 
-		RepositorioDeClientes repoClientes = RepositorioDeClientes.getinstance();
+		Clientes repoClientes = (new Repositorio()).clientes();
 		repoClientes.cargarClientes();
-		for (Cliente cli : repoClientes.clientes()) {
+		for (Cliente cli : repoClientes.getClientes()) {
 			System.out.println(cli.getApellido());
 		}
 
-		System.out.println(repoZonas.zonas().get(0).pertenece(repoClientes.clientes().get(0)));
-		System.out.println(repoZonas.zonas().get(0).pertenece(repoClientes.clientes().get(1)));
-		System.out.println(repoZonas.zonas().get(0).pertenece(repoClientes.clientes().get(2)));
+		System.out.println(repoZonas.zonas().get(0).pertenece(repoClientes.getClientes().get(0)));
+		System.out.println(repoZonas.zonas().get(0).pertenece(repoClientes.getClientes().get(1)));
+		System.out.println(repoZonas.zonas().get(0).pertenece(repoClientes.getClientes().get(2)));
 
 		// ultimas pruebas falta corregir esto nullpointer al querer agregar cliente
 
-		for (Cliente clientet : repoClientes.clientes()) {
+		for (Cliente clientet : repoClientes.getClientes()) {
 			ZonaGeografica zona = repoZonas.zonas().stream().filter(s -> s.pertenece(clientet)).findFirst().get();
 
 			Transformador trans = Collections.min(zona.getTransformadores(),

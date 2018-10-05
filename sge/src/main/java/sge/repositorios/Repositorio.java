@@ -21,6 +21,7 @@ public class Repositorio {
 	private Comparaciones comparaciones;
 	private Condiciones condiciones;
 	private Reglas reglas;
+	private Clientes clientes;
 
 	public Repositorio() {
 	}
@@ -57,6 +58,13 @@ public class Repositorio {
 		return reglas;
 	}
 
+	public Clientes clientes() {
+		if (clientes == null) {
+			clientes = new Clientes(entityManager);
+		}
+		return clientes;
+	}
+	
 	public EntityManager getEntityManager() {
 		return entityManager;
 	}

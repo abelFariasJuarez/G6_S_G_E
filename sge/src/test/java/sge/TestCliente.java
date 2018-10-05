@@ -11,7 +11,8 @@ import java.util.List;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import sge.repositorios.RepositorioDeClientes;
+import sge.repositorios.Clientes;
+import sge.repositorios.Repositorio;
 import sge.repositorios.RepositorioDeDispositivos;
 import sge.modelo.dispositivo.*;
 import sge.modelo.driver.ActuadorAhorro;
@@ -21,11 +22,9 @@ import sge.modelo.driver.DriverBasico;
 import sge.modelo.usuarios.Categoria;
 import sge.modelo.usuarios.Cliente;
 
-
-
 public class TestCliente {
 
-	static RepositorioDeClientes repo = RepositorioDeClientes.getinstance();
+	static Clientes repo = (new Repositorio()).clientes();
 	static List<Cliente> clientes;
 	static Cliente cli,cli2;
 	static Categoria unaCategoria;
@@ -44,7 +43,7 @@ public class TestCliente {
 		dispositivos = repo2.Dispositivos();
 		repo.cargarClientes();
 		
-		clientes = repo.clientes();
+		clientes = repo.getClientes();
 		unaCategoria = new Categoria("r1", 18.76f, 0.644f, 0f, 150.0f);
 		
 		//------------------------------------------------------------
@@ -54,7 +53,7 @@ public class TestCliente {
 		//------------------------------------------------------------
 		
 		cli2=clientes.get(1);
-		for (Cliente cli : repo.clientes()) {
+		for (Cliente cli : repo.getClientes()) {
 			for (Dispositivo dis : repo2.Dispositivos) {
 				if (cli.getUsername().equals(dis.getIdUserName())) {
 					cli.addDispositivo(dis);
@@ -64,7 +63,7 @@ public class TestCliente {
 		
 		}
 		
-		clientes = repo.clientes();
+		clientes = repo.getClientes();
 		
 		
 		LocalDateTime desde = LocalDateTime.parse("2018-05-19T20:00:00.000000000");

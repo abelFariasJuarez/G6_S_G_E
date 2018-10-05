@@ -15,15 +15,15 @@ import sge.modelo.posicionamiento.Ubicacion;
 import sge.modelo.usuarios.Administrador;
 import sge.modelo.usuarios.Categoria;
 import sge.modelo.usuarios.Cliente;
-import sge.repositorios.RepositorioDeClientes;
+import sge.repositorios.Repositorio;
 
 public class TestJPAUsuarios {
 
-	private RepositorioDeClientes repositorio;
+	private Repositorio repositorio;
 
 	@Before
 	public void setUp() throws Exception {
-		repositorio = RepositorioDeClientes.getinstance();
+		repositorio = new Repositorio();
 		repositorio.abrir();
 	}
 
@@ -46,27 +46,6 @@ public class TestJPAUsuarios {
 				"pepe", "pasti");
 		repositorio.persistir(admin);
 	}
-
-	
-	/*@Test
-	public void buscarComunaPorId() {
-		Comuna comuna = repositorio.comunas().buscarPorId(1L);
-		System.out.println("Comuna encontrada por ID: " + comuna.getNombre());
-	}*/
-
-	/*@Test
-	public void buscarPoiPorId() {
-		Poi poi = repositorio.pois().buscarPorId(2L);
-		System.out.println("Poi encontrado por ID: " + poi.getNombre());
-	}
-
-	@Test
-	public void buscarPoiPorNombre() {
-		List<Poi> pois = repositorio.pois().buscarPoiPorNombre("JUM");
-		for (Poi poi : pois) {
-			System.out.println("Encontró el punto de interés: " + poi.getNombre());
-		}
-	}*/
 
 	@After
 	public void tearDown() throws Exception {

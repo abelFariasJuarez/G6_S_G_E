@@ -5,13 +5,14 @@ import java.util.Comparator;
 import java.util.List;
 
 import sge.modelo.posicionamiento.*;
-import sge.repositorios.RepositorioDeClientes;
+import sge.repositorios.Clientes;
+import sge.repositorios.Repositorio;
 import sge.repositorios.RepositorioDeTransformadores;
 import sge.repositorios.RepositorioDeZonas;
 
 public class GestorCliente {
 
-	private RepositorioDeClientes repoClientes = RepositorioDeClientes.getinstance();
+	private Clientes repoClientes = (new Repositorio()).clientes();
 	private RepositorioDeZonas repoZonas = RepositorioDeZonas.getinstance();
 	private RepositorioDeTransformadores repoTransformadores = RepositorioDeTransformadores.getinstance();
 
@@ -35,7 +36,7 @@ public class GestorCliente {
 	}
 
 	public void asignarClientesATransformadores() {
-		for (Cliente cliente : getRepoClientes().clientes()) {
+		for (Cliente cliente : getRepoClientes().getClientes()) {
 			ZonaGeografica zona = getRepoZonas().zonas().stream().filter(s -> s.pertenece(cliente)).findFirst().get();
 			Transformador trans = Collections.min(zona.getTransformadores(),
 					Comparator.comparing(t -> t.Distancia(cliente)));
@@ -44,7 +45,7 @@ public class GestorCliente {
 	}
 
 	public void mejorarEficienciaHogares() {
-		this.mejorarEficienciaHogaresA(getRepoClientes().clientes());
+		this.mejorarEficienciaHogaresA(getRepoClientes().getClientes());
 	}
 
 	public void mejorarEficienciaHogaresA(List<Cliente> clientes) {
@@ -60,11 +61,11 @@ public class GestorCliente {
 		this.repoZonas = repoZonas;
 	}
 
-	public RepositorioDeClientes getRepoClientes() {
+	public Clientes getRepoClientes() {
 		return repoClientes;
 	}
 
-	public void setRepoClientes(RepositorioDeClientes repoClientes) {
+	public void setRepoClientes(Clientes repoClientes) {
 		this.repoClientes = repoClientes;
 	}
 
