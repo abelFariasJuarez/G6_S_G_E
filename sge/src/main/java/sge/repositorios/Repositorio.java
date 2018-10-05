@@ -8,13 +8,54 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 
-import sge.modelo.Persistible;
+import sge.modelo.IPersistible;
+import sge.modelo.regla.Sensor;
 
-public abstract class Repositorio {
+public class Repositorio {
 
 	private static final String PERSISTENCE_UNIT_NAME = "db";
 	protected EntityManager entityManager;
 	EntityManagerFactory emFactory;
+
+	private Sensores sensores;
+	private Comparaciones comparaciones;
+	private Condiciones condiciones;
+	private Reglas reglas;
+
+	public Repositorio() {
+	}
+
+	public Repositorio(EntityManager em) {
+		this.entityManager = em;
+	}
+
+	public Sensores sensores() {
+		if (sensores == null) {
+			sensores = new Sensores(entityManager);
+		}
+		return sensores;
+	}
+	
+	public Comparaciones comparaciones() {
+		if (comparaciones == null) {
+			comparaciones = new Comparaciones(entityManager);
+		}
+		return comparaciones;
+	}	
+
+	public Condiciones condiciones() {
+		if (condiciones == null) {
+			condiciones = new Condiciones(entityManager);
+		}
+		return condiciones;
+	}
+
+	public Reglas reglas() {
+		if (reglas == null) {
+			reglas = new Reglas(entityManager);
+		}
+		return reglas;
+	}
 
 	public EntityManager getEntityManager() {
 		return entityManager;
@@ -34,7 +75,7 @@ public abstract class Repositorio {
 		emFactory.close();
 	}
 
-	public void persistir(Persistible unPersistible) {
+	public void persistir(IPersistible unPersistible) {
 		entityManager.getTransaction().begin();
 		entityManager.persist(unPersistible);
 		entityManager.getTransaction().commit();
@@ -44,13 +85,14 @@ public abstract class Repositorio {
 		return entityManager.unwrap(Session.class);
 	}
 
-	protected Object findBy(Class<?> clazz, String campo, String valor) {
+	protected Object findBy(Class<?> clazz, String campo, Object valor) {
 		Object objReturn;
-		this.abrir();
+		//this.abrir();
 		Session session = this.getSession();
 		Criteria criteria = session.createCriteria(clazz).add(Restrictions.eq(campo, valor));
 		objReturn = criteria.uniqueResult();
-		this.cerrar();
-		return objReturn;	
+		//this.cerrar();
+		return objReturn;
 	}
+
 }

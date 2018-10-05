@@ -11,6 +11,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -35,9 +37,9 @@ public class Cliente extends UsuarioSGE {
 	private Integer nrodoc;
 	@Column(name = "telefono")
 	private Integer telefono;
-	@Transient
+	@ManyToOne(cascade = CascadeType.ALL)
 	private Categoria categoria;
-	@Transient
+	@OneToMany(cascade = CascadeType.ALL)
 	private List<Dispositivo> dispositivos = new ArrayList<Dispositivo>();
 	@Column(name = "puntos")
 	private Integer puntos = 0;
@@ -45,7 +47,7 @@ public class Cliente extends UsuarioSGE {
 	private Ubicacion ubicacion;
 	@Column(name = "ahorroAutomatico")
 	private boolean ahorroAutomatico = false; // o accion automatica o accione por si solo
-	@Transient
+	@OneToOne(cascade = CascadeType.ALL)
 	private Accion accionParaMejorarEficiencia = new AccionApagar();// la orden de "apagar" (podria ser accion
 																		// configurable)
 	public Cliente() {
@@ -238,6 +240,42 @@ public class Cliente extends UsuarioSGE {
 
 	public void setUbicacion(Ubicacion ubicacion) {
 		this.ubicacion = ubicacion;
+	}
+
+	public String getTipodoc() {
+		return tipodoc;
+	}
+
+	public void setTipodoc(String tipodoc) {
+		this.tipodoc = tipodoc;
+	}
+
+	public Integer getNrodoc() {
+		return nrodoc;
+	}
+
+	public void setNrodoc(Integer nrodoc) {
+		this.nrodoc = nrodoc;
+	}
+
+	public Accion getAccionParaMejorarEficiencia() {
+		return accionParaMejorarEficiencia;
+	}
+
+	public void setAccionParaMejorarEficiencia(Accion accionParaMejorarEficiencia) {
+		this.accionParaMejorarEficiencia = accionParaMejorarEficiencia;
+	}
+
+	public void setTelefono(Integer telefono) {
+		this.telefono = telefono;
+	}
+
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
+	}
+
+	public void setPuntos(Integer puntos) {
+		this.puntos = puntos;
 	}
 	
 	

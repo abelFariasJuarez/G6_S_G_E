@@ -28,9 +28,9 @@ public abstract class Inteligente extends Dispositivo {
 
 	@Transient
 	private DriverBasico driver;
-	@Transient
-	private List<Sensor> sensores= new ArrayList<Sensor>();
 	
+	@OneToMany(orphanRemoval=true,cascade = CascadeType.ALL)
+	private List<Sensor> sensores= new ArrayList<Sensor>();	
 	@Column(name = "encendido")
 	private boolean encendido;
 	@OneToOne(cascade = CascadeType.ALL)
@@ -42,6 +42,7 @@ public abstract class Inteligente extends Dispositivo {
 	
 	public Inteligente() {
 		super();
+		this.setDriver(new DriverBasico());
 	}
 
 	public List<Sensor> getSensores() {
@@ -71,7 +72,7 @@ public abstract class Inteligente extends Dispositivo {
 
 	public Inteligente(String _nombre, Double _consumoPorHora, Boolean _bajoconsumo,DriverBasico _driver) {
 		super(_nombre, _consumoPorHora, _bajoconsumo);
-		driver=_driver;
+		this.setDriver(_driver);
 		RegistroDispositivos.getInstance().registrarDispositivo(this);
 
 	}

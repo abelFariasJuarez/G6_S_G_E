@@ -30,18 +30,23 @@ public class RepositorioRestriccionHorasFamilia extends Repositorio {
 		this.crearRetriccionesSiNoExisten();
 	};
 
-	public RestriccionHorasFamilia findBy(String campo, String valor) {		
-		RestriccionHorasFamilia rhf = (RestriccionHorasFamilia) this.findBy(RestriccionHorasFamilia.class,campo,valor);
+	public RestriccionHorasFamilia findBy(String campo, String valor) {
+		this.abrir();
+		RestriccionHorasFamilia rhf = (RestriccionHorasFamilia) this.findBy(RestriccionHorasFamilia.class, campo,
+				valor);
+		this.cerrar();
 		return rhf;
 	}
 
 	private void crearRetriccionesSiNoExisten() {
+
 		RestriccionHorasFamilia rhf = null;
 
 		rhf = this.findBy("codigo", "AIRCONDITIONER");
 		if (rhf == null) {
 			this.abrir();
 			this.persistir(new RestriccionHorasFamilia("AIRCONDITIONER", 90.0, 360.0));
+
 			this.cerrar();
 		}
 		rhf = null;
@@ -50,6 +55,7 @@ public class RepositorioRestriccionHorasFamilia extends Repositorio {
 		if (rhf == null) {
 			this.abrir();
 			this.persistir(new RestriccionHorasFamilia("LAMP", 90.0, 360.0));
+
 			this.cerrar();
 		}
 		rhf = null;
@@ -58,6 +64,7 @@ public class RepositorioRestriccionHorasFamilia extends Repositorio {
 		if (rhf == null) {
 			this.abrir();
 			this.persistir(new RestriccionHorasFamilia("TV", 90.0, 360.0));
+
 			this.cerrar();
 		}
 		rhf = null;
@@ -66,6 +73,7 @@ public class RepositorioRestriccionHorasFamilia extends Repositorio {
 		if (rhf == null) {
 			this.abrir();
 			this.persistir(new RestriccionHorasFamilia("WASHINGMACHINE", 6.0, 30.0));
+
 			this.cerrar();
 		}
 		rhf = null;
@@ -74,6 +82,7 @@ public class RepositorioRestriccionHorasFamilia extends Repositorio {
 		if (rhf == null) {
 			this.abrir();
 			this.persistir(new RestriccionHorasFamilia("COMPUTER", 60.0, 360.0));
+
 			this.cerrar();
 		}
 		rhf = null;
@@ -82,6 +91,7 @@ public class RepositorioRestriccionHorasFamilia extends Repositorio {
 		if (rhf == null) {
 			this.abrir();
 			this.persistir(new RestriccionHorasFamilia("MICROWAVE", 3.0, 15.0));
+
 			this.cerrar();
 		}
 		rhf = null;
@@ -90,6 +100,7 @@ public class RepositorioRestriccionHorasFamilia extends Repositorio {
 		if (rhf == null) {
 			this.abrir();
 			this.persistir(new RestriccionHorasFamilia("GRIDDLE", 3.0, 30.0));
+
 			this.cerrar();
 		}
 		rhf = null;
@@ -98,6 +109,7 @@ public class RepositorioRestriccionHorasFamilia extends Repositorio {
 		if (rhf == null) {
 			this.abrir();
 			this.persistir(new RestriccionHorasFamilia("FAN", 120.0, 360.0));
+
 			this.cerrar();
 		}
 		rhf = null;
@@ -106,6 +118,7 @@ public class RepositorioRestriccionHorasFamilia extends Repositorio {
 		if (rhf == null) {
 			this.abrir();
 			this.persistir(new RestriccionHorasFamilia("REFRIGERATOR", 0.0, Double.MAX_VALUE));
+
 			this.cerrar();
 		}
 		rhf = null;

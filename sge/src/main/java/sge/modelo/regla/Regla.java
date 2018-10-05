@@ -3,14 +3,32 @@ package sge.modelo.regla;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+import sge.modelo.Persistible;
 import sge.modelo.dispositivo.Inteligente;
 
-public class Regla {
+@Entity
+@Table(name = "Regla")
+public class Regla extends Persistible {
 
+	@Column(name = "name")	
 	private String name;
+	@OneToMany(cascade = CascadeType.ALL)
 	private List<Condicion> condiciones = new ArrayList<Condicion>();
+	@OneToMany(cascade = CascadeType.ALL)
 	private List<Accion> acciones = new ArrayList<Accion>();
 
+	public Regla() {
+	}
+	
 	public Regla(String _name) {
 		name = _name;
 	}
@@ -62,4 +80,5 @@ public class Regla {
 		acciones = _actuadores;
 	}
 
+	
 }

@@ -7,43 +7,42 @@ import java.util.Observer;
 
 import sge.modelo.dispositivo.Inteligente;
 
-public class RegistroSensores implements Observer{
+public class RegistroSensores implements Observer {
 
-	
-    private Map<Sensor, Inteligente> dispositivos;    
-	private static RegistroSensores instancia=null;
-	//singleton
-	   private RegistroSensores() {
-	        dispositivos= new HashMap<>();
-	    }
+	private Map<Sensor, Inteligente> dispositivos;
+	private static RegistroSensores instancia = null;
 
-	    public static RegistroSensores getInstance() {
-	        if (instancia == null){
-	        	instancia = new RegistroSensores();
-	        }
-			return instancia;
-	    }
-	
-	//singleton
+	// singleton
+	private RegistroSensores() {
+		dispositivos = new HashMap<>();
+	}
 
+	public static RegistroSensores getInstance() {
+		if (instancia == null) {
+			instancia = new RegistroSensores();
+		}
+		return instancia;
+	}
 
-	    public void registrarSensor(Sensor sensor, Inteligente dispositivo) {
-	        this.dispositivos.put(sensor, dispositivo);
-	    }
-	    public Inteligente getDispositivoParaSensor(Sensor sensor) {
-	        return this.dispositivos.get(sensor);
-	    }
-	    
-	    
-	    public void update(Observable o, Object arg) {
-	    	if (o instanceof Sensor) {
-	    	           this.handleDispositivoUpdate((Sensor) o);
-	    	        }
-	    }
-	    	
-	    	  private void handleDispositivoUpdate(Sensor sensor) {
-	    	        Inteligente inteligente = this.getDispositivoParaSensor(sensor);
-	    	        
-	    	        RegistroDispositivos.getInstance().accionarReglasDispositivo(inteligente);
-	  	    	    }
+	// singleton
+
+	public void registrarSensor(Sensor sensor, Inteligente dispositivo) {
+		this.dispositivos.put(sensor, dispositivo);
+	}
+
+	public Inteligente getDispositivoParaSensor(Sensor sensor) {
+		return this.dispositivos.get(sensor);
+	}
+
+	public void update(Observable o, Object arg) {
+		if (o instanceof Sensor) {
+			this.handleDispositivoUpdate((Sensor) o);
+		}
+	}
+
+	private void handleDispositivoUpdate(Sensor sensor) {
+		Inteligente inteligente = this.getDispositivoParaSensor(sensor);
+
+		RegistroDispositivos.getInstance().accionarReglasDispositivo(inteligente);
+	}
 }

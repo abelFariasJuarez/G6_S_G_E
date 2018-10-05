@@ -5,11 +5,47 @@ import java.util.Observable;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class Sensor extends Observable{
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-	double medicion;
-	double tiempoDeEspera;
-	String nombre;
+import sge.modelo.IPersistible;
+
+@Entity
+@Table(name="Sensor")
+public class Sensor extends Observable implements IPersistible {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "oid")
+	protected Long oid;
+
+	@Column(name = "medicion")
+	private double medicion;
+	@Column(name = "tiempoDeEspera")
+	private double tiempoDeEspera;
+	@Column(name = "nombre")
+	private String nombre;
+	
+	public Long getOid() {
+		return oid;
+	}
+
+	public void setOid(Long id) {
+		this.oid = id;
+	}
+
+	public String toString() {
+		return getOid() + "-" + this.getClass().getSimpleName();
+	}
+		
+	public Sensor() {
+		super();
+	}
 
 	public void activar() {
 		long tiempoEspera = (long) tiempoDeEspera;
@@ -68,5 +104,22 @@ public class Sensor extends Observable{
 		System.out.println("tiempo de espera es:" + " " + tiempoDeEspera);
 
 	}
+
+	public double getTiempoDeEspera() {
+		return tiempoDeEspera;
+	}
+
+	public void setTiempoDeEspera(double tiempoDeEspera) {
+		this.tiempoDeEspera = tiempoDeEspera;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+	
 
 }

@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
-public class Persistible implements Serializable {
+public class Persistible implements Serializable, IPersistible{
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	protected Long oid;
