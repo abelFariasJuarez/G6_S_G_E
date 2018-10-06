@@ -2,7 +2,6 @@ package sge;
 
 import static org.junit.Assert.*;
 
-
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -13,7 +12,7 @@ import org.junit.Test;
 
 import sge.repositorios.Clientes;
 import sge.repositorios.Repositorio;
-import sge.repositorios.RepositorioDeDispositivos;
+import sge.repositorios.Dispositivos;
 import sge.modelo.dispositivo.*;
 import sge.modelo.driver.ActuadorAhorro;
 import sge.modelo.driver.ActuadorApagar;
@@ -24,68 +23,70 @@ import sge.modelo.usuarios.Cliente;
 
 public class TestCliente {
 
-	static Clientes repo = (new Repositorio()).clientes();
+	static Repositorio repo1 = new Repositorio();
+	static Clientes repoClientes = repo1.clientes();
 	static List<Cliente> clientes;
-	static Cliente cli,cli2;
+	static Cliente cli, cli2;
 	static Categoria unaCategoria;
-	static RepositorioDeDispositivos repo2 = RepositorioDeDispositivos.getinstance();
+	static Dispositivos repoDispositivos = repo1.dispositivos();
 	static List<Dispositivo> dispositivos;
 
 	static Cliente unCliente;
-	static 	List<Dispositivo> dispos= new ArrayList<Dispositivo>();
+	static List<Dispositivo> dispos = new ArrayList<Dispositivo>();
 	static DispositivoInteligente dispo1;
 	static DispositivoInteligente dispo2;
-	
+
 	@BeforeClass
-	
-	public static void setUp()  {
-		repo2.cargarDispositivos("todos");
-		dispositivos = repo2.Dispositivos();
-		repo.cargarClientes();
-		
-		clientes = repo.getClientes();
+
+	public static void setUp() {
+		repoDispositivos.cargarDispositivos("todos");
+		dispositivos = repoDispositivos.getDispositivos();
+		repoClientes.cargarClientes();
+
+		clientes = repoClientes.getClientes();
 		unaCategoria = new Categoria("r1", 18.76f, 0.644f, 0f, 150.0f);
-		
-		//------------------------------------------------------------
-		cli=clientes.get(0);
-		DispositivoInteligente pc = new DispositivoInteligente("televisor", 5.0,"cazana",false,true,new DriverBasico());
+
+		// ------------------------------------------------------------
+		cli = clientes.get(0);
+		DispositivoInteligente pc = new DispositivoInteligente("televisor", 5.0, "cazana", false, true,
+				new DriverBasico());
 		cli.addDispositivo(pc);
-		//------------------------------------------------------------
-		
-		cli2=clientes.get(1);
-		for (Cliente cli : repo.getClientes()) {
-			for (Dispositivo dis : repo2.Dispositivos) {
+		// ------------------------------------------------------------
+
+		cli2 = clientes.get(1);
+		for (Cliente cli : repoClientes.getClientes()) {
+			for (Dispositivo dis : repoDispositivos.Dispositivos) {
 				if (cli.getUsername().equals(dis.getIdUserName())) {
 					cli.addDispositivo(dis);
 				}
 
 			}
-		
+
 		}
-		
-		clientes = repo.getClientes();
-		
-		
+
+		clientes = repoClientes.getClientes();
+
 		LocalDateTime desde = LocalDateTime.parse("2018-05-19T20:00:00.000000000");
 		LocalDateTime hasta = LocalDateTime.parse("2018-05-19T22:00:00.000000000");
 
-		dispo1=new DispositivoInteligente("heladera", 10.0,"cazana",false,true,new DriverBasico());
-		dispo2=new DispositivoInteligente("televisor", 5.0,"cazana",false,true,new DriverBasico());
-		
+		dispo1 = new DispositivoInteligente("heladera", 10.0, "cazana", false, true, new DriverBasico());
+		dispo2 = new DispositivoInteligente("televisor", 5.0, "cazana", false, true, new DriverBasico());
+
 		dispo1.apagar();
 		dispo2.apagar();
-		
+
 		dispo1.getIntervalos().get(0).setInicio(desde);
 		dispo1.getIntervalos().get(0).setFin(hasta);
 		dispo2.getIntervalos().get(0).setInicio(desde);
 		dispo2.getIntervalos().get(0).setFin(hasta);
-		
+
 		dispos.add(dispo1);
 		dispos.add(dispo2);
-		
-		unCliente=new Cliente("Carlos", "Sanazki", "condarco 148",LocalDate.of(2017,4,7), "cazana", "menToL2017", "Dni", 21321012,1543312310);
+
+		unCliente = new Cliente("Carlos", "Sanazki", "condarco 148", LocalDate.of(2017, 4, 7), "cazana", "menToL2017",
+				"Dni", 21321012, 1543312310);
 		unCliente.setDispositivos(dispos);
-	
+
 	}
 
 	@Test
@@ -117,20 +118,20 @@ public class TestCliente {
 	public void cantidadConsumoEnPeriodo() {
 		LocalDateTime desde = LocalDateTime.parse("2018-05-18T22:00:00.000000000");
 		LocalDateTime hasta = LocalDateTime.parse("2018-05-20T22:00:00.000000000");
-		assertEquals(30.0, unCliente.consumoEnPeriodo(desde, hasta),1);
+		assertEquals(30.0, unCliente.consumoEnPeriodo(desde, hasta), 1);
 	}
 
 	@Test
 	public void estimacionFactura() {
 		LocalDateTime desde = LocalDateTime.parse("2018-05-19T18:00:00.000000000");
 		LocalDateTime hasta = LocalDateTime.parse("2018-05-19T22:00:00.000000000");
-		
-		assertEquals(38.08, unaCategoria.CostoEstimado(unCliente,desde,hasta),1);
+
+		assertEquals(38.08, unaCategoria.CostoEstimado(unCliente, desde, hasta), 1);
 	}
 
 	@Test
 	public void conversion_a_inteligente_diez_puntos() {
-		DispositivoEstandar comun = new DispositivoEstandar("microondas", 12.0, "pepe",false,10.0);
+		DispositivoEstandar comun = new DispositivoEstandar("microondas", 12.0, "pepe", false, 10.0);
 		Cliente unCliente = new Cliente("Pedro", "Ramon", "Plaza", LocalDate.of(1989, 11, 11), "pedro", "nikita", "dni",
 				31032123, 115322011);
 		unCliente.addDispositivo(comun);
@@ -144,7 +145,7 @@ public class TestCliente {
 
 		Cliente unCliente = new Cliente("Pedro", "Ramon", "Plaza", LocalDate.of(1989, 11, 11), "pedro", "nikita", "dni",
 				31032123, 115322011);
-		Dispositivo comun = new DispositivoEstandar("microondas", 12.0, "pepe",false,10.0);
+		Dispositivo comun = new DispositivoEstandar("microondas", 12.0, "pepe", false, 10.0);
 		unCliente.addDispositivo(comun);
 		DispositivoConModulo conModulo = unCliente.agrega_modulo_a_estandar((DispositivoEstandar) comun);
 
@@ -155,7 +156,7 @@ public class TestCliente {
 	public void consultarConsumoPeriodoDelClienteConvirtiendoEstandarAModulo() {
 		Cliente clien = new Cliente("Pedro", "Ramon", "Plaza", LocalDate.of(1989, 11, 11), "pedro", "nikita", "dni",
 				31032123, 115322011);
-		DispositivoEstandar disestandar = new DispositivoEstandar("microondas", 12.0, "pepe",false,11.0);
+		DispositivoEstandar disestandar = new DispositivoEstandar("microondas", 12.0, "pepe", false, 11.0);
 		clien.addDispositivo(disestandar);
 		disestandar.setHorasEncendido(9.0);
 		// convierto a dispositivo modulo

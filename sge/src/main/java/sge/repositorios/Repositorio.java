@@ -22,6 +22,7 @@ public class Repositorio {
 	private Condiciones condiciones;
 	private Reglas reglas;
 	private Clientes clientes;
+	private Dispositivos dispositivos;
 
 	public Repositorio() {
 	}
@@ -63,6 +64,13 @@ public class Repositorio {
 			clientes = new Clientes(entityManager);
 		}
 		return clientes;
+	}
+
+	public Dispositivos dispositivos() {
+		if (dispositivos == null) {
+			dispositivos = new Dispositivos(entityManager);
+		}
+		return dispositivos;
 	}
 	
 	public EntityManager getEntityManager() {

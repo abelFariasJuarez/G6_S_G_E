@@ -18,7 +18,7 @@ import sge.modelo.driver.ActuadorPrender;
 import sge.modelo.driver.DriverBasico;
 import sge.modelo.usuarios.Cliente;
 import sge.repositorios.Repositorio;
-import sge.repositorios.RepositorioDeDispositivos;
+import sge.repositorios.Dispositivos;
 import sge.repositorios.RepositorioRestriccionHorasFamilia;
 
 public class TestJPADispositivos {
@@ -26,7 +26,7 @@ public class TestJPADispositivos {
 
 	@Before
 	public void setUp() throws Exception {
-		repositorio = RepositorioDeDispositivos.getinstance();
+		repositorio = new Repositorio().dispositivos();
 		repositorio.abrir();
 	}
 

@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import sge.repositorios.Clientes;
 import sge.repositorios.Repositorio;
-import sge.repositorios.RepositorioDeDispositivos;
+import sge.repositorios.Dispositivos;
 import sge.repositorios.RepositorioDeTransformadores;
 import sge.repositorios.RepositorioDeZonas;
 import sge.modelo.dispositivo.Dispositivo;
@@ -18,12 +18,12 @@ public class TestImportador {
 
 	@Test
 	public void ImportadorJsonDispositivo() {
-		RepositorioDeDispositivos repo2 = RepositorioDeDispositivos.getinstance();
-		repo2.cargarDispositivos("todos");
+		Dispositivos repoDispositivos = new Repositorio().dispositivos();
+		repoDispositivos.cargarDispositivos("todos");
 
-		assertEquals(24, repo2.Dispositivos().size());
+		assertEquals(24, repoDispositivos.getDispositivos().size());
 
-		for (Dispositivo disp : repo2.Dispositivos()) {
+		for (Dispositivo disp : repoDispositivos.getDispositivos()) {
 			disp.presentate();
 			System.out.println(disp.getClass());
 		}

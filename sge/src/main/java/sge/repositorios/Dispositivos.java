@@ -4,30 +4,28 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.EntityManager;
+
 import sge.modelo.dispositivo.*;
+import sge.modelo.usuarios.Cliente;
 import utils.ImportadorDeJsonDispositivo;
 
-public class RepositorioDeDispositivos extends Repositorio {
-
-	private static RepositorioDeDispositivos repoDispositivos;
+public class Dispositivos extends Repositorio {
 
 	public List<Dispositivo> Dispositivos = new ArrayList<Dispositivo>();
 
-	private RepositorioDeDispositivos() {
+	public Dispositivos() {
 	};
 
-	public static RepositorioDeDispositivos getinstance() {
-		if (repoDispositivos == null) {
-			repoDispositivos = new RepositorioDeDispositivos();
-		}
-		return repoDispositivos;
+	public Dispositivos(EntityManager entityManager) {
+		super(entityManager);
 	}
 
 	public void guardarDispositivo(Dispositivo dispositivo) {
 		Dispositivos.add(dispositivo);
 	}
 
-	public List<Dispositivo> Dispositivos() {
+	public List<Dispositivo> getDispositivos() {
 		return Dispositivos;
 	}
 
@@ -37,10 +35,12 @@ public class RepositorioDeDispositivos extends Repositorio {
 		try {
 			this.Dispositivos.addAll(json.getDispositivos(disp));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
 	}
 
+	public Dispositivo findBy(String campo, String valor) {
+		Dispositivo rhf = (Dispositivo) this.findBy(Dispositivo.class, campo, valor);
+		return rhf;
+	}
 }

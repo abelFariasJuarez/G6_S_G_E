@@ -20,7 +20,7 @@ import sge.modelo.regla.comparador.Comparador;
 import sge.modelo.regla.comparador.Igual;
 import sge.modelo.usuarios.Cliente;
 import sge.repositorios.Repositorio;
-import sge.repositorios.RepositorioDeDispositivos;
+import sge.repositorios.Dispositivos;
 import sge.repositorios.RepositorioRestriccionHorasFamilia;
 
 public class TestJPAReglas {

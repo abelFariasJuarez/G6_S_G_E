@@ -10,7 +10,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import sge.repositorios.RepositorioDeDispositivos;
+import sge.repositorios.Dispositivos;
 import sge.modelo.dispositivo.Dispositivo;
 import sge.modelo.dispositivo.Inteligente;
 import sge.modelo.posicionamiento.Transformador;

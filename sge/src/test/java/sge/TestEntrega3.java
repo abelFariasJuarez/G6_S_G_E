@@ -3,12 +3,15 @@ package sge;
 import static org.junit.Assert.assertEquals;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.Month;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import sge.modelo.dispositivo.DispositivoInteligente;
+import sge.modelo.driver.DriverBasico;
 import sge.modelo.posicionamiento.Ubicacion;
 import sge.modelo.usuarios.Administrador;
 import sge.modelo.usuarios.Categoria;
@@ -53,6 +56,57 @@ public class TestEntrega3 {
 
 		// y evaluar que el cambio se haya realizado.
 		assertEquals(clienteRecuperado2.getUbicacion().getLongitud(), 130.0, 0);
+	}
+
+	@Test
+	public void casoDePrueba2() {
+		// Caso de prueba 2:
+		this.crearDispositivoDelCasoDePrueba2();
+
+		// Recuperar un dispositivo.
+		DispositivoInteligente unDispo = (DispositivoInteligente) repositorio.dispositivos().findBy("nombre",
+				"DispoCasoPrueba2");
+
+		// Mostrar por consola todos los intervalos que estuvo
+		// encendido durante el último mes.
+		unDispo.presentate();
+		unDispo.mostrarIntervalosEncendidos();
+		
+		// Modificar su nombre (o cualquier otro atributo editable)
+		unDispo.setBajoconsumo(false);
+		
+		// y grabarlo.
+		repositorio.persistir(unDispo);
+		
+		// Recuperarlo
+		DispositivoInteligente unDispoRecuperado = (DispositivoInteligente) repositorio.dispositivos().findBy("nombre",
+				"DispoCasoPrueba2");
+		
+		// y evaluar que el nombre coincida con el esperado.
+		assertEquals(unDispoRecuperado.getBajoconsumo(), false);
+
+	}
+
+	private void crearDispositivoDelCasoDePrueba2() {
+		DispositivoInteligente unDispo = (DispositivoInteligente) repositorio.dispositivos().findBy("nombre",
+				"DispoCasoPrueba2");
+		if (unDispo == null) {
+			unDispo = new DispositivoInteligente("DispoCasoPrueba2", 7.1, true, new DriverBasico());
+
+			unDispo.prender();
+			unDispo.apagar();
+			unDispo.prender();
+			unDispo.apagar();
+			unDispo.prender();
+			unDispo.apagar();
+		}
+		else
+		{
+			unDispo.setBajoconsumo(true);
+		}
+		
+		repositorio.persistir(unDispo);
+
 	}
 
 	@After

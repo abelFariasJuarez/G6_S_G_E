@@ -28,18 +28,17 @@ public abstract class Inteligente extends Dispositivo {
 
 	@Transient
 	private DriverBasico driver;
-	
-	@OneToMany(orphanRemoval=true,cascade = CascadeType.ALL)
-	private List<Sensor> sensores= new ArrayList<Sensor>();	
+
+	@OneToMany(orphanRemoval = true, cascade = CascadeType.ALL)
+	private List<Sensor> sensores = new ArrayList<Sensor>();
 	@Column(name = "encendido")
 	private boolean encendido;
 	@OneToOne(cascade = CascadeType.ALL)
 	private EstadoDispositivo estado;
 	@Column(name = "horasEncendido")
-	@OneToMany(orphanRemoval=true,cascade = CascadeType.ALL)
+	@OneToMany(orphanRemoval = true, cascade = CascadeType.ALL)
 	private List<Intervalo> intervalos = new ArrayList<Intervalo>();
 
-	
 	public Inteligente() {
 		super();
 		this.setDriver(new DriverBasico());
@@ -48,14 +47,14 @@ public abstract class Inteligente extends Dispositivo {
 	public List<Sensor> getSensores() {
 		return sensores;
 	}
-	
+
 	public void agregarSensor(Sensor sensor) {
 		sensores.add(sensor);
 		RegistroSensores.getInstance().registrarSensor(sensor, this);
 	}
 
 	public Inteligente(String _nombre, Double _consumoPorHora, String _idUserName, Boolean _bajoconsumo,
-			Boolean _encendido,DriverBasico _driver) {
+			Boolean _encendido, DriverBasico _driver) {
 		super(_nombre, _consumoPorHora, _idUserName, _bajoconsumo);
 		// para que se genere el primer intervalo prendido, primero lo apago y despues
 		// lo prendo afarias
@@ -70,7 +69,7 @@ public abstract class Inteligente extends Dispositivo {
 		RegistroDispositivos.getInstance().registrarDispositivo(this);
 	}
 
-	public Inteligente(String _nombre, Double _consumoPorHora, Boolean _bajoconsumo,DriverBasico _driver) {
+	public Inteligente(String _nombre, Double _consumoPorHora, Boolean _bajoconsumo, DriverBasico _driver) {
 		super(_nombre, _consumoPorHora, _bajoconsumo);
 		this.setDriver(_driver);
 		RegistroDispositivos.getInstance().registrarDispositivo(this);
@@ -106,11 +105,11 @@ public abstract class Inteligente extends Dispositivo {
 	}
 
 	public void apagar() {
-		estado.apagar(this);		
+		estado.apagar(this);
 	}
 
 	public void ahorroDeEnergia() {
-		estado.ahorroDeEnergia(this);		
+		estado.ahorroDeEnergia(this);
 	}
 
 	public double consumo_ultimas_n_horas(double horas) {
@@ -149,7 +148,6 @@ public abstract class Inteligente extends Dispositivo {
 	@Override
 	public void presentate() {
 		System.out.println("\t" + nombre + " " + consumoPorHora + "  " + encendido);
-
 	}
 
 	@Override
@@ -193,5 +191,9 @@ public abstract class Inteligente extends Dispositivo {
 	public void setSensores(List<Sensor> sensores) {
 		this.sensores = sensores;
 	}
-		
+
+	public void mostrarIntervalosEncendidos() {
+		this.getIntervalos().stream().filter(i -> i.estoyEncendido()).forEach(i -> i.presentate());
+	}
+
 }

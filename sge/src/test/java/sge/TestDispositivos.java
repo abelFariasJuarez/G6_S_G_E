@@ -9,18 +9,19 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import sge.modelo.dispositivo.*;
-import sge.repositorios.RepositorioDeDispositivos;
+import sge.repositorios.Dispositivos;
+import sge.repositorios.Repositorio;
 
 public class TestDispositivos {
 
 	/* por que funciona solo con static? hay algo mal en los repo? */
-	static RepositorioDeDispositivos repo2 = RepositorioDeDispositivos.getinstance();
+	static Dispositivos repoDispositivos = new Repositorio().dispositivos();
 	static List<Dispositivo> Dispositivos;
 
 	@BeforeClass
 	public static void setUp() {
-		repo2.cargarDispositivos("todos");
-		Dispositivos = repo2.Dispositivos();
+		repoDispositivos.cargarDispositivos("todos");
+		Dispositivos = repoDispositivos.getDispositivos();
 
 		for (Dispositivo disp : Dispositivos) {
 			disp.presentate();

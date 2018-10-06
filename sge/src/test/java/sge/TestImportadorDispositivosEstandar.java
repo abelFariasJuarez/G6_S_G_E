@@ -9,20 +9,19 @@ import org.junit.Test;
 
 import sge.modelo.dispositivo.Dispositivo;
 import sge.modelo.dispositivo.DispositivoInteligente;
-import sge.repositorios.RepositorioDeDispositivos;
+import sge.repositorios.Dispositivos;
+import sge.repositorios.Repositorio;
 
 public class TestImportadorDispositivosEstandar {
 
-	RepositorioDeDispositivos repo2 = RepositorioDeDispositivos.getinstance();
-	RepositorioDeDispositivos repo = RepositorioDeDispositivos.getinstance();
-	List<Dispositivo> Dispositivos;
-	List<Dispositivo> Dispositivos2;
+	Dispositivos repoDispositivos = new Repositorio().dispositivos();
+	List<Dispositivo> dispositivos;
 
 	@Before
 	public void setUp() {
 
-		repo.cargarDispositivos("estandar");
-		Dispositivos = repo.Dispositivos();
+		repoDispositivos.cargarDispositivos("estandar");
+		dispositivos = repoDispositivos.getDispositivos();
 		// for (Dispositivo disp : Dispositivos) {
 		// disp.presentate();
 		// System.out.println(disp.getClass());
@@ -32,7 +31,7 @@ public class TestImportadorDispositivosEstandar {
 	@Test
 	public void importacionEstandar() {
 
-		assertEquals(8, Dispositivos.size());
+		assertEquals(8, dispositivos.size());
 
 	}
 

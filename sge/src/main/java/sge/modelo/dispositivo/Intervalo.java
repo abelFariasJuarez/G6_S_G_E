@@ -22,7 +22,7 @@ public class Intervalo extends Persistible {
 	LocalDateTime fin;
 	@OneToOne(cascade = CascadeType.ALL)
 	EstadoDispositivo estado;
-	
+
 	public Intervalo() {
 		super();
 	}
@@ -52,17 +52,15 @@ public class Intervalo extends Persistible {
 
 	public boolean estoyDentroDePeriodo(LocalDateTime instanteDesde, LocalDateTime instanteHasta) {
 
-		return this.mi_inicio_es_despues_o_igual_a(instanteDesde) &&
-				this.mi_fin_es_antes_o_igual_a(instanteHasta);
+		return this.mi_inicio_es_despues_o_igual_a(instanteDesde) && this.mi_fin_es_antes_o_igual_a(instanteHasta);
 	}
 
 	public boolean periodoEstaDentroDeMi(LocalDateTime instanteDesde, LocalDateTime instanteHasta) {
-		return this.mi_inicio_es_antes_o_igual_a(instanteDesde) &&
-				this.mi_fin_es_despues_o_igual_a(instanteHasta);
+		return this.mi_inicio_es_antes_o_igual_a(instanteDesde) && this.mi_fin_es_despues_o_igual_a(instanteHasta);
 	}
 
 	private boolean mi_fin_es_despues_o_igual_a(LocalDateTime instanteHasta) {
-		return fin == null ||instanteHasta.isBefore(fin) || instanteHasta.isEqual(fin);
+		return fin == null || instanteHasta.isBefore(fin) || instanteHasta.isEqual(fin);
 	}
 
 	private boolean mi_inicio_es_antes_o_igual_a(LocalDateTime instanteDesde) {
@@ -100,6 +98,14 @@ public class Intervalo extends Persistible {
 	public EstadoDispositivo getEstado() {
 		return estado;
 	}
-	
-	
+
+	public boolean estoyEncendido() {
+		return this.getEstado() instanceof EstadoPrendido;
+	}
+
+	public void presentate() {
+		System.out.println("\testado: " + this.getEstado().toString() + "\tinicio: " + this.getInicio() + "\tfin: "
+				+ this.getFin());
+	}
+
 }
