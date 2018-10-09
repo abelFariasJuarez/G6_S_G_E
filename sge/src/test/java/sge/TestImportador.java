@@ -7,7 +7,7 @@ import org.junit.Test;
 import sge.repositorios.Clientes;
 import sge.repositorios.Repositorio;
 import sge.repositorios.Dispositivos;
-import sge.repositorios.RepositorioDeTransformadores;
+import sge.repositorios.Transformadores;
 import sge.repositorios.RepositorioDeZonas;
 import sge.modelo.dispositivo.Dispositivo;
 import sge.modelo.posicionamiento.Transformador;
@@ -44,11 +44,11 @@ public class TestImportador {
 
 	@Test
 	public void ImportadorJsonTransformador() {
-		RepositorioDeTransformadores repoTransfo = RepositorioDeTransformadores.getinstance();
+		Transformadores repoTransfo = new Repositorio().transformadores();
 		repoTransfo.cargarTransformadores();
-		assertEquals(5, repoTransfo.transformadores().size());
+		assertEquals(5, repoTransfo.getTransformadores().size());
 
-		for (Transformador transfo : repoTransfo.transformadores()) {
+		for (Transformador transfo : repoTransfo.getTransformadores()) {
 
 			System.out.println(transfo.getId());
 		}

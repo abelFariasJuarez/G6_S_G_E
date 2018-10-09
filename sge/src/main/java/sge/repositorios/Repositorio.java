@@ -23,6 +23,7 @@ public class Repositorio {
 	private Reglas reglas;
 	private Clientes clientes;
 	private Dispositivos dispositivos;
+	private Transformadores transformadores;
 
 	public Repositorio() {
 	}
@@ -72,6 +73,13 @@ public class Repositorio {
 		}
 		return dispositivos;
 	}
+
+	public Transformadores transformadores() {
+		if (transformadores == null) {
+			transformadores = new Transformadores(entityManager);
+		}
+		return transformadores;
+	}
 	
 	public EntityManager getEntityManager() {
 		return entityManager;
@@ -96,6 +104,12 @@ public class Repositorio {
 		entityManager.persist(unPersistible);
 		entityManager.getTransaction().commit();
 	}
+	
+	public void borrar(IPersistible unPersistible) {
+		entityManager.getTransaction().begin();
+		entityManager.remove(unPersistible);
+		entityManager.getTransaction().commit();
+	}	
 
 	public Session getSession() {
 		return entityManager.unwrap(Session.class);

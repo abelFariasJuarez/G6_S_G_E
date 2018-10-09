@@ -7,16 +7,20 @@ import java.util.List;
 import sge.modelo.posicionamiento.*;
 import sge.repositorios.Clientes;
 import sge.repositorios.Repositorio;
-import sge.repositorios.RepositorioDeTransformadores;
+import sge.repositorios.Transformadores;
 import sge.repositorios.RepositorioDeZonas;
 
 public class GestorCliente {
-
-	private Clientes repoClientes = (new Repositorio()).clientes();
+	private Repositorio repositorio = new Repositorio();
+	private Clientes repoClientes = repositorio.clientes();
 	private RepositorioDeZonas repoZonas = RepositorioDeZonas.getinstance();
-	private RepositorioDeTransformadores repoTransformadores = RepositorioDeTransformadores.getinstance();
+	private Transformadores repoTransformadores = repositorio.transformadores();
 
 	public GestorCliente() {
+		cargarClientesZonasTransformadores();
+	}
+
+	public void cargarClientesZonasTransformadores() {
 		getRepoClientes().cargarClientes();
 		getRepoZonas().cargarZonas();
 		getRepoTransformadores().cargarTransformadores();
@@ -25,7 +29,7 @@ public class GestorCliente {
 	public void transformadoresAsignacionZona() {
 
 		for (ZonaGeografica zona1 : getRepoZonas().zonas()) {
-			for (Transformador trans1 : getRepoTransformadores().transformadores()) {
+			for (Transformador trans1 : getRepoTransformadores().getTransformadores()) {
 				if (zona1.getId().equals(trans1.getIdZona())) {
 					zona1.Add(trans1);
 
@@ -69,11 +73,11 @@ public class GestorCliente {
 		this.repoClientes = repoClientes;
 	}
 
-	public RepositorioDeTransformadores getRepoTransformadores() {
+	public Transformadores getRepoTransformadores() {
 		return repoTransformadores;
 	}
 
-	public void setRepoTransformadores(RepositorioDeTransformadores repoTransformadores) {
+	public void setRepoTransformadores(Transformadores repoTransformadores) {
 		this.repoTransformadores = repoTransformadores;
 	}
 

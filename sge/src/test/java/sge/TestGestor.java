@@ -48,7 +48,7 @@ public class TestGestor {
 	
 	@Test
 	public void ClientePerteneceATransformador() {
-		Transformador transfo=gestor.getRepoTransformadores().transformadores().get(3);
+		Transformador transfo=gestor.getRepoTransformadores().getTransformadores().get(3);
 		assertEquals(2,transfo.getClientes().size()); 		
 	}
 	

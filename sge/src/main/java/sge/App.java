@@ -22,7 +22,7 @@ import sge.modelo.regla.comparador.*;
 import sge.modelo.usuarios.Cliente;
 import sge.repositorios.Clientes;
 import sge.repositorios.Repositorio;
-import sge.repositorios.RepositorioDeTransformadores;
+import sge.repositorios.Transformadores;
 import sge.repositorios.RepositorioDeZonas;
 
 public class App {
@@ -85,16 +85,16 @@ public class App {
 		}
 
 		// se comprueba que importa bien transformadores
-		RepositorioDeTransformadores repoTransformadores = RepositorioDeTransformadores.getinstance();
+		Transformadores repoTransformadores = new Repositorio().transformadores();
 		repoTransformadores.cargarTransformadores();
 
-		for (Transformador trafo : repoTransformadores.transformadores()) {
+		for (Transformador trafo : repoTransformadores.getTransformadores()) {
 			System.out.println(trafo.getUbicacion().getLatitud());
 		}
 
 		// se comprueba union zona transformador.
 		for (ZonaGeografica zona1 : repoZonas.zonas()) {
-			for (Transformador trans1 : repoTransformadores.transformadores()) {
+			for (Transformador trans1 : repoTransformadores.getTransformadores()) {
 				if (zona1.getId().equals(trans1.getIdZona())) {
 					zona1.Add(trans1);
 
@@ -126,8 +126,8 @@ public class App {
 
 		}
 
-		System.out.println(repoTransformadores.transformadores().get(3).getClientes().size() + " "
-				+ repoTransformadores.transformadores().get(4).getClientes().size());
+		System.out.println(repoTransformadores.getTransformadores().get(3).getClientes().size() + " "
+				+ repoTransformadores.getTransformadores().get(4).getClientes().size());
 
 		// funciona bien , de la primer zona se fija en su tercer transformador y aca
 		// hay dos clientes que se asignaron arriba

@@ -31,8 +31,11 @@ public class TestRegla {
 		unAire.agregarSensor(temperatura);
 		unAire.agregarSensor(humedad);
 		
-		Condicion condTemp = new Condicion(temperatura, new Mayor(), 32.0);
-		Condicion condHume = new Condicion(humedad, new Mayor(), 90.0);
+		//Condicion condTemp = new Condicion(temperatura, new Mayor(), 32.0);
+		//Condicion condHume = new Condicion(humedad, new Mayor(), 90.0);
+
+		Condicion condTemp = new Condicion(temperatura, new Menor(), 32.0);
+		Condicion condHume = new Condicion(humedad, new Menor(), 90.0);
 
 		unRegla.agregarCondicion(condTemp);
 		unRegla.agregarCondicion(condHume);

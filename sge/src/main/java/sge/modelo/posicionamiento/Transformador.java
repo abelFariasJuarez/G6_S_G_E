@@ -6,16 +6,17 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 import sge.modelo.Persistible;
 import sge.modelo.usuarios.Cliente;
 
 @Entity
 @Table(name = "Transformador")
+@NamedQuery(name = "buscarTodosTransformadores", query = "SELECT t FROM Transformador t")
 public class Transformador extends Persistible {
 
 	@OneToMany

@@ -18,6 +18,7 @@ import sge.modelo.regla.Regla;
 import sge.modelo.regla.Sensor;
 import sge.modelo.regla.comparador.Comparador;
 import sge.modelo.regla.comparador.Igual;
+import sge.modelo.regla.comparador.MayorIgual;
 import sge.modelo.usuarios.Cliente;
 import sge.repositorios.Repositorio;
 import sge.repositorios.Dispositivos;
@@ -49,7 +50,7 @@ public class TestJPAReglas {
 		Comparador cmp = null;
 		cmp = repositorio.comparaciones().findBy("oid", (long) 1);
 		if (cmp == null) {
-			cmp = new Igual();
+			cmp = new MayorIgual();
 			repositorio.persistir(cmp);
 		}
 
@@ -73,7 +74,6 @@ public class TestJPAReglas {
 			unRegla.agregarAccion(prenderAire);
 
 			repositorio.persistir(unRegla);
-
 		}
 
 	}
