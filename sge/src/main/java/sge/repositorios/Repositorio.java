@@ -111,6 +111,10 @@ public class Repositorio {
 		entityManager.getTransaction().commit();
 	}	
 
+	public void flush() {
+		entityManager.flush();
+	}	
+	
 	public Session getSession() {
 		return entityManager.unwrap(Session.class);
 	}

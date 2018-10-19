@@ -52,7 +52,9 @@ public class Intervalo extends Persistible {
 
 	public boolean estoyDentroDePeriodo(LocalDateTime instanteDesde, LocalDateTime instanteHasta) {
 
-		return this.mi_inicio_es_despues_o_igual_a(instanteDesde) && this.mi_fin_es_antes_o_igual_a(instanteHasta);
+		return this.mi_inicio_es_despues_o_igual_a(instanteDesde)
+				&& this.mi_inicio_es_antes_o_igual_a(instanteHasta)
+				&& this.mi_fin_es_antes_o_igual_a(instanteHasta);
 	}
 
 	public boolean periodoEstaDentroDeMi(LocalDateTime instanteDesde, LocalDateTime instanteHasta) {

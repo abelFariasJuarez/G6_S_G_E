@@ -1,5 +1,6 @@
 package sge.modelo.posicionamiento;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,8 +52,13 @@ public class Transformador extends Persistible {
 
 	public Float energiaSuministrada() {
 		return (float) clientes.stream().mapToDouble(c -> c.ConsumoActualDispositivosInteligentes()).sum();
-
 	}
+
+	public Double consumoEnPeriodo(LocalDateTime instanteDesde, LocalDateTime instanteHasta) {
+		double valueReturn = clientes.stream().mapToDouble(c -> c.consumoEnPeriodo(instanteDesde,instanteHasta)).sum();
+
+		return valueReturn;
+	}	
 
 	public Ubicacion getUbicacion() {
 		return ubicacion;
@@ -81,6 +87,14 @@ public class Transformador extends Persistible {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public void addCliente(Cliente unCliente) {
+		clientes.add(unCliente);		
+	}
+
+	public void removeCliente(Cliente unCliente) {
+		clientes.remove(unCliente);		
 	}
 
 }
