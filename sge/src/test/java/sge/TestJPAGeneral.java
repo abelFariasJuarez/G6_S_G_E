@@ -34,6 +34,13 @@ import sge.repositorios.RepositorioRestriccionHorasFamilia;
 
 public class TestJPAGeneral extends AbstractPersistenceTest implements WithGlobalEntityManager {
 
+	private Repositorio repositorioDispositivos;
+	private Repositorio repositorioReglas;
+	private Repositorio repositorioRestriccionesHF;
+	private Repositorio repositorioTransformadores;
+	private Repositorio repositorioUsuarios;
+	private Repositorio repositorioZonas;
+	
 	//Test conexion base local
 	@Test
 	public void contextUp() {
@@ -46,15 +53,23 @@ public class TestJPAGeneral extends AbstractPersistenceTest implements WithGloba
 		});
 	}
 	
-	//Test dispositivos
-	private Repositorio repositorio;
-
 	@Before
 	public void setUpDispositivo() throws Exception {
-		repositorio = new Repositorio().dispositivos();
-		repositorio.abrir();
+		repositorioDispositivos = new Repositorio().dispositivos();
+		repositorioDispositivos.abrir();
+		repositorioReglas = new Repositorio();
+		repositorioReglas.abrir();
+		repositorioRestriccionesHF = RepositorioRestriccionHorasFamilia.getinstance();
+		repositorioRestriccionesHF.abrir();
+		repositorioUsuarios = new Repositorio();
+		repositorioUsuarios.abrir();
+		repositorioTransformadores = new Repositorio();
+		repositorioTransformadores.abrir();
+		repositorioZonas = RepositorioDeZonas.getinstance();
+		repositorioZonas.abrir();
 	}
 
+	//Test dispositivos
 	@Test
 	public void aPersistirInteligentes() {	
 		
@@ -77,9 +92,9 @@ public class TestJPAGeneral extends AbstractPersistenceTest implements WithGloba
 		lava2.getIntervalos().get(0).setInicio(desde);
 
 		
-		repositorio.persistir(air2);
-		repositorio.persistir(lava2);
-		repositorio.persistir(unVenti2);
+		repositorioDispositivos.persistir(air2);
+		repositorioDispositivos.persistir(lava2);
+		repositorioDispositivos.persistir(unVenti2);
 	}
 	
 	@Test
@@ -90,53 +105,42 @@ public class TestJPAGeneral extends AbstractPersistenceTest implements WithGloba
 		unCliente.addDispositivo(comun);
 		
 		DispositivoConModulo conModulo = unCliente.agrega_modulo_a_estandar(comun);
-		repositorio.persistir(conModulo);
-	}
-	
-	@After	
-	public void tearDownDispositivo() throws Exception {
-		repositorio.cerrar();
+		repositorioDispositivos.persistir(conModulo);
 	}
 
 	//Test reglas
-	@Before
-	public void setUpReglas() throws Exception {
-		repositorio = new Repositorio();
-		repositorio.abrir();
-	}
-
 	@Test
 	public void aPersistirSensorComparadorCondicion() {
 		Sensor unS = null;
-		unS = repositorio.sensores().findBy("nombre", "sensor1");
+		unS = repositorioReglas.sensores().findBy("nombre", "sensor1");
 		if (unS == null) {
 			unS = new Sensor();
 			unS.setMedicion(0.0);
 			unS.setNombre("sensor1");
 			unS.setTiempoDeEspera(30.0);
 
-			repositorio.persistir(unS);
+			repositorioReglas.persistir(unS);
 		}
 
 		Comparador cmp = null;
-		cmp = repositorio.comparaciones().findBy("oid", (long) 1);
+		cmp = repositorioReglas.comparaciones().findBy("oid", (long) 1);
 		if (cmp == null) {
 			cmp = new MayorIgual();
-			repositorio.persistir(cmp);
+			repositorioReglas.persistir(cmp);
 		}
 
 		Condicion cond = null;
-		cond = repositorio.condiciones().findBy("oid", (long) 1);
+		cond = repositorioReglas.condiciones().findBy("oid", (long) 1);
 		if (cond == null) {
 			cond = new Condicion();
 			cond.setComparador(cmp);
 			cond.setSensor(unS);
 			cond.setValorEsperado(34.0);
-			repositorio.persistir(cond);
+			repositorioReglas.persistir(cond);
 		}
 
 		Regla unRegla = null;
-		unRegla = repositorio.reglas().findBy("name", "regla 1");
+		unRegla = repositorioReglas.reglas().findBy("name", "regla 1");
 		if (unRegla == null) {
 			unRegla = new Regla("regla 1");
 			unRegla.agregarCondicion(cond);
@@ -144,65 +148,30 @@ public class TestJPAGeneral extends AbstractPersistenceTest implements WithGloba
 			AccionPrender prenderAire = new AccionPrender();
 			unRegla.agregarAccion(prenderAire);
 
-			repositorio.persistir(unRegla);
+			repositorioReglas.persistir(unRegla);
 		}
 
 	}
 
-	@After
-	public void tearDownReglas() throws Exception {
-		repositorio.cerrar();
-	}
-
-
 	//Test restricciones horas familia
-	@Before
-	public void setUpRestriccionesHF() throws Exception {
-		repositorio = RepositorioRestriccionHorasFamilia.getinstance();
-		repositorio.abrir();
-	}
-
 	@Test
 	public void aPersistirRestriccionesHF() {		
 		assertEquals(true, true);
 	}
-
-	@After
-	public void tearDownRestriccionesHF() throws Exception {
-		repositorio.cerrar();
-	}
 	
 	//Test transformadores
-	@Before
-	public void setUpTransformadores() throws Exception {
-		repositorio = new Repositorio();
-		repositorio.abrir();		
-	}
-
 	@Test
 	public void aPersistirTransformadores() {
 		
 		Transformador c = new Transformador();
 		c.setIdZona(4);
 		c.setUbicacion(new Ubicacion(1.0,1.0));
-		repositorio.persistir(c);
-		repositorio.borrar(c);
+		repositorioTransformadores.persistir(c);
+		repositorioTransformadores.borrar(c);
 		
 	}
-
-	@After
-	public void tearDownTransformadores() throws Exception {
-		repositorio.cerrar();
-	}
-	
 	
 	//Test usuarios
-	@Before
-	public void setUpUsuarios() throws Exception {
-		repositorio = new Repositorio();
-		repositorio.abrir();
-	}
-
 	@Test
 	public void aPersistirCliente() {
 		Cliente c = new Cliente("Carla", "Sanazki", "condarco 149", LocalDate.of(2017, 4, 7), "cazana",
@@ -212,7 +181,7 @@ public class TestJPAGeneral extends AbstractPersistenceTest implements WithGloba
 
 		Categoria unaCate = new Categoria("R0", 13.f, 0.05f, 1.5f, 10f);
 		c.setCategoria(unaCate);
-		repositorio.persistir(c);
+		repositorioUsuarios.persistir(c);
 	}
 
 	@Test
@@ -220,21 +189,10 @@ public class TestJPAGeneral extends AbstractPersistenceTest implements WithGloba
 		
 		Administrador admin = new Administrador("pedro", "saraska", "lavalle 148", LocalDate.of(2015, Month.APRIL, 19),
 				"pepe", "pasti");
-		repositorio.persistir(admin);
-	}
-
-	@After
-	public void tearDownUsuarios() throws Exception {
-		repositorio.cerrar();
+		repositorioUsuarios.persistir(admin);
 	}
 
 	//Test zonas
-	@Before
-	public void setUpZonas() throws Exception {
-		repositorio = RepositorioDeZonas.getinstance();
-		repositorio.abrir();
-	}
-
 	@Test
 	public void aPersistirZonas() {
 		Transformador tran = new Transformador();
@@ -254,13 +212,18 @@ public class TestJPAGeneral extends AbstractPersistenceTest implements WithGloba
 		zona.setRadio((float) 12.3);
 		zona.Add(tran);
 
-		repositorio.persistir(zona);
-		repositorio.borrar(zona);
+		repositorioZonas.persistir(zona);
+		repositorioZonas.borrar(zona);
 	}
 
 	@After
 	public void tearDownZonas() throws Exception {
-		repositorio.cerrar();
+		repositorioDispositivos.cerrar();
+		repositorioReglas.cerrar();
+		repositorioRestriccionesHF.cerrar();
+		repositorioTransformadores.cerrar();
+		repositorioUsuarios.cerrar();
+		repositorioZonas.cerrar();
 	}
 
 }
