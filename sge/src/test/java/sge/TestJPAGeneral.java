@@ -37,9 +37,21 @@ public class TestJPAGeneral extends AbstractPersistenceTest implements WithGloba
 	private Repositorio repositorioDispositivos;
 	private Repositorio repositorioReglas;
 	private Repositorio repositorioRestriccionesHF;
-	private Repositorio repositorioTransformadores;
-	private Repositorio repositorioUsuarios;
 	private Repositorio repositorioZonas;
+	private Repositorio repositorio;
+	
+	@Before
+	public void setUpGeneral() throws Exception {
+		repositorio = new Repositorio();
+		repositorio.abrir();
+		repositorioDispositivos = repositorio.dispositivos();
+		repositorioReglas = repositorio.reglas();
+		repositorioRestriccionesHF = RepositorioRestriccionHorasFamilia.getinstance();
+		repositorioRestriccionesHF.abrir();
+		repositorioZonas = RepositorioDeZonas.getinstance();
+		repositorioZonas.abrir();
+	}
+
 	
 	//Test conexion base local
 	@Test
@@ -53,22 +65,7 @@ public class TestJPAGeneral extends AbstractPersistenceTest implements WithGloba
 		});
 	}
 	
-	@Before
-	public void setUpDispositivo() throws Exception {
-		repositorioDispositivos = new Repositorio().dispositivos();
-		repositorioDispositivos.abrir();
-		repositorioReglas = new Repositorio();
-		repositorioReglas.abrir();
-		repositorioRestriccionesHF = RepositorioRestriccionHorasFamilia.getinstance();
-		repositorioRestriccionesHF.abrir();
-		repositorioUsuarios = new Repositorio();
-		repositorioUsuarios.abrir();
-		repositorioTransformadores = new Repositorio();
-		repositorioTransformadores.abrir();
-		repositorioZonas = RepositorioDeZonas.getinstance();
-		repositorioZonas.abrir();
-	}
-
+	
 	//Test dispositivos
 	@Test
 	public void aPersistirInteligentes() {	
@@ -166,9 +163,8 @@ public class TestJPAGeneral extends AbstractPersistenceTest implements WithGloba
 		Transformador c = new Transformador();
 		c.setIdZona(4);
 		c.setUbicacion(new Ubicacion(1.0,1.0));
-		repositorioTransformadores.persistir(c);
-		repositorioTransformadores.borrar(c);
-		
+		repositorio.persistir(c);
+		repositorio.borrar(c);
 	}
 	
 	//Test usuarios
@@ -181,7 +177,7 @@ public class TestJPAGeneral extends AbstractPersistenceTest implements WithGloba
 
 		Categoria unaCate = new Categoria("R0", 13.f, 0.05f, 1.5f, 10f);
 		c.setCategoria(unaCate);
-		repositorioUsuarios.persistir(c);
+		repositorio.persistir(c);
 	}
 
 	@Test
@@ -189,7 +185,7 @@ public class TestJPAGeneral extends AbstractPersistenceTest implements WithGloba
 		
 		Administrador admin = new Administrador("pedro", "saraska", "lavalle 148", LocalDate.of(2015, Month.APRIL, 19),
 				"pepe", "pasti");
-		repositorioUsuarios.persistir(admin);
+		repositorio.persistir(admin);
 	}
 
 	//Test zonas
@@ -217,12 +213,9 @@ public class TestJPAGeneral extends AbstractPersistenceTest implements WithGloba
 	}
 
 	@After
-	public void tearDownZonas() throws Exception {
-		repositorioDispositivos.cerrar();
-		repositorioReglas.cerrar();
+	public void tearDownGeneral() throws Exception {
 		repositorioRestriccionesHF.cerrar();
-		repositorioTransformadores.cerrar();
-		repositorioUsuarios.cerrar();
+		repositorio.cerrar();
 		repositorioZonas.cerrar();
 	}
 
