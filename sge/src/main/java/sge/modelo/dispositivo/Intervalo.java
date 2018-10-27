@@ -6,19 +6,24 @@ import java.time.LocalDateTime;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import sge.modelo.Persistible;
+import sge.repositorios.LocalDateTimeConverter;
+
 
 @Entity
 @Table(name = "Intervalo")
 public class Intervalo extends Persistible {
 
 	@Column(name = "inicio")
+	@Convert(converter = LocalDateTimeConverter.class)
 	LocalDateTime inicio;
 	@Column(name = "fin")
+	@Convert(converter = LocalDateTimeConverter.class)
 	LocalDateTime fin;
 	@OneToOne(cascade = CascadeType.ALL)
 	EstadoDispositivo estado;

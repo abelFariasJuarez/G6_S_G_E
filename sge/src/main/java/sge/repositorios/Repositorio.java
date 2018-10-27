@@ -24,6 +24,8 @@ public class Repositorio {
 	private Clientes clientes;
 	private Dispositivos dispositivos;
 	private Transformadores transformadores;
+	private RestriccionesHorasFamilia restriccionesHorasFamilia;
+	private Zonas zonas;
 
 	public Repositorio() {
 	}
@@ -38,13 +40,13 @@ public class Repositorio {
 		}
 		return sensores;
 	}
-	
+
 	public Comparaciones comparaciones() {
 		if (comparaciones == null) {
 			comparaciones = new Comparaciones(entityManager);
 		}
 		return comparaciones;
-	}	
+	}
 
 	public Condiciones condiciones() {
 		if (condiciones == null) {
@@ -80,7 +82,23 @@ public class Repositorio {
 		}
 		return transformadores;
 	}
-	
+
+	public RestriccionesHorasFamilia restriccionesHorasFamilia() {
+		if (restriccionesHorasFamilia == null) {
+			restriccionesHorasFamilia = new RestriccionesHorasFamilia(entityManager);
+			restriccionesHorasFamilia.crearRetriccionesSiNoExisten();
+		}
+
+		return restriccionesHorasFamilia;
+	}
+
+	public Zonas zonas() {
+		if (zonas == null) {
+			zonas = new Zonas(entityManager);
+		}
+		return zonas;
+	}
+
 	public EntityManager getEntityManager() {
 		return entityManager;
 	}
@@ -104,28 +122,28 @@ public class Repositorio {
 		entityManager.persist(unPersistible);
 		entityManager.getTransaction().commit();
 	}
-	
+
 	public void borrar(IPersistible unPersistible) {
 		entityManager.getTransaction().begin();
 		entityManager.remove(unPersistible);
 		entityManager.getTransaction().commit();
-	}	
+	}
 
 	public void flush() {
 		entityManager.flush();
-	}	
-	
+	}
+
 	public Session getSession() {
 		return entityManager.unwrap(Session.class);
 	}
 
 	protected Object findBy(Class<?> clazz, String campo, Object valor) {
 		Object objReturn;
-		//this.abrir();
+		// this.abrir();
 		Session session = this.getSession();
 		Criteria criteria = session.createCriteria(clazz).add(Restrictions.eq(campo, valor));
 		objReturn = criteria.uniqueResult();
-		//this.cerrar();
+		// this.cerrar();
 		return objReturn;
 	}
 

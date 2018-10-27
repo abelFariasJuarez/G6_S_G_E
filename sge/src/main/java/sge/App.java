@@ -23,7 +23,7 @@ import sge.modelo.usuarios.Cliente;
 import sge.repositorios.Clientes;
 import sge.repositorios.Repositorio;
 import sge.repositorios.Transformadores;
-import sge.repositorios.RepositorioDeZonas;
+import sge.repositorios.Zonas;
 
 public class App {
 
@@ -77,10 +77,10 @@ public class App {
 		System.out.println(Math.abs(Xcentro - xPoint) + Math.abs(yCenter - yPoint));
 
 		// se comprueba que importa bien zonas
-		RepositorioDeZonas repoZonas = RepositorioDeZonas.getinstance();
+		Zonas repoZonas = new Zonas();
 		repoZonas.cargarZonas();
 
-		for (ZonaGeografica zona : repoZonas.zonas()) {
+		for (ZonaGeografica zona : repoZonas.getZonas()) {
 			System.out.println(zona.getCentro().getLatitud());
 		}
 
@@ -93,7 +93,7 @@ public class App {
 		}
 
 		// se comprueba union zona transformador.
-		for (ZonaGeografica zona1 : repoZonas.zonas()) {
+		for (ZonaGeografica zona1 : repoZonas.getZonas()) {
 			for (Transformador trans1 : repoTransformadores.getTransformadores()) {
 				if (zona1.getId().equals(trans1.getIdZona())) {
 					zona1.Add(trans1);
@@ -102,7 +102,7 @@ public class App {
 			}
 		}
 
-		System.out.println(repoZonas.zonas().get(0).getTransformadores().get(1).getOid());
+		System.out.println(repoZonas.getZonas().get(0).getTransformadores().get(1).getOid());
 
 		Clientes repoClientes = (new Repositorio()).clientes();
 		repoClientes.cargarClientes();
@@ -110,14 +110,14 @@ public class App {
 			System.out.println(cli.getApellido());
 		}
 
-		System.out.println(repoZonas.zonas().get(0).pertenece(repoClientes.getClientes().get(0)));
-		System.out.println(repoZonas.zonas().get(0).pertenece(repoClientes.getClientes().get(1)));
-		System.out.println(repoZonas.zonas().get(0).pertenece(repoClientes.getClientes().get(2)));
+		System.out.println(repoZonas.getZonas().get(0).pertenece(repoClientes.getClientes().get(0)));
+		System.out.println(repoZonas.getZonas().get(0).pertenece(repoClientes.getClientes().get(1)));
+		System.out.println(repoZonas.getZonas().get(0).pertenece(repoClientes.getClientes().get(2)));
 
 		// ultimas pruebas falta corregir esto nullpointer al querer agregar cliente
 
 		for (Cliente clientet : repoClientes.getClientes()) {
-			ZonaGeografica zona = repoZonas.zonas().stream().filter(s -> s.pertenece(clientet)).findFirst().get();
+			ZonaGeografica zona = repoZonas.getZonas().stream().filter(s -> s.pertenece(clientet)).findFirst().get();
 
 			Transformador trans = Collections.min(zona.getTransformadores(),
 					Comparator.comparing(t -> t.Distancia(clientet)));
@@ -131,7 +131,7 @@ public class App {
 
 		// funciona bien , de la primer zona se fija en su tercer transformador y aca
 		// hay dos clientes que se asignaron arriba
-		System.out.println(repoZonas.zonas().get(0).getTransformadores().get(2).getClientes().size());
+		System.out.println(repoZonas.getZonas().get(0).getTransformadores().get(2).getClientes().size());
 
 	}
 }

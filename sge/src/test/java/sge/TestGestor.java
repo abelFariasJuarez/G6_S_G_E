@@ -32,7 +32,7 @@ public class TestGestor {
 	
 	@Test
 	public void clientePerteneceAZona() {
-		ZonaGeografica zona=gestor.getRepoZonas().zonas().get(0);
+		ZonaGeografica zona=gestor.getRepoZonas().getZonas().get(0);
 		Cliente cliente=gestor.getRepoClientes().getClientes().get(0);
 		assertEquals(true,zona.pertenece(cliente)); 
 		
@@ -40,7 +40,7 @@ public class TestGestor {
 	
 	@Test
 	public void esClienteDeAlgunaZona() {
-		List<ZonaGeografica> zonas=gestor.getRepoZonas().zonas();
+		List<ZonaGeografica> zonas=gestor.getRepoZonas().getZonas();
 		Cliente cliente=gestor.getRepoClientes().getClientes().get(2);
 		assertEquals(true,zonas.stream().anyMatch(zona -> zona.pertenece(cliente))); 
 		

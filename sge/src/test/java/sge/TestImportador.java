@@ -8,7 +8,7 @@ import sge.repositorios.Clientes;
 import sge.repositorios.Repositorio;
 import sge.repositorios.Dispositivos;
 import sge.repositorios.Transformadores;
-import sge.repositorios.RepositorioDeZonas;
+import sge.repositorios.Zonas;
 import sge.modelo.dispositivo.Dispositivo;
 import sge.modelo.posicionamiento.Transformador;
 import sge.modelo.posicionamiento.ZonaGeografica;
@@ -31,12 +31,12 @@ public class TestImportador {
 
 	@Test
 	public void ImportadorJsonZona() {
-		RepositorioDeZonas repoZonas = RepositorioDeZonas.getinstance();
+		Zonas repoZonas = new Zonas();
 		repoZonas.cargarZonas();
 
-		assertEquals(3, repoZonas.zonas().size());
+		assertEquals(3, repoZonas.getZonas().size());
 
-		for (ZonaGeografica zona : repoZonas.zonas()) {
+		for (ZonaGeografica zona : repoZonas.getZonas()) {
 
 			System.out.println(zona.getNombre());
 		}
@@ -46,7 +46,7 @@ public class TestImportador {
 	public void ImportadorJsonTransformador() {
 		Transformadores repoTransfo = new Repositorio().transformadores();
 		repoTransfo.cargarTransformadores();
-		assertEquals(5, repoTransfo.getTransformadores().size());
+		assertEquals(6, repoTransfo.getTransformadores().size());
 
 		for (Transformador transfo : repoTransfo.getTransformadores()) {
 

@@ -28,9 +28,9 @@ import sge.modelo.regla.*;
 
 @Entity
 @DiscriminatorValue("C")
-@Table(name="Cliente")
+@Table(name = "Cliente")
 public class Cliente extends UsuarioSGE {
-	
+
 	@Column(name = "tipodoc")
 	private String tipodoc;
 	@Column(name = "nrodoc")
@@ -49,10 +49,11 @@ public class Cliente extends UsuarioSGE {
 	private boolean ahorroAutomatico = false; // o accion automatica o accione por si solo
 	@OneToOne(cascade = CascadeType.ALL)
 	private Accion accionParaMejorarEficiencia = new AccionApagar();// la orden de "apagar" (podria ser accion
-																		// configurable)
+																	// configurable)
+
 	public Cliente() {
 	}
-	
+
 	public Cliente(String _nombre, String _apellido, String _domicilio, LocalDate _fechaIngreso, String _username,
 			String _password, String _tipodoc, Integer _nrodoc, Integer _telefono) {
 		super(_nombre, _apellido, _domicilio, _fechaIngreso, _username, _password);
@@ -73,7 +74,8 @@ public class Cliente extends UsuarioSGE {
 	}
 
 	public Cliente(String _nombre, String _apellido, String _domicilio, LocalDate _fechaIngreso, String _username,
-			String _password, String _tipodoc, Integer _nrodoc, Integer _telefono, List<Dispositivo> _dispositivos, Ubicacion _ubi) {
+			String _password, String _tipodoc, Integer _nrodoc, Integer _telefono, List<Dispositivo> _dispositivos,
+			Ubicacion _ubi) {
 		super(_nombre, _apellido, _domicilio, _fechaIngreso, _username, _password);
 		tipodoc = _tipodoc;
 		nrodoc = _nrodoc;
@@ -82,7 +84,6 @@ public class Cliente extends UsuarioSGE {
 		ubicacion = _ubi;
 
 	}
-
 
 	public String getTipoDoc() {
 		return tipodoc;
@@ -146,18 +147,11 @@ public class Cliente extends UsuarioSGE {
 	}
 
 	public void presentate() {
-		System.out.println(
-				"nombre:" + this.getNombre() + "  " + 
-						"apellido:" + this.getApellido() + "  " +
-						"FechaIngreso:" + this.getFechaIngreso() + "  " +
-						"username:" + this.getUsername() + "  " +
-						"password:" + this.getPassword() + "\n" +
-						"Domicilio:" + this.getDomicilio() + "  "	+
-						"Tipo Doc:" + tipodoc + "  " + 
-						"Nro Doc:" + nrodoc + " " +
-						"telefono:" + telefono + "  "+
-						"Fecha de alta:" + this.getFechaIngreso() +
-						"\n" + "Dispositivos:" + "");
+		System.out.println("nombre:" + this.getNombre() + "  " + "apellido:" + this.getApellido() + "  "
+				+ "FechaIngreso:" + this.getFechaIngreso() + "  " + "username:" + this.getUsername() + "  "
+				+ "password:" + this.getPassword() + "\n" + "Domicilio:" + this.getDomicilio() + "  " + "Tipo Doc:"
+				+ tipodoc + "  " + "Nro Doc:" + nrodoc + " " + "telefono:" + telefono + "  " + "Fecha de alta:"
+				+ this.getFechaIngreso() + "\n" + "Dispositivos:" + "");
 		this.presentarDispositivos();
 	}
 
@@ -170,7 +164,7 @@ public class Cliente extends UsuarioSGE {
 		if (!dispositivos.contains(comun))
 			throw new RuntimeException("solo se puede convertir dispositivos registrados");
 
-		DispositivoConModulo conModulo = new DispositivoConModulo(comun, false,new DriverBasico());
+		DispositivoConModulo conModulo = new DispositivoConModulo(comun, false, new DriverBasico());
 		dispositivos.remove(comun);
 		dispositivos.add(conModulo);
 
@@ -209,19 +203,15 @@ public class Cliente extends UsuarioSGE {
 		return true;
 	}
 
-
-
 	public void mejorarEficienciaHogar() {
 		Recomendacion sugerencia = this.getMejorCombinacionDispositivos();
-		this.misInteligentes()
-			.filter(i -> !sugerencia.esEficiente(i, this.consumoEnPeriodoDe(i)))
-			.forEach(i -> {
-				accionParaMejorarEficiencia.ejecutar((Inteligente)i);
-			});
+		this.misInteligentes().filter(i -> !sugerencia.esEficiente(i, this.consumoEnPeriodoDe(i))).forEach(i -> {
+			accionParaMejorarEficiencia.ejecutar((Inteligente) i);
+		});
 	}
 
 	private double consumoEnPeriodoDe(Dispositivo i) {
-		LocalDateTime finPeriodo = LocalDateTime.now();		
+		LocalDateTime finPeriodo = LocalDateTime.now();
 		LocalDateTime inicioPeriodo = finPeriodo.withDayOfMonth(1);
 		return i.consumo_periodo(inicioPeriodo, finPeriodo);
 	}
@@ -277,6 +267,5 @@ public class Cliente extends UsuarioSGE {
 	public void setPuntos(Integer puntos) {
 		this.puntos = puntos;
 	}
-	
-	
+
 }

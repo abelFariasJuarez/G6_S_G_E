@@ -29,31 +29,20 @@ import sge.modelo.usuarios.Administrador;
 import sge.modelo.usuarios.Categoria;
 import sge.modelo.usuarios.Cliente;
 import sge.repositorios.Repositorio;
-import sge.repositorios.RepositorioDeZonas;
-import sge.repositorios.RepositorioRestriccionHorasFamilia;
+import sge.repositorios.Zonas;
+import sge.repositorios.RestriccionesHorasFamilia;
 
 public class TestJPAGeneral extends AbstractPersistenceTest implements WithGlobalEntityManager {
 
-	private Repositorio repositorioDispositivos;
-	private Repositorio repositorioReglas;
-	private Repositorio repositorioRestriccionesHF;
-	private Repositorio repositorioZonas;
 	private Repositorio repositorio;
-	
+
 	@Before
 	public void setUpGeneral() throws Exception {
 		repositorio = new Repositorio();
 		repositorio.abrir();
-		repositorioDispositivos = repositorio.dispositivos();
-		repositorioReglas = repositorio.reglas();
-		repositorioRestriccionesHF = RepositorioRestriccionHorasFamilia.getinstance();
-		repositorioRestriccionesHF.abrir();
-		repositorioZonas = RepositorioDeZonas.getinstance();
-		repositorioZonas.abrir();
 	}
 
-	
-	//Test conexion base local
+	// Test conexion base local
 	@Test
 	public void contextUp() {
 		assertNotNull(entityManager());
@@ -64,19 +53,18 @@ public class TestJPAGeneral extends AbstractPersistenceTest implements WithGloba
 		withTransaction(() -> {
 		});
 	}
-	
-	
-	//Test dispositivos
+
+	// Test dispositivos
 	@Test
-	public void aPersistirInteligentes() {	
-		
+	public void aPersistirInteligentes() {
+
 		DispositivoInteligente air2 = new DispositivoInteligente("heladera", 0.18, true, new DriverBasico());
 		DispositivoInteligente lava2 = new DispositivoInteligente("lavadora", 0.875, true, new DriverBasico());
 		DispositivoInteligente unVenti2 = new DispositivoInteligente("Ventilador", 0.06, true, new DriverBasico());
 
-		air2.setRestriccionHoras(RepositorioRestriccionHorasFamilia.getinstance().findBy("codigo", "AIRCONDITIONER"));
-		lava2.setRestriccionHoras(RepositorioRestriccionHorasFamilia.getinstance().findBy("codigo", "WASHINGMACHINE"));
-		unVenti2.setRestriccionHoras(RepositorioRestriccionHorasFamilia.getinstance().findBy("codigo", "FAN"));
+		air2.setRestriccionHoras(repositorio.restriccionesHorasFamilia().findBy("codigo", "AIRCONDITIONER"));
+		lava2.setRestriccionHoras(repositorio.restriccionesHorasFamilia().findBy("codigo", "WASHINGMACHINE"));
+		unVenti2.setRestriccionHoras(repositorio.restriccionesHorasFamilia().findBy("codigo", "FAN"));
 
 		air2.prender();
 		lava2.prender();
@@ -88,107 +76,97 @@ public class TestJPAGeneral extends AbstractPersistenceTest implements WithGloba
 		 */
 		lava2.getIntervalos().get(0).setInicio(desde);
 
+		repositorio.persistir(air2);
+		repositorio.persistir(lava2);
+		repositorio.persistir(unVenti2);
 		
-		repositorioDispositivos.persistir(air2);
-		repositorioDispositivos.persistir(lava2);
-		repositorioDispositivos.persistir(unVenti2);
+		repositorio.borrar(air2);
+		repositorio.borrar(lava2);
+		repositorio.borrar(unVenti2);
+
 	}
-	
+
 	@Test
 	public void aPersistirConModulo() {
-		DispositivoEstandar comun = new DispositivoEstandar("microondas", 12.0, "pepe",false,10.0);
+		DispositivoEstandar comun = new DispositivoEstandar("microondas", 12.0, "pepe", false, 10.0);
 		Cliente unCliente = new Cliente("Pedro", "Ramon", "Plaza", LocalDate.of(1989, 11, 11), "pedro", "nikita", "dni",
 				31032123, 115322011);
 		unCliente.addDispositivo(comun);
-		
+
 		DispositivoConModulo conModulo = unCliente.agrega_modulo_a_estandar(comun);
-		repositorioDispositivos.persistir(conModulo);
+		repositorio.persistir(conModulo);
+		repositorio.borrar(conModulo);
 	}
 
-	//Test reglas
+	// Test reglas
 	@Test
 	public void aPersistirSensorComparadorCondicion() {
 		Sensor unS = null;
-		unS = repositorioReglas.sensores().findBy("nombre", "sensor1");
-		if (unS == null) {
-			unS = new Sensor();
-			unS.setMedicion(0.0);
-			unS.setNombre("sensor1");
-			unS.setTiempoDeEspera(30.0);
+		unS = new Sensor();
+		unS.setMedicion(0.0);
+		unS.setNombre("sensor1");
+		unS.setTiempoDeEspera(30.0);
 
-			repositorioReglas.persistir(unS);
-		}
+		repositorio.persistir(unS);
 
 		Comparador cmp = null;
-		cmp = repositorioReglas.comparaciones().findBy("oid", (long) 1);
-		if (cmp == null) {
-			cmp = new MayorIgual();
-			repositorioReglas.persistir(cmp);
-		}
+		cmp = new MayorIgual();
+		repositorio.persistir(cmp);
 
 		Condicion cond = null;
-		cond = repositorioReglas.condiciones().findBy("oid", (long) 1);
-		if (cond == null) {
-			cond = new Condicion();
-			cond.setComparador(cmp);
-			cond.setSensor(unS);
-			cond.setValorEsperado(34.0);
-			repositorioReglas.persistir(cond);
-		}
+		cond = new Condicion();
+		cond.setComparador(cmp);
+		cond.setSensor(unS);
+		cond.setValorEsperado(34.0);
+		repositorio.persistir(cond);
 
 		Regla unRegla = null;
-		unRegla = repositorioReglas.reglas().findBy("name", "regla 1");
-		if (unRegla == null) {
-			unRegla = new Regla("regla 1");
-			unRegla.agregarCondicion(cond);
+		unRegla = new Regla("regla 1");
+		unRegla.agregarCondicion(cond);
 
-			AccionPrender prenderAire = new AccionPrender();
-			unRegla.agregarAccion(prenderAire);
+		AccionPrender prenderAire = new AccionPrender();
+		unRegla.agregarAccion(prenderAire);
 
-			repositorioReglas.persistir(unRegla);
-		}
+		repositorio.persistir(unRegla);
+		repositorio.borrar(unRegla);
 
 	}
 
-	//Test restricciones horas familia
-	@Test
-	public void aPersistirRestriccionesHF() {		
-		assertEquals(true, true);
-	}
-	
-	//Test transformadores
+	// Test transformadores
 	@Test
 	public void aPersistirTransformadores() {
-		
+
 		Transformador c = new Transformador();
 		c.setIdZona(4);
-		c.setUbicacion(new Ubicacion(1.0,1.0));
+		c.setUbicacion(new Ubicacion(1.0, 1.0));
 		repositorio.persistir(c);
 		repositorio.borrar(c);
 	}
-	
-	//Test usuarios
+
+	// Test usuarios
 	@Test
 	public void aPersistirCliente() {
-		Cliente c = new Cliente("Carla", "Sanazki", "condarco 149", LocalDate.of(2017, 4, 7), "cazana",
-				"menToL2017", "Dni", 21321013, 1543312311);
+		Cliente c = new Cliente("Carla", "Sanazki", "condarco 149", LocalDate.of(2017, 4, 7), "cazana", "menToL2017",
+				"Dni", 21321013, 1543312311);
 		c.setAhorroAutomatico(false);
-		c.setUbicacion(new Ubicacion(1.0,1.0));
+		c.setUbicacion(new Ubicacion(1.0, 1.0));
 
 		Categoria unaCate = new Categoria("R0", 13.f, 0.05f, 1.5f, 10f);
 		c.setCategoria(unaCate);
 		repositorio.persistir(c);
+		repositorio.borrar(c);
 	}
 
 	@Test
 	public void aPersistirAdministrador() {
-		
+
 		Administrador admin = new Administrador("pedro", "saraska", "lavalle 148", LocalDate.of(2015, Month.APRIL, 19),
 				"pepe", "pasti");
 		repositorio.persistir(admin);
+		repositorio.borrar(admin);
 	}
 
-	//Test zonas
+	// Test zonas
 	@Test
 	public void aPersistirZonas() {
 		Transformador tran = new Transformador();
@@ -208,15 +186,13 @@ public class TestJPAGeneral extends AbstractPersistenceTest implements WithGloba
 		zona.setRadio((float) 12.3);
 		zona.Add(tran);
 
-		repositorioZonas.persistir(zona);
-		repositorioZonas.borrar(zona);
+		repositorio.zonas().persistir(zona);
+		repositorio.borrar(zona);
 	}
 
 	@After
 	public void tearDownGeneral() throws Exception {
-		repositorioRestriccionesHF.cerrar();
 		repositorio.cerrar();
-		repositorioZonas.cerrar();
 	}
 
 }

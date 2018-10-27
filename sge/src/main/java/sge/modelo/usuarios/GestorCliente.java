@@ -8,12 +8,12 @@ import sge.modelo.posicionamiento.*;
 import sge.repositorios.Clientes;
 import sge.repositorios.Repositorio;
 import sge.repositorios.Transformadores;
-import sge.repositorios.RepositorioDeZonas;
+import sge.repositorios.Zonas;
 
 public class GestorCliente {
 	private Repositorio repositorio = new Repositorio();
 	private Clientes repoClientes = repositorio.clientes();
-	private RepositorioDeZonas repoZonas = RepositorioDeZonas.getinstance();
+	private Zonas repoZonas = repositorio.zonas();
 	private Transformadores repoTransformadores = repositorio.transformadores();
 
 	public GestorCliente() {
@@ -28,7 +28,7 @@ public class GestorCliente {
 
 	public void transformadoresAsignacionZona() {
 
-		for (ZonaGeografica zona1 : getRepoZonas().zonas()) {
+		for (ZonaGeografica zona1 : getRepoZonas().getZonas()) {
 			for (Transformador trans1 : getRepoTransformadores().getTransformadores()) {
 				if (zona1.getId().equals(trans1.getIdZona())) {
 					zona1.Add(trans1);
@@ -41,7 +41,8 @@ public class GestorCliente {
 
 	public void asignarClientesATransformadores() {
 		for (Cliente cliente : getRepoClientes().getClientes()) {
-			ZonaGeografica zona = getRepoZonas().zonas().stream().filter(s -> s.pertenece(cliente)).findFirst().get();
+			ZonaGeografica zona = getRepoZonas().getZonas().stream().filter(s -> s.pertenece(cliente)).findFirst()
+					.get();
 			Transformador trans = Collections.min(zona.getTransformadores(),
 					Comparator.comparing(t -> t.Distancia(cliente)));
 			trans.getClientes().add(cliente);
@@ -57,11 +58,11 @@ public class GestorCliente {
 				.forEach(c -> c.mejorarEficienciaHogar());
 	}
 
-	public RepositorioDeZonas getRepoZonas() {
+	public Zonas getRepoZonas() {
 		return repoZonas;
 	}
 
-	public void setRepoZonas(RepositorioDeZonas repoZonas) {
+	public void setRepoZonas(Zonas repoZonas) {
 		this.repoZonas = repoZonas;
 	}
 
