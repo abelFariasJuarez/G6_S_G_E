@@ -316,6 +316,11 @@ public class TestEntrega3 {
 		
 		repositorio.persistir(clienteOriginal);
 	}	
+
+	@Test
+	public void reporte_consumo_hogar_periodo() throws Exception {
+		repositorio.consumo_hogar_periodo();
+	}
 	
 	@After
 	public void tearDown() throws Exception {

@@ -1,11 +1,16 @@
 package sge.repositorios;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 import org.hibernate.Criteria;
+import org.hibernate.Query;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
 import sge.modelo.IPersistible;
@@ -139,12 +144,47 @@ public class Repositorio {
 
 	protected Object findBy(Class<?> clazz, String campo, Object valor) {
 		Object objReturn;
-		// this.abrir();
 		Session session = this.getSession();
 		Criteria criteria = session.createCriteria(clazz).add(Restrictions.eq(campo, valor));
 		objReturn = criteria.uniqueResult();
-		// this.cerrar();
 		return objReturn;
 	}
+	
+	public void consumo_hogar_periodo() {
+
+		String q_consumo_hogar_periodo = 
+				"SELECT s.oid"						
+						+ ",i.oid as ioid" 
+						+ ", ed.factor *" 
+						+" d.consumoPorHora *"  
+						+" TIMESTAMPDIFF(SECOND, i.inicio, IFNULL(i.fin, now()) ) / (3600) as p"
+						+ ",i.inicio" 
+						+ ",IFNULL(i.fin, now()) as fin"
+						+ ",ed.factor" 
+						+ ",d.consumoPorHora" 
+						+ " FROM inteligente as s"
+				+ " inner join dispositivo as d on s.oid = d.oid"
+				+ " inner join inteligente_intervalo as si on s.oid = si.inteligente_oid"
+				+ " inner join intervalo as i on si.intervalos_oid = i.oid"
+				+ " inner join prueba.estadodispositivo ed on i.estado_oid = ed.oid";
+		// Prep work
+		Session session = this.getSession();
+
+		// Get All Employees
+		Transaction tx = session.beginTransaction();
+		SQLQuery query = session.createSQLQuery(q_consumo_hogar_periodo);
+		List<Object[]> rows = query.list();
+		for (Object[] row : rows) {
+			System.out.println(row[0].toString() 
+					+ ";" + row[1].toString() 
+					+ ";" + row[2].toString() 
+					+ ";" + row[3].toString() 
+					//+ ";" + row[4].toString() 
+					//+ ";" + row[5].toString()
+					);
+		}
+	}
+	
+	
 
 }
