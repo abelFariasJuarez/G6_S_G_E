@@ -114,11 +114,6 @@ public class TestJPAGeneral extends AbstractPersistenceTest implements WithGloba
 		repositorio.persistir(cmp);
 
 		Condicion cond = null;
-
-		Comparador cmp = null;
-		cmp = new MayorIgual();
-
-		Condicion cond = null;
 		cond = new Condicion();
 		cond.setComparador(cmp);
 		cond.setSensor(unS);
