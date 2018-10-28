@@ -20,7 +20,17 @@
 	</build>
 
 	<dependencies>
-
+		<dependency>
+			<groupId>jstl</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-webmvc -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>5.1.1.RELEASE</version>
+		</dependency>
 		<!-- JPA Persistence Dependencies -->
 		<dependency>
 			<groupId>org.uqbar-project</groupId>

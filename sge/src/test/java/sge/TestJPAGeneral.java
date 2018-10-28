@@ -83,7 +83,6 @@ public class TestJPAGeneral extends AbstractPersistenceTest implements WithGloba
 		repositorio.borrar(air2);
 		repositorio.borrar(lava2);
 		repositorio.borrar(unVenti2);
-
 	}
 
 	@Test
@@ -102,6 +101,7 @@ public class TestJPAGeneral extends AbstractPersistenceTest implements WithGloba
 	@Test
 	public void aPersistirSensorComparadorCondicion() {
 		Sensor unS = null;
+
 		unS = new Sensor();
 		unS.setMedicion(0.0);
 		unS.setNombre("sensor1");
@@ -112,6 +112,11 @@ public class TestJPAGeneral extends AbstractPersistenceTest implements WithGloba
 		Comparador cmp = null;
 		cmp = new MayorIgual();
 		repositorio.persistir(cmp);
+
+		Condicion cond = null;
+
+		Comparador cmp = null;
+		cmp = new MayorIgual();
 
 		Condicion cond = null;
 		cond = new Condicion();
@@ -130,6 +135,12 @@ public class TestJPAGeneral extends AbstractPersistenceTest implements WithGloba
 		repositorio.persistir(unRegla);
 		repositorio.borrar(unRegla);
 
+	}
+
+	// Test restricciones horas familia
+	@Test
+	public void aPersistirRestriccionesHF() {
+		assertEquals(true, true);
 	}
 
 	// Test transformadores
