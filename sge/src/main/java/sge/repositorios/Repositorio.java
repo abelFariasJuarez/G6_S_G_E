@@ -18,6 +18,7 @@ import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
 import sge.modelo.IPersistible;
+import sge.modelo.dispositivo.Dispositivo;
 import sge.modelo.dispositivo.DispositivoEstandar;
 import sge.modelo.dispositivo.DispositivoInteligente;
 import sge.modelo.driver.DriverBasico;
@@ -338,13 +339,13 @@ public class Repositorio {
 				this.persistir(cliente); 
 			}
 			
-			//Agrego los dispositivos
+			//Agrego los dispositivos con sus respectivos dueños
 			//DISPOSITIVO 1 (Inteligente)
 			nombreDispo = "Aire acondicionado de 3500 frigorías";
 			inteligente = (DispositivoInteligente) this.dispositivos().findBy("nombre",
 					nombreDispo);
 			if (inteligente == null) {
-				inteligente = new DispositivoInteligente(nombreDispo, 1.613, false, new DriverBasico());
+				inteligente = new DispositivoInteligente(nombreDispo, 1.613,"mlopez", false,false, new DriverBasico());
 				inteligente.prender();
 				this.persistir(inteligente);	
 			}
@@ -354,7 +355,8 @@ public class Repositorio {
 			estandar = (DispositivoEstandar) this.dispositivos().findBy("nombre",
 					nombreDispo);
 			if (estandar == null) {
-				estandar = new DispositivoEstandar(nombreDispo, 0.075, false);
+				estandar = new DispositivoEstandar(nombreDispo, 0.075, "mlopez",false,18.0);
+				
 				this.persistir(estandar);	
 			}
 			
@@ -363,7 +365,7 @@ public class Repositorio {
 			inteligente = (DispositivoInteligente) this.dispositivos().findBy("nombre",
 					nombreDispo);
 			if (inteligente == null) {
-				inteligente = new DispositivoInteligente(nombreDispo, 0.08, true, new DriverBasico());
+				inteligente = new DispositivoInteligente(nombreDispo, 0.08,"fperez", true,true, new DriverBasico());
 				inteligente.prender();
 				this.persistir(inteligente);	
 			}
@@ -373,15 +375,21 @@ public class Repositorio {
 			estandar = (DispositivoEstandar) this.dispositivos().findBy("nombre",
 					nombreDispo);
 			if (estandar == null) {
-				estandar = new DispositivoEstandar(nombreDispo, 0.09, true);
+				estandar = new DispositivoEstandar(nombreDispo, 0.09, "fperez",true, 6.0);
 				this.persistir(estandar);	
 			}
 			
-			//Asignamos dichos dispositivos a los usuarios creados.
+			//DISPOSITIVO 5 (Inteligente)
+			nombreDispo = "PC de escritorio";
+			inteligente = (DispositivoInteligente) this.dispositivos().findBy("nombre",
+					nombreDispo);
+			if (inteligente == null) {
+				inteligente = new DispositivoInteligente(nombreDispo, 0.4,"fperez", true,false, new DriverBasico());
+				inteligente.prender();
+				this.persistir(inteligente);	
+			}
 			
-			
-
-			
+//			
 		} catch (Exception e) {
 			// TODO: handle exception
 		}

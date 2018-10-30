@@ -132,6 +132,12 @@ public class App {
 		// funciona bien , de la primer zona se fija en su tercer transformador y aca
 		// hay dos clientes que se asignaron arriba
 		System.out.println(repoZonas.getZonas().get(0).getTransformadores().get(2).getClientes().size());
-
+		
+		
+//		//Carga de datos iniciales
+//		Repositorio repo = new Repositorio();
+//		repo.abrir();
+//		repo.cargaDeDatosIniciales();
+//		repo.cerrar();
 	}
 }

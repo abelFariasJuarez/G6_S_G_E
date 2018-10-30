@@ -343,6 +343,12 @@ public class TestEntrega3 {
 		repositorio.consumo_transformador_periodo(desde,hasta);
 	}
 	
+//	@Test
+//	public void cargaDeDatosIniciales() {
+//		repositorio.cargaDeDatosIniciales();
+//		
+//	}
+	
 	@After
 	public void tearDown() throws Exception {
 		repositorio.cerrar();
