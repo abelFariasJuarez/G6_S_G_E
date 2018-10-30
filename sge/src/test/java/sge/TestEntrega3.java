@@ -298,62 +298,7 @@ public class TestEntrega3 {
 			unDispo.setConsumoPorHora(7.1);
 			repositorio.persistir(unDispo);
 		}
-		//DISPOSITIVO 2
-		DispositivoInteligente unDispo2 = (DispositivoInteligente) repositorio.dispositivos().findBy("nombre",
-				"DispoCasoPrueba2");
-		if (unDispo2 == null) {
-			unDispo2 = new DispositivoInteligente("DispoCasoPrueba2", 10.0, true, new DriverBasico());
-
-			unDispo2.prender();
-			unDispo2.apagar();
-			unDispo2.prender();
-			unDispo2.apagar();
-			unDispo2.prender();
-			unDispo2.apagar();
-			
-			repositorio.persistir(unDispo2);	
-		}
-
-		unDispo2 = (DispositivoInteligente) repositorio.dispositivos().findBy("nombre",
-				"DispoCasoPrueba2");
 		
-		if (unDispo2 != null) {			
-
-			LocalDateTime desde = LocalDateTime.parse("2018-05-19T20:00:00.775887700");
-			LocalDateTime hasta = LocalDateTime.parse("2018-05-19T21:00:00.775887700");
-			unDispo2.getIntervalos().get(0).setInicio(desde);
-			unDispo2.getIntervalos().get(0).setFin(hasta);
-			
-			desde = LocalDateTime.parse("2018-05-19T21:00:00.775887701");
-			hasta = LocalDateTime.parse("2018-05-20T10:00:00.775887700");
-			unDispo2.getIntervalos().get(1).setInicio(desde);
-			unDispo2.getIntervalos().get(1).setFin(hasta);
-			
-			desde = LocalDateTime.parse("2018-05-20T10:00:00.775887701");
-			hasta = LocalDateTime.parse("2018-05-21T15:00:00.775887700");
-			unDispo2.getIntervalos().get(2).setInicio(desde);
-			unDispo2.getIntervalos().get(2).setFin(hasta);
-
-			desde = LocalDateTime.parse("2018-05-21T15:00:00.775887701");
-			hasta = LocalDateTime.parse("2018-05-21T23:00:00.775887700");
-			unDispo2.getIntervalos().get(3).setInicio(desde);
-			unDispo2.getIntervalos().get(3).setFin(hasta);
-
-			desde = LocalDateTime.parse("2018-05-21T23:00:00.775887701");
-			hasta = LocalDateTime.parse("2018-05-22T08:00:00.775887700");
-			unDispo2.getIntervalos().get(4).setInicio(desde);
-			unDispo2.getIntervalos().get(4).setFin(hasta);
-
-			desde = LocalDateTime.parse("2018-05-22T08:00:00.775887701");
-			hasta = LocalDateTime.parse("2018-05-22T19:00:00.775887700");
-			unDispo2.getIntervalos().get(5).setInicio(desde);
-			unDispo2.getIntervalos().get(5).setFin(hasta);
-
-			unDispo2.setBajoconsumo(true);
-			unDispo2.setConsumoPorHora(12.0);
-			repositorio.persistir(unDispo2);
-		}
-
 	}
 	
 	private void crearUsuarioDelCasoDePrueba() {
@@ -371,21 +316,6 @@ public class TestEntrega3 {
 		}
 		
 		repositorio.persistir(clienteOriginal);
-		
-		//Cliente 2
-		Cliente clienteOriginal2 = repositorio.clientes().findBy("username", "flopez");
-		if (clienteOriginal2 == null) {
-			clienteOriginal2 = new Cliente("Mariano", "Lopez", "Mozart 2300", LocalDate.of(1995, 01, 10), "mlopez",
-					"ml1234", "Dni", 38888383, 1533333333);
-			clienteOriginal2.setAhorroAutomatico(false);
-			clienteOriginal2.setUbicacion(new Ubicacion(20.0, 95.0));
-		}
-		else
-		{
-			clienteOriginal2.getUbicacion().setLongitud(90.0);	
-		}
-		
-		repositorio.persistir(clienteOriginal2);
 		
 	}	
 

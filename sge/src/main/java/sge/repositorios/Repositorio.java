@@ -1,6 +1,7 @@
 package sge.repositorios;
 
 import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.TimeZone;
@@ -17,7 +18,12 @@ import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
 import sge.modelo.IPersistible;
+import sge.modelo.dispositivo.DispositivoEstandar;
+import sge.modelo.dispositivo.DispositivoInteligente;
+import sge.modelo.driver.DriverBasico;
+import sge.modelo.posicionamiento.Ubicacion;
 import sge.modelo.regla.Sensor;
+import sge.modelo.usuarios.Cliente;
 
 public class Repositorio {
 
@@ -302,5 +308,84 @@ public class Repositorio {
 					);
 		}
 	}	
+	
+	public void cargaDeDatosIniciales() {
+		//Inicializamos las variables
+		Cliente cliente = new Cliente();
+		String nombreDispo = "";
+		DispositivoInteligente inteligente = new DispositivoInteligente();
+		DispositivoEstandar estandar = new DispositivoEstandar();
+	
+		try {
+			//Cargamos los usuarios clientes.
+			//Cliente 1
+			cliente = this.clientes().findBy("username", "fperez");
+			if (cliente == null) {
+				cliente = new Cliente("Felipe", "Perez", "Medrano 123", LocalDate.of(1995, 4, 7), "fperez",
+						"menToL2017", "Dni", 11222333, 1543312311);
+				cliente.setAhorroAutomatico(false);
+				cliente.setUbicacion(new Ubicacion(10.0, 90.0));
+				this.persistir(cliente);
+			}
+			
+			//Cliente 2
+			cliente = this.clientes().findBy("username", "mlopez");
+			if (cliente == null) {
+				cliente = new Cliente("Mariano", "Lopez", "Mozart 2300", LocalDate.of(1995, 01, 10), "mlopez",
+						"ml1234", "Dni", 38888383, 1533333333);
+				cliente.setAhorroAutomatico(false);
+				cliente.setUbicacion(new Ubicacion(20.0, 95.0));
+				this.persistir(cliente); 
+			}
+			
+			//Agrego los dispositivos
+			//DISPOSITIVO 1 (Inteligente)
+			nombreDispo = "Aire acondicionado de 3500 frigorías";
+			inteligente = (DispositivoInteligente) this.dispositivos().findBy("nombre",
+					nombreDispo);
+			if (inteligente == null) {
+				inteligente = new DispositivoInteligente(nombreDispo, 1.613, false, new DriverBasico());
+				inteligente.prender();
+				this.persistir(inteligente);	
+			}
+			
+			//DISPOSITIVO 2 (Estandar)
+			nombreDispo = "Televisor color tubo fluorecente de 21";
+			estandar = (DispositivoEstandar) this.dispositivos().findBy("nombre",
+					nombreDispo);
+			if (estandar == null) {
+				estandar = new DispositivoEstandar(nombreDispo, 0.075, false);
+				this.persistir(estandar);	
+			}
+			
+			//DISPOSITIVO 3 (Inteligente)
+			nombreDispo = "Televisor Led 40";
+			inteligente = (DispositivoInteligente) this.dispositivos().findBy("nombre",
+					nombreDispo);
+			if (inteligente == null) {
+				inteligente = new DispositivoInteligente(nombreDispo, 0.08, true, new DriverBasico());
+				inteligente.prender();
+				this.persistir(inteligente);	
+			}
+			
+			//DISPOSITIVO 4 (Estandar)
+			nombreDispo = "Ventilador de pie";
+			estandar = (DispositivoEstandar) this.dispositivos().findBy("nombre",
+					nombreDispo);
+			if (estandar == null) {
+				estandar = new DispositivoEstandar(nombreDispo, 0.09, true);
+				this.persistir(estandar);	
+			}
+			
+			//Asignamos dichos dispositivos a los usuarios creados.
+			
+			
+
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+	}
 	
 }
