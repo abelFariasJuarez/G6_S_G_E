@@ -233,11 +233,11 @@ public class TestEntrega3 {
 		System.out.println("\tconsumo promedio * 1000 : " + consumoTrans + "del Transformador en el periodo");
 		assertEquals(consumoDispositivo * 1000, consumoTrans1000, 0);
 		
-		//unCliente.removeDispositivo(unDispo);
-		//repositorio.persistir(unCliente);
+		unCliente.removeDispositivo(unDispo);
+		repositorio.persistir(unCliente);
 		
-		//unTrans.removeCliente(unCliente);
-		//repositorio.persistir(unTrans);
+		unTrans.removeCliente(unCliente);
+		repositorio.persistir(unTrans);
 		
 	}
 
@@ -319,7 +319,26 @@ public class TestEntrega3 {
 
 	@Test
 	public void reporte_consumo_hogar_periodo() throws Exception {
-		repositorio.consumo_hogar_periodo();
+		LocalDateTime desde = LocalDateTime.of(2018,10,28,01,00,00);
+		LocalDateTime hasta = LocalDateTime.of(2018,10,28,20,00,00,15);
+		
+		repositorio.consumo_hogar_periodo(desde,hasta);
+	}
+
+	@Test
+	public void reporte_consumo_promedio_tipo_dispositivo_periodo() throws Exception {
+		LocalDateTime desde = LocalDateTime.of(2018,10,28,01,00,00);
+		LocalDateTime hasta = LocalDateTime.of(2018,10,28,20,00,00,15);
+		
+		repositorio.consumo_promedio_tipo_dispositivo_periodo(desde,hasta);
+	}
+
+	@Test
+	public void reporte_consumo_transformador_periodo() throws Exception {
+		LocalDateTime desde = LocalDateTime.of(2018,10,28,01,00,00);
+		LocalDateTime hasta = LocalDateTime.of(2018,10,28,20,00,00,15);
+		
+		repositorio.consumo_transformador_periodo(desde,hasta);
 	}
 	
 	@After
