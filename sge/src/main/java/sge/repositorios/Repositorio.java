@@ -1,6 +1,9 @@
 package sge.repositorios;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.TimeZone;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -151,36 +154,62 @@ public class Repositorio {
 	}
 	
 	public void consumo_hogar_periodo() {
-
+		TimeZone.setDefault( TimeZone.getTimeZone( "UTC" ) );				
+		LocalDateTimeConverter converter = new LocalDateTimeConverter();
+		LocalDateTime desde = LocalDateTime.of(2018,10,28,01,00,00);
+		LocalDateTime hasta = LocalDateTime.of(2018,10,28,20,00,00,15);
+		
+		Timestamp p_desde = converter.convertToDatabaseColumn(desde);
+		Timestamp p_hasta = converter.convertToDatabaseColumn(hasta);
+		
 		String q_consumo_hogar_periodo = 
-				"SELECT s.oid"						
-						+ ",i.oid as ioid" 
-						+ ", ed.factor *" 
-						+" d.consumoPorHora *"  
-						+" TIMESTAMPDIFF(SECOND, i.inicio, IFNULL(i.fin, now()) ) / (3600) as p"
-						+ ",i.inicio" 
-						+ ",IFNULL(i.fin, now()) as fin"
-						+ ",ed.factor" 
-						+ ",d.consumoPorHora" 
-						+ " FROM inteligente as s"
-				+ " inner join dispositivo as d on s.oid = d.oid"
-				+ " inner join inteligente_intervalo as si on s.oid = si.inteligente_oid"
-				+ " inner join intervalo as i on si.intervalos_oid = i.oid"
-				+ " inner join prueba.estadodispositivo ed on i.estado_oid = ed.oid";
+"    SELECT r.oid, r.username, r.consumoPorHora * TIMESTAMPDIFF(SECOND, r.inicio, r.fin) / (3600) as consumo"+
+" FROM " + 
+"    ( " + 
+"    SELECT " + 
+"        c.oid, " + 
+"        u.username, " + 
+"        ed.factor * d.consumoPorHora as consumoPorHora, " + 
+"        IF(i.inicio < :desde, :desde, i.inicio) as inicio, " + 
+"        IF(IFNULL(i.fin,now()) < :hasta,IFNULL(i.fin,now()), :hasta) as fin " + 
+"    FROM cliente c" + 
+"    inner join usuariosge u on c.oid = u.oid " +
+"    inner join cliente_dispositivo cd on c.oid = cd.cliente_oid " +
+"    inner join inteligente as s on cd.dispositivos_oid = s.oid " + 
+"    inner join dispositivo as d on s.oid = d.oid " + 
+"    inner join inteligente_intervalo as si on s.oid = si.inteligente_oid " + 
+"    inner join intervalo as i on si.intervalos_oid = i.oid and i.inicio <= :hasta and i.fin > :desde " + 
+"    inner join " + 
+"        prueba.estadodispositivo ed " + 
+"            on i.estado_oid = ed.oid ) as r"+
+"    union "+	
+"    SELECT c.oid, u.username, d.consumoPorHora * de.horasEncendidoPorDia * TIMESTAMPDIFF(SECOND, :desde, :hasta) / (3600) as consumo" + 
+"    FROM cliente c" + 
+"    inner join usuariosge u on c.oid = u.oid " +
+"    inner join cliente_dispositivo cd on c.oid = cd.cliente_oid " +
+"    inner join dispositivoestandar de on cd.dispositivos_oid = de.oid " + 
+"    inner join dispositivo as d on de.oid = d.oid "; 		
+
 		// Prep work
 		Session session = this.getSession();
 
 		// Get All Employees
 		Transaction tx = session.beginTransaction();
 		SQLQuery query = session.createSQLQuery(q_consumo_hogar_periodo);
+		
+		query.setTimestamp("desde", p_desde);
+		query.setTimestamp("hasta", p_hasta);
+		
 		List<Object[]> rows = query.list();
 		for (Object[] row : rows) {
 			System.out.println(row[0].toString() 
 					+ ";" + row[1].toString() 
 					+ ";" + row[2].toString() 
-					+ ";" + row[3].toString() 
+					//+ ";" + row[3].toString() 
 					//+ ";" + row[4].toString() 
-					//+ ";" + row[5].toString()
+					/*+ ";" + row[5].toString()
+					+ ";" + row[6].toString()
+					+ ";" + row[7].toString()*/
 					);
 		}
 	}

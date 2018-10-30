@@ -158,7 +158,7 @@ public class TestCliente {
 				31032123, 115322011);
 		DispositivoEstandar disestandar = new DispositivoEstandar("microondas", 12.0, "pepe", false, 11.0);
 		clien.addDispositivo(disestandar);
-		disestandar.setHorasEncendido(9.0);
+		disestandar.setHorasEncendidoPorDia(9.0);
 		// convierto a dispositivo modulo
 		DispositivoConModulo dismodulo = clien.agrega_modulo_a_estandar(disestandar);
 		dismodulo.setInstanteDeCreacion(LocalDateTime.parse("2018-05-25T20:30:00.775887700"));

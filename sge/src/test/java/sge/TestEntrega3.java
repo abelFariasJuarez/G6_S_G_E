@@ -190,8 +190,8 @@ public class TestEntrega3 {
 	public void casoDePrueba5() {
 
 		// Caso de prueba 5:
-		LocalDateTime instanteDesde = LocalDateTime.parse("2018-05-19T10:00:00.775887700");
-		LocalDateTime instanteHasta = LocalDateTime.parse("2018-05-22T23:00:00.775887700");
+		LocalDateTime instanteDesde = LocalDateTime.parse("2018-05-15T10:00:00.775887700");
+		LocalDateTime instanteHasta = LocalDateTime.parse("2018-05-30T23:00:00.775887700");
 		
 		// Dado un dispositivo y un período, mostrar por consola su
 		// consumo promedio.
@@ -233,11 +233,11 @@ public class TestEntrega3 {
 		System.out.println("\tconsumo promedio * 1000 : " + consumoTrans + "del Transformador en el periodo");
 		assertEquals(consumoDispositivo * 1000, consumoTrans1000, 0);
 		
-		unCliente.removeDispositivo(unDispo);
-		repositorio.persistir(unCliente);
+		//unCliente.removeDispositivo(unDispo);
+		//repositorio.persistir(unCliente);
 		
-		unTrans.removeCliente(unCliente);
-		repositorio.persistir(unTrans);
+		//unTrans.removeCliente(unCliente);
+		//repositorio.persistir(unTrans);
 		
 	}
 

@@ -41,7 +41,7 @@ public class TestDispositivos {
 		LocalDateTime desde = LocalDateTime.parse("2018-05-18T20:30:00.775887700");
 		LocalDateTime hasta = LocalDateTime.parse("2018-06-18T20:30:00.775887700");
 		// seteo aproximado del cliente
-		disestandar.setHorasEncendido(9.0);
+		disestandar.setHorasEncendidoPorDia(9.0);
 		assertEquals(3348.0, disestandar.consumo_periodo(desde, hasta), 0);
 	}
 

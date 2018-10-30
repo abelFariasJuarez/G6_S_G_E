@@ -13,7 +13,6 @@ public class LocalDateTimeConverter implements AttributeConverter<LocalDateTime,
 	public Timestamp convertToDatabaseColumn(LocalDateTime attribute) {
 
 		return attribute != null ? Timestamp.valueOf(attribute) : null;
-
 	}
 
 	@Override
