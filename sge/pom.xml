@@ -19,8 +19,14 @@
 		</plugins>
 	</build>
 
-	<dependencies>
-		<dependency>
+<dependencies>
+	    <dependency>
+	      <groupId>junit</groupId>
+	      <artifactId>junit</artifactId>
+	      <version>3.8.1</version>
+	      <scope>test</scope>
+	    </dependency>
+    	<dependency>
 			<groupId>jstl</groupId>
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
@@ -48,7 +54,6 @@
 			<artifactId>junit</artifactId>
 			<version>4.12</version>
 		</dependency>
-
 		<dependency>
 			<groupId>com.google.code.gson</groupId>
 			<artifactId>gson</artifactId>
@@ -59,6 +64,13 @@
 			<artifactId>commons-math3</artifactId>
 			<version>3.6.1</version>
 		</dependency>
-	</dependencies>
+		<!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
+		<dependency>
+		    <groupId>javax.servlet</groupId>
+		    <artifactId>javax.servlet-api</artifactId>
+		    <version>4.0.1</version>
+		    <scope>provided</scope>
+		</dependency>    
+  </dependencies>
 
 </project>
