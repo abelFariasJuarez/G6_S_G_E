@@ -321,33 +321,33 @@ public class TestEntrega3 {
 
 	@Test
 	public void reporte_consumo_hogar_periodo() throws Exception {
-		LocalDateTime desde = LocalDateTime.of(2018,10,28,01,00,00);
-		LocalDateTime hasta = LocalDateTime.of(2018,10,28,20,00,00,15);
+		LocalDateTime desde = LocalDateTime.of(2018,1,28,01,00,00);
+		LocalDateTime hasta = LocalDateTime.of(2018,12,30,20,00,00,15);
 		
 		repositorio.consumo_hogar_periodo(desde,hasta);
 	}
 
 	@Test
 	public void reporte_consumo_promedio_tipo_dispositivo_periodo() throws Exception {
-		LocalDateTime desde = LocalDateTime.of(2018,10,28,01,00,00);
-		LocalDateTime hasta = LocalDateTime.of(2018,10,28,20,00,00,15);
+		LocalDateTime desde = LocalDateTime.of(2018,1,28,01,00,00);
+		LocalDateTime hasta = LocalDateTime.of(2018,12,28,20,00,00,15);
 		
 		repositorio.consumo_promedio_tipo_dispositivo_periodo(desde,hasta);
 	}
 
 	@Test
 	public void reporte_consumo_transformador_periodo() throws Exception {
-		LocalDateTime desde = LocalDateTime.of(2018,10,28,01,00,00);
-		LocalDateTime hasta = LocalDateTime.of(2018,10,28,20,00,00,15);
+		LocalDateTime desde = LocalDateTime.of(2018,1,28,01,00,00);
+		LocalDateTime hasta = LocalDateTime.of(2018,12,28,20,00,00,15);
 		
 		repositorio.consumo_transformador_periodo(desde,hasta);
 	}
 	
-//	@Test
-//	public void cargaDeDatosIniciales() {
-//		repositorio.cargaDeDatosIniciales();
-//		
-//	}
+	@Test
+	public void cargaDeDatosIniciales() {
+		repositorio.cargaDeDatosIniciales();
+		
+	}
 	
 	@After
 	public void tearDown() throws Exception {

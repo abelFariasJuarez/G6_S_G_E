@@ -35,7 +35,7 @@ public abstract class Inteligente extends Dispositivo {
 	private boolean encendido;
 	@OneToOne(cascade = CascadeType.ALL)
 	private EstadoDispositivo estado;
-	@Column(name = "horasEncendido")
+	//@Column(name = "horasEncendido")
 	@OneToMany(orphanRemoval = true, cascade = CascadeType.ALL)
 	private List<Intervalo> intervalos = new ArrayList<Intervalo>();
 
