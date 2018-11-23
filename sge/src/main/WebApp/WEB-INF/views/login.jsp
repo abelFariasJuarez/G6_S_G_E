@@ -14,11 +14,11 @@
       <div class="col col-sm align-self-start"></div>
   	<div class="col col-sm align-self-center">
     	 
-   <h1 class ="h1">Sistema de Gestion Electrica<h1>
+   <h1 class ="h1">Sistema de Gestion Electrica</h1>
 <img src="logo.jpg">
     </div>
     <div class="col col-sm align-self-end"></div>
-	</dix>
+	</div>
 </div>
 
   <div class="container">
@@ -38,7 +38,7 @@
   	<div class="col col-sm align-self-center">
     	 
     	
-      <form action="administrador.html" method="post" class="form-signin">
+      
 <div class="form">  
 <input type="text" id="username" placeholder="Usuario" name="username" class= "form-control" />
   
@@ -46,7 +46,7 @@
 
  <button id="LoginButton" class="btn btn-dark" > Sign in </button> 
 </div>
-  </form>
+
     </div>
     <div class="col col-sm align-self-end"></div>
   </div>

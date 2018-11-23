@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+ <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix ="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,7 +24,13 @@
 	 <div>
 	 <h3>Instructivo</h3>
 	 <ul>
-		 <li><strong>Crear Mapa:</strong> 
+		 <li><strong>Crear Mapa:
+		 <c:forEach items="${zonas}" var="zona">
+    
+        ${zona.radio}
+      
+    </c:forEach>
+    </strong> 
 		 	<ol>
 		 		<li>Incluimos Jquery, leaflet.css, leaflet.js; en ese orden (es recomendable incluir los archivos en la carpeta del proyecto y no usar CDN.</li>
 		 		<pre>
@@ -38,7 +47,7 @@
 						</div> 
 					</xmp>
 			 	</pre>
-			 	<li>Tomamos el div como elemento para crear en √©l un mapa y agregamos el mapa de OSM</li>
+			 	<li>Tomamos el div como elemento para crear en Èl un mapa y agregamos el mapa de OSM</li>
 			 	<pre>
 			 		<xmp>
 			 			<script type="text/javascript">
@@ -57,7 +66,7 @@
 			 		</xmp>
 			 		* 'mapa' es el id del div que va a ser contenedor.
 			 	</pre>
-			 	<li>Estamos listos para crear marcadores, poligonos o cualquier otra figura en √©l.</li>
+			 	<li>Estamos listos para crear marcadores, poligonos o cualquier otra figura en Èl.</li>
 			 	<p>A los elementos creados se les puede agregar eventos; por ejemplo: click, hover, etc.</p>
 			 	<p>Es muy importante agregar cada elemento creado al mapa: ' .addTo(mapa); ' </p>
 			 	<pre>
@@ -89,12 +98,12 @@
 		 	</ol>
 		 </li>
 	 </ul>
-	<h3>Documentaci√≥n</h3>
+	<h3>DocumentaciÛn</h3>
 	<ul>
 		<li><a href="https://leafletjs.com/">Leaflet:</a> es una biblioteca <strong>JavaScript</strong> open source para crear mapas interactivos, agregar controles, marcadores y Poligonos.</li>
 		<li><a href="https://www.openstreetmap.org/#map=4/-40.44/-63.59">OpenStreetMap:</a> es un proveedor de mapas. Ademas de permitir crear y editar mapas ya existentes, posee APIs que permiten a Leaflet cargar de a porciones el mapa en su contenedor.</li>
 	</ul> 	
-	<h3>Ver t√°mbien:</h3>
+	<h3>Ver t·mbien:</h3>
 	<ul>
 		<li><a href="https://github.com/Leaflet/Leaflet.Icon.Glyph">Leaflet Icon Glyph:</a> Permite cambiar el icono por defecto de los marcadores.</li>
 		<li><a href="https://github.com/Leaflet/Leaflet.markercluster">Marker Cluster:</a> Permite agrupar marcadores. A medida que nos acercamos, los marcadores se desagrupan.</li>
@@ -104,7 +113,7 @@
 </body>
 <hr>
 <footer style="text-align: center;background-color:grey;color:white">
-	Catedra Dise√±o de Sistemas - UTN FRBA 2018
+	Catedra DiseÒo de Sistemas - UTN FRBA 2018
 </footer>
 </html>
 <script type="text/javascript">
@@ -118,9 +127,23 @@
 		});
 		L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 	    attribution: ''}).addTo(mapa);
-		var marker = L.marker([-34.598494, -58.420186]).addTo(mapa).bindPopup("<button class='btn btn-info' onclick='alert(\"Soy medrano\")'>No me toques(o Si)</button>");
+	
 		
-		var marker2 = L.marker([-34.659438,-58.4704135]).addTo(mapa).on('click', onClick);
+		 <c:forEach items="${transs}" var="trans">
+		var marker = L.marker([${trans.ubicacion.latitud}, ${trans.ubicacion.longitud}]).addTo(mapa).bindPopup("<button class='btn btn-info' onclick='alert(\"t\")'>Transformador</button>");
+		 </c:forEach>
+		
+		
+	  <c:forEach items="${zonas}" var="zona">
+	    
+	  var circle = L.circle([${zona.centro.latitud},${zona.centro.longitud}], {
+		    color: 'blue',
+		    fillColor: '#f03',
+		    fillOpacity: 0.5,
+		    radius:${zona.radio}
+		}).addTo(mapa);
+    
+  </c:forEach>
 		
 		var polygon = L.polygon([
 				[-34.697878, -58.468897],
