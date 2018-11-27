@@ -1,0 +1,15 @@
+body{background-color: black;
+}
+
+.tamanio{
+	width:400px;
+	border-style: solid;
+	border-color:blue 1px;
+}
+
+.margen{
+	margin-top:0.4%;
+}
+
+.solid{border-color: white;
+	border-style: solid 1px;}

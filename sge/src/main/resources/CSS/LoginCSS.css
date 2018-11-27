@@ -1,0 +1,25 @@
+ html {
+        height:100%;
+        width:100%;
+    }
+
+
+
+form{
+
+	width :200px;
+	position: absolute;
+		
+		top:40%;
+		left:50%;
+		margin-left:-100px;
+		margin-top:-1%;
+		padding:1px;
+}
+
+h2{margin-top:5%}
+
+div{margin-top:1%;}
+footer{margin-top:40%;}
+
+

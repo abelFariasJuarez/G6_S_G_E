@@ -1,0 +1,16 @@
+body{background-color: black;
+}
+
+.tamanio{
+	margin-top:10%;
+	width:400px;
+	border-style: solid;
+	border-color:green 1px;
+}
+
+.posicion{
+	margin-top:-0.1%;
+}
+
+.solid{border-color: white;
+	border-style: solid 1px;}

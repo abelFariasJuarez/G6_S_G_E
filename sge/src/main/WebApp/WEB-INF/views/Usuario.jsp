@@ -76,12 +76,14 @@ function myFunctionx() {
     </div>
   </div>
 </nav>
-
-
+ <div>Web Application. Passed parameter : th:text="${message}"</div>
+  <p>Usuario: ${user}</p>
+    <p>Contraseña: ${password}</p>
 
 <div class="container text-light" >
   <div class="row" style="visibility:hidden" id="oculto">
      <div class="col align-self-start"   id="oculto" >
+     
     <span class=" border border-danger">Consumo Ultimo Periodo : x </span>
     <br>Ultimas Mediciones:
      <table     class=" table table-dark "  >

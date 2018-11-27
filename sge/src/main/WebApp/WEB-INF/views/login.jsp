@@ -1,3 +1,8 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+	 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix ="c" %>
+ <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,16 +43,20 @@
   	<div class="col col-sm align-self-center">
     	 
     	
-      
+ <form:form name="mapa" method="POST">     
 <div class="form">  
 <input type="text" id="username" placeholder="Usuario" name="username" class= "form-control" />
   
 <input type="password" id="password" placeholder="Password" name="password" class= "form-control" />
 
  <button id="LoginButton" class="btn btn-dark" > Sign in </button> 
+
 </div>
 
+ </form:form>     
     </div>
+    <br></br>
+     <span>${message}</span>
     <div class="col col-sm align-self-end"></div>
   </div>
 </div>

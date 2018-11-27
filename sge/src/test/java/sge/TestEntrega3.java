@@ -14,6 +14,7 @@ import sge.modelo.dispositivo.DispositivoInteligente;
 import sge.modelo.driver.DriverBasico;
 import sge.modelo.posicionamiento.Transformador;
 import sge.modelo.posicionamiento.Ubicacion;
+import sge.modelo.posicionamiento.ZonaGeografica;
 import sge.modelo.regla.AccionPrender;
 import sge.modelo.regla.Condicion;
 import sge.modelo.regla.Regla;
@@ -347,6 +348,12 @@ public class TestEntrega3 {
 	public void cargaDeDatosIniciales() {
 		repositorio.cargaDeDatosIniciales();
 		
+	}
+	@Test
+	public void cargaTransformadores() {
+		
+		repositorio.transformadores().cargarTransformadores();
+		repositorio.transformadores().guardarTransforamdores();
 	}
 	
 	@After
