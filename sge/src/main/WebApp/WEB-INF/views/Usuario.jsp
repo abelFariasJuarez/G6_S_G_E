@@ -77,13 +77,15 @@ function myFunctionx() {
     </div>
   </div>
 </nav>
- <c:forEach items="${usuarios}" var="usuario">
- ${usuario }
+ <c:forEach items="${clientes}" var="usuario">
+ ${usuario}
  	 </c:forEach>
  <div>Web Application. Passed parameter : th:text="${message}"</div>
   <p>Usuario: ${user}</p>
     <p>Contraseña: ${password}</p>
-
+ <c:forEach items="${clientes}" var="usuario">
+ ${usuario.nombre} hola
+ 	 </c:forEach>
 <div class="container text-light" >
   <div class="row" style="visibility:hidden" id="oculto">
      <div class="col align-self-start"   id="oculto" >

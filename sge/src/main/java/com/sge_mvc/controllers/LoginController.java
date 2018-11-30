@@ -2,6 +2,7 @@ package com.sge_mvc.controllers;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -30,13 +31,14 @@ public class LoginController {
         String Mensaje = "";
         String usuario=request.getParameter("username");
         String password=request.getParameter("password");
-         Clientes usuarios = repo.clientes();
+        Clientes usuarios = repo.clientes();
         UsuarioSGE usu = (UsuarioSGE) repo.findBy(UsuarioSGE.class,"username", usuario);
-    
+        
         if (usu.getPassword().equalsIgnoreCase(password) ) {
            if(usu.getUsertype().equals("C")) {
-        	  ModelAndView modelAndView = new ModelAndView("redirect:/demo/login/Usuario");
-        	 modelAndView.addObject("usuarios", usuarios);
+        	  ModelAndView modelAndView = new ModelAndView("Usuario");
+
+        	  modelAndView.addObject("usuarios", usuarios);
               modelAndView.addObject("message", usu.getUsertype());
           
               modelAndView.addObject("user", usuario);
@@ -82,8 +84,14 @@ public class LoginController {
 	
 	@RequestMapping(value = "/Usuario", method = RequestMethod.GET)
 	public String user(Model model) {
-		Repositorio repo = new Repositorio();
+		
+		List<Cliente> clientes = new LinkedList<Cliente>();
+        Cliente cli = new Cliente("martin",null,null,null,null,null,null,null,null);
+        clientes.add(cli);
+        
+        Repositorio repo = new Repositorio();
 		repo.abrir();
+		repo.clientes().cargarClientes();
 		model.addAttribute("clientes", repo.clientes().getClientes());
 		repo.cerrar();
 		return "Usuario";
