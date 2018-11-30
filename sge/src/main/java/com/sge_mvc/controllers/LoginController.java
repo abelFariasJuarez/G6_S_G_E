@@ -30,34 +30,43 @@ public class LoginController {
         String Mensaje = "";
         String usuario=request.getParameter("username");
         String password=request.getParameter("password");
-        UsuarioSGE usu = repo.clientes().findBy("username", usuario);
+         Clientes usuarios = repo.clientes();
+        UsuarioSGE usu = (UsuarioSGE) repo.findBy(UsuarioSGE.class,"username", usuario);
     
-        if (usu.getPassword().equalsIgnoreCase(password)  && usu.getUsername().equalsIgnoreCase(usuario) ) {
-         if(usu.getUsertype().equals("C"))	{
-        	  ModelAndView modelAndView = new ModelAndView("Usuario");
+        if (usu.getPassword().equalsIgnoreCase(password) ) {
+           if(usu.getUsertype().equals("C")) {
+        	  ModelAndView modelAndView = new ModelAndView("redirect:/demo/login/Usuario");
+        	 modelAndView.addObject("usuarios", usuarios);
               modelAndView.addObject("message", usu.getUsertype());
           
               modelAndView.addObject("user", usuario);
               modelAndView.addObject("password", password);
               repo.cerrar();
-              return modelAndView;
-         }
-         else {
+
+             return modelAndView;
+        }
+        else 
+        {
         	 ModelAndView modelAndView = new ModelAndView("Administrador");
-           
+             modelAndView.addObject("message", usu.getUsertype());
          
              modelAndView.addObject("user", usuario);
              modelAndView.addObject("password", password);
              repo.cerrar();
-             return modelAndView;
-         }
+
+            return modelAndView;
         }
+        }
+        else {
+        	 ModelAndView modelAndView = new ModelAndView("login");
+        	  repo.cerrar();
+        	  modelAndView.addObject("message", "Usuario o Contraseña incorrecta");
+
+              return modelAndView;
+        }
+       
     		
-        ModelAndView modelAndView = new ModelAndView("login");
-        modelAndView.addObject("message"," Usuario o contraseña incorrecto");
-    
-		repo.cerrar();
-        return modelAndView;
+
     	
 	}
 	
@@ -68,6 +77,16 @@ public class LoginController {
 		model.addAttribute("clientes", repo.clientes().getClientes());
 		repo.cerrar();
 		return "Administrador";
+	}
+	
+	
+	@RequestMapping(value = "/Usuario", method = RequestMethod.GET)
+	public String user(Model model) {
+		Repositorio repo = new Repositorio();
+		repo.abrir();
+		model.addAttribute("clientes", repo.clientes().getClientes());
+		repo.cerrar();
+		return "Usuario";
 	}
 }
 

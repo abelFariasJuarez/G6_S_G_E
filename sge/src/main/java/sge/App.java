@@ -20,6 +20,7 @@ import sge.modelo.regla.Regla;
 import sge.modelo.regla.Sensor;
 import sge.modelo.regla.comparador.*;
 import sge.modelo.usuarios.Cliente;
+import sge.modelo.usuarios.UsuarioSGE;
 import sge.repositorios.Clientes;
 import sge.repositorios.Repositorio;
 import sge.repositorios.Transformadores;
@@ -29,7 +30,14 @@ public class App {
 
 	public static void main(String[] args) throws InterruptedException {
 
-
-
+		Repositorio repo = new Repositorio();
+		repo.abrir();
+		
+		 UsuarioSGE usu = repo.clientes().findBy("username", "fperez");
+		repo.clientes().cargarClientes();
+		 for(Cliente cli : repo.clientes().getClientes())
+			 
+		 System.out.print(cli.getApellido());
+		
 	}
 }

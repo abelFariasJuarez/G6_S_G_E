@@ -152,7 +152,7 @@ public class Repositorio {
 		return entityManager.unwrap(Session.class);
 	}
 
-	protected Object findBy(Class<?> clazz, String campo, Object valor) {
+	public Object findBy(Class<?> clazz, String campo, Object valor) {
 		Object objReturn;
 		Session session = this.getSession();
 		Criteria criteria = session.createCriteria(clazz).add(Restrictions.eq(campo, valor));

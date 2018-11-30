@@ -72,7 +72,12 @@ function myFunction(boton) {
 		</div>
 	</nav>
 
-
+<c:forEach items="${clientes}" var="usuario">
+ ${usuario } asd
+ 	 </c:forEach>
+ <div>Web Application. Passed parameter : th:text="${message}"</div>
+  <p>Usuario: ${user}</p>
+    <p>Contraseña: ${password}</p>
 
 
 	<div class="container tamanio bg-dark margen text-light" id="oculto2"
@@ -100,9 +105,9 @@ function myFunction(boton) {
 
 
 <ol>
-					<c:forEach items="${clientes}" var="cliente">
-						<li>${cliente}</li>
-					</c:forEach>
+					 <c:forEach items="${clientes}" var="usuario">
+			 ${usuario } asd
+ 	 </c:forEach>
 				</ol>
 
 	<div class="container margen ">

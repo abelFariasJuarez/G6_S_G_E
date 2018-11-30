@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -76,6 +77,9 @@ function myFunctionx() {
     </div>
   </div>
 </nav>
+ <c:forEach items="${usuarios}" var="usuario">
+ ${usuario }
+ 	 </c:forEach>
  <div>Web Application. Passed parameter : th:text="${message}"</div>
   <p>Usuario: ${user}</p>
     <p>Contraseña: ${password}</p>
