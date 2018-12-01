@@ -34,8 +34,17 @@ public class LoginController {
         Clientes usuarios = repo.clientes();
         UsuarioSGE usu = (UsuarioSGE) repo.findBy(UsuarioSGE.class,"username", usuario);
         
-        if (usu.getPassword().equalsIgnoreCase(password) ) {
+        if(usu == null || !usu.getPassword().equalsIgnoreCase(password)) {
+        	
+            ModelAndView modelAndView = new ModelAndView("login");
+        	repo.cerrar();
+        	modelAndView.addObject("message", "Usuario o Contraseña incorrecta");
+            return modelAndView;
+              
+        }
+        else {
            if(usu.getUsertype().equals("C")) {
+        	  
         	  ModelAndView modelAndView = new ModelAndView("Usuario");
 
         	  modelAndView.addObject("usuarios", usuarios);
@@ -46,9 +55,9 @@ public class LoginController {
               repo.cerrar();
 
              return modelAndView;
-        }
-        else 
-        {
+           }
+           else 
+           {
         	 ModelAndView modelAndView = new ModelAndView("Administrador");
              modelAndView.addObject("message", usu.getUsertype());
          
@@ -57,20 +66,9 @@ public class LoginController {
              repo.cerrar();
 
             return modelAndView;
+           }
         }
-        }
-        else {
-        	 ModelAndView modelAndView = new ModelAndView("login");
-        	  repo.cerrar();
-        	  modelAndView.addObject("message", "Usuario o Contraseña incorrecta");
-
-              return modelAndView;
-        }
-       
-    		
-
-    	
-	}
+     }
 	
 	@RequestMapping(value = "/Administrador", method = RequestMethod.GET)
 	public String Admin(Model model) {
