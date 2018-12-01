@@ -7,6 +7,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 
 import sge.modelo.dispositivo.*;
+import sge.modelo.regla.Regla;
 import sge.modelo.usuarios.Cliente;
 import utils.ImportadorDeJsonDispositivo;
 
@@ -42,5 +43,10 @@ public class Dispositivos extends Repositorio {
 	public Dispositivo findBy(String campo, String valor) {
 		Dispositivo rhf = (Dispositivo) this.findBy(Dispositivo.class, campo, valor);
 		return rhf;
+	}
+
+	public List<Dispositivo> all()
+	{
+		return (List<Dispositivo>) this.allOf(Dispositivo.class);
 	}
 }

@@ -1,7 +1,10 @@
 package sge.repositorios;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 
+import sge.modelo.regla.Condicion;
 import sge.modelo.regla.Sensor;
 import sge.modelo.regla.comparador.Comparador;
 
@@ -13,6 +16,11 @@ public class Comparaciones extends Repositorio{
 	public Comparador findBy(String campo, Long valor) {		
 		Comparador rhf = (Comparador) this.findBy(Comparador.class,campo,valor);
 		return rhf;
+	}
+
+	public List<Comparador> all()
+	{
+		return (List<Comparador>) this.allOf(Comparador.class);
 	}
 
 }

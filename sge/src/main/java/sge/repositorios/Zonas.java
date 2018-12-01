@@ -7,6 +7,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 
 import sge.modelo.posicionamiento.ZonaGeografica;
+import sge.modelo.usuarios.Cliente;
 import utils.ImportadorDeJsonZona;
 
 public class Zonas extends Repositorio {
@@ -43,5 +44,10 @@ public class Zonas extends Repositorio {
 		for (ZonaGeografica zona: zonas) {
 			zona.desactivarTransformadores();
 		}
+	}
+	
+	public List<ZonaGeografica> all()
+	{
+		return (List<ZonaGeografica>) this.allOf(ZonaGeografica.class);
 	}
 }

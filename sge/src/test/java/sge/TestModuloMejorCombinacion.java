@@ -43,15 +43,25 @@ public class TestModuloMejorCombinacion {
 
 	@Test
 	public void testSistemaCompatibleDeterminado() {
+		
+		DispositivoFactoryMethod.cargaBasica();
 		Cliente unCliente = new Cliente("Carlos", "Sanazki", "condarco 148", LocalDate.of(2017, 4, 7), "cazana",
 				"menToL2017", "Dni", 21321012, 1543312310);
 
-		DispositivoInteligente air = new DispositivoInteligente("heladera", 0.18, true, new DriverBasico());
-		DispositivoEstandar lava = new DispositivoEstandar("lavadora", 0.875, true);
-		DispositivoEstandar unVenti = new DispositivoEstandar("Ventilador", 0.06, true);
-		air.setRestriccionHoras(rest_air);
-		lava.setRestriccionHoras(rest_lava);
-		unVenti.setRestriccionHoras(rest_venti);
+		//DispositivoInteligente air = new DispositivoInteligente("heladera", 0.18, true, new DriverBasico());
+		//DispositivoEstandar lava = new DispositivoEstandar("lavadora", 0.875, true);
+		//DispositivoEstandar unVenti = new DispositivoEstandar("Ventilador", 0.06, true);
+		//air.setRestriccionHoras(rest_air);
+		//lava.setRestriccionHoras(rest_lava);
+		//unVenti.setRestriccionHoras(rest_venti);
+		Dispositivo air = DispositivoFactoryMethod.getDispositivoByCode("Aire2200");
+		air.setConsumoPorHora(0.18);
+		
+		Dispositivo lava = DispositivoFactoryMethod.getDispositivoByCode("LavaSemiAuto");
+		lava.setConsumoPorHora(0.875);
+		
+		Dispositivo unVenti = DispositivoFactoryMethod.getDispositivoByCode("VentiladorPie");
+		unVenti.setConsumoPorHora(0.06);
 
 		unCliente.addDispositivo(air);
 		unCliente.addDispositivo(lava);

@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import sge.modelo.posicionamiento.Transformador;
+import sge.modelo.posicionamiento.ZonaGeografica;
 import utils.ImportadorDeJsonTransformador;
 
 
@@ -70,4 +71,9 @@ public class Transformadores extends Repositorio {
 		ts = entityManager.createNamedQuery("buscarTodosTransformadores").getResultList();
 		return ts;
 	}	
+
+	public List<Transformador> all()
+	{
+		return (List<Transformador>) this.allOf(Transformador.class);
+	}
 }

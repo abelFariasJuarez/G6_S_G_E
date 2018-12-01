@@ -44,7 +44,7 @@
 		<class>sge.modelo.usuarios.Cliente</class>		
 		<class>sge.modelo.usuarios.Administrador</class>
 		
-
+		<class>sge.modelo.dispositivo.DispositivoDisponible</class>
 
 		<properties>
 			<property name="hibernate.archive.autodetection"

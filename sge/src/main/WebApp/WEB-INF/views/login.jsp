@@ -66,7 +66,7 @@
 
     <div class="col col-sm">
 <footer>
- <a href=mapa.html class="btn btn-dark" >Mapa de consumo</a>
+ <a href=mapa class="btn btn-dark" >Mapa de consumo</a>
 </footer>
   </div>
 </div>

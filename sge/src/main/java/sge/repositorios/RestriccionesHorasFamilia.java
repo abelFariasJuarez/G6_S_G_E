@@ -32,6 +32,11 @@ public class RestriccionesHorasFamilia extends Repositorio {
 		return rhf;
 	}
 
+	public List<RestriccionHorasFamilia> all()
+	{
+		return (List<RestriccionHorasFamilia>) this.allOf(RestriccionHorasFamilia.class);
+	}
+	
 	public void crearRetriccionesSiNoExisten() {
 		RestriccionHorasFamilia rhf = null;
 

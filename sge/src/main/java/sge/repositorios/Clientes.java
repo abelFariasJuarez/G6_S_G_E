@@ -40,7 +40,12 @@ public class Clientes extends Repositorio {
 		}
 
 	}
-
+	
+	public List<Cliente> all()
+	{
+		return (List<Cliente>) this.allOf(Cliente.class);
+	}
+	
 	public Cliente findBy(String campo, String valor) {
 		Cliente rhf = (Cliente) this.findBy(Cliente.class, campo, valor);
 		return rhf;

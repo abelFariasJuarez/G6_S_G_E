@@ -38,6 +38,7 @@ public class Repositorio {
 	private Reglas reglas;
 	private Clientes clientes;
 	private Dispositivos dispositivos;
+	private DispositivosDisponibles dispositivosDisponibles;
 	private Transformadores transformadores;
 	private RestriccionesHorasFamilia restriccionesHorasFamilia;
 	private Zonas zonas;
@@ -91,6 +92,12 @@ public class Repositorio {
 		return dispositivos;
 	}
 
+	public DispositivosDisponibles dispositivosDisponibles() {
+		if (dispositivosDisponibles == null) {
+			dispositivosDisponibles = new DispositivosDisponibles(entityManager);
+		}
+		return dispositivosDisponibles;
+	}
 	public Transformadores transformadores() {
 		if (transformadores == null) {
 			transformadores = new Transformadores(entityManager);
@@ -159,6 +166,15 @@ public class Repositorio {
 		objReturn = criteria.uniqueResult();
 		return objReturn;
 	}
+
+	protected List<?> allOf(Class<?> clazz) {
+		Session session = this.getSession();
+		Criteria criteria= session.createCriteria(clazz);
+		List<?> objects = criteria.list();
+		return objects;
+	}
+	
+
 
 	public void consumo_hogar_periodo(LocalDateTime desde, LocalDateTime hasta) {
 
