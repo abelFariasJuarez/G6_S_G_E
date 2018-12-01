@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<div class="container text-light" id="oculto3">
+<div class="container text-light" >
   <div class="row">
     <div class="col align-self-start"> 
     	<h1>Dispositivos</h1>

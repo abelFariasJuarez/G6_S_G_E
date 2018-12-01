@@ -1,6 +1,5 @@
 package com.sge_mvc.controllers;
 
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -20,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 import sge.modelo.dispositivo.Dispositivo;
 import sge.modelo.dispositivo.DispositivoDisponible;
 import sge.modelo.dispositivo.DispositivoFactoryMethod;
+import sge.modelo.regla.Regla;
 import sge.modelo.usuarios.Cliente;
 import sge.modelo.usuarios.UsuarioSGE;
 import sge.repositorios.Clientes;
@@ -28,11 +28,11 @@ import sge.repositorios.Repositorio;
 
 
 @Controller
-@RequestMapping("/demo/login/Usuario/abmDisp")
-public class AbmDispController {
-	
-	String usuario;
+@RequestMapping("/demo/login/Usuario/abmReg")
+public class AbmRegController {
 
+	String usuario;
+	
 	@RequestMapping(value="abmDisp",method=RequestMethod.POST)
 	public ModelAndView abmDisp(@RequestParam("user") String user) {
 		Repositorio repositorio = new Repositorio();
@@ -57,39 +57,42 @@ public class AbmDispController {
 	}
 	
 	
+	@RequestMapping(method=RequestMethod.GET,params="Select")
+	public String cancel() {
+		return "abmDisp";
+	}
 	@RequestMapping(method=RequestMethod.GET)
 	public String abm() {
 		return "abmDisp";
 	}
 	
-	@RequestMapping(value="nuevoDisp", method = RequestMethod.POST)
+	@RequestMapping(value="nuevaReg", method = RequestMethod.POST)
 	public ModelAndView nuevoDispositivo() throws ServletException, IOException {
-			Repositorio repo = new Repositorio();
-			repo.abrir();
-			ModelAndView modelAndView = new ModelAndView("nuevoDisp");
+			ModelAndView modelAndView = new ModelAndView("nuevaReg");
 			//modelAndView.addObject("dispdisponibles", dispdisponibles);
 			return modelAndView;
 
 	}
-	@RequestMapping(value="modifDisp", method = RequestMethod.POST)
+	@RequestMapping(value="modifReg", method = RequestMethod.POST)
 	public ModelAndView modificarDispositivo() throws ServletException, IOException {
-			Repositorio repo = new Repositorio();
-			repo.abrir();
-			ModelAndView modelAndView = new ModelAndView("modifDisp");
+			ModelAndView modelAndView = new ModelAndView("modifReg");
 			//modelAndView.addObject("dispdisponibles", dispdisponibles);
 			return modelAndView;
 		
 	}
 	
-	@RequestMapping(method=RequestMethod.GET, params="EliminDisp")
+	@RequestMapping(value="SelectDisp",method=RequestMethod.POST)
 	public ModelAndView abmDispo(@RequestParam("dispositivo") String dispositivo) {
-			Repositorio repo = new Repositorio();
-			repo.abrir();
-			List<Dispositivo> dispositivos = (List<Dispositivo>) repo.dispositivos().findBy("username", usuario);
-			Dispositivo dispo = repo.dispositivos().findBy("nombre",dispositivo);
-			repo.borrar(dispo);
-			ModelAndView modelAndView = new ModelAndView("abmDisp");
-		return modelAndView;
+		Repositorio repo = new Repositorio();
+		repo.abrir();
+		//checkear como busca las reglas, no me cierra algo
+		List<Dispositivo> dispositivos = (List<Dispositivo>) repo.dispositivos().findBy("username", usuario);
+		Dispositivo dispo = repo.dispositivos().findBy("nombre",dispositivo);
+		List<Regla> reglasUser = (List<Regla>) repo.reglas().findBy("username", dispo.getNombre());
+		ModelAndView modelAndView = new ModelAndView("abmReg");
+		  modelAndView.addObject("reglas",reglasUser);
+		  return modelAndView;
 	}
-
+	
+	
 }

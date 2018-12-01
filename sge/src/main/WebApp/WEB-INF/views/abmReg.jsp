@@ -12,20 +12,32 @@
   <div class="row">
     <div class="col align-self-start"> 
     	<h1>Dispositivos</h1>
-    			<thead>
-						<tr>
-						<th></th>
-							<th scope="col">Dispositivo</th>
-							<th scope="col">Equipo Concreto</th>
-				
+    	<select name="dispo" size="2">
+    			<c:forEach items="${dispositivos}" var="dispositivo">
+				<option>${dispositivo.nombre}</option>
+				</c:forEach>
+		</select>
     </div>
     <div class="col align-self-center"> 
 		<h1>Reglas</h1>
+		<select name="reglas" size="2">
+		<c:forEach items="${reglas}" var="regla">
+		<option>${regla.nombre}</option>
+		</c:forEach>
     </div>
    	<div class="col align-self-end"> 
-   		<button id="NuevoDisp" class="btn btn-dark" > Nuevo </button> 
-   		<button id="ModifDisp" class="btn btn-dark" > Modificar </button> 
-   		<button id="EliminDisp" class="btn btn-dark" > Eliminar </button>  
+   		<form:form method="POST">
+   		<button type="submit" name="SelectDisp" class="btn btn-dark" > Seleccionar </button> 
+   		</form:form>   
+   		<form:form action="/demo/login/Usuario/abmDisp/nuevaReg" method="POST">
+   		<button type="submit" name="NuevaRegla" class="btn btn-dark" > Nueva Regla </button> 
+   		</form:form>   
+   		<form:form action="/demo/login/Usuario/abmReg/modifReg" method="POST">
+   		<button type="submit" name="ModifRegla" class="btn btn-dark" > Modificar </button> 
+   		</form:form>   
+   		<form:form  method="POST">
+   		<button type="submit" name="EliminRegla"  class="btn btn-dark" > Eliminar </button>  
+		</form:form>   
    	</div>
   </div>
 </div>

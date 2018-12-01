@@ -27,25 +27,13 @@ import sge.repositorios.Repositorio;
 
 
 @Controller
-@RequestMapping("/demo/login/Usuario/abmDisp/nuevoDisp")
-public class NuevoDispController {
+@RequestMapping("/demo/login/Usuario/abmDisp/nuevaReg")
+public class NuevaRegController {
 
 	@RequestMapping(method=RequestMethod.GET)
 	public String ow() {
-		return "nuevoDisp";
+		return "nuevaReg";
 	}
-	
-	/*@RequestMapping(method=RequestMethod.GET)
-	public ModelAndView nuevoDisp() {
-		Repositorio repositorio = new Repositorio();
-		repositorio.abrir();
-		DispositivoFactoryMethod.cargaBasica();
-		List<DispositivoDisponible> disponibles = repositorio.dispositivosDisponibles().all();
-		ModelAndView modelAndView = new ModelAndView("nuevoDisp");
-		modelAndView.addObject("disponibles", disponibles);
-		return modelAndView;
-	}*/
-
 	
 	
 }
