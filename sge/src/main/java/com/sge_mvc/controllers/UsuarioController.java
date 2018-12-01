@@ -13,8 +13,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import sge.modelo.dispositivo.Dispositivo;
 import sge.modelo.dispositivo.DispositivoDisponible;
 import sge.modelo.dispositivo.DispositivoFactoryMethod;
 import sge.modelo.usuarios.Cliente;
@@ -48,10 +50,22 @@ public class UsuarioController {
 		  return modelAndView;
 	}
 
-
+	
 	@RequestMapping(method=RequestMethod.GET)
 	public String ow() {
 		return "Usuario";
 	}
 
+	
+	@RequestMapping(value="abmDisp",method=RequestMethod.POST)
+	public ModelAndView abmDispo(@RequestParam("user") String user) {
+		Repositorio repositorio = new Repositorio();
+		repositorio.abrir();
+		DispositivoFactoryMethod.cargaBasica();
+		 List<Dispositivo> dispositivos = (List<Dispositivo>) repositorio.dispositivos().findBy("username", user)  ;
+		  ModelAndView modelAndView = new ModelAndView("abmDisp");
+		  modelAndView.addObject("dispositivos", dispositivos);
+		  return modelAndView;
+	}
+	
 }

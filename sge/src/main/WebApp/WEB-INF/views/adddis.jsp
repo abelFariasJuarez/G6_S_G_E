@@ -15,13 +15,10 @@
 <script>
 
 function myFunction(id){
+
 	var fila = document.getElementById(id);
 	console.log(fila.id);
 
-	
-
-    
-   
 }
 
 </script>
@@ -29,9 +26,6 @@ function myFunction(id){
 </head>
 
 <body>
-
-
-
 
 <div class="container margen ">
 		<div class="row">
