@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,19 +11,28 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
 	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
 	crossorigin="anonymous">
-<link rel="stylesheet" href="<c:url value="/resources/CSS/adminCSS.css"/>">
+<link rel="stylesheet"
+	href="<c:url value="/resources/CSS/adminCSS.css"/>">
 
 
 
-
+<!--  
 <script>
 function myFunction(boton) {
     var boton1 = document.getElementById(boton);
+   
    /* var botones = document.getElementsByClassName("btn");
     var i; */
+    console.log(window.location);
+    
       if (boton1.style.visibility === "hidden") {
-        boton1.style.visibility = "visible";
-    } else {
+    	
+    
+    
+    	  boton1.style.visibility = "visible";}
+    
+        
+    else {
         boton1.style.visibility = "hidden";
     }
  /*   for(i=0;i<botones.length;i++){
@@ -43,7 +53,7 @@ function myFunction(boton) {
    
 }
 </script>
-
+-->
 
 </head>
 <body>
@@ -51,43 +61,39 @@ function myFunction(boton) {
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 		<p class="navbar-brand">Panel Administrador</p>
 
-		</button>
+
 		<div>
 			<div class="navbar-nav">
-
-				<button type="button" name="oculto" class="btn btn-info solid"
+			<form:form action="/demo/login/Administrador/consumo" method="POST">
+				<button type="submit" name="oculto" class="btn btn-info solid"
 					onClick=myFunction("oculto") >Consumo hogares</button>
 				<span class="sr-only">(current)</span>
-
-				<button type="button" name="oculto2" class="btn btn-info solid"
-					onClick=myFunction("oculto2")>Crear nuevo dispositivo</button>
+               </form:form>
+               <form:form action="/demo/login/Administrador/cargadispo" method="POST" >
+				<button type="submit" name="oculto2" class="btn btn-info solid"
+					onClick=myFunction("oculto2")>Cargar Dispositivo/s</button>
 				<span class="sr-only">(current)</span>
-
+				</form:form>
 
 				<button type="button" name="oculto3" class="btn btn-info solid"
 					onClick=myFunction("oculto3") >Ver reportes</button>
 				<span class="sr-only">(current)</span> <a class="btn  btn-success"
-					href="login.html">Cerrar Sesion</a>
+					href="/demo/login">Cerrar Sesion</a>
 			</div>
 		</div>
 	</nav>
+     ${tipo}
+	<c:forEach items="${clientes}" var="cliente">
+	                  ${cliente.username}
+						<c:forEach items="${cliente.dispositivos}" var="dispositivo">
+						${dispositivo.consumoPorHora}
+						</c:forEach>
 
-<c:forEach items="${clientes}" var="usuario">
- ${usuario } asd
- 	 </c:forEach>
- <div>Web Application. Passed parameter : th:text="${message}"</div>
-  <p>Usuario: ${user}</p>
-    <p>Contraseña: ${password}</p>
+	</c:forEach>
+	
 
 
-	<div class="container tamanio bg-dark margen text-light" id="oculto2"
-		style="visibility: hidden">
-		Creacion Dispositivo
-		<div class="row">
-			<div class="col col-sm align-self-start  "></div>
-			<div class="col col-sm align-self-center  ">
-
-				<input type="text" id="Dispositivo" placeholder="FamiliaDispositivo"
+	<!--  <input type="text" id="Dispositivo" placeholder="FamiliaDispositivo"
 					name="Dispositivo" class="form-control" /> <input type="text"
 					id="Dispositivo" placeholder="Consumo" name="Dispositivo"
 					class="form-control" /> <input type="checkbox" id="BajoConsumo"
@@ -98,46 +104,36 @@ function myFunction(boton) {
 					data-toggle="confirmation" id="botondispositivo"
 					placeholder="Crear" name="botondispositivo" />
 				Crear Dispositivo
-			</div>
-			<div class="col col-sm align-self-end "></div>
-		</div>
-	</div>
+				
+				-->
 
 
-<ol>
-					 <c:forEach items="${clientes}" var="usuario">
-			 ${usuario } asd
- 	 </c:forEach>
-				</ol>
 
 	<div class="container margen ">
 		<div class="row">
 			<div class="col align-self-start"></div>
 			<div class="col col-sm align-self-center ">
-				
+
 				<table id="oculto" class="table table-dark "
 					style="visibility: hidden">
+					
 					<thead>
 						<tr>
-							<th scope="col">#</th>
 							<th scope="col">Cliente</th>
 							<th scope="col">Consumo</th>
-							<th scope="col">Ubicacion</th>
 						</tr>
 					</thead>
 					<tbody>
 						<c:forEach items="${clientes}" var="cliente">
 							<tr>
-							<td>#</td>
-								<td>${cliente.nombre}</td>
-								<td>Consumo</td>
-								<td>${cliente.ubicacion.latitud}
-									${cliente.ubicacion.latitud}</td>
+
+								<td>${cliente.username}</td>
+								<td>${cliente.consumo()}</td>
 							</tr>
 						</c:forEach>
 					</tbody>
-
 				</table>
+
 			</div>
 			<div class="col align-self-end"></div>
 		</div>

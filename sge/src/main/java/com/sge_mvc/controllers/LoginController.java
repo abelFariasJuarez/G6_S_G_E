@@ -23,6 +23,7 @@ import sge.repositorios.Repositorio;
 @Controller
 @RequestMapping("/demo/login")
 public class LoginController {
+	
 	@RequestMapping(method = RequestMethod.POST)
 	public ModelAndView handleRequest(HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException {
@@ -44,12 +45,12 @@ public class LoginController {
         }
         else {
            if(usu.getUsertype().equals("C")) {
-        	  
+        	 
         	  ModelAndView modelAndView = new ModelAndView("Usuario");
 
         	  modelAndView.addObject("usuarios", usuarios);
               modelAndView.addObject("message", usu.getUsertype());
-          
+             
               modelAndView.addObject("user", usuario);
               modelAndView.addObject("password", password);
               repo.cerrar();
@@ -58,9 +59,14 @@ public class LoginController {
            }
            else 
            {
+        	   
+        	
         	 ModelAndView modelAndView = new ModelAndView("Administrador");
+        	
+        	
              modelAndView.addObject("message", usu.getUsertype());
-         
+         	
+            
              modelAndView.addObject("user", usuario);
              modelAndView.addObject("password", password);
              repo.cerrar();
@@ -70,30 +76,9 @@ public class LoginController {
         }
      }
 	
-	@RequestMapping(value = "/Administrador", method = RequestMethod.GET)
-	public String Admin(Model model) {
-		Repositorio repo = new Repositorio();
-		repo.abrir();
-		model.addAttribute("clientes", repo.clientes().getClientes());
-		repo.cerrar();
-		return "Administrador";
-	}
 	
 	
-	@RequestMapping(value = "/Usuario", method = RequestMethod.GET)
-	public String user(Model model) {
-		
-		List<Cliente> clientes = new LinkedList<Cliente>();
-        Cliente cli = new Cliente("martin",null,null,null,null,null,null,null,null);
-        clientes.add(cli);
-        
-        Repositorio repo = new Repositorio();
-		repo.abrir();
-		repo.clientes().cargarClientes();
-		model.addAttribute("clientes", repo.clientes().getClientes());
-		repo.cerrar();
-		return "Usuario";
-	}
+
 }
 
 /*

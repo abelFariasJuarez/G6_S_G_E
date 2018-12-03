@@ -43,17 +43,20 @@
   	<div class="col col-sm align-self-center">
     	 
     	
- <form:form name="mapa" method="POST">     
 <div class="form">  
+ <form:form   method="POST">  
+  <form:form  action="/demo/login/Usuario" method="POST">  
+      
 <input type="text" id="username" placeholder="Usuario" name="username" class= "form-control" />
   
 <input type="password" id="password" placeholder="Password" name="password" class= "form-control" />
 
  <button id="LoginButton" class="btn btn-dark" > Sign in </button> 
-
+</form:form> 
+</form:form> 
 </div>
 
- </form:form>     
+   
     </div>
     <br></br>
      <span>${message}</span>

@@ -5,7 +5,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Ajax in Spring MVC</title>
 <script
-	src="${pageContext.request.contextPath }/resources/js/jquery-1.6.2.js"></script>
+  src="https://code.jquery.com/jquery-1.6.2.js"
+  integrity="sha256-pXKSYZ0U64y9kjvenyjPmUrGarxI98l1t2kyj/M73ck="
+  crossorigin="anonymous"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 
