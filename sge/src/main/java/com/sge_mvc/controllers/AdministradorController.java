@@ -1,18 +1,66 @@
 package com.sge_mvc.controllers;
 
+import java.io.BufferedOutputStream;
+import java.io.FileOutputStream;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
+import org.springframework.web.servlet.ModelAndView;
+
+import sge.modelo.usuarios.Cliente;
+import sge.repositorios.Repositorio;
 
 @Controller
 @RequestMapping("/demo/login/Administrador")
 public class AdministradorController {
-
-	@RequestMapping(value = "/Administrador", method = RequestMethod.GET)
-	public String login() {
+	
+	@RequestMapping (method = RequestMethod.POST)
+	public String x() {
+		return "Administrador";
+	}
+	@RequestMapping(value="cargadispo", method = RequestMethod.POST,params="snd")
+	public String s(@RequestParam("file") MultipartFile file, ModelMap modelMap) {
 		
+	    modelMap.addAttribute("file", file);
+	   
+	    return "cargadispo";
+	}
+	
+	@RequestMapping(value="cargadispo", method = RequestMethod.POST ,params="oculto2")
+	public String submit() {
 		
-		return "login";
+	    
+	   
+	    return "cargadispo";
+	}
+	
+	@RequestMapping(value="consumo",method = RequestMethod.POST)
+	public ModelAndView consumo() {
+		List<Cliente> clientes= new ArrayList<Cliente>();
+		Repositorio repo = new Repositorio();
+		repo.abrir();
+		clientes=repo.clientes().all();
+		  ModelAndView modelAndView = new ModelAndView("consumo");
+		  modelAndView.addObject("clientes", clientes);
+		  repo.cerrar();
+		
+	  
+	   
+	    return modelAndView;
+	}
+	@RequestMapping(method=RequestMethod.GET)
+	public String wse() {
+		return "Administrador";
 	}
 	
 }

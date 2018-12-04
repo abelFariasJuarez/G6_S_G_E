@@ -11,6 +11,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -39,7 +40,7 @@ public class Cliente extends UsuarioSGE {
 	private Integer telefono;
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Categoria categoria;
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER) 
 	private List<Dispositivo> dispositivos = new ArrayList<Dispositivo>();
 	@Column(name = "puntos")
 	private Integer puntos = 0;
@@ -50,6 +51,8 @@ public class Cliente extends UsuarioSGE {
 	@OneToOne(cascade = CascadeType.ALL)
 	private Accion accionParaMejorarEficiencia = new AccionApagar();// la orden de "apagar" (podria ser accion
 																	// configurable)
+	
+	private  float consumo;
 
 	public Cliente() {
 	}
@@ -178,6 +181,7 @@ public class Cliente extends UsuarioSGE {
 	}
 
 	public Float consumo() {
+		consumo= (float) dispositivos.stream().mapToDouble(dis -> dis.informarConsumo()).sum();
 		return (float) dispositivos.stream().mapToDouble(dis -> dis.informarConsumo()).sum();
 	}
 
@@ -266,6 +270,14 @@ public class Cliente extends UsuarioSGE {
 
 	public void setPuntos(Integer puntos) {
 		this.puntos = puntos;
+	}
+
+	public float getConsumo() {
+		return consumo;
+	}
+
+	public void setConsumo(float consumo) {
+		this.consumo = consumo;
 	}
 
 }

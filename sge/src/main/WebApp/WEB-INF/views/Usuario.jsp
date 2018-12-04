@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -61,19 +62,32 @@ function myFunctionx() {
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <p class="navbar-brand" >Panel Usuario</p>
 
-  </button>
+  
   <div >
     <div class="navbar-nav">
     
-      <button type="button" name="oculto"  class="btn btn-info solid" onClick= myFunction("oculto") >Mi Hogar</button><span class="sr-only">(current)</span>
-   
-      <button type="button" name="oculto2"  class="btn btn-info solid" onClick=myFunction("oculto2")>Consumo Periodo</button><span class="sr-only">(current)</span>
+    
+      <form:form action="/demo/login/Usuario/mihogar" method="POST">
+      <button type="submit" name="oculto"  class="btn btn-info solid" >Mi Hogar</button><span class="sr-only">(current)</span>
+      </form:form>
       
-       
-      <button type="button" name="oculto3" class="btn btn-info solid" onClick=myFunction("oculto3") >Carga Archivo Dispositivos</button><span class="sr-only">(current)</span>
-      <button type="button" name="oculto4" class="btn btn-info solid" onClick=myFunction("oculto4") >SimpleX</button><span class="sr-only">(current)</span>
-      <button type="button" name="oculto5" class="btn btn-info solid" onClick=myFunction("oculto5") >ABM</button><span class="sr-only">(current)</span>
-      <a class="btn  btn-success" href="login.html" >Cerrar Sesion</a>
+      <form:form action="/demo/login/Usuario/consumoperiodo" method="POST">
+      <button type="submit" name="oculto2"  class="btn btn-info solid" >Consumo Periodo</button><span class="sr-only">(current)</span>
+      </form:form>
+      
+      <form:form action="/demo/login/Usuario/adddis" method="POST">
+      <button type="submit" name="oculto3" class="btn btn-info solid"  >Carga Archivo Dispositivos</button><span class="sr-only">(current)</span>
+      </form:form>
+      
+      <form:form action="/demo/login/Usuario/simplex" method="POST">
+      <button type="submit" name="oculto4" class="btn btn-info solid"  >SimpleX</button><span class="sr-only">(current)</span>
+      </form:form>
+      
+      <form:form action="/demo/login/Usuario/abm" method="POST">
+      <button type="submit" name="oculto5" class="btn btn-info solid"  >ABM</button><span class="sr-only">(current)</span>
+      </form:form>
+      
+      <a class="btn  btn-success" href="login" >Cerrar Sesion</a>
     </div>
   </div>
 </nav>
