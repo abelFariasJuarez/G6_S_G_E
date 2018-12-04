@@ -57,8 +57,6 @@ public class AdministradorController {
 		  ModelAndView modelAndView = new ModelAndView("consumo");
 		  modelAndView.addObject("clientes", clientes);
 		  repo.cerrar();
-		
-	  
 	   
 	    return modelAndView;
 	}
