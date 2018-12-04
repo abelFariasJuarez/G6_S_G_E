@@ -29,9 +29,13 @@ public class AdministradorController {
 		return "Administrador";
 	}
 	@RequestMapping(value="cargadispo", method = RequestMethod.POST,params="snd")
-	public String s(@RequestParam("file") MultipartFile file, ModelMap modelMap) {
-		
+	public String s(@RequestParam("file") MultipartFile file, ModelMap modelMap) {	
 	    modelMap.addAttribute("file", file);
+		Repositorio repo = new Repositorio();
+		repo.abrir();
+		String content = new String(file.getOriginalFilename());
+		repo.dispositivosDisponibles().cargarDispositivos(content);
+		repo.dispositivosDisponibles().guardarDispositivosDisponibles();
 	    return "cargadispo";
 	}
 	
@@ -50,6 +54,7 @@ public class AdministradorController {
 		 modelAndView.addObject("clientes", clientes);
 		 repo.cerrar();
 	     return modelAndView;
+
 	}
 	@RequestMapping(method=RequestMethod.GET)
 	public String wse() {

@@ -1,120 +1,50 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
  <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix ="c" %>
+ <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Ejemplo Leaflet</title>
+	<title>Mapa Consumo</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css">
     <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js"></script>
 </head>
 <body style="padding-left:20px;padding-right: 20px; ">	
 	
-		<h2 class="title" style="color: #7a7f87; text-align: center;">Ejemplo Mapa con leaflet y open street map</h2>
+		<h2 class="title" style="color: #7a7f87; text-align: center;">Mapa Consumo</h2>
 		<hr>
 
-	</div>
 	 <div id="mapa" style="height: 500px">
 	 	
-	 </div>
-	 <hr>
-	 <div>
-	 <h3>Instructivo</h3>
-	 <ul>
-		 <li><strong>Crear Mapa:
-		 <c:forEach items="${zonas}" var="zona">
-    
-        ${zona.radio}
-      
-    </c:forEach>
-    </strong> 
-		 	<ol>
-		 		<li>Incluimos Jquery, leaflet.css, leaflet.js; en ese orden (es recomendable incluir los archivos en la carpeta del proyecto y no usar CDN.</li>
-		 		<pre>
-		 			<xmp>
-		 				<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-						<link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css">
-					    <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js"></script>
-		 			</xmp>
-		 		</pre>
-		 		<li>Crear Div para el mapa asignando un alto</li>
-			 	<pre>
-			 		<xmp>
-						<div id="mapa" style="height: 500px">
-						</div> 
-					</xmp>
-			 	</pre>
-			 	<li>Tomamos el div como elemento para crear en él un mapa y agregamos el mapa de OSM</li>
-			 	<pre>
-			 		<xmp>
-			 			<script type="text/javascript">
-						$( document ).ready(function() {
-							mapa = L.map('mapa', {
-						    center: [-34.598313, -58.463745],
-						    zoom: 10,  
-						    minZoom: 4,
-						    maxZoom:17,
-						    zoomControl:true 
-							});
-							L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-						    attribution: ''}).addTo(mapa);
-						}
-						</script>
-			 		</xmp>
-			 		* 'mapa' es el id del div que va a ser contenedor.
-			 	</pre>
-			 	<li>Estamos listos para crear marcadores, poligonos o cualquier otra figura en él.</li>
-			 	<p>A los elementos creados se les puede agregar eventos; por ejemplo: click, hover, etc.</p>
-			 	<p>Es muy importante agregar cada elemento creado al mapa: ' .addTo(mapa); ' </p>
-			 	<pre>
-			 		<xmp>
-			 			<script type="text/javascript">
-			 					// Un punto
-								var marker2 = L.marker([-34.659438,-58.4704135]).addTo(mapa).on('click', onClick);
-								//Un poligono
-								var polygon = L.polygon([
-									[-34.697878, -58.468897],
-								    [-34.686919, -58.486813],
-								    [-34.651905, -58.530758],
-								    [-34.65924, -58.418313]
-								],{
-									 color: 'red',
-									 fillColor: 'blue',
-								    fillOpacity: 0.1
-								}).addTo(mapa);
-								//Un circulo
-								var circle = L.circle([-34.697878, -58.468897], {
-										    color: 'blue',
-										    fillColor: '#f03',
-										    fillOpacity: 0.5,
-										    radius: 500
-										}).addTo(mapa);
-			 			</script>
-			 		</xmp>
-			 	</pre>
-		 	</ol>
-		 </li>
-	 </ul>
-	<h3>Documentación</h3>
-	<ul>
-		<li><a href="https://leafletjs.com/">Leaflet:</a> es una biblioteca <strong>JavaScript</strong> open source para crear mapas interactivos, agregar controles, marcadores y Poligonos.</li>
-		<li><a href="https://www.openstreetmap.org/#map=4/-40.44/-63.59">OpenStreetMap:</a> es un proveedor de mapas. Ademas de permitir crear y editar mapas ya existentes, posee APIs que permiten a Leaflet cargar de a porciones el mapa en su contenedor.</li>
-	</ul> 	
-	<h3>Ver támbien:</h3>
-	<ul>
-		<li><a href="https://github.com/Leaflet/Leaflet.Icon.Glyph">Leaflet Icon Glyph:</a> Permite cambiar el icono por defecto de los marcadores.</li>
-		<li><a href="https://github.com/Leaflet/Leaflet.markercluster">Marker Cluster:</a> Permite agrupar marcadores. A medida que nos acercamos, los marcadores se desagrupan.</li>
-		<li><a href="https://github.com/Norkart/Leaflet-MiniMap">Mini Map:</a> Permite agregar un minimapa dentro del contenedor de Leaflet. El mismo permite el desplazamiento del mapa padre.</li>
-	</ul>
-	 </div>
-</body>
-<hr>
-<footer style="text-align: center;background-color:grey;color:white">
-	Catedra Diseño de Sistemas - UTN FRBA 2018
-</footer>
+	 	</div>
+	 	
+	 	
+	
+	<div class="container text-light">
+  <div class="row">
+    <div class="col align-self-start"> 
+    <form:form method="POST" action="/demo/mapa">
+  <button type="submit" class="btn btn-info solid"  > Recargar transformadores</button> 
+    <br>
+     </form:form>
+    </div>
+    <div class="col align-self-center"> 
+
+<c:forEach items="${transs}" var="trans">
+${trans.ubicacion.latitud}
+ </c:forEach>
+    </div>
+   <div class="col align-self-end"> 
+   <form:form method="POST" action="/demo/login">
+     <button type="submit" class="btn btn-info solid" name="vlvmp"  > volver</button> 
+      </form:form>
+   </div>
+</div>
+</div>
+	 
+	
 </html>
 <script type="text/javascript">
 	$( document ).ready(function() {

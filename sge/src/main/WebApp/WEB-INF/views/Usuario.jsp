@@ -76,15 +76,15 @@ function myFunctionx() {
       </form:form>
       
       <form:form action="/demo/login/Usuario/adddis" method="POST">
-      <button type="submit" name="oculto3" class="btn btn-info solid"  >Carga Archivo Dispositivos</button><span class="sr-only">(current)</span>
+      <button type="submit"  class="btn btn-info solid"  >Carga Archivo Dispositivos</button><span class="sr-only">(current)</span>
       </form:form>
       
       <form:form action="/demo/login/Usuario/simplex" method="POST">
       <button type="submit" name="oculto4" class="btn btn-info solid"  >SimpleX</button><span class="sr-only">(current)</span>
       </form:form>
       
-      <form:form action="/demo/login/Usuario/abm" method="POST">
-      <button type="submit" name="oculto5" class="btn btn-info solid"  >ABM</button><span class="sr-only">(current)</span>
+      <form:form action="/demo/login/Usuario/abmDisp?user=${user}" method="POST">
+      <button type="submit" name="oculto5" class="btn btn-info solid"  >ABM Dispositivos</button><span class="sr-only">(current)</span>
       </form:form>
       
       <a class="btn  btn-success" href="login" >Cerrar Sesion</a>

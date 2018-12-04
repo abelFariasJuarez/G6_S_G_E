@@ -1,4 +1,4 @@
-package com.sge_mvc.controllers;
+	package com.sge_mvc.controllers;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import sge.modelo.dispositivo.Dispositivo;
 import sge.modelo.dispositivo.DispositivoDisponible;
 import sge.modelo.dispositivo.DispositivoFactoryMethod;
 import sge.modelo.usuarios.Cliente;
@@ -43,7 +44,18 @@ public class UsuarioController {
 		  modelAndView.addObject("disponibles", disponibles);
 		  return modelAndView;
 	}
+	@RequestMapping(value="adddis",method=RequestMethod.GET)
+	public ModelAndView ASD() {
+		Repositorio repositorio = new Repositorio();
+		repositorio.abrir();
+		DispositivoFactoryMethod.cargaBasica();
+		 List<DispositivoDisponible> disponibles = repositorio.dispositivosDisponibles().all();
+		  ModelAndView modelAndView = new ModelAndView("adddis");
+		  modelAndView.addObject("disponibles", disponibles);
+		  return modelAndView;
+	}
 
+	
 	@RequestMapping(method=RequestMethod.GET)
 	public String ow() {
 		return "Usuario";
@@ -86,4 +98,16 @@ public class UsuarioController {
 		return dateToConvert.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
 		}
 
+	
+	@RequestMapping(value="abmDisp",method=RequestMethod.POST)
+	public ModelAndView abmDispo(@RequestParam("user") String user) {
+		Repositorio repositorio = new Repositorio();
+		repositorio.abrir();
+		DispositivoFactoryMethod.cargaBasica();
+		 List<Dispositivo> dispositivos = (List<Dispositivo>) repositorio.dispositivos().findBy("username", user)  ;
+		  ModelAndView modelAndView = new ModelAndView("abmDisp");
+		  modelAndView.addObject("dispositivos", dispositivos);
+		  return modelAndView;
+	}
+	
 }

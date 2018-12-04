@@ -1,5 +1,6 @@
 package sge;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -25,19 +26,22 @@ import sge.repositorios.Clientes;
 import sge.repositorios.Repositorio;
 import sge.repositorios.Transformadores;
 import sge.repositorios.Zonas;
+import utils.ImportadorDeJsonDisponible;
 
 public class App {
 
-	public static void main(String[] args) throws InterruptedException {
+	public static void main(String[] args) throws InterruptedException, IOException {
 
 		Repositorio repo = new Repositorio();
 		repo.abrir();
+		repo.dispositivosDisponibles().cargarDispositivos("ewwe.json");
 		
-		 UsuarioSGE usu = repo.clientes().findBy("username", "fperez");
-		repo.clientes().cargarClientes();
-		 for(Cliente cli : repo.clientes().getClientes())
-			 
-		 System.out.print(cli.getApellido());
-
-	}
+		
+		repo.dispositivosDisponibles().guardarDispositivosDisponibles();
+		
+	/*	repo.transformadores().cargarTransformadores();
+		repo.transformadores().guardarTransforamdores();
+		repo.zonas().cargarZonas();
+		repo.zonas().guardarZonas();*/
+}
 }

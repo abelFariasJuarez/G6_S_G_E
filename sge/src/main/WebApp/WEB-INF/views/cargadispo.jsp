@@ -13,7 +13,7 @@
 	crossorigin="anonymous">
 </head>
 <body>
-
+${content}
 	 ${file.getOriginalFilename()}
 	<div class="container tamanio bg-dark margen text-light " id="oculto2"
 		>
