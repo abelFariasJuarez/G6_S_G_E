@@ -71,7 +71,7 @@ function myFunctionx() {
       <button type="submit" name="oculto"  class="btn btn-info solid" >Mi Hogar</button><span class="sr-only">(current)</span>
       </form:form>
       
-      <form:form action="/demo/login/Usuario/consumoperiodo" method="POST">
+      <form:form action="/demo/login/Usuario/consumoperiodo?user=${user}" method="POST">
       <button type="submit" name="oculto2"  class="btn btn-info solid" >Consumo Periodo</button><span class="sr-only">(current)</span>
       </form:form>
       

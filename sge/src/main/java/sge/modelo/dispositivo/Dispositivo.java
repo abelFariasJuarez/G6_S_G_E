@@ -87,7 +87,7 @@ public abstract class Dispositivo extends Persistible {
 	}
 
 	public Double consumo_periodo(LocalDateTime inicioPeriodo, LocalDateTime finPeriodo) {
-		return 0.0;
+		return 1.0;
 	}
 
 	public double mensualMinimoHoras() {
