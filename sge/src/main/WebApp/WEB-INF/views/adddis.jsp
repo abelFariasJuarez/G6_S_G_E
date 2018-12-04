@@ -14,12 +14,24 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 <script>
 
-function myFunction(id){
+function myFunction(id,idcheck){
 	var fila = document.getElementById(id);
-	console.log(fila.id);
-
+	var checkbox = document.getElementById(idcheck);
+	console.log(checkbox);
+	checkbox.checked=true;
 	
-
+	var filas = document.getElementsByClassName("fila");
+	var i;
+	 
+		  for(i=0;i<filas.length;i++){
+			  if(filas[i].checked= false){
+				 filas[i].disabled = true;
+			  }  
+			 
+			  
+		    
+		    
+    	 }
     
    
 }
@@ -54,7 +66,7 @@ function myFunction(id){
 					<tbody>
 						<c:forEach items="${disponibles}" var="disponible">
 							<tr id ="${disponible.codigo}" >
-							<td><input  id="${disponible.nombre}" class="fila" type="checkbox" onClick=myFunction("${disponible.codigo}") name="chk" /> </td>
+							<td><input  class="fila" type="checkbox" onClick=myFunction('${disponible.codigo}','${disponible.nombre}') name="chk" /> </td>
 								<td>${disponible.codigo}</td>
 								<td>${disponible.nombre}</td>
 								<td>${disponible.isInteligente}</td>
