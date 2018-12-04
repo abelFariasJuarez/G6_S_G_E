@@ -76,7 +76,7 @@ function myFunctionx() {
       </form:form>
       
       <form:form action="/demo/login/Usuario/adddis" method="POST">
-      <button type="submit" name="oculto3" class="btn btn-info solid"  >Carga Archivo Dispositivos</button><span class="sr-only">(current)</span>
+      <button type="submit"  class="btn btn-info solid"  >Carga Archivo Dispositivos</button><span class="sr-only">(current)</span>
       </form:form>
       
       <form:form action="/demo/login/Usuario/simplex" method="POST">

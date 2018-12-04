@@ -23,7 +23,10 @@ import sge.repositorios.Repositorio;
 @Controller
 @RequestMapping("/demo/login")
 public class LoginController {
-	
+	@RequestMapping(method = RequestMethod.POST,params="vlvmp")
+	public String login() {
+		return "login";
+	}
 	@RequestMapping(method = RequestMethod.POST)
 	public ModelAndView handleRequest(HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException {

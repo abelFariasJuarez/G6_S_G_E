@@ -1,4 +1,4 @@
-package com.sge_mvc.controllers;
+	package com.sge_mvc.controllers;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -37,6 +37,17 @@ public class UsuarioController {
 		  modelAndView.addObject("disponibles", disponibles);
 		  return modelAndView;
 	}
+	@RequestMapping(value="adddis",method=RequestMethod.GET)
+	public ModelAndView ASD() {
+		Repositorio repositorio = new Repositorio();
+		repositorio.abrir();
+		DispositivoFactoryMethod.cargaBasica();
+		 List<DispositivoDisponible> disponibles = repositorio.dispositivosDisponibles().all();
+		  ModelAndView modelAndView = new ModelAndView("adddis");
+		  modelAndView.addObject("disponibles", disponibles);
+		  return modelAndView;
+	}
+
 
 	@RequestMapping(method=RequestMethod.GET)
 	public String ow() {

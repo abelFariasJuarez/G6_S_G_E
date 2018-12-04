@@ -33,9 +33,9 @@ public class DemoController {
 		return "login";
 	}
 	
-	@RequestMapping(value = "/mapa", method = RequestMethod.GET)
+	@RequestMapping(value = "/mapa", method = { RequestMethod.GET, RequestMethod.POST })
 	public String mapa(Model model) {
-		Ubicacion ubi = new Ubicacion(-34.597316 ,-58.420175);
+		/*Ubicacion ubi = new Ubicacion(-34.597316 ,-58.420175);
 		ZonaGeografica zona = new ZonaGeografica();
 		zona.setCentro(ubi);
 		zona.setRadio((float) 500);
@@ -59,10 +59,16 @@ public class DemoController {
 		List<Transformador> transs = new LinkedList<Transformador>();
 		transs.add(trans);
 		transs.add(trans2);
+		//model.addAttribute("transs", transs);
 		/*trans.consumoEnPeriodo( LocalDateTime.now(),LocalDateTime.now());*/
-		model.addAttribute("transs", transs);
 		
+		Repositorio repo = new Repositorio();
+		repo.abrir();
+		List<ZonaGeografica> zonas=repo.zonas().all();
+		List<Transformador> transforms=repo.transformadores().all();
 		
+		model.addAttribute("transs", transforms);
+		model.addAttribute("zonas", zonas);
 		
 		
 		return "mapa";

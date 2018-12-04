@@ -33,11 +33,10 @@ public class App {
 		Repositorio repo = new Repositorio();
 		repo.abrir();
 		
-		 UsuarioSGE usu = repo.clientes().findBy("username", "fperez");
-		repo.clientes().cargarClientes();
-		 for(Cliente cli : repo.clientes().getClientes())
-			 
-		 System.out.print(cli.getApellido());
-
-	}
+		 
+		repo.transformadores().cargarTransformadores();
+		repo.transformadores().guardarTransforamdores();
+		repo.zonas().cargarZonas();
+		repo.zonas().guardarZonas();
+}
 }
