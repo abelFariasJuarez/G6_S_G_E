@@ -31,17 +31,19 @@ import utils.ImportadorDeJsonDisponible;
 public class App {
 
 	public static void main(String[] args) throws InterruptedException, IOException {
-
+     
 		Repositorio repo = new Repositorio();
 		repo.abrir();
-		//repo.dispositivosDisponibles().cargarDispositivos("ewwe.json");
+		/*repo.dispositivosDisponibles().cargarDispositivos("ewwe.json");
+		repo.dispositivosDisponibles().guardarDispositivosDisponibles(); */
 		
+	
 		
-		//repo.dispositivosDisponibles().guardarDispositivosDisponibles();
+
 		
-    repo.transformadores().cargarTransformadores();
+   /* repo.transformadores().cargarTransformadores();
 		repo.transformadores().guardarTransforamdores();
 		repo.zonas().cargarZonas();
-		repo.zonas().guardarZonas();
+		repo.zonas().guardarZonas();*/
 }
 }

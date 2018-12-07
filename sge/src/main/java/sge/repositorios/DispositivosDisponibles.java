@@ -45,7 +45,7 @@ public class DispositivosDisponibles extends Repositorio {
 	
 	public void guardarDispositivosDisponibles() {
 		for (DispositivoDisponible dispdis : this.DispositivosDisponibles) {
-			DispositivoDisponible transDAO = this.findBy("id", dispdis.getCodigo());
+			DispositivoDisponible transDAO = this.findBy("codigo", dispdis.getCodigo());
 			if(transDAO == null)
 			{
 				transDAO = new DispositivoDisponible();
@@ -57,8 +57,11 @@ public class DispositivosDisponibles extends Repositorio {
 
 	private void llenarAtributos(DispositivoDisponible dis, DispositivoDisponible transDAO) {
 	    transDAO.setCodigo(dis.getCodigo());
-	    transDAO.setCodigoRestriccionHoras(null);
-		transDAO.setConsumoPorHora(null);
+	    transDAO.setIsInteligente(dis.getIsInteligente());
+	    transDAO.setNombre(dis.getNombre());
+	    transDAO.setIsBajoConsumo(dis.getIsBajoConsumo());
+	    transDAO.setCodigoRestriccionHoras(dis.getCodigoRestriccionHoras());
+		transDAO.setConsumoPorHora(dis.getConsumoPorHora());
 		
 
 	}
