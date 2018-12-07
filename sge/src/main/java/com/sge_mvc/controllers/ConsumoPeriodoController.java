@@ -57,7 +57,7 @@ public class ConsumoPeriodoController {
         /*modelAndView.addObject("desde",desde);*/
         Cliente usu = (Cliente) repo.findBy(Cliente.class,"username", user);
         modelAndView.addObject("consumo",usu.consumoEnPeriodo(desde, hasta));
-        modelAndView.addObject("prueba",usu.dispositivos);
+        modelAndView.addObject("prueba",usu.getDispositivos());
 		
 
         return modelAndView;

@@ -23,64 +23,37 @@ import sge.repositorios.Repositorio;
 @Controller
 @RequestMapping("/demo/login")
 public class LoginController {
-	@RequestMapping(method = RequestMethod.POST,params="vlvmp")
+	@RequestMapping(method = RequestMethod.POST, params = "vlvmp")
 	public String login() {
 		return "login";
 	}
+
 	@RequestMapping(method = RequestMethod.POST)
-	public ModelAndView handleRequest(HttpServletRequest request,
-            HttpServletResponse response) throws ServletException, IOException {
+	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		ModelAndView modelAndView = new ModelAndView();
 		Repositorio repo = new Repositorio();
 		repo.abrir();
-        String Mensaje = "";
-        String usuario=request.getParameter("username");
-        String password=request.getParameter("password");
-        Clientes usuarios = repo.clientes();
-        UsuarioSGE usu = (UsuarioSGE) repo.findBy(UsuarioSGE.class,"username", usuario);
-        
-        if(usu == null || !usu.getPassword().equalsIgnoreCase(password)) {
-        	
-            ModelAndView modelAndView = new ModelAndView("login");
-        	repo.cerrar();
-        	modelAndView.addObject("message", "Usuario o Contraseña incorrecta");
-            return modelAndView;
-              
-        }
-        else {
-           if(usu.getUsertype().equals("C")) {
-        	 
-        	  ModelAndView modelAndView = new ModelAndView("Usuario");
+		String usuario = request.getParameter("username");
+		String password = request.getParameter("password");
+		Clientes usuarios = repo.clientes();
+		UsuarioSGE usu = (UsuarioSGE) repo.findBy(UsuarioSGE.class, "username", usuario);
 
-        	  modelAndView.addObject("usuarios", usuarios);
-              modelAndView.addObject("message", usu.getUsertype());
-             
-              modelAndView.addObject("user", usuario);
-              modelAndView.addObject("password", password);
-              repo.cerrar();
+		if (usu == null || !usu.getPassword().equalsIgnoreCase(password)) {			
+			modelAndView.setViewName("login");
+			modelAndView.addObject("message", "Usuario o Contraseña incorrecta");
 
-             return modelAndView;
-           }
-           else 
-           {
-        	   
-        	
-        	 ModelAndView modelAndView = new ModelAndView("Administrador");
-        	
-        	
-             modelAndView.addObject("message", usu.getUsertype());
-         	
-            
-             modelAndView.addObject("user", usuario);
-             modelAndView.addObject("password", password);
-             repo.cerrar();
-
-            return modelAndView;
-           }
-        }
-     }
-	
-	
-	
+		} else {
+			String clazzName = usu.getClass().getSimpleName();
+			modelAndView.setViewName(clazzName);			
+			modelAndView.addObject("usuarios", usuarios);			
+			modelAndView.addObject("message", usu.getClass().toString());
+			modelAndView.addObject("user", usuario);
+			modelAndView.addObject("password", password);
+		}
+		repo.cerrar();
+		return modelAndView;
+	}
 
 }
 

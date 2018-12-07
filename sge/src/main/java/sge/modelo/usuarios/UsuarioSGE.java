@@ -19,8 +19,6 @@ import sge.modelo.Persistible;
 @DiscriminatorColumn(name = "userType")
 @Table(name = "UsuarioSGE")
 public abstract class UsuarioSGE extends Persistible {
-	@Column(name="userType")
-	private String usertype;
 	@Column(name = "nombre")
 	private String nombre;
 	@Column(name = "apellido")
@@ -84,13 +82,13 @@ public abstract class UsuarioSGE extends Persistible {
 		return username;
 	}
 
-	public String getUsertype() {
+	/*public String getUsertype() {
 		return usertype;
 	}
 
 	public void setUsertype(String usertype) {
 		this.usertype = usertype;
-	}
+	}*/
 
 	public void setUsername(String _username) {
 		username = _username;

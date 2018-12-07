@@ -41,7 +41,7 @@ public class Cliente extends UsuarioSGE {
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Categoria categoria;
 	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-	public List<Dispositivo> dispositivos = new ArrayList<Dispositivo>();
+	private List<Dispositivo> dispositivos = new ArrayList<Dispositivo>();
 	@Column(name = "puntos")
 	private Integer puntos = 0;
 	@OneToOne(cascade = CascadeType.ALL)

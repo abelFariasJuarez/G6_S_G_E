@@ -24,6 +24,7 @@ import sge.modelo.dispositivo.DispositivoInteligente;
 import sge.modelo.driver.DriverBasico;
 import sge.modelo.posicionamiento.Ubicacion;
 import sge.modelo.regla.Sensor;
+import sge.modelo.usuarios.Administrador;
 import sge.modelo.usuarios.Cliente;
 
 public class Repositorio {
@@ -303,9 +304,19 @@ public class Repositorio {
 	}
 
 	public void cargaDeDatosIniciales() {
+		/*Administrador admin = (Administrador) this.findBy(Administrador.class, "username", "admin");
+		if (admin == null) {
+			admin = new Administrador();
+		}
+		admin.setUsername("admin");
+		admin.setPassword("1234");
+		this.persistir(admin);*/
+		
 		// Inicializamos las variables
 		Cliente cliente1 = new Cliente();
 		Cliente cliente2 = new Cliente();
+		Cliente cliente3 = new Cliente();
+		
 		String nombreDispo = "";
 		DispositivoInteligente inteligente = new DispositivoInteligente();
 		DispositivoEstandar estandar = new DispositivoEstandar();
@@ -329,6 +340,16 @@ public class Repositorio {
 			cliente2.setAhorroAutomatico(false);
 			cliente2.setUbicacion(new Ubicacion(20.0, 95.0));
 			this.persistir(cliente2);
+		}
+
+		// Cliente 3
+		cliente3 = this.clientes().findBy("username", "afarias");
+		if (cliente3 == null) {
+			cliente3 = new Cliente("Abel", "Farias", "Mozart 2300", LocalDate.of(1988, 01, 10), "afarias", "af1234",
+					"Dni", 38888384, 1533333334);
+			cliente3.setAhorroAutomatico(false);
+			cliente3.setUbicacion(new Ubicacion(20.0, 95.0));
+			this.persistir(cliente3);
 		}
 
 		// Agrego los dispositivos con sus respectivos dueños

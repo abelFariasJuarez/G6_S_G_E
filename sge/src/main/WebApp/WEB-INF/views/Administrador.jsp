@@ -85,11 +85,10 @@ function myFunction(boton) {
      ${tipo}
 	<c:forEach items="${clientes}" var="cliente">
 	                  ${cliente.username}
-						<c:forEach items="${cliente.dispositivos}" var="dispositivo">
-						${dispositivo.consumoPorHora}
+						
 						</c:forEach>
 
-	</c:forEach>
+
 	
 
 
