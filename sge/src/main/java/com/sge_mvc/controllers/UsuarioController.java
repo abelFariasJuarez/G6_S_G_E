@@ -110,4 +110,18 @@ public class UsuarioController {
 		  return modelAndView;
 	}
 	
+	
+
+	@RequestMapping(value="mihogar",method=RequestMethod.GET)
+	public ModelAndView wse(@RequestParam("user") String user) {
+		Repositorio repo = new Repositorio();
+		repo.abrir();
+		ModelAndView modelAndView = new ModelAndView("mihogar");
+		 Cliente usu = (Cliente) repo.findBy(Cliente.class,"username", user);
+		modelAndView.addObject("dispositivos", usu.getDispositivos());
+		System.out.print(usu.getDispositivos());
+		repo.cerrar();
+	    return modelAndView;
+	}
+	
 }

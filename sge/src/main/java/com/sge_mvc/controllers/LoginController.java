@@ -45,6 +45,7 @@ public class LoginController {
 
 		} else {
 			String clazzName = usu.getClass().getSimpleName();
+			if (clazzName.equals("Cliente")) clazzName="Usuario";
 			modelAndView.setViewName(clazzName);			
 			modelAndView.addObject("usuarios", usuarios);			
 			modelAndView.addObject("message", usu.getClass().toString());

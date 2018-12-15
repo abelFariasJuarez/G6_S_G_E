@@ -1,7 +1,7 @@
 [{"codigo":"fa",
 "isInteligente":false,
 "nombre":"asdasd",
-"isBajoConsumo":false,
+"isBajoConsumo":true,
 "consumoPorHora":0,
 "codigoRestriccionHoras":"asd"
 }
