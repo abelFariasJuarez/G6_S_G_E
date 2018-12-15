@@ -14,33 +14,22 @@
 </head>
 <body>
 ${content}
-	 ${file.getOriginalFilename()}
-	<div class="container tamanio bg-dark margen text-light " id="oculto2"
-		>
+${file.getOriginalFilename()}
+	<div class="container tamanio bg-dark margen text-light " id="oculto2">
 		<form:form  action="/demo/login/Administrador/cargadispo" method="POST" enctype="multipart/form-data">
 		Carga Dispositivo/s
 		<div class="row">
-
-				<div class="col col-sm align-self-start  "></div>
-
-				<div class="col col-sm align-self-center  ">
-
-
-					<input name="uploadedfilea" type="select" /> <br> 
-					<input name="file" type="file"  size="50"/>
-				</div>
-				<div class="col align-self-center">
-
-					<input type="submit" name="snd"  value="Enviar archivo" />
-				</div>
-				<div class="col align-self-end"></div>
-
-
-
+			<div class="col col-sm align-self-start  "></div>
+			<div class="col col-sm align-self-center  ">
+				<input name="uploadedfilea" type="select" /> <br> 
+				<input name="file" type="file"  size="50"/>
 			</div>
-
-
-			<div class="col col-sm align-self-end "></div>
+			<div class="col align-self-center">
+				<input type="submit" name="snd"  value="Enviar archivo" />
+			</div>
+			<div class="col align-self-end"></div>
+		</div>
+		<div class="col col-sm align-self-end "></div>
 		</form:form>
 	</div>
 	
@@ -57,5 +46,32 @@ ${content}
 				</form:form></div>
 		</div>
 	</div>
+		<div class="container margen ">
+			<div class="row">
+				<div class="col align-self-start"></div>
+					<div class="col col-sm align-self-center ">
+
+						<table id="oculto" class="table table-dark ">
+
+							<thead>
+								<tr>
+									<th scope="col">Codigo</th>
+									<th scope="col">Nombre</th>
+								</tr>
+							</thead>
+							<tbody>
+								<c:forEach items="${dispositivosDisponibles}" var="dispositivoDisponible">
+									<tr>
+										<td>${dispositivoDisponible.getCodigo()}</td>
+										<td>${dispositivoDisponible.getNombre()}</td>
+									</tr>
+								</c:forEach>
+							</tbody>
+						</table>
+
+					</div>
+				<div class="col align-self-end"></div>
+			</div>
+		</div>	
 </body>
 </html>

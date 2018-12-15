@@ -69,7 +69,7 @@ function myFunction(boton) {
 					onClick=myFunction("oculto") >Consumo hogares</button>
 				<span class="sr-only">(current)</span>
                </form:form>
-               <form:form action="/demo/login/Administrador/cargadispo" method="POST" >
+               <form:form action="/demo/login/Administrador/cargadispo" method="POST">
 				<button type="submit" name="oculto2" class="btn btn-info solid"
 					onClick=myFunction("oculto2")>Cargar Dispositivo/s</button>
 				<span class="sr-only">(current)</span>

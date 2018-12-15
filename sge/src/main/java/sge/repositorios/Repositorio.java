@@ -175,6 +175,13 @@ public class Repositorio {
 		return objects;
 	}
 	
+	protected List<?> allDistinctOf(Class<?> clazz) {
+		Session session = this.getSession();
+		Criteria criteria= session.createCriteria(clazz).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+		List<?> objects = criteria.list();
+		return objects;
+	}	
+	
 
 
 	public void consumo_hogar_periodo(LocalDateTime desde, LocalDateTime hasta) {

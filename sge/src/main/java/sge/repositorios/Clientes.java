@@ -43,7 +43,7 @@ public class Clientes extends Repositorio {
 	
 	public List<Cliente> all()
 	{
-		return (List<Cliente>) this.allOf(Cliente.class);
+		return (List<Cliente>) this.allDistinctOf(Cliente.class);
 	}
 	
 	public Cliente findBy(String campo, String valor) {

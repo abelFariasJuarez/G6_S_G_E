@@ -60,19 +60,18 @@
 			<div class="col align-self-end"></div>
 		</div>
 	</div>
-	
-	
-		<div class="container margen ">
+
+
+	<div class="container margen ">
 		<div class="row">
 			<div class="col align-self-start"></div>
-			<div class="col col-sm align-self-center ">
-			
-			</div>
+			<div class="col col-sm align-self-center "></div>
 			<div class="col align-self-end">
-			
+
 				<form:form action="/demo/login/Administrador" method="GET">
 					<button type=submit>Volver</button>
-				</form:form></div>
+				</form:form>
+			</div>
 		</div>
 	</div>
 
