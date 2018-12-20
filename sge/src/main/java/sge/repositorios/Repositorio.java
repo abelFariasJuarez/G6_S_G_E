@@ -330,6 +330,8 @@ public class Repositorio {
 		}
 	}
 
+	
+	
 	public void cargaDeDatosIniciales() {
 		this.restriccionesHorasFamilia().crearRetriccionesSiNoExisten();
 		DispositivoFactoryMethod.cargaBasica();

@@ -30,15 +30,9 @@ public class ConsumoPeriodoController {
             HttpServletResponse response, @RequestParam("user") String user) throws ServletException, IOException, ParseException {
 		Repositorio repo = new Repositorio();
 		repo.abrir();
-        String Mensaje = "";
         
         ModelAndView modelAndView = new ModelAndView("consumoperiodo");
 		modelAndView.addObject("user", user);
-        
-		
-
-		
-		
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String desdeStr = request.getParameter("datedesde");
         String hastaStr = request.getParameter("datehasta");
@@ -49,7 +43,7 @@ public class ConsumoPeriodoController {
 			hastaStr = "9999-12-28";
 			
 		}
-        
+       
         Date hastaDate = sdf.parse(hastaStr);
         LocalDateTime desde = convertToLocalDateTimeViaInstant(desdeDate);
         LocalDateTime hasta = convertToLocalDateTimeViaInstant(hastaDate);
@@ -58,7 +52,7 @@ public class ConsumoPeriodoController {
         Cliente usu = (Cliente) repo.findBy(Cliente.class,"username", user);
         modelAndView.addObject("consumo",usu.consumoEnPeriodo(desde, hasta));
         modelAndView.addObject("prueba",usu.getDispositivos());
-		
+        modelAndView.addObject("reporte",usu.consumoEnPeriodo(desde, hasta));
 
         return modelAndView;
 	}
