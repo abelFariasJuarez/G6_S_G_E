@@ -1,4 +1,4 @@
-	package com.sge_mvc.controllers;
+package com.sge_mvc.controllers;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -29,96 +29,69 @@ import sge.modelo.usuarios.UsuarioSGE;
 import sge.repositorios.Clientes;
 import sge.repositorios.Repositorio;
 
-
 @Controller
-@RequestMapping("/demo/login/Usuario")
 public class UsuarioController {
 
-	@RequestMapping(value="adddis",method=RequestMethod.POST)
-	public ModelAndView wse() {
-		Repositorio repositorio = new Repositorio();
-		repositorio.abrir();
-		 List<DispositivoDisponible> disponibles = repositorio.dispositivosDisponibles().all();
-		  ModelAndView modelAndView = new ModelAndView("adddis");
-		  modelAndView.addObject("disponibles", disponibles);
-		  return modelAndView;
-	}
-	@RequestMapping(value="adddis",method=RequestMethod.GET)
-	public ModelAndView ASD() {
-		Repositorio repositorio = new Repositorio();
-		repositorio.abrir();
-		 List<DispositivoDisponible> disponibles = repositorio.dispositivosDisponibles().all();
-		  ModelAndView modelAndView = new ModelAndView("adddis");
-		  modelAndView.addObject("disponibles", disponibles);
-		  return modelAndView;
+	@RequestMapping(value = "/Cliente", method = RequestMethod.GET)
+	public String mostrarHomeCliente() {
+		return "Cliente";
 	}
 
-	
-	@RequestMapping(method=RequestMethod.GET)
-	public String ow() {
-		return "Usuario";
+	@RequestMapping(value = "/Cliente/MiHogar", method = RequestMethod.POST)
+	public String miHogar() {
+		return "mihogar";
 	}
-	
-	
-	
-	
-	
-	@RequestMapping(value="consumoperiodo",method = RequestMethod.POST)
-	public ModelAndView consumoPorPeriodo(@RequestParam("user") String user) {
-		Repositorio repo = new Repositorio();
-		repo.abrir();
-		ModelAndView modelAndView = new ModelAndView("consumoperiodo");
-		modelAndView.addObject("user", user);
-		repo.cerrar();
-	    return modelAndView;
+
+	@RequestMapping(value = "/Cliente/ConsumoPeriodo", method = RequestMethod.POST)
+	public String consumoPeriodo() {
+		return "consumoperiodo";
 	}
-	
+
+	@RequestMapping(value = "/Cliente/CargarDispositivos", method = RequestMethod.POST)
+	public String cargarDispositivos(Model model) {
+		Repositorio repositorio = new Repositorio();
+		repositorio.abrir();
+		List<DispositivoDisponible> disponibles = repositorio.dispositivosDisponibles().all();
+		model.addAttribute("disponibles", disponibles);
+		repositorio.cerrar();
+		return "cargardispositivos";
+	}
+
+	@RequestMapping(value = "/Cliente/Simplex", method = RequestMethod.POST)
+	public String ejecutarSimplex() {
+		return "simplex";
+	}
+
+	@RequestMapping(value = "/Cliente/ABMDispositivos", method = RequestMethod.POST)
+	public String abmDispositivos() {
+		/*
+		 * Repositorio repositorio = new Repositorio(); repositorio.abrir();
+		 * List<Dispositivo> dispositivos = (List<Dispositivo>)
+		 * repositorio.dispositivos().findBy("username", user); ModelAndView
+		 * modelAndView = new ModelAndView("abmDisp");
+		 * modelAndView.addObject("dispositivos", dispositivos);
+		 */
+		return "abmreglasydispositivos";
+	}
+
 	@RequestMapping(method = RequestMethod.POST)
-	public ModelAndView handleRequest(HttpServletRequest request,
-            HttpServletResponse response) throws ServletException, IOException, ParseException {
+	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException, ParseException {
 		Repositorio repo = new Repositorio();
 		repo.abrir();
-        String Mensaje = "";
-        
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/aaaa");
-        String desdeStr = request.getParameter("datedesde");
-        String hastaStr = request.getParameter("datehasta");
-        Date desdeDate = sdf.parse(desdeStr);
-        Date hastaDate = sdf.parse(hastaStr);
-        LocalDateTime desde = convertToLocalDateTimeViaInstant(desdeDate);
-        LocalDateTime hasta = convertToLocalDateTimeViaInstant(hastaDate);
-        return null;
+		String Mensaje = "";
+
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/aaaa");
+		String desdeStr = request.getParameter("datedesde");
+		String hastaStr = request.getParameter("datehasta");
+		Date desdeDate = sdf.parse(desdeStr);
+		Date hastaDate = sdf.parse(hastaStr);
+		LocalDateTime desde = convertToLocalDateTimeViaInstant(desdeDate);
+		LocalDateTime hasta = convertToLocalDateTimeViaInstant(hastaDate);
+		return null;
 	}
-	
-	
-	
+
 	public LocalDateTime convertToLocalDateTimeViaInstant(Date dateToConvert) {
 		return dateToConvert.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
-		}
-
-	
-	@RequestMapping(value="abmDisp",method=RequestMethod.POST)
-	public ModelAndView abmDispo(@RequestParam("user") String user) {
-		Repositorio repositorio = new Repositorio();
-		repositorio.abrir();
-		 List<Dispositivo> dispositivos = (List<Dispositivo>) repositorio.dispositivos().findBy("username", user)  ;
-		  ModelAndView modelAndView = new ModelAndView("abmDisp");
-		  modelAndView.addObject("dispositivos", dispositivos);
-		  return modelAndView;
 	}
-	
-	
-
-	@RequestMapping(value="mihogar",method=RequestMethod.GET)
-	public ModelAndView wse(@RequestParam("user") String user) {
-		Repositorio repo = new Repositorio();
-		repo.abrir();
-		ModelAndView modelAndView = new ModelAndView("mihogar");
-		 Cliente usu = (Cliente) repo.findBy(Cliente.class,"username", user);
-		modelAndView.addObject("dispositivos", usu.getDispositivos());
-		System.out.print(usu.getDispositivos());
-		repo.cerrar();
-	    return modelAndView;
-	}
-	
 }

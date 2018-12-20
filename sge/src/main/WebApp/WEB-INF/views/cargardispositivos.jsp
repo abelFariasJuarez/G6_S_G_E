@@ -17,7 +17,7 @@
 <div class="container text-light" >
   <div class="row">
     <div class="col align-self-start"> 
-    <h1>Dispositivos Disponibles</h1>
+    <h1>Dispositivos disponibles</h1>
     	<table id="oculto" class="table table-dark ">
     	<thead>
 			<tr>
@@ -61,10 +61,11 @@
    		<form:form action="/demo/login/Usuario/abmReg/nuevaReg?dispositivo=${dispositivo}" method="POST">
    		<button type="submit" name="NuevoDisp" class="btn btn-dark" > Seleccionar </button> 
    		</form:form>
-   		<form:form action="/demo/login/Usuario/abmDisp" method="POST">
+   		<form:form action="/Cliente" method="POST">
    		<button type="submit" name="cancel" class="btn btn-dark" > Cancelar </button> 
    			</form:form>
    	   	</div>
+
   </div>
 </div>
 </body>

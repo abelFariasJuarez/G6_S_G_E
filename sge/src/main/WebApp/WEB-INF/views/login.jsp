@@ -13,7 +13,6 @@
 </head>
 <body class="text-center">
 <div >
-
   <div class="container">
   <div class="row">
       <div class="col col-sm align-self-start"></div>
@@ -44,8 +43,8 @@
     	 
     	
 <div class="form">  
- <form:form   method="POST">  
-  <form:form  action="/demo/login/Usuario" method="POST">  
+ <form:form   method="post">  
+  <form:form  action="login" method="post">  
       
 <input type="text" id="username" placeholder="Usuario" name="username" class= "form-control" />
   
@@ -75,6 +74,7 @@
 </div>
 </div>
 
+  ${loginError}
 
 </body>
 </html>

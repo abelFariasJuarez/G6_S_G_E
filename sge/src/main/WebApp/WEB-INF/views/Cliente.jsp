@@ -6,7 +6,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>User</title>
+	<title>Cliente</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 <link rel="stylesheet" href=userCSS.css>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -60,34 +60,34 @@ function myFunctionx() {
 
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <p class="navbar-brand" >Panel Usuario</p>
+  <p class="navbar-brand" >${usuarioLogueado.username}</p>
 
   
   <div >
     <div class="navbar-nav">
     
     
-      <form:form action="/demo/login/Usuario/mihogar" method="POST">
+      <form:form action="/Cliente/MiHogar" method="POST">
       <button type="submit" name="oculto"  class="btn btn-info solid" >Mi Hogar</button><span class="sr-only">(current)</span>
       </form:form>
       
-      <form:form action="/demo/login/Usuario/consumoperiodo?user=${user}" method="POST">
-      <button type="submit" name="oculto2"  class="btn btn-info solid" >Consumo Periodo</button><span class="sr-only">(current)</span>
+      <form:form action="/Cliente/ConsumoPeriodo" method="POST">
+      <button type="submit" name="oculto2"  class="btn btn-info solid" >Consumo por periodo</button><span class="sr-only">(current)</span>
       </form:form>
       
-      <form:form action="/demo/login/Usuario/adddis" method="POST">
-      <button type="submit"  class="btn btn-info solid"  >Carga Archivo Dispositivos</button><span class="sr-only">(current)</span>
+      <form:form action="/Cliente/CargarDispositivos" method="POST">
+      <button type="submit"  class="btn btn-info solid"  >Cargar dispositivos</button><span class="sr-only">(current)</span>
       </form:form>
       
-      <form:form action="/demo/login/Usuario/simplex" method="POST">
+      <form:form action="/Cliente/Simplex" method="POST">
       <button type="submit" name="oculto4" class="btn btn-info solid"  >SimpleX</button><span class="sr-only">(current)</span>
       </form:form>
       
-      <form:form action="/demo/login/Usuario/abmDisp?user=${user}" method="POST">
-      <button type="submit" name="oculto5" class="btn btn-info solid"  >ABM Dispositivos</button><span class="sr-only">(current)</span>
+      <form:form action="/Cliente/ABMDispositivos" method="POST">
+      <button type="submit" name="oculto5" class="btn btn-info solid"  >ABM dispositivos</button><span class="sr-only">(current)</span>
       </form:form>
       
-      <a class="btn  btn-success" href="login" >Cerrar Sesion</a>
+      <a class="btn  btn-success" href="logout" >Cerrar Sesion</a>
     </div>
   </div>
 </nav>
