@@ -13,7 +13,7 @@ import sge.modelo.usuarios.Cliente;
 import utils.ImportadorDeJSONCliente;
 
 public class Clientes extends Repositorio {
-	private List<Cliente> clientes = new ArrayList<Cliente>();
+	private List<Cliente> clientesJson = new ArrayList<Cliente>();
 
 	public Clientes(EntityManager entityManager) {
 		super(entityManager);
@@ -23,18 +23,18 @@ public class Clientes extends Repositorio {
 	}
 
 	public void guardarCliente(Cliente cliente) {
-		clientes.add(cliente);
+		clientesJson.add(cliente);
 	}
 
-	public List<Cliente> getClientes() {
-		return clientes;
+	public List<Cliente> getClientesJson() {
+		return clientesJson;
 	}
 
-	public void cargarClientes() {
-		clientes.clear();
+	public void cargarClientesDesdeJson() {
+		clientesJson.clear();
 		ImportadorDeJSONCliente json = new ImportadorDeJSONCliente();
 		try {
-			this.clientes.addAll(json.getClientes());
+			this.clientesJson.addAll(json.getClientes());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

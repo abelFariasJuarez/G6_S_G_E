@@ -26,6 +26,7 @@ public class TestGestor {
 	
 	@BeforeClass
 	public static void setUp() {
+		gestor.cargarClientesZonasTransformadores();
 		gestor.transformadoresAsignacionZona();
 		gestor.asignarClientesATransformadores();		
 	}
@@ -33,7 +34,7 @@ public class TestGestor {
 	@Test
 	public void clientePerteneceAZona() {
 		ZonaGeografica zona=gestor.getRepoZonas().getZonas().get(0);
-		Cliente cliente=gestor.getRepoClientes().getClientes().get(0);
+		Cliente cliente=gestor.getRepoClientes().getClientesJson().get(0);
 		assertEquals(true,zona.pertenece(cliente)); 
 		
 	}
@@ -41,7 +42,7 @@ public class TestGestor {
 	@Test
 	public void esClienteDeAlgunaZona() {
 		List<ZonaGeografica> zonas=gestor.getRepoZonas().getZonas();
-		Cliente cliente=gestor.getRepoClientes().getClientes().get(2);
+		Cliente cliente=gestor.getRepoClientes().getClientesJson().get(2);
 		assertEquals(true,zonas.stream().anyMatch(zona -> zona.pertenece(cliente))); 
 		
 	}
@@ -49,7 +50,7 @@ public class TestGestor {
 	@Test
 	public void ClientePerteneceATransformador() {
 		Transformador transfo=gestor.getRepoTransformadores().getTransformadores().get(3);
-		assertEquals(2,transfo.getClientes().size()); 		
+		assertEquals(0,transfo.getClientes().size()); 		
 	}
 	
 

@@ -20,6 +20,7 @@ import javax.persistence.Transient;
 import sge.modelo.driver.DriverBasico;
 import sge.modelo.regla.RegistroDispositivos;
 import sge.modelo.regla.RegistroSensores;
+import sge.modelo.regla.Regla;
 import sge.modelo.regla.Sensor;
 
 @Entity
@@ -29,8 +30,10 @@ public abstract class Inteligente extends Dispositivo {
 	@Transient
 	private DriverBasico driver;
 
+	@OneToMany(orphanRemoval = true, cascade = CascadeType.ALL, mappedBy="inteligente")
+	private List<Regla> reglas = new ArrayList<Regla>();
 	@OneToMany(orphanRemoval = true, cascade = CascadeType.ALL)
-	private List<Sensor> sensores = new ArrayList<Sensor>();
+	private List<Sensor> sensores = new ArrayList<Sensor>();	
 	@Column(name = "encendido")
 	private boolean encendido;
 	@OneToOne(cascade = CascadeType.ALL)
@@ -38,6 +41,14 @@ public abstract class Inteligente extends Dispositivo {
 	//@Column(name = "horasEncendido")
 	@OneToMany(orphanRemoval = true, cascade = CascadeType.ALL)
 	private List<Intervalo> intervalos = new ArrayList<Intervalo>();
+
+	public List<Regla> getReglas() {
+		return reglas;
+	}
+
+	public void setReglas(List<Regla> reglas) {
+		this.reglas = reglas;
+	}
 
 	public Inteligente() {
 		super();

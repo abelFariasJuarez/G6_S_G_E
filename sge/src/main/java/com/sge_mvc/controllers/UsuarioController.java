@@ -38,7 +38,6 @@ public class UsuarioController {
 	public ModelAndView wse() {
 		Repositorio repositorio = new Repositorio();
 		repositorio.abrir();
-		DispositivoFactoryMethod.cargaBasica();
 		 List<DispositivoDisponible> disponibles = repositorio.dispositivosDisponibles().all();
 		  ModelAndView modelAndView = new ModelAndView("adddis");
 		  modelAndView.addObject("disponibles", disponibles);
@@ -48,7 +47,6 @@ public class UsuarioController {
 	public ModelAndView ASD() {
 		Repositorio repositorio = new Repositorio();
 		repositorio.abrir();
-		DispositivoFactoryMethod.cargaBasica();
 		 List<DispositivoDisponible> disponibles = repositorio.dispositivosDisponibles().all();
 		  ModelAndView modelAndView = new ModelAndView("adddis");
 		  modelAndView.addObject("disponibles", disponibles);
@@ -103,7 +101,6 @@ public class UsuarioController {
 	public ModelAndView abmDispo(@RequestParam("user") String user) {
 		Repositorio repositorio = new Repositorio();
 		repositorio.abrir();
-		DispositivoFactoryMethod.cargaBasica();
 		 List<Dispositivo> dispositivos = (List<Dispositivo>) repositorio.dispositivos().findBy("username", user)  ;
 		  ModelAndView modelAndView = new ModelAndView("abmDisp");
 		  modelAndView.addObject("dispositivos", dispositivos);

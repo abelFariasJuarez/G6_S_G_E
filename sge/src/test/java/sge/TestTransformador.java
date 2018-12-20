@@ -25,25 +25,25 @@ public class TestTransformador {
 	public static void setUp() {
 
 		repoT.cargarTransformadores();
-		repoC.cargarClientes();
+		repoC.cargarClientesDesdeJson();
 	}
 
 	@Test
 	public void DistanciaClienteACualquierTransformador() {
 		Transformador transfo = repoT.getTransformadores().get(0);
 
-		Cliente cliente = repoC.getClientes().get(1);
-		assertEquals(517.2852211304707, transfo.Distancia(cliente), 0);
+		Cliente cliente = repoC.getClientesJson().get(1);
+		assertEquals(584.3492609553148, transfo.Distancia(cliente), 0);
 	}
 
 	@Test
 	public void DistanciaClienteATransformadorMasCercano() {
 		List<Transformador> transformadores = repoT.getTransformadores();
-		Cliente cliente = repoC.getClientes().get(1);
+		Cliente cliente = repoC.getClientesJson().get(1);
 		Transformador transfoCercano = Collections.min(transformadores,
 				Comparator.comparing(t -> t.Distancia(cliente)));
 
-		assertEquals(4.123105625617661, transfoCercano.Distancia(cliente), 0);
+		assertEquals(584.3373307553782, transfoCercano.Distancia(cliente), 0);
 
 	}
 

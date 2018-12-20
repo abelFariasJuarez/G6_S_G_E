@@ -113,4 +113,13 @@ public class ZonaGeografica extends Persistible {
 		trans.getClientes().add(cliente);
 
 	}
+
+	public void llenarAtributos(ZonaGeografica zona) {
+		this.setId(zona.getId());
+		this.setNombre(zona.getNombre());
+		this.setCentro(zona.getCentro());
+		this.setRadio(zona.getRadio());	
+		this.setTransformadores(zona.getTransformadores());
+		this.setClientes(zona.getClientes());		
+	}
 }

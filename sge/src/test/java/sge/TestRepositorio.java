@@ -21,8 +21,12 @@ public class TestRepositorio {
 	}
 
 	@Test
+	public void cargaBasica() {
+		repositorio.cargaDeDatosIniciales();
+	}
+	
+	@Test
 	public void metodoAllOf() {
-		DispositivoFactoryMethod.cargaBasica();
 		 List<DispositivoDisponible> disponibles = repositorio.dispositivosDisponibles().all();
 		 
 		 List<Cliente> clientes = repositorio.clientes().all();

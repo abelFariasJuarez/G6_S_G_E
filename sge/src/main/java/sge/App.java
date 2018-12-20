@@ -6,6 +6,8 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import com.google.gson.Gson;
+
 import sge.modelo.dispositivo.*;
 import sge.modelo.driver.ActuadorAhorro;
 import sge.modelo.driver.ActuadorApagar;
@@ -31,19 +33,7 @@ import utils.ImportadorDeJsonDisponible;
 public class App {
 
 	public static void main(String[] args) throws InterruptedException, IOException {
-     
-		Repositorio repo = new Repositorio();
-		repo.abrir();
-		/*repo.dispositivosDisponibles().cargarDispositivos("ewwe.json");
-		repo.dispositivosDisponibles().guardarDispositivosDisponibles(); */
-		
-	
-		
 
-		
-   /* repo.transformadores().cargarTransformadores();
-		repo.transformadores().guardarTransforamdores();
-		repo.zonas().cargarZonas();
-		repo.zonas().guardarZonas();*/
-}
+
+	}
 }

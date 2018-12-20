@@ -15,8 +15,8 @@
     "telefono": 154331231,
    "dispositivos":[],
    "ubicacion":{
-   "latitud":408.0,
-   "longitud":334.0
+	"latitud":-34.660001,
+	"longitud":-58.440000
   }
   },
    {
@@ -35,8 +35,8 @@
     "telefono": 154331231,
    "dispositivos":[],
    "ubicacion":{
-   "latitud":401.0,
-   "longitud":331.0
+"latitud":-34.640001,
+"longitud":-58.440000
   	}
   },
    {
@@ -55,8 +55,8 @@
     "telefono": 154331231,
    "dispositivos":[],
    "ubicacion":{
-   "latitud":0.1,
-   "longitud":0.2
+"latitud":-34.540001,
+"longitud":-58.440000
   	}
   },
     {
@@ -75,8 +75,8 @@
     "telefono": 154331231,
    "dispositivos":[],
    "ubicacion":{
-   "latitud":-400.5,
-   "longitud":-400.6
+"latitud":-34.540000,
+"longitud":-58.440001
   	}
   }
 ]

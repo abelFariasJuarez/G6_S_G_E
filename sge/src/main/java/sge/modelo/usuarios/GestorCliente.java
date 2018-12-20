@@ -17,11 +17,11 @@ public class GestorCliente {
 	private Transformadores repoTransformadores = repositorio.transformadores();
 
 	public GestorCliente() {
-		cargarClientesZonasTransformadores();
+		
 	}
 
 	public void cargarClientesZonasTransformadores() {
-		getRepoClientes().cargarClientes();
+		getRepoClientes().cargarClientesDesdeJson();
 		getRepoZonas().cargarZonas();
 		getRepoTransformadores().cargarTransformadores();
 	}
@@ -40,7 +40,7 @@ public class GestorCliente {
 	}
 
 	public void asignarClientesATransformadores() {
-		for (Cliente cliente : getRepoClientes().getClientes()) {
+		for (Cliente cliente : getRepoClientes().getClientesJson()) {
 			ZonaGeografica zona = getRepoZonas().getZonas().stream().filter(s -> s.pertenece(cliente)).findFirst()
 					.get();
 			Transformador trans = Collections.min(zona.getTransformadores(),
@@ -50,7 +50,7 @@ public class GestorCliente {
 	}
 
 	public void mejorarEficienciaHogares() {
-		this.mejorarEficienciaHogaresA(getRepoClientes().getClientes());
+		this.mejorarEficienciaHogaresA(getRepoClientes().getClientesJson());
 	}
 
 	public void mejorarEficienciaHogaresA(List<Cliente> clientes) {

@@ -7,6 +7,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 
 import sge.modelo.posicionamiento.Transformador;
+import sge.modelo.posicionamiento.Ubicacion;
 import sge.modelo.posicionamiento.ZonaGeografica;
 import sge.modelo.usuarios.Cliente;
 import utils.ImportadorDeJsonZona;
@@ -24,27 +25,6 @@ public class Zonas extends Repositorio {
 
 	public void guardarZona(ZonaGeografica zona) {
 		zonas.add(zona);
-	}
-	public void guardarZonas() {
-		for (ZonaGeografica zona : this.getZonas()) {
-			ZonaGeografica transDAO = this.findBy("id", zona.getId());
-			if(transDAO == null)
-			{
-				transDAO = new ZonaGeografica();
-			}
-			this.llenarAtributos(zona,transDAO);
-			this.persistir(transDAO);
-		}		
-	}
-
-	private void llenarAtributos(ZonaGeografica zona, ZonaGeografica transDAO) {
-		
-		
-		transDAO.setId(zona.getId());
-		transDAO.setNombre(zona.getNombre());
-		transDAO.setCentro(zona.getCentro());
-		transDAO.setRadio(zona.getRadio());
-
 	}
 	
 	public ZonaGeografica findBy(String campo, Object valor) {
@@ -77,4 +57,27 @@ public class Zonas extends Repositorio {
 	{
 		return (List<ZonaGeografica>) this.allOf(ZonaGeografica.class);
 	}
+
+	public void persistir(List<ZonaGeografica> zonas2) {
+		zonas2.forEach(z -> this.persistir(z));		
+	}
+
+	public void persistir(ZonaGeografica zona) {
+		ZonaGeografica zona1 = this.getPersistenteBy("id",zona.getId());
+		Ubicacion ubi = this.ubicaciones().getPersistente(zona.getCentro().getLongitud(),zona.getCentro().getLatitud());
+		zona.setCentro(ubi);
+		zona1.llenarAtributos(zona);
+		super.persistir(zona1);
+	}
+
+	private ZonaGeografica getPersistenteBy(String campo, Object valor) {
+		ZonaGeografica transDAO = this.findBy(campo, valor);
+		if(transDAO == null)
+		{
+			transDAO = new ZonaGeografica();
+		}
+		return transDAO;
+	}
+
+	
 }

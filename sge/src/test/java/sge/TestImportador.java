@@ -46,7 +46,7 @@ public class TestImportador {
 	public void ImportadorJsonTransformador() {
 		Transformadores repoTransfo = new Repositorio().transformadores();
 		repoTransfo.cargarTransformadores();
-		assertEquals(6, repoTransfo.getTransformadores().size());
+		assertEquals(10, repoTransfo.getTransformadores().size());
 
 		for (Transformador transfo : repoTransfo.getTransformadores()) {
 
@@ -57,10 +57,10 @@ public class TestImportador {
 	@Test
 	public void ImportadorJsonCliente() {
 		Clientes repoClientes = (new Repositorio()).clientes();
-		repoClientes.cargarClientes();
-		assertEquals(4, repoClientes.getClientes().size());
+		repoClientes.cargarClientesDesdeJson();
+		assertEquals(4, repoClientes.getClientesJson().size());
 
-		for (Cliente cli : repoClientes.getClientes()) {
+		for (Cliente cli : repoClientes.getClientesJson()) {
 
 			cli.presentate();
 		}

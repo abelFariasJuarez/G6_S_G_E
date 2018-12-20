@@ -20,12 +20,14 @@ import org.hibernate.criterion.Restrictions;
 import sge.modelo.IPersistible;
 import sge.modelo.dispositivo.Dispositivo;
 import sge.modelo.dispositivo.DispositivoEstandar;
+import sge.modelo.dispositivo.DispositivoFactoryMethod;
 import sge.modelo.dispositivo.DispositivoInteligente;
 import sge.modelo.driver.DriverBasico;
 import sge.modelo.posicionamiento.Ubicacion;
 import sge.modelo.regla.Sensor;
 import sge.modelo.usuarios.Administrador;
 import sge.modelo.usuarios.Cliente;
+import sge.modelo.usuarios.GestorCliente;
 
 public class Repositorio {
 
@@ -43,6 +45,7 @@ public class Repositorio {
 	private Transformadores transformadores;
 	private RestriccionesHorasFamilia restriccionesHorasFamilia;
 	private Zonas zonas;
+	private Ubicaciones ubicaciones;
 
 	public Repositorio() {
 	}
@@ -109,12 +112,19 @@ public class Repositorio {
 	public RestriccionesHorasFamilia restriccionesHorasFamilia() {
 		if (restriccionesHorasFamilia == null) {
 			restriccionesHorasFamilia = new RestriccionesHorasFamilia(entityManager);
-			restriccionesHorasFamilia.crearRetriccionesSiNoExisten();
 		}
 
 		return restriccionesHorasFamilia;
 	}
+	
+	public Ubicaciones ubicaciones() {
+		if (ubicaciones == null) {
+			ubicaciones = new Ubicaciones(entityManager);
+		}
 
+		return ubicaciones;
+	}
+	
 	public Zonas zonas() {
 		if (zonas == null) {
 			zonas = new Zonas(entityManager);
@@ -167,6 +177,16 @@ public class Repositorio {
 		objReturn = criteria.uniqueResult();
 		return objReturn;
 	}
+	
+	public Object findBy(Class<?> clazz, String campo1,  String campo2,Object valor1,Object valor2) {
+		Object objReturn;
+		Session session = this.getSession();
+		Criteria criteria = session.createCriteria(clazz)
+				.add(Restrictions.eq(campo1, valor1))
+				.add(Restrictions.eq(campo2, valor2));
+		objReturn = criteria.uniqueResult();
+		return objReturn;
+	}	
 
 	protected List<?> allOf(Class<?> clazz) {
 		Session session = this.getSession();
@@ -311,6 +331,13 @@ public class Repositorio {
 	}
 
 	public void cargaDeDatosIniciales() {
+		this.restriccionesHorasFamilia().crearRetriccionesSiNoExisten();
+		DispositivoFactoryMethod.cargaBasica();
+		GestorCliente gestor = new GestorCliente();
+		
+		gestor.cargarClientesZonasTransformadores();
+		this.zonas().persistir(gestor.getRepoZonas().getZonas());
+		
 		/*Administrador admin = (Administrador) this.findBy(Administrador.class, "username", "admin");
 		if (admin == null) {
 			admin = new Administrador();

@@ -41,9 +41,9 @@ public class TestCliente {
 	public static void setUp() {
 		repoDispositivos.cargarDispositivos("todos");
 		dispositivos = repoDispositivos.getDispositivos();
-		repoClientes.cargarClientes();
+		repoClientes.cargarClientesDesdeJson();
 
-		clientes = repoClientes.getClientes();
+		clientes = repoClientes.getClientesJson();
 		unaCategoria = new Categoria("r1", 18.76f, 0.644f, 0f, 150.0f);
 
 		// ------------------------------------------------------------
@@ -54,7 +54,7 @@ public class TestCliente {
 		// ------------------------------------------------------------
 
 		cli2 = clientes.get(1);
-		for (Cliente cli : repoClientes.getClientes()) {
+		for (Cliente cli : repoClientes.getClientesJson()) {
 			for (Dispositivo dis : repoDispositivos.Dispositivos) {
 				if (cli.getUsername().equals(dis.getIdUserName())) {
 					cli.addDispositivo(dis);
@@ -64,7 +64,7 @@ public class TestCliente {
 
 		}
 
-		clientes = repoClientes.getClientes();
+		clientes = repoClientes.getClientesJson();
 
 		LocalDateTime desde = LocalDateTime.parse("2018-05-19T20:00:00.000000000");
 		LocalDateTime hasta = LocalDateTime.parse("2018-05-19T22:00:00.000000000");

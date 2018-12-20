@@ -37,7 +37,6 @@ public class AbmDispController {
 	public ModelAndView abmDisp(@RequestParam("user") String user) {
 		Repositorio repositorio = new Repositorio();
 		repositorio.abrir(); 
-		DispositivoFactoryMethod.cargaBasica();
 		 List<Dispositivo> dispositivos = (List<Dispositivo>) repositorio.dispositivos().findBy("username", user)  ;
 		  ModelAndView modelAndView = new ModelAndView("abm");
 		  modelAndView.addObject("dispositivos", dispositivos);
@@ -49,7 +48,6 @@ public class AbmDispController {
 		Repositorio repositorio = new Repositorio();
 		repositorio.abrir();
 		usuario = user;
-		DispositivoFactoryMethod.cargaBasica();
 		List<Dispositivo> dispositivos = (List<Dispositivo>) repositorio.dispositivos().findBy("username", user)  ;
 		  ModelAndView modelAndView = new ModelAndView("abm");
 		  modelAndView.addObject("dispositivos", dispositivos);

@@ -23,7 +23,6 @@ public class RestriccionesHorasFamilia extends Repositorio {
 
 	public RestriccionesHorasFamilia(EntityManager entityManager) {
 		super(entityManager);
-		// this.crearRetriccionesSiNoExisten();
 	}
 
 	public RestriccionHorasFamilia findBy(String campo, String valor) {
