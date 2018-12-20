@@ -15,13 +15,13 @@
 <body>
 
 
-${user}
+${usuarioLogueado.username}
 ${desde}
 ${consumo}
 ${prueba}
 <div class="container text-light" id="oculto2">
   <div class="row">
-  <form:form action="/demo/login/Usuario/consumoperiodo?user=${user}" method="POST">
+  <form:form action="reporte" method="POST">
     <div class="col align-self-start">
         <label class="colorfont" >Desde:</label>
 <input type="date" id="datedesde" placeholder="Desde" name="datedesde" class= "form-control" />

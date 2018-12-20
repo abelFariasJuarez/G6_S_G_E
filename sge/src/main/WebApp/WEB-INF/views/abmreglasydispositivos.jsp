@@ -14,16 +14,6 @@
     	<h1>Dispositivos</h1>
     	<table  class="table table-dark ">
 						
-					<thead>	
-						<tr>
-						<th></th>
-							<th scope="col">Dispositivo</th>
-							<th scope="col">Equipo Concreto</th>
-							<th scope="col">¿Es inteligente?</th>
-							<th scope="col">¿Es Equipo de bajo consumo?</th>
-							<th scope="col">Consumo(Kwh)</th>	
-						</tr>
-					</thead>
 					<tbody>
 						<c:forEach items="${dispositivos}" var="dispositivo">
 							<tr id ="${dispositivo.codigo}" >

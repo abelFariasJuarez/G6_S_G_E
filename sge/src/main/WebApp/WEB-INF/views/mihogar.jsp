@@ -46,7 +46,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach items="${dispositivos}" var="dispositivo">
+						<c:forEach items="${usuarioLogueado.dispositivos}" var="dispositivo">
 							<tr>
 
 								<td>${dispositivo.getNombre()}</td>
