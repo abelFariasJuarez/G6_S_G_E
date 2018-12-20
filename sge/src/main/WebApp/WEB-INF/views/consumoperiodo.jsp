@@ -15,26 +15,29 @@
 <body>
 
 
-${usuarioLogueado.username}
+${user}
 ${desde}
 ${consumo}
 ${prueba}
 <div class="container text-light" id="oculto2">
   <div class="row">
-  <form:form action="reporte" method="POST">
+  <form:form action="/demo/login/Usuario/consumoperiodo?user=${user}" method="POST">
     <div class="col align-self-start">
         <label class="colorfont" >Desde:</label>
-<input type="date" id="datedesde" placeholder="Desde" name="datedesde" class= "form-control" />
+<input type="datetime-local" id="datedesde" placeholder="Desde" name="datedesde" class= "form-control" />
   </div>
     <div class="col align-self-center">
      <label class="colorfont" >Hasta:</label>
-    <input type="date" id="datehasta" placeholder="Hasta" name="datehasta" class= "form-control" />
+    <input type="datetime-local" id="datehasta" placeholder="Hasta" name="datehasta" class= "form-control" />
     </div>
     <div class="col align-self-end">
       <button type="submit" name="reporte"  class="btn btn-info solid" >Ver reporte</button><span class="sr-only">(current)</span>
-      
     </div>
     </form:form>
+    <tr>
+        <td>Reporte</td>
+        <td>${reporte}</td>
+    </tr>
   </div>
 </div>
 </body>
