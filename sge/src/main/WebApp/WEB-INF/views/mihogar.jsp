@@ -23,7 +23,7 @@
 		<div class="row">
 			<div class="col align-self-start"></div>
 			<div class="col col-sm align-self-center ">
-				<form:form action="/demo/login/Administrador/mihogar" method="POST">
+				<form:form action="/Cliente/MiHogar" method="POST">
 					<button type=submit>Reload</button>
 				</form:form>
 			</div>
@@ -46,11 +46,12 @@
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach items="${usuarioLogueado.dispositivos}" var="dispositivo">
+						<c:forEach items="${usuarioLogueado.dispositivos}"
+							var="dispositivo">
 							<tr>
 
 								<td>${dispositivo.getNombre()}</td>
-								<td>${dispositivo.getEstado()}</td>
+								<td>${dispositivo.getNombreEstado()}</td>
 							</tr>
 						</c:forEach>
 					</tbody>
@@ -60,19 +61,18 @@
 			<div class="col align-self-end"></div>
 		</div>
 	</div>
-	
-	
-		<div class="container margen ">
+
+
+	<div class="container margen ">
 		<div class="row">
 			<div class="col align-self-start"></div>
-			<div class="col col-sm align-self-center ">
-			
-			</div>
+			<div class="col col-sm align-self-center "></div>
 			<div class="col align-self-end">
-			
-				<form:form action="/demo/login/Administrador" method="GET">
+
+				<form:form action="/Cliente" method="GET">
 					<button type=submit>Volver</button>
-				</form:form></div>
+				</form:form>
+			</div>
 		</div>
 	</div>
 
