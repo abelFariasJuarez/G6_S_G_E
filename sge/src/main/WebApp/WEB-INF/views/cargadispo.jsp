@@ -16,7 +16,7 @@
 ${content}
 ${file.getOriginalFilename()}
 	<div class="container tamanio bg-dark margen text-light " id="oculto2">
-		<form:form  action="/demo/login/Administrador/cargadispo" method="POST" enctype="multipart/form-data">
+		<form:form  action="/Administrador/cargadispo" method="POST" enctype="multipart/form-data">
 		Carga Dispositivo/s
 		<div class="row">
 			<div class="col col-sm align-self-start  "></div>
@@ -41,7 +41,7 @@ ${file.getOriginalFilename()}
 			</div>
 			<div class="col align-self-end">
 			
-				<form:form action="/demo/login/Administrador" method="GET">
+				<form:form action="/Administrador" method="GET">
 					<button type=submit>Volver</button>
 				</form:form></div>
 		</div>

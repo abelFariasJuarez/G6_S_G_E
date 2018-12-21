@@ -64,12 +64,12 @@ function myFunction(boton) {
 
 		<div>
 			<div class="navbar-nav">
-			<form:form action="/demo/login/Administrador/consumo" method="POST">
+			<form:form action="/Administrador/consumo" method="POST">
 				<button type="submit" name="oculto" class="btn btn-info solid"
 					onClick=myFunction("oculto") >Consumo hogares</button>
 				<span class="sr-only">(current)</span>
                </form:form>
-               <form:form action="/demo/login/Administrador/cargadispo" method="POST">
+               <form:form action="/Administrador/cargadispo" method="POST">
 				<button type="submit" name="oculto2" class="btn btn-info solid"
 					onClick=myFunction("oculto2")>Cargar Dispositivo/s</button>
 				<span class="sr-only">(current)</span>
@@ -78,7 +78,7 @@ function myFunction(boton) {
 				<button type="button" name="oculto3" class="btn btn-info solid"
 					onClick=myFunction("oculto3") >Ver reportes</button>
 				<span class="sr-only">(current)</span> <a class="btn  btn-success"
-					href="/demo/login">Cerrar Sesion</a>
+					href="/login">Cerrar Sesion</a>
 			</div>
 		</div>
 	</nav>
