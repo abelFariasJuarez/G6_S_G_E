@@ -47,6 +47,8 @@ public class LoginController {
 		} else {
 			String clazzName = usu.getClass().getSimpleName();
 			session.setAttribute("usuarioLogueado", usu);
+			session.setAttribute("username", usu.getUsername());
+			System.out.println(usu.getUsername()+"        ACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
 			return "redirect:/" + clazzName;
 			/*
 			 * String clazzName = usu.getClass().getSimpleName(); if

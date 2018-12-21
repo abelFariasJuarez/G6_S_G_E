@@ -13,6 +13,7 @@ import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -63,7 +64,24 @@ public class UsuarioController {
 	}
 
 	@RequestMapping(value = "/Cliente/ABMDispositivos", method = RequestMethod.POST)
-	public String abmDispositivos() {
+	public String abmDispositivos(HttpServletRequest request) {
+		  
+		  //HttpSession misession= (HttpSession) request.getSession();
+		  //String usu = (String) misession.getAttribute("usuarioLogueado");
+		  //Repositorio repositorio = new Repositorio(); 
+		  //repositorio.abrir();
+		  //List<Dispositivo> dispositivos = (List<Dispositivo>)
+		  //repositorio.dispositivos().findBy("username", usu); 
+		  //Cliente usuarioBD = () repositorio.clientes().findBy("username", usu);
+		  //Cliente usuarioBD = (Cliente) repositorio.findBy(UsuarioSGE.class, "username", usu);
+		  //ModelAndView modelAndView = new ModelAndView("abmdispositivos");
+		  //modelAndView.addObject("usuarioBD", usuarioBD);
+		  //System.out.println(usu+"       MABEEEEEEEEEEEEEEEEEEEEEl");
+		  //System.out.println(usuarioBD.getDispositivos()+"       --------------------------------");
+		return "abmdispositivos";
+	}
+	@RequestMapping(value = "/Cliente/ABMReglas", method = RequestMethod.POST)
+	public String abmReglas() {
 		/*
 		 * Repositorio repositorio = new Repositorio(); repositorio.abrir();
 		 * List<Dispositivo> dispositivos = (List<Dispositivo>)
@@ -71,7 +89,7 @@ public class UsuarioController {
 		 * modelAndView = new ModelAndView("abmDisp");
 		 * modelAndView.addObject("dispositivos", dispositivos);
 		 */
-		return "abmreglasydispositivos";
+		return "abmreglas";
 	}
 
 	@RequestMapping(method = RequestMethod.POST)

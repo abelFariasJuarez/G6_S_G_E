@@ -60,7 +60,7 @@ function myFunctionx() {
 
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <p class="navbar-brand" >${usuarioLogueado.username}</p>
+  <p class="navbar-brand" >${usuarioLogueado}</p>
 
   
   <div >
@@ -85,6 +85,10 @@ function myFunctionx() {
       
       <form:form action="/Cliente/ABMDispositivos" method="POST">
       <button type="submit" name="oculto5" class="btn btn-info solid"  >ABM dispositivos</button><span class="sr-only">(current)</span>
+      </form:form>
+      
+      <form:form action="/Cliente/ABMReglas" method="POST">
+      <button type="submit" name="oculto6" class="btn btn-info solid"  >ABM reglas</button><span class="sr-only">(current)</span>
       </form:form>
       
       <a class="btn  btn-success" href="logout" >Cerrar Sesion</a>
@@ -234,6 +238,7 @@ function myFunctionx() {
   <option value="Modificar">Modificar</option>
   <option value="Borrar">Borrar</option>
 </select>
+
 
 <button type="button" onClick ="myFunctionx()" >Ejecutar</buton>
 

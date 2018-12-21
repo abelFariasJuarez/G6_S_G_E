@@ -28,12 +28,12 @@ import sge.repositorios.Repositorio;
 
 
 @Controller
-@RequestMapping("/demo/login/Usuario/abmDisp")
+@RequestMapping("/Cliente/ABMDispositivos")
 public class AbmDispController {
 	
 	String usuario;
 
-	@RequestMapping(value="abmDisp",method=RequestMethod.POST)
+	@RequestMapping(value="abmdispositivos",method=RequestMethod.POST)
 	public ModelAndView abmDisp(@RequestParam("user") String user) {
 		Repositorio repositorio = new Repositorio();
 		repositorio.abrir(); 
@@ -43,7 +43,7 @@ public class AbmDispController {
 		  return modelAndView;
 	}
 	
-	@RequestMapping(value="abmDisp",method=RequestMethod.GET)
+	@RequestMapping(value="abmdispositivos",method=RequestMethod.GET)
 	public ModelAndView abmdis(@RequestParam("user") String user) {
 		Repositorio repositorio = new Repositorio();
 		repositorio.abrir();
@@ -54,17 +54,16 @@ public class AbmDispController {
 		  return modelAndView;
 	}
 	
-	
 	@RequestMapping(method=RequestMethod.GET)
 	public String abm() {
-		return "abmDisp";
+		return "abmdispositivos";
 	}
 	
-	@RequestMapping(value="nuevoDisp", method = RequestMethod.POST)
+	@RequestMapping(value="nuevodisp", method = RequestMethod.POST)
 	public ModelAndView nuevoDispositivo() throws ServletException, IOException {
 			Repositorio repo = new Repositorio();
 			repo.abrir();
-			ModelAndView modelAndView = new ModelAndView("nuevoDisp");
+			ModelAndView modelAndView = new ModelAndView("nuevodisp");
 			//modelAndView.addObject("dispdisponibles", dispdisponibles);
 			return modelAndView;
 

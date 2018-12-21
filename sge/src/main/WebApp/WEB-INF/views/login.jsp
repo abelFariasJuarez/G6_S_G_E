@@ -40,8 +40,7 @@
   <div class="row">
     <div class="col col-sm align-self-start"></div>
   	<div class="col col-sm align-self-center">
-    	 
-    	
+
 <div class="form">  
  <form:form   method="post">  
   <form:form  action="login" method="post">  
@@ -55,7 +54,6 @@
 </form:form> 
 </div>
 
-   
     </div>
     <br></br>
      <span>${message}</span>
