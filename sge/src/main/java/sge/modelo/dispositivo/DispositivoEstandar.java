@@ -53,5 +53,9 @@ public class DispositivoEstandar extends Dispositivo {
 		Duration duration = Duration.between(instanteDesde, instanteHasta);
 		return consumoPorHora * horasEncendidoPorDia * (duration.getSeconds() / 3600.0 / 24.0) ;
 	}
+	
+	public String getNombreEstado() {
+		return "Indefinido";
+	}
 
 }

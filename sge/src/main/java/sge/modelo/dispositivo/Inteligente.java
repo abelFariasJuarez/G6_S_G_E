@@ -41,6 +41,11 @@ public abstract class Inteligente extends Dispositivo {
 	//@Column(name = "horasEncendido")
 	@OneToMany(orphanRemoval = true, cascade = CascadeType.ALL)
 	private List<Intervalo> intervalos = new ArrayList<Intervalo>();
+	
+	
+	public String getNombreEstado() {
+		return estado.getClass().getSimpleName();
+	}
 
 	public List<Regla> getReglas() {
 		return reglas;
