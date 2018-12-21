@@ -20,7 +20,7 @@
 			<th scope="col">¿Es Equipo de bajo consumo?</th>
 			<th scope="col">Consumo(Kwh)</th>	
 			</tr>
-			<select name="dispo" size="2">
+			<select name="dispo" size="2" width="1000">
 				
 				<c:forEach items="${disponibles}" var="disponible">
 							<option>${disponible.nombre} + ${disponible.codigo} + ${disponible.nombre} + {disponible.isInteligente} + ${disponible.isBajoConsumo} + ${disponible.consumoPorHora}</option>

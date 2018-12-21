@@ -43,7 +43,7 @@ public class LoginController {
 		if (usu == null || !usu.getPassword().equalsIgnoreCase(password)) {
 			model.addAttribute("loginError", "Usuario o contraseña incorrectos.");
 			return "login";
-
+			
 		} else {
 			String clazzName = usu.getClass().getSimpleName();
 			session.setAttribute("usuarioLogueado", usu);

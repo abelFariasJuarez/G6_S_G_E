@@ -46,7 +46,7 @@
   <form:form  action="login" method="post">  
       
 <input type="text" id="username" placeholder="Usuario" name="username" class= "form-control" />
-  
+
 <input type="password" id="password" placeholder="Password" name="password" class= "form-control" />
 
  <button id="LoginButton" class="btn btn-dark" > Sign in </button> 
@@ -60,10 +60,7 @@
     <div class="col col-sm align-self-end"></div>
   </div>
 </div>
-
-
 <div class="container">
-
     <div class="col col-sm">
 <footer>
  <a href=mapa class="btn btn-dark" >Mapa de consumo</a>
