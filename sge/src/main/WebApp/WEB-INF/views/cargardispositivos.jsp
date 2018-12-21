@@ -61,7 +61,7 @@
    		<form:form action="/demo/login/Usuario/abmReg/nuevaReg?dispositivo=${dispositivo}" method="POST">
    		<button type="submit" name="NuevoDisp" class="btn btn-dark" > Seleccionar </button> 
    		</form:form>
-   		<form:form action="/Cliente" method="POST">
+   		<form:form action="/Cliente" method="GET">
    		<button type="submit" name="cancel" class="btn btn-dark" > Cancelar </button> 
    			</form:form>
    	   	</div>

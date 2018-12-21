@@ -23,7 +23,7 @@
 		<div class="row">
 			<div class="col align-self-start"></div>
 			<div class="col col-sm align-self-center ">
-				<form:form action="/demo/login/Administrador/mihogar" method="POST">
+				<form:form action="/Cliente/MiHogar" method="POST">
 					<button type=submit>Reload</button>
 				</form:form>
 			</div>
@@ -69,7 +69,7 @@
 			<div class="col col-sm align-self-center "></div>
 			<div class="col align-self-end">
 
-				<form:form action="/demo/login/Administrador" method="GET">
+				<form:form action="/Cliente" method="GET">
 					<button type=submit>Volver</button>
 				</form:form>
 			</div>

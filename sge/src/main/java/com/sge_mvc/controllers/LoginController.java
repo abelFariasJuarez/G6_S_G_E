@@ -37,7 +37,7 @@ public class LoginController {
 			Model model) {
 		Repositorio repo = new Repositorio();
 		repo.abrir();
-		// Clientes usuarios = repo.clientes();
+		Clientes usuarios = repo.clientes();
 		UsuarioSGE usu = (UsuarioSGE) repo.findBy(UsuarioSGE.class, "username", username);
 
 		if (usu == null || !usu.getPassword().equalsIgnoreCase(password)) {
