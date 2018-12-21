@@ -187,7 +187,7 @@ public class Repositorio {
 		objReturn = criteria.uniqueResult();
 		return objReturn;
 	}	
-
+	
 	protected List<?> allOf(Class<?> clazz) {
 		Session session = this.getSession();
 		Criteria criteria= session.createCriteria(clazz);
@@ -202,8 +202,8 @@ public class Repositorio {
 		return objects;
 	}	
 	
-
-
+	
+	
 	public void consumo_hogar_periodo(LocalDateTime desde, LocalDateTime hasta) {
 
 		TimeZone.setDefault(TimeZone.getTimeZone("UTC"));

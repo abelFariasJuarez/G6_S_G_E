@@ -11,15 +11,23 @@
 <div class="container text-light">
   <div class="row">
     <div class="col align-self-start"> 
-
-			
+    <h2>Configure la condicion</h2><br>
+    <h3>Valor esperado</h3><input type="text" name="username"><br>
+    <h3>Tipo comparador</h3><br>
+    <select id="oculto68" class="table table-dark " size=10>
+		<c:forEach items="${usuarioLogueado}" var="dispositivo">
+			<tr>
+				<option>${dispositivos.getNombre()}   ${dispositivo.getConsumoPorHora()}</option>
+			</tr>
+		</c:forEach>
+	</select>
+	
     </div>
+    
     <div class="col align-self-center"> 
     </div>
     
    	<div class="col align-self-end"> 
-   		<form:form action="/demo/login/Usuario/abmReg/nuevaReg?dispositivo=${dispositivo}" method="POST">
-   		<button type="submit" name="NuevoDisp" class="btn btn-dark" > Seleccionar </button> 
    		<form:form action="/demo/login/Usuario/abmDisp" method="POST">
    		<button type="submit" name="cancel" class="btn btn-dark" > Cancelar </button> 
    	   	</div>

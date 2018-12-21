@@ -42,12 +42,12 @@ public class UsuarioController {
 	public String miHogar() {
 		return "mihogar";
 	}
-
+	
 	@RequestMapping(value = "/Cliente/ConsumoPeriodo", method = RequestMethod.POST)
 	public String consumoPeriodo() {
 		return "consumoperiodo";
 	}
-
+	
 	@RequestMapping(value = "/Cliente/CargarDispositivos", method = RequestMethod.POST)
 	public String cargarDispositivos(Model model) {
 		Repositorio repositorio = new Repositorio();
@@ -57,7 +57,7 @@ public class UsuarioController {
 		repositorio.cerrar();
 		return "cargardispositivos";
 	}
-
+	
 	@RequestMapping(value = "/Cliente/Simplex", method = RequestMethod.POST)
 	public String ejecutarSimplex() {
 		return "simplex";
