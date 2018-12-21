@@ -63,7 +63,6 @@
 		<div class="row">
 			<div class="col align-self-start"></div>
 			<div class="col col-sm align-self-center ">
-			
 			</div>
 			<div class="col align-self-end">
 			

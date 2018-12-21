@@ -15,7 +15,7 @@
     <h3>Valor esperado</h3><input type="text" name="username"><br>
     <h3>Tipo comparador</h3><br>
     <select id="oculto68" class="table table-dark " size=10>
-		<c:forEach items="${usuarioLogueado.dispositivos}" var="dispositivo">
+		<c:forEach items="${usuarioLogueado}" var="dispositivo">
 			<tr>
 				<option>${dispositivos.getNombre()}   ${dispositivo.getConsumoPorHora()}</option>
 			</tr>
