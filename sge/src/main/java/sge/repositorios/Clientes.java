@@ -8,6 +8,8 @@ import java.util.List;
 import javax.persistence.EntityManager;
 
 import sge.modelo.dispositivo.RestriccionHorasFamilia;
+import sge.modelo.posicionamiento.Transformador;
+import sge.modelo.posicionamiento.Ubicacion;
 import sge.modelo.posicionamiento.ZonaGeografica;
 import sge.modelo.usuarios.Cliente;
 import utils.ImportadorDeJSONCliente;
@@ -38,7 +40,28 @@ public class Clientes extends Repositorio {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		this.persistir(this.clientesJson);
+	}
 
+	public void persistir(List<Cliente> clientesJson2) {
+		clientesJson2.forEach(c -> this.persistir(c));		
+	}
+	
+	public void persistir(Cliente c) {
+		Cliente c1 = this.getPersistenteBy("username",c.getUsername());
+		Ubicacion ubi = this.ubicaciones().getPersistente(c.getUbicacion().getLongitud(),c.getUbicacion().getLatitud());
+		c.setUbicacion(ubi);
+		c1.llenarAtributos(c);
+		super.persistir(c1);
+	}
+
+	private Cliente getPersistenteBy(String campo, Object valor) {
+		Cliente transDAO = this.findBy(campo, valor);
+		if(transDAO == null)
+		{
+			transDAO = new Cliente();
+		}
+		return transDAO;
 	}
 	
 	public List<Cliente> all()
@@ -46,7 +69,7 @@ public class Clientes extends Repositorio {
 		return (List<Cliente>) this.allDistinctOf(Cliente.class);
 	}
 	
-	public Cliente findBy(String campo, String valor) {
+	public Cliente findBy(String campo, Object valor) {
 		Cliente rhf = (Cliente) this.findBy(Cliente.class, campo, valor);
 		return rhf;
 	}

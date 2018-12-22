@@ -1,19 +1,26 @@
 package sge.modelo.regla;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Observable;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import sge.modelo.IPersistible;
+import sge.modelo.dispositivo.Dispositivo;
+import sge.modelo.usuarios.Cliente;
 
 @Entity
 @Table(name="Sensor")
@@ -30,6 +37,9 @@ public class Sensor extends Observable implements IPersistible {
 	private double tiempoDeEspera;
 	@Column(name = "nombre")
 	private String nombre;
+	@Column(name = "mediciones")
+	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+	private List<MedicionLog> mediciones = new ArrayList<MedicionLog>();
 	
 	public Long getOid() {
 		return oid;
@@ -93,9 +103,13 @@ public class Sensor extends Observable implements IPersistible {
 	}
 
 	public void setMedicion(double _medicion) {
-
+		this.loggearMedicion(_medicion);
 		medicion = _medicion;
 		this.actualizarMedicion();
+	}
+
+	private void loggearMedicion(double _medicion) {
+		mediciones.add(new MedicionLog(_medicion));		
 	}
 
 	public void tomarMedicion() {

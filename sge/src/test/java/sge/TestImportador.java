@@ -34,9 +34,9 @@ public class TestImportador {
 		Zonas repoZonas = new Zonas();
 		repoZonas.cargarZonas();
 
-		assertEquals(3, repoZonas.getZonas().size());
+		assertEquals(3, repoZonas.all().size());
 
-		for (ZonaGeografica zona : repoZonas.getZonas()) {
+		for (ZonaGeografica zona : repoZonas.all()) {
 
 			System.out.println(zona.getNombre());
 		}

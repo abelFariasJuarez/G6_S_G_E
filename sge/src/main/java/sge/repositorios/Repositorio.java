@@ -337,9 +337,11 @@ public class Repositorio {
 		this.restriccionesHorasFamilia().crearRetriccionesSiNoExisten();
 		DispositivoFactoryMethod.cargaBasica();
 		GestorCliente gestor = new GestorCliente();
-		
+		gestor.setRepositorio(this);
 		gestor.cargarClientesZonasTransformadores();
-		this.zonas().persistir(gestor.getRepoZonas().getZonas());
+		gestor.transformadoresAsignacionZona();
+		gestor.asignarClientesATransformadores();
+		
 		
 		/*Administrador admin = (Administrador) this.findBy(Administrador.class, "username", "admin");
 		if (admin == null) {
@@ -364,7 +366,7 @@ public class Repositorio {
 		if (cliente1 == null) {
 			cliente1 = new Cliente("Felipe", "Perez", "Medrano 123", LocalDate.of(1995, 4, 7), "fperez", "menToL2017",
 					"Dni", 11222333, 1543312311);
-			cliente1.setAhorroAutomatico(false);
+			cliente1.setAhorroAutomatico(true);
 			cliente1.setUbicacion(new Ubicacion(10.0, 90.0));
 			this.persistir(cliente1);
 		}
