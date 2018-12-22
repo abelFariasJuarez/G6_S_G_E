@@ -25,7 +25,9 @@ import org.springframework.web.servlet.ModelAndView;
 import sge.modelo.dispositivo.Dispositivo;
 import sge.modelo.dispositivo.DispositivoDisponible;
 import sge.modelo.dispositivo.DispositivoFactoryMethod;
+import sge.modelo.hogareficiente.Recomendacion;
 import sge.modelo.usuarios.Cliente;
+import sge.modelo.usuarios.GestorCliente;
 import sge.modelo.usuarios.UsuarioSGE;
 import sge.repositorios.Clientes;
 import sge.repositorios.Repositorio;
@@ -92,7 +94,7 @@ public class UsuarioController {
 		return "abmreglas";
 	}
 
-	@RequestMapping(method = RequestMethod.POST)
+	/* NO SE SI VUELA @RequestMapping(method = RequestMethod.POST)
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, ParseException {
 		Repositorio repo = new Repositorio();
@@ -107,9 +109,48 @@ public class UsuarioController {
 		LocalDateTime desde = convertToLocalDateTimeViaInstant(desdeDate);
 		LocalDateTime hasta = convertToLocalDateTimeViaInstant(hastaDate);
 		return null;
-	}
+	} 
 
 	public LocalDateTime convertToLocalDateTimeViaInstant(Date dateToConvert) {
 		return dateToConvert.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
 	}
+	*/
+	@RequestMapping(value = "Cliente/simplex", method = RequestMethod.POST)
+	public String simplex(HttpServletRequest request,Model model) {
+		  HttpSession misession= (HttpSession) request.getSession();
+		  Cliente usu =  (Cliente) misession.getAttribute("usuarioLogueado");
+		  model.addAttribute("dispositivos", usu.getDispositivos());
+		 Recomendacion reco = usu.getMejorCombinacionDispositivos();
+		 model.addAttribute("recomendacion", usu.getMejorCombinacionDispositivos());
+		 
+		 
+		
+		  return "simplex";
+		  
+		  
+	}
+	
+	@RequestMapping(value = "Cliente/simplex", method = RequestMethod.POST,params="send")
+	public String simplex2(HttpServletRequest request,Model model) {
+		  HttpSession misession= (HttpSession) request.getSession();
+		  Cliente usu =  (Cliente) misession.getAttribute("usuarioLogueado");
+		  model.addAttribute("dispositivos", usu.getDispositivos());
+		 Recomendacion reco = usu.getMejorCombinacionDispositivos();
+		 model.addAttribute("recomendacion", usu.getMejorCombinacionDispositivos());
+		 GestorCliente gestor=new GestorCliente();
+		 gestor.mejorarEficienciaHogaresA(usu);
+		
+		
+		  return "simplex";
+		  
+		  
+	}
+	
+	@RequestMapping(value = "Cliente/simplex", method = RequestMethod.GET)
+	public String Simplex2() {
+	
+		return "simplex";
+
+	}
+	
 }

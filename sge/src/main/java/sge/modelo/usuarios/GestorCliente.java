@@ -57,6 +57,11 @@ public class GestorCliente {
 		clientes.stream().filter(c -> c.isAhorroAutomatico() && c.canYouGetMejorCombinacionDispositivos())
 				.forEach(c -> c.mejorarEficienciaHogar());
 	}
+	
+	public void mejorarEficienciaHogaresA(Cliente cli) {
+		if ( cli.isAhorroAutomatico() && cli.canYouGetMejorCombinacionDispositivos())
+			cli.mejorarEficienciaHogar();
+	}
 
 	public Zonas getRepoZonas() {
 		return repoZonas;

@@ -79,7 +79,7 @@ function myFunctionx() {
       <button type="submit"  class="btn btn-info solid"  >Cargar dispositivos</button><span class="sr-only">(current)</span>
       </form:form>
       
-      <form:form action="/Cliente/Simplex" method="POST">
+      <form:form action="/Cliente/simplex" method="POST">
       <button type="submit" name="oculto4" class="btn btn-info solid"  >SimpleX</button><span class="sr-only">(current)</span>
       </form:form>
       

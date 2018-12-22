@@ -74,10 +74,12 @@ function myFunction(boton) {
 					onClick=myFunction("oculto2")>Cargar Dispositivo/s</button>
 				<span class="sr-only">(current)</span>
 				</form:form>
-
-				<button type="button" name="oculto3" class="btn btn-info solid"
+ <form:form action="/Administrador/reporte" method="POST">
+				<button type="submit" name="oculto3" class="btn btn-info solid"
 					onClick=myFunction("oculto3") >Ver reportes</button>
-				<span class="sr-only">(current)</span> <a class="btn  btn-success"
+				<span class="sr-only">(current)</span>
+				</form:form>
+				 <a class="btn  btn-success"
 					href="/login">Cerrar Sesion</a>
 			</div>
 		</div>
