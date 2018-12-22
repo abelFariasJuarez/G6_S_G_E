@@ -62,9 +62,7 @@
 			<div class="col col-sm align-self-center "></div>
 			<div class="col align-self-end">
 			<div class="row">
-	   		<form:form action="/Cliente/ABMReglas/SelectDisp?dispSeleccionado=${dispSeleccionado}" method="POST">
-	   		<button type="submit" name="SelectDisp" class="btn btn-dark" > Seleccionar </button> 
-	   		</form:form>
+	   		<button type="submit" onclick="refresh" name="SelectDisp" class="btn btn-dark" > Seleccionar </button> 
 	   		</div>
 	   		<div class="row">
 	   		<form:form action="/Cliente/ABMReglas/nuevaReg" method="POST">
