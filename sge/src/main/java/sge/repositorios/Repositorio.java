@@ -3,6 +3,7 @@ package sge.repositorios;
 import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.Month;
 import java.util.List;
 import java.util.TimeZone;
 
@@ -29,6 +30,7 @@ import sge.modelo.regla.Sensor;
 import sge.modelo.usuarios.Administrador;
 import sge.modelo.usuarios.Cliente;
 import sge.modelo.usuarios.GestorCliente;
+import sge.modelo.usuarios.UsuarioSGE;
 
 public class Repositorio {
 
@@ -342,14 +344,14 @@ public class Repositorio {
 		gestor.transformadoresAsignacionZona();
 		gestor.asignarClientesATransformadores();
 		
-		
-		/*Administrador admin = (Administrador) this.findBy(Administrador.class, "username", "admin");
+		Administrador admin = (Administrador) this.findBy(Administrador.class, "username", "admin");
 		if (admin == null) {
-			admin = new Administrador();
-		}
+			admin = new Administrador("pedro", "saraska", "lavalle 148", LocalDate.of(2015, Month.APRIL, 19),
+					"admin", "admin");
+		}		
 		admin.setUsername("admin");
 		admin.setPassword("1234");
-		this.persistir(admin);*/
+		this.persistir(admin);
 		
 		// Inicializamos las variables
 		Cliente cliente1 = new Cliente();

@@ -31,6 +31,7 @@ public class TestEntrega3 {
 	public void setUp() throws Exception {
 		repositorio = new Repositorio();
 		repositorio.abrir();
+		//repositorio.cargaDeDatosIniciales();
 	}
 
 	@Test
@@ -344,11 +345,6 @@ public class TestEntrega3 {
 		repositorio.consumo_transformador_periodo(desde,hasta);
 	}
 	
-	@Test
-	public void cargaDeDatosIniciales() {
-		repositorio.cargaDeDatosIniciales();
-		
-	}
 	@Test
 	public void cargaTransformadores() {
 		

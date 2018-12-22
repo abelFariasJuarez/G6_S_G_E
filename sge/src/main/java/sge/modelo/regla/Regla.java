@@ -9,6 +9,7 @@ import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -26,7 +27,8 @@ public class Regla extends Persistible {
 	private List<Condicion> condiciones = new ArrayList<Condicion>();
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<Accion> acciones = new ArrayList<Accion>();
-	@ManyToOne
+	
+	/*@ManyToOne(cascade=CascadeType.ALL)
 	private Inteligente inteligente;
 
 	public Inteligente getInteligente() {
@@ -35,7 +37,7 @@ public class Regla extends Persistible {
 
 	public void setInteligente(Inteligente dispositivo) {
 		this.inteligente = dispositivo;
-	}
+	}*/
 
 	public Regla() {
 	}

@@ -30,7 +30,7 @@ public abstract class Inteligente extends Dispositivo {
 	@Transient
 	private DriverBasico driver;
 
-	@OneToMany(orphanRemoval = true, cascade = CascadeType.ALL, mappedBy="inteligente")
+	@OneToMany(orphanRemoval = true, cascade = CascadeType.ALL)
 	private List<Regla> reglas = new ArrayList<Regla>();
 	@OneToMany(orphanRemoval = true, cascade = CascadeType.ALL)
 	private List<Sensor> sensores = new ArrayList<Sensor>();	

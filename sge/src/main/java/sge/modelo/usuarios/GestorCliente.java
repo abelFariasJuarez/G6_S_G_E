@@ -35,7 +35,6 @@ public class GestorCliente {
 	public void transformadoresAsignacionZona() {
 
 		for (ZonaGeografica zona1 : getRepoZonas().all()) {
-			List<Transformador> pepe = zona1.getTransformadores();
 			for (Transformador trans1 : getRepoTransformadores().all()) {
 				if (zona1.getId().equals(trans1.getIdZona())) {
 					zona1.Add(trans1);
@@ -47,12 +46,17 @@ public class GestorCliente {
 	}
 
 	public void asignarClientesATransformadores() {
-		for (Cliente cliente : getRepoClientes().getClientesJson()) {
-			ZonaGeografica zona = getRepoZonas().getZonas().stream().filter(s -> s.pertenece(cliente)).findFirst()
+		
+		for (Cliente cliente : getRepoClientes().all()) {
+			ZonaGeografica zona = getRepoZonas().all().stream().filter(s -> s.pertenece(cliente)).findFirst()
 					.get();
+			
 			Transformador trans = Collections.min(zona.getTransformadores(),
 					Comparator.comparing(t -> t.Distancia(cliente)));
+			
 			trans.getClientes().add(cliente);
+
+			getRepoTransformadores().persistir(trans);
 		}
 	}
 

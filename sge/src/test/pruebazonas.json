@@ -3,18 +3,18 @@
 "centro":{
 "latitud":-34.660000,
 "longitud":-58.440000},
-"radio":400},
+"radio":2000},
 {"id":2,
 "nombre":"san martin",
 "centro":{
 "latitud":-34.640000,
 "longitud":-58.440000},
-"radio":400
+"radio":2000
 },
 {"id":3,
 "nombre":"villa del parque",
 "centro":{
 "latitud":-34.540000,
 "longitud":-58.440000},
-"radio":400
+"radio":2000
 }]

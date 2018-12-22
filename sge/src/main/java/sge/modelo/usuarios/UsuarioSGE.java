@@ -3,6 +3,7 @@ package sge.modelo.usuarios;
 import java.time.LocalDate;
 
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
@@ -12,6 +13,7 @@ import javax.persistence.Table;
 import com.google.gson.annotations.SerializedName;
 
 import sge.modelo.Persistible;
+import sge.repositorios.LocalDateTimeConverter;
 
 @SuppressWarnings("serial")
 @Entity
