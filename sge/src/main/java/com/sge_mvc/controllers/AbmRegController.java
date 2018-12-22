@@ -81,8 +81,8 @@ public class AbmRegController {
 		
 	}
 	
-	@RequestMapping(value="/Cliente/ABMReglas/SelectDisp",method=RequestMethod.POST)
-	public Model SelectDispo(@RequestParam("dispSeleccionado") String dispSeleccionado,HttpServletRequest request, Model model) {
+	@RequestMapping(value="/Cliente/ABMReglas",method=RequestMethod.POST,params="SelectDisp")
+	public Model SelectDispo(@RequestParam("value") String dispSeleccionado,HttpServletRequest request, Model model) {
 		Repositorio repo = new Repositorio();
 		repo.abrir();
 		//checkear como busca las reglas, no me cierra algo

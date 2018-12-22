@@ -20,30 +20,31 @@
 
 		<thead>
 			<tr>
-				<th scope="col">Dispositivo:</th>
-				<th scope="col">Maximo:</th>
-				<th scope="col">ConsumoPeriodo</th>
-				<th scope="col">esEficiente</th>
-			</tr>
-		</thead>
-		<tbody>
+	<th scope="col">Dispositivo:</th>
+	<th scope="col">Maximo:</th>
+	<th scope="col">ConsumoPeriodo</th>
+	<th scope="col">esEficiente</th>
+</tr>
+</thead>
+<tbody>
+		<td>${dispositivo.getNombre() }</td>
+		<td>${recomendacion.horasMaximasPara(dispositivo)} Horas</td>
+		<td>${usuarioLogueado.consumoEnPeriodoDe(dispositivo)}</td>
 
-			<c:forEach items="${dispositivos}" var="dispositivo">
-				<tr>
-					<td>${dispositivo.getNombre() }</td>
-					<td>${recomendacion.horasMaximasPara(dispositivo)} Horas</td>
-					<td>${usuarioLogueado.consumoEnPeriodoDe(dispositivo)}</td>
-					<td>${recomendacion.esEficiente(dispositivo,usuarioLogueado.consumoEnPeriodoDe(dispositivo)) }</td>
-				</tr>
-			</c:forEach>
-		</tbody>
-		
-	</table>
-	horas Totales Mensuales Hogar eficiente:${recomendacion.horasTotalesMensuales}
-	
-<form:form  action="/Cliente/simplex" method="POST" enctype="multipart/form-data">
+		<td>${recomendacion.esEficiente(dispositivo,usuarioLogueado.consumoEnPeriodoDe(dispositivo)) }</td>
+	</tr>
+</c:forEach>
+</tbody>
+
+</table>
+horas Totales Mensuales Hogar eficiente:${recomendacion.horasTotalesMensuales}
+
+
+
+<form:form  action="/Cliente/simplex" method="POST" >
 <input type="submit" name="send"   />
 </form:form>
+
 
 
 </body>
