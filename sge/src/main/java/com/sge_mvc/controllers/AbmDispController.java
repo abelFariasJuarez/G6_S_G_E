@@ -60,12 +60,15 @@ public class AbmDispController {
 	}
 	
 	@RequestMapping(value="nuevodisp", method = RequestMethod.POST)
-	public ModelAndView nuevoDispositivo() throws ServletException, IOException {
+	public String nuevoDispositivo(Model model) throws ServletException, IOException {
 			Repositorio repo = new Repositorio();
 			repo.abrir();
-			ModelAndView modelAndView = new ModelAndView("nuevodisp");
+			List<DispositivoDisponible> disponibles = repo.dispositivosDisponibles().all();
+			model.addAttribute("disponibles", disponibles);
+			repo.cerrar();
+			//ModelAndView modelAndView = new ModelAndView("nuevodisp");
 			//modelAndView.addObject("dispdisponibles", dispdisponibles);
-			return modelAndView;
+			return "nuevodisp";
 
 	}
 	@RequestMapping(value="modifDisp", method = RequestMethod.POST)

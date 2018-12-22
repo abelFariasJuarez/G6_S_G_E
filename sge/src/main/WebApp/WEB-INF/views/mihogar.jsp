@@ -43,19 +43,35 @@
 						<tr>
 							<th scope="col">Dispositivo</th>
 							<th scope="col">Estado</th>
+							<th scope="col">Reglas activas</th>
+							<th scope="col">Últimas mediciones</th>
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach items="${usuarioLogueado.dispositivos}"
+						<c:forEach items="${usuarioLogueado.getDispositivos()}"
 							var="dispositivo">
 							<tr>
 
 								<td>${dispositivo.getNombre()}</td>
 								<td>${dispositivo.getNombreEstado()}</td>
+								<td><c:choose>
+										<c:when test="${dispositivo.getReglas().size()==0}">
+        Ninguno
+        <br />
+										</c:when>
+										<c:otherwise>
+        ${dispositivo.getReglas()}
+        <br />
+										</c:otherwise>
+									</c:choose></td>
+									<td>x</td>
 							</tr>
 						</c:forEach>
 					</tbody>
 				</table>
+
+				Su consumo en el último período fue de
+				${usuarioLogueado.consumoEnPeriodo(fechaPrincipioDePeriodo,fechaActual)}
 
 			</div>
 			<div class="col align-self-end"></div>

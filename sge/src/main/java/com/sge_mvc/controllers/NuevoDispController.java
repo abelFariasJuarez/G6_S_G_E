@@ -27,11 +27,11 @@ import sge.repositorios.Repositorio;
 
 
 @Controller
-@RequestMapping("/demo/login/Usuario/abmDisp/nuevoDisp")
+@RequestMapping("/Cliente/ABMDispositivos/nuevoDisp")
 public class NuevoDispController {
 
 	@RequestMapping(method=RequestMethod.GET)
-	public String ow() {
+	public String nuevoDisp() {
 		return "nuevoDisp";
 	}
 	

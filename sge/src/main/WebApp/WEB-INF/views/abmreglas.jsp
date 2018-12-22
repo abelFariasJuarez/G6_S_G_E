@@ -17,6 +17,31 @@
 <meta charset="ISO-8859-1">
 <title>Mihogar</title>
 </head>
+
+<script type="text/javascript">
+function myFunction(id){
+	$(document).ready(function(){ 
+		$.ajax({
+			type= 'POST',
+			url= '/Cliente/ABMReglas',
+			async= false
+		
+		
+	var x =document.getElementById(id);
+			var opt = x.options[x.selectedIndex]
+			console.log(opt.value);
+}
+</script>
+
+<script>
+function myFunction(id){
+	var x =document.getElementById(id);
+			var opt = x.options[x.selectedIndex]
+			console.log(opt.value);
+}
+</script>
+
+
 <body>
 
 
@@ -28,16 +53,17 @@
 			<div class="col align-self-start">
 			
 			<h1>Dispositivo:</h1>
-				<select id="dispSeleccionado" onclick="function()" class="table table-dark ">
+				<select id="dispSeleccionado" class="table table-dark ">
 
 						<c:forEach items="${dispositivosInt}" var="dispositivo">
 							<tr>
-								<option>${dispositivo.getNombre()}</option>
+								<option value="${dispositivo.getNombre()}">${dispositivo.getNombre()}</option>
 							</tr>
 						</c:forEach>
 				</select>
 			</div>
-			<h2>Reglas del dispositivo
+			<p>${dispSeleccionado}</p>
+			<h2>Reglas del dispositivo</h2>
 			<select id="reglas" class="table table-dark " size= 10>
 
 			<c:forEach items="${reglas}" var="regla">
@@ -46,24 +72,20 @@
 				</tr>
 			</c:forEach>
 			</select>
+			
+			
 
-			<script>
-			function(){
-			    $.ajax({
-			        url : '/refresh?dispSeleccionado=${dispSeleccionado}',
-			        method : 'GET',
-			        async : false,
-			        complete : function(data) {
-			    	 $('#reglas').html(data);
-			        }
-			    });
-
-			</script>
+	
+			
+			
+			
 			<div class="col col-sm align-self-center "></div>
 			<div class="col align-self-end">
 			<div class="row">
-	   		<button type="submit" onclick="refresh" name="SelectDisp" class="btn btn-dark" > Seleccionar </button> 
-	   		</div>
+			<form:form action="/Cliente/ABMReglas" method="POST">
+			<button type="submit" onclick=myFunction('dispSeleccionado')  name="SelectDisp" class="btn btn-dark" > Seleccionar </button> 
+			</form:form>
+			</div>
 	   		<div class="row">
 	   		<form:form action="/Cliente/ABMReglas/nuevaReg" method="POST">
 	   		<button type="submit" name="NuevaRegla" class="btn btn-dark" > Nueva Regla </button> 

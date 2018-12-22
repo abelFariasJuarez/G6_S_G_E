@@ -81,7 +81,7 @@ public class AbmRegController {
 		
 	}
 	
-	@RequestMapping(value="/Cliente/ABMReglas/SelectDisp",method=RequestMethod.POST)
+	@RequestMapping(value="/Cliente/ABMReglas",method=RequestMethod.POST,params="SelectDisp")
 	public Model SelectDispo(@RequestParam("dispSeleccionado") String dispSeleccionado,HttpServletRequest request, Model model) {
 		Repositorio repo = new Repositorio();
 		repo.abrir();
