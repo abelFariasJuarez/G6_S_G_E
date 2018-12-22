@@ -144,7 +144,7 @@ public class UsuarioController {
 		 Recomendacion reco = usu.getMejorCombinacionDispositivos();
 		 model.addAttribute("recomendacion", usu.getMejorCombinacionDispositivos());
 		 GestorCliente gestor=new GestorCliente();
-		 gestor.mejorarEficienciaHogaresA(usu);
+		 //gestor.mejorarEficienciaHogaresA(usu);
 		
 		
 		  return "simplex";
