@@ -22,31 +22,37 @@
 
 
 
+
 	<div class="container margen ">
 		<div class="row">
 			<div class="col align-self-start">
 			
 			<h1>Dispositivo:</h1>
-				<select id="dispositivoSeleccionado" class="table table-dark ">
+				<select id="dispSeleccionado" onclick="myFunction()" class="table table-dark ">
 
-						<c:forEach items="${usuarioLogueado.dispositivos}" var="dispositivo">
+						<c:forEach items="${dispositivosInt}" var="dispositivo">
 							<tr>
-								<option>${dispositivo.getNombre()}}</option>
+								<option>${dispositivo.getNombre()}</option>
 							</tr>
 						</c:forEach>
 				</select>
 			</div>
 			
-			
-			<select id="regla" class="table table-dark " size= 10>
+			<select id="reglas" class="table table-dark " size= 10>
 
-			<c:forEach items="${dispositivoSeleccionado.getReglas()}" var="regla">
+			<c:forEach items="reglas" var="regla">
 				<tr>
 					<option>${regla.getName()}}</option>
 				</tr>
 			</c:forEach>
-	</select>
+			</select>
 			
+			<script>
+			function myFunction() {
+			  var mylist = document.getElementById("dispSeleccionado");
+			  document.getElementById("reglas").value = mylist.options[mylist.selectedIndex].reglas;
+			}
+			</script>
 			
 			<div class="col col-sm align-self-center "></div>
 			<div class="col align-self-end">

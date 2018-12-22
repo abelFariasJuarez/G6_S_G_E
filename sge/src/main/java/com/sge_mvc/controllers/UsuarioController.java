@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Stream;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -83,7 +84,7 @@ public class UsuarioController {
 		return "abmdispositivos";
 	}
 	@RequestMapping(value = "/Cliente/ABMReglas", method = RequestMethod.POST)
-	public String abmReglas() {
+	public String abmReglas(HttpServletRequest request,Model model) {
 		/*
 		 * Repositorio repositorio = new Repositorio(); repositorio.abrir();
 		 * List<Dispositivo> dispositivos = (List<Dispositivo>)
@@ -91,7 +92,12 @@ public class UsuarioController {
 		 * modelAndView = new ModelAndView("abmDisp");
 		 * modelAndView.addObject("dispositivos", dispositivos);
 		 */
-		return "abmreglas";
+		 HttpSession misession= (HttpSession) request.getSession();
+		 Cliente usu =  (Cliente) misession.getAttribute("usuarioLogueado");
+		 model.addAttribute("dispositivosInt",usu.misInteligentes().toArray());
+		 Stream<Dispositivo> dispositivosInteligentes = usu.misInteligentes();
+		 //dispositivosInteligentes.forEach(p -> System.out.println(p));
+		 return "abmreglas";
 	}
 
 	/* NO SE SI VUELA @RequestMapping(method = RequestMethod.POST)
@@ -138,7 +144,7 @@ public class UsuarioController {
 		 Recomendacion reco = usu.getMejorCombinacionDispositivos();
 		 model.addAttribute("recomendacion", usu.getMejorCombinacionDispositivos());
 		 GestorCliente gestor=new GestorCliente();
-		 gestor.mejorarEficienciaHogaresA(usu);
+		 //gestor.mejorarEficienciaHogaresA(usu);
 		
 		
 		  return "simplex";

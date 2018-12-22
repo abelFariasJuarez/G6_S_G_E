@@ -101,4 +101,13 @@ public abstract class UsuarioSGE extends Persistible {
 	public void setPassword(String _password) {
 		password = _password;
 	}
+
+	public void llenarAtributos(UsuarioSGE u) {
+		setNombre(u.getNombre());
+		setApellido(u.getApellido());
+		setDomicilio(u.getDomicilio());
+		setFechaingreso(u.getFechaIngreso());
+		setUsername(u.getUsername());
+		setPassword(u.getPassword());
+	}
 }

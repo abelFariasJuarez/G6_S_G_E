@@ -44,6 +44,7 @@ public class Zonas extends Repositorio {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		this.persistir(this.zonas);
 
 	}
 	

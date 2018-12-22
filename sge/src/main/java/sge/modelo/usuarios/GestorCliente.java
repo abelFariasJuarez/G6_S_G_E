@@ -12,9 +12,15 @@ import sge.repositorios.Zonas;
 
 public class GestorCliente {
 	private Repositorio repositorio = new Repositorio();
-	private Clientes repoClientes = repositorio.clientes();
-	private Zonas repoZonas = repositorio.zonas();
-	private Transformadores repoTransformadores = repositorio.transformadores();
+
+
+	public Repositorio getRepositorio() {
+		return repositorio;
+	}
+
+	public void setRepositorio(Repositorio repositorio) {
+		this.repositorio = repositorio;
+	}
 
 	public GestorCliente() {
 		
@@ -28,13 +34,14 @@ public class GestorCliente {
 
 	public void transformadoresAsignacionZona() {
 
-		for (ZonaGeografica zona1 : getRepoZonas().getZonas()) {
-			for (Transformador trans1 : getRepoTransformadores().getTransformadores()) {
+		for (ZonaGeografica zona1 : getRepoZonas().all()) {
+			List<Transformador> pepe = zona1.getTransformadores();
+			for (Transformador trans1 : getRepoTransformadores().all()) {
 				if (zona1.getId().equals(trans1.getIdZona())) {
 					zona1.Add(trans1);
-
 				}
 			}
+			getRepoZonas().persistir(zona1);
 		}
 
 	}
@@ -64,27 +71,15 @@ public class GestorCliente {
 	}
 
 	public Zonas getRepoZonas() {
-		return repoZonas;
-	}
-
-	public void setRepoZonas(Zonas repoZonas) {
-		this.repoZonas = repoZonas;
+		return repositorio.zonas();
 	}
 
 	public Clientes getRepoClientes() {
-		return repoClientes;
-	}
-
-	public void setRepoClientes(Clientes repoClientes) {
-		this.repoClientes = repoClientes;
+		return repositorio.clientes();
 	}
 
 	public Transformadores getRepoTransformadores() {
-		return repoTransformadores;
-	}
-
-	public void setRepoTransformadores(Transformadores repoTransformadores) {
-		this.repoTransformadores = repoTransformadores;
+		return repositorio.transformadores();
 	}
 
 }
