@@ -97,4 +97,12 @@ public class Transformador extends Persistible {
 		clientes.remove(unCliente);		
 	}
 
+	public void llenarAtributos(Transformador t) {
+		setClientes(t.getClientes());
+		setId(t.getId());		
+		setIdZona(t.getIdZona());		
+		setUbicacion(t.getUbicacion());
+		
+	}
+
 }

@@ -280,4 +280,18 @@ public class Cliente extends UsuarioSGE {
 		this.consumo = consumo;
 	}
 
+	public void llenarAtributos(Cliente c) {
+		super.llenarAtributos((UsuarioSGE) c);
+		setTipodoc(c.getTipoDoc());
+		setNrodoc(c.getNrodoc());
+		setTelefono(c.getTelefono());
+		setCategoria(c.getCategoria());
+		setDispositivos(c.getDispositivos());
+		setPuntos(c.getPuntos());
+		setUbicacion(c.getUbicacion());
+		setAhorroAutomatico(c.isAhorroAutomatico());
+		setAccionParaMejorarEficiencia(c.getAccionParaMejorarEficiencia());		
+		
+	}
+
 }

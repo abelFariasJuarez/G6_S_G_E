@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import sge.modelo.posicionamiento.Transformador;
+import sge.modelo.posicionamiento.Ubicacion;
 import sge.modelo.posicionamiento.ZonaGeografica;
 import utils.ImportadorDeJsonTransformador;
 
@@ -37,7 +38,29 @@ public class Transformadores extends Repositorio {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		this.persistir(this.transformadores);
 
+	}
+	
+	public void persistir(List<Transformador> transformadores2) {
+		transformadores2.forEach(t -> this.persistir(t));		
+	}
+
+	public void persistir(Transformador t) {
+		Transformador t1 = this.getPersistenteBy("id",t.getId());
+		Ubicacion ubi = this.ubicaciones().getPersistente(t.getUbicacion().getLongitud(),t.getUbicacion().getLatitud());
+		t.setUbicacion(ubi);
+		t1.llenarAtributos(t);
+		super.persistir(t1);
+	}
+	
+	private Transformador getPersistenteBy(String campo, Object valor) {
+		Transformador transDAO = this.findBy(campo, valor);
+		if(transDAO == null)
+		{
+			transDAO = new Transformador();
+		}
+		return transDAO;
 	}
 	
 	public Transformador findBy(String campo, Object valor) {

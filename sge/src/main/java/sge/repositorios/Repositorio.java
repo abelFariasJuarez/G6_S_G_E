@@ -334,9 +334,11 @@ public class Repositorio {
 		this.restriccionesHorasFamilia().crearRetriccionesSiNoExisten();
 		DispositivoFactoryMethod.cargaBasica();
 		GestorCliente gestor = new GestorCliente();
-		
+		gestor.setRepositorio(this);
 		gestor.cargarClientesZonasTransformadores();
-		this.zonas().persistir(gestor.getRepoZonas().getZonas());
+		gestor.transformadoresAsignacionZona();
+		gestor.asignarClientesATransformadores();
+		
 		
 		/*Administrador admin = (Administrador) this.findBy(Administrador.class, "username", "admin");
 		if (admin == null) {
