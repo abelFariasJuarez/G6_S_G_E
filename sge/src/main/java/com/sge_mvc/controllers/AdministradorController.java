@@ -22,15 +22,19 @@ import sge.modelo.usuarios.Cliente;
 import sge.repositorios.Repositorio;
 
 @Controller
-@RequestMapping("/demo/login/Administrador")
 public class AdministradorController {
 
-	@RequestMapping(method = RequestMethod.POST)
+	@RequestMapping( value = "/Administrador",method = RequestMethod.POST)
 	public String x() {
 		return "Administrador";
 	}
+	
+	@RequestMapping( value = "/Administrador",method = RequestMethod.GET)
+	public String T() {
+		return "Administrador";
+	}
 
-	@RequestMapping(value = "cargadispo", method = RequestMethod.POST, params = "snd")
+	@RequestMapping(value = "Administrador/cargadispo", method = RequestMethod.POST, params = "snd")
 	public String s(@RequestParam("file") MultipartFile file, ModelMap modelMap) {
 		modelMap.addAttribute("file", file);
 		Repositorio repo = new Repositorio();
@@ -49,20 +53,20 @@ public class AdministradorController {
 	*/
 
 	
-	@RequestMapping(value = "cargadispo", method = RequestMethod.POST)
-	public ModelAndView cargadispo() {
+	@RequestMapping(value = "Administrador/cargadispo", method = RequestMethod.POST)
+	public String cargadispo(Model model) {
 		List<DispositivoDisponible> disponibles = new ArrayList<DispositivoDisponible>();
 		Repositorio repo = new Repositorio();
 		repo.abrir();
 		disponibles = repo.dispositivosDisponibles().all();
-		ModelAndView modelAndView = new ModelAndView("cargadispo");
-		modelAndView.addObject("dispositivosDisponibles", disponibles);
+		model.addAttribute("dispositivosDisponibles", disponibles);
+	
 		repo.cerrar();
-		return modelAndView;
+		return "cargadispo";
 
 	}
 	
-	@RequestMapping(value = "consumo", method = RequestMethod.POST)
+	@RequestMapping(value = "Administrador/consumo", method = RequestMethod.POST)
 	public ModelAndView consumo() {
 		List<Cliente> clientes = new ArrayList<Cliente>();
 		Repositorio repo = new Repositorio();
@@ -74,9 +78,8 @@ public class AdministradorController {
 		return modelAndView;
 
 	}
+	
 
-	@RequestMapping(method = RequestMethod.GET)
-	public String wse() {
-		return "Administrador";
-	}
+
+
 }

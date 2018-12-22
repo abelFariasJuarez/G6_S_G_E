@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
@@ -16,6 +17,7 @@ import javax.persistence.Transient;
 import com.google.gson.annotations.SerializedName;
 
 import sge.modelo.Persistible;
+import sge.repositorios.LocalDateTimeConverter;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -33,6 +35,7 @@ public abstract class Dispositivo extends Persistible {
 	@Column(name = "consumoPorHora")
 	protected Double consumoPorHora;
 	@Column(name = "instanteDeCreacion")
+	@Convert(converter = LocalDateTimeConverter.class)
 	protected LocalDateTime instanteDeCreacion;
 	@Column(name = "bajoconsumo")
 	protected Boolean bajoconsumo;

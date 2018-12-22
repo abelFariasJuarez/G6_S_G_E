@@ -22,6 +22,7 @@ import sge.modelo.dispositivo.Dispositivo;
 import sge.modelo.dispositivo.DispositivoEstandar;
 import sge.modelo.dispositivo.DispositivoFactoryMethod;
 import sge.modelo.dispositivo.DispositivoInteligente;
+import sge.modelo.dispositivo.RestriccionHorasFamilia;
 import sge.modelo.driver.DriverBasico;
 import sge.modelo.posicionamiento.Ubicacion;
 import sge.modelo.regla.Sensor;
@@ -395,6 +396,9 @@ public class Repositorio {
 		if (inteligente == null) {
 			inteligente = new DispositivoInteligente(nombreDispo, 1.613, "mlopez", false, false, new DriverBasico());
 			inteligente.prender();
+			
+			 RestriccionHorasFamilia rest_air = this.restriccionesHorasFamilia().findBy("codigo", "AIRCONDITIONER");
+			inteligente.setRestriccionHoras(rest_air);
 			cliente2.addDispositivo(inteligente);
 			this.persistir(cliente2);
 
@@ -405,6 +409,8 @@ public class Repositorio {
 		estandar = (DispositivoEstandar) this.dispositivos().findBy("nombre", nombreDispo);
 		if (estandar == null) {
 			estandar = new DispositivoEstandar(nombreDispo, 0.075, "mlopez", false, 18.0);
+			 RestriccionHorasFamilia rest_tv = this.restriccionesHorasFamilia().findBy("codigo", "TV");
+			 estandar.setRestriccionHoras(rest_tv);
 			cliente2.addDispositivo(estandar);
 			this.persistir(cliente2);
 		}
@@ -416,6 +422,8 @@ public class Repositorio {
 		if (inteligente1 == null) {
 			inteligente1 = new DispositivoInteligente(nombreDispo, 0.08, "fperez", true, true, new DriverBasico());
 			inteligente1.prender();
+			 RestriccionHorasFamilia rest_tv2 = this.restriccionesHorasFamilia().findBy("codigo", "TV");
+			 inteligente1.setRestriccionHoras(rest_tv2);
 			cliente1.addDispositivo(inteligente1);
 			this.persistir(cliente1);
 		}
@@ -426,6 +434,8 @@ public class Repositorio {
 		if (estandar2 == null) {
 			estandar2 = new DispositivoEstandar(nombreDispo, 0.09, "fperez", true, 6.0);
 			cliente1.addDispositivo(estandar2);
+			 RestriccionHorasFamilia rest_fan = this.restriccionesHorasFamilia().findBy("codigo", "FAN");
+			 estandar2.setRestriccionHoras(rest_fan);
 			cliente1.agrega_modulo_a_estandar(estandar2);
 			this.persistir(cliente1);
 		}
@@ -437,6 +447,8 @@ public class Repositorio {
 		if (inteligente3 == null) {
 			inteligente3 = new DispositivoInteligente(nombreDispo, 0.4, "fperez", true, false, new DriverBasico());
 			inteligente3.prender();
+			 RestriccionHorasFamilia rest_PC = this.restriccionesHorasFamilia().findBy("codigo", "COMPUTER");
+			 inteligente3.setRestriccionHoras(rest_PC);
 			cliente1.addDispositivo(inteligente3);
 			this.persistir(cliente1);
 		}

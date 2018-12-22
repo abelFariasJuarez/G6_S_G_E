@@ -169,6 +169,7 @@ public class Cliente extends UsuarioSGE {
 
 		DispositivoConModulo conModulo = new DispositivoConModulo(comun, false, new DriverBasico());
 		dispositivos.remove(comun);
+		conModulo.setInstanteDeCreacion(LocalDateTime.now());
 		dispositivos.add(conModulo);
 
 		this.sumarPuntos(DispositivoConModulo.puntos());
@@ -214,7 +215,7 @@ public class Cliente extends UsuarioSGE {
 		});
 	}
 
-	private double consumoEnPeriodoDe(Dispositivo i) {
+	public double consumoEnPeriodoDe(Dispositivo i) {
 		LocalDateTime finPeriodo = LocalDateTime.now();
 		LocalDateTime inicioPeriodo = finPeriodo.withDayOfMonth(1);
 		return i.consumo_periodo(inicioPeriodo, finPeriodo);
