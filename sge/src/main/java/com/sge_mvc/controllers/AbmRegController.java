@@ -14,11 +14,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import sge.modelo.dispositivo.Dispositivo;
 import sge.modelo.dispositivo.DispositivoDisponible;
 import sge.modelo.dispositivo.DispositivoFactoryMethod;
+import sge.modelo.dispositivo.Inteligente;
 import sge.modelo.regla.Regla;
 import sge.modelo.usuarios.Cliente;
 import sge.modelo.usuarios.UsuarioSGE;
@@ -28,7 +30,7 @@ import sge.repositorios.Repositorio;
 
 
 @Controller
-@RequestMapping("/demo/login/Usuario/abmReg")
+@RequestMapping("/Cliente/ABMReglas")
 public class AbmRegController {
 
 	String usuario;
@@ -79,18 +81,26 @@ public class AbmRegController {
 		
 	}
 	
-	@RequestMapping(value="SelectDisp",method=RequestMethod.POST)
-	public ModelAndView abmDispo(@RequestParam("dispositivo") String dispositivo) {
+	@RequestMapping(value="/Cliente/ABMReglas/SelectDisp",method=RequestMethod.POST)
+	public Model SelectDispo(@RequestParam("dispSeleccionado") String dispSeleccionado,HttpServletRequest request, Model model) {
 		Repositorio repo = new Repositorio();
 		repo.abrir();
 		//checkear como busca las reglas, no me cierra algo
-		List<Dispositivo> dispositivos = (List<Dispositivo>) repo.dispositivos().findBy("username", usuario);
-		Dispositivo dispo = repo.dispositivos().findBy("nombre",dispositivo);
-		List<Regla> reglasUser = (List<Regla>) repo.reglas().findBy("username", dispo.getNombre());
-		ModelAndView modelAndView = new ModelAndView("abmReg");
-		  modelAndView.addObject("reglas",reglasUser);
-		  return modelAndView;
+		//List<Dispositivo> dispositivos = (List<Dispositivo>) repo.dispositivos().findBy("username", usuario);
+		Dispositivo dispo = repo.dispositivos().findBy("nombre",dispSeleccionado);
+		List<Regla> reglasUser = ((Inteligente) dispo).getReglas();
+		  model.addAttribute("reglas",reglasUser);
+		  //modelAndView.addObject("dispositivoElegido", dispSeleccionado);
+		  return model;
 	}
+	
+/*	@RequestMapping(value="/refresh")
+	@ResponseBody 
+	    public List<Regla> startCheckingStatus(@RequestParam("dispSeleccionado") Dispositivo dispSeleccionado){
+		
+		List<Regla> reglas = ((Inteligente) dispSeleccionado).getReglas();
+		return reglas; 
+	}*/
 	
 	
 }
