@@ -14,6 +14,14 @@ public class Recomendacion {
 		horasMaximasPorNodo.add(tmpn);
 	}
 
+	public double getHorasTotalesMensuales() {
+		return horasTotalesMensuales;
+	}
+
+	public void setHorasTotalesMensuales(double horasTotalesMensuales) {
+		this.horasTotalesMensuales = horasTotalesMensuales;
+	}
+
 	public void horasTotalesMensuales(Double value) {
 		horasTotalesMensuales = value;
 	}

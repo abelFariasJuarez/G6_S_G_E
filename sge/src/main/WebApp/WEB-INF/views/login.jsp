@@ -13,7 +13,6 @@
 </head>
 <body class="text-center">
 <div >
-
   <div class="container">
   <div class="row">
       <div class="col col-sm align-self-start"></div>
@@ -41,14 +40,13 @@
   <div class="row">
     <div class="col col-sm align-self-start"></div>
   	<div class="col col-sm align-self-center">
-    	 
-    	
+
 <div class="form">  
- <form:form   method="POST">  
-  <form:form  action="/demo/login/Usuario" method="POST">  
+ <form:form   method="post">  
+  <form:form  action="login" method="post">  
       
 <input type="text" id="username" placeholder="Usuario" name="username" class= "form-control" />
-  
+
 <input type="password" id="password" placeholder="Password" name="password" class= "form-control" />
 
  <button id="LoginButton" class="btn btn-dark" > Sign in </button> 
@@ -56,17 +54,13 @@
 </form:form> 
 </div>
 
-   
     </div>
     <br></br>
      <span>${message}</span>
     <div class="col col-sm align-self-end"></div>
   </div>
 </div>
-
-
 <div class="container">
-
     <div class="col col-sm">
 <footer>
  <a href=mapa class="btn btn-dark" >Mapa de consumo</a>
@@ -75,6 +69,7 @@
 </div>
 </div>
 
+  ${loginError}
 
 </body>
 </html>
