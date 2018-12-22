@@ -28,7 +28,7 @@
 			<div class="col align-self-start">
 			
 			<h1>Dispositivo:</h1>
-				<select id="dispSeleccionado" onclick="myFunction()" class="table table-dark ">
+				<select id="dispSeleccionado" onclick="function()" class="table table-dark ">
 
 						<c:forEach items="${dispositivosInt}" var="dispositivo">
 							<tr>
@@ -37,37 +37,40 @@
 						</c:forEach>
 				</select>
 			</div>
-			
+			<h2>Reglas del dispositivo
 			<select id="reglas" class="table table-dark " size= 10>
 
-			<c:forEach items="reglas" var="regla">
+			<c:forEach items="${reglas}" var="regla">
 				<tr>
 					<option>${regla.getName()}}</option>
 				</tr>
 			</c:forEach>
 			</select>
-			
+
 			<script>
-			function myFunction() {
-			  var mylist = document.getElementById("dispSeleccionado");
-			  document.getElementById("reglas").value = mylist.options[mylist.selectedIndex].reglas;
-			}
+			function(){
+			    $.ajax({
+			        url : '/refresh?dispSeleccionado=${dispSeleccionado}',
+			        method : 'GET',
+			        async : false,
+			        complete : function(data) {
+			    	 $('#reglas').html(data);
+			        }
+			    });
+
 			</script>
-			
 			<div class="col col-sm align-self-center "></div>
 			<div class="col align-self-end">
 			<div class="row">
-	   		<form:form method="POST">
-	   		<button type="submit" name="SelectDisp" class="btn btn-dark" > Seleccionar </button> 
-	   		</form:form>
+	   		<button type="submit" onclick="refresh" name="SelectDisp" class="btn btn-dark" > Seleccionar </button> 
 	   		</div>
 	   		<div class="row">
-	   		<form:form action="/demo/login/Usuario/abmDisp/nuevaReg" method="POST">
+	   		<form:form action="/Cliente/ABMReglas/nuevaReg" method="POST">
 	   		<button type="submit" name="NuevaRegla" class="btn btn-dark" > Nueva Regla </button> 
 	   		</form:form>
 	   		</div>
 	   		<div class="row">
-	   		<form:form action="/demo/login/Usuario/abmReg/modifReg" method="POST">
+	   		<form:form action="/Cliente/ABMReglas/modifReg" method="POST">
 	   		<button type="submit" name="ModifRegla" class="btn btn-dark" > Modificar </button> 
 	   		</form:form>
 	   		</div>
