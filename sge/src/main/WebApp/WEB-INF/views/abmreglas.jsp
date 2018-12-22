@@ -18,26 +18,14 @@
 <title>Mihogar</title>
 </head>
 
-<script type="text/javascript">
-function myFunction(id){
-	$(document).ready(function(){ 
-		$.ajax({
-			type= 'POST',
-			url= '/Cliente/ABMReglas',
-			async= false
-		
-		
-	var x =document.getElementById(id);
-			var opt = x.options[x.selectedIndex]
-			console.log(opt.value);
-}
-</script>
+
 
 <script>
 function myFunction(id){
 	var x =document.getElementById(id);
 			var opt = x.options[x.selectedIndex]
 			console.log(opt.value);
+			
 }
 </script>
 
@@ -53,7 +41,7 @@ function myFunction(id){
 			<div class="col align-self-start">
 			
 			<h1>Dispositivo:</h1>
-				<select id="dispSeleccionado" class="table table-dark ">
+				<select id="dispSeleccionado" onclick=myFunction() class="table table-dark ">
 
 						<c:forEach items="${dispositivosInt}" var="dispositivo">
 							<tr>
@@ -83,7 +71,7 @@ function myFunction(id){
 			<div class="col align-self-end">
 			<div class="row">
 			<form:form action="/Cliente/ABMReglas" method="POST">
-			<button type="submit" onclick=myFunction('dispSeleccionado')  name="SelectDisp" class="btn btn-dark" > Seleccionar </button> 
+			<button type="submit" onclick=myFunction('dispSeleccionado') name="SelectDisp" class="btn btn-dark" > Seleccionar </button> 
 			</form:form>
 			</div>
 	   		<div class="row">
