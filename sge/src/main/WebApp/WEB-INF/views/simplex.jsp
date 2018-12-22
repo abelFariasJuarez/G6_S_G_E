@@ -27,6 +27,9 @@
 </tr>
 </thead>
 <tbody>
+
+<c:forEach items="${dispositivos}" var="dispositivo">
+	<tr>
 		<td>${dispositivo.getNombre() }</td>
 		<td>${recomendacion.horasMaximasPara(dispositivo)} Horas</td>
 		<td>${usuarioLogueado.consumoEnPeriodoDe(dispositivo)}</td>

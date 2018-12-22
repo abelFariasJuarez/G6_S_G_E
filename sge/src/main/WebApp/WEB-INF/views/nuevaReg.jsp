@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>    
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,7 +31,8 @@
     
    	<div class="col align-self-end"> 
    		<form:form action="/demo/login/Usuario/abmDisp" method="POST">
-   		<button type="submit" name="cancel" class="btn btn-dark" > Cancelar </button> 
+   		<button type="submit" name="cancel" class="btn btn-dark" > Cancelar </button>
+   		</form:form> 
    	   	</div>
   </div>
 </div>
