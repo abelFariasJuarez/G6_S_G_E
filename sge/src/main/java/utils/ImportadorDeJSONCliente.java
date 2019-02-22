@@ -17,27 +17,14 @@ import java.io.IOException;
 import java.util.TimerTask;
 
 @SuppressWarnings("unused")
-public class ImportadorDeJSONCliente {
+public class ImportadorDeJSONCliente extends ImportadorJson {
 
-	public List<Cliente> getClientes() throws IOException {
-
-		String clientesJSON = "";
-
-		lectorDeArchivos lectorDeArchivos = new lectorDeArchivos("pruebacliente.json");
-		while (!lectorDeArchivos.lecturaFinalizada()) {
-			clientesJSON = clientesJSON + lectorDeArchivos.leerSiguiente();
-		}
-		lectorDeArchivos.cerrar();
-
-		Gson gson = new  Gson();/*Builder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").create();*/
-		Type tipoListaEmpleados = new TypeToken<List<Cliente>>() {
+	public List<Cliente> getClientes() throws Exception {
+		this.setArchivoFuente(System.getProperty("user.dir") + "/src/test/pruebacliente.json");
+		Type typeToken = new TypeToken<List<Cliente>>() {
 		}.getType();
-		List<Cliente> clientes = gson.fromJson(clientesJSON, tipoListaEmpleados);
-
+		List<Cliente> clientes = (List<Cliente>) myFromJson(typeToken);
 		return clientes;
 	}
-
-	
-	
 
 }

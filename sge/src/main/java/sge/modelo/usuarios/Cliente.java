@@ -1,5 +1,6 @@
 package sge.modelo.usuarios;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -18,6 +19,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import sge.modelo.IPersistible;
 import sge.modelo.dispositivo.*;
 import sge.modelo.driver.ActuadorAhorro;
 import sge.modelo.driver.ActuadorApagar;
@@ -30,7 +32,7 @@ import sge.modelo.regla.*;
 @Entity
 @DiscriminatorValue("C")
 @Table(name = "Cliente")
-public class Cliente extends UsuarioSGE {
+public class Cliente extends UsuarioSGE  {
 
 	@Column(name = "tipodoc")
 	private String tipodoc;
@@ -44,7 +46,7 @@ public class Cliente extends UsuarioSGE {
 	private List<Dispositivo> dispositivos = new ArrayList<Dispositivo>();
 	@Column(name = "puntos")
 	private Integer puntos = 0;
-	@OneToOne(cascade = CascadeType.ALL)
+	@ManyToOne//(cascade = CascadeType.ALL)
 	private Ubicacion ubicacion;
 	@Column(name = "ahorroAutomatico")
 	private boolean ahorroAutomatico = false; // o accion automatica o accione por si solo
@@ -220,6 +222,11 @@ public class Cliente extends UsuarioSGE {
 		LocalDateTime inicioPeriodo = finPeriodo.withDayOfMonth(1);
 		return i.consumo_periodo(inicioPeriodo, finPeriodo);
 	}
+	public double miConsumoDelPeriodo() {
+		LocalDateTime finPeriodo = LocalDateTime.now();
+		LocalDateTime inicioPeriodo = finPeriodo.withDayOfMonth(1);
+		return this.consumoEnPeriodo(inicioPeriodo, finPeriodo);
+	}	
 
 	public boolean isAhorroAutomatico() {
 		return ahorroAutomatico;

@@ -66,32 +66,6 @@ public class LoginController {
 	
 	@RequestMapping(value = "/mapa", method = { RequestMethod.GET, RequestMethod.POST })
 	public String mapa(Model model) {
-		/*Ubicacion ubi = new Ubicacion(-34.597316 ,-58.420175);
-		ZonaGeografica zona = new ZonaGeografica();
-		zona.setCentro(ubi);
-		zona.setRadio((float) 500);
-		
-		Ubicacion ubi2 = new Ubicacion(-34.580000 ,-58.4000000);
-		ZonaGeografica zona2 = new ZonaGeografica();
-		zona2.setCentro(ubi2);
-		zona2.setRadio((float) 700);
-		
-	List<ZonaGeografica> zonas = new LinkedList<ZonaGeografica>();
-	zonas.add(zona);
-	zonas.add(zona2);
-	model.addAttribute("zonas", zonas);
-		//////////////////////////////////////////
-		Ubicacion ubi3 = new Ubicacion(-34.597311 ,-58.420178);
-	Transformador trans= new Transformador();
-	Ubicacion ubi4 = new Ubicacion(-34.580000,-58.4000000);
-	Transformador trans2 = new Transformador();
-		trans.setUbicacion(ubi3);
-		trans2.setUbicacion(ubi4);
-		List<Transformador> transs = new LinkedList<Transformador>();
-		transs.add(trans);
-		transs.add(trans2);
-		//model.addAttribute("transs", transs);
-		/*trans.consumoEnPeriodo( LocalDateTime.now(),LocalDateTime.now());*/
 		
 		Repositorio repo = new Repositorio();
 		repo.abrir();

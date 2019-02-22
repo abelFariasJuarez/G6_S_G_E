@@ -76,9 +76,9 @@ public class TestJPAGeneral extends AbstractPersistenceTest implements WithGloba
 		 */
 		lava2.getIntervalos().get(0).setInicio(desde);
 
-		repositorio.persistir(air2);
-		repositorio.persistir(lava2);
-		repositorio.persistir(unVenti2);
+		repositorio.dispositivos().persistir(air2);
+		repositorio.dispositivos().persistir(lava2);
+		repositorio.dispositivos().persistir(unVenti2);
 		
 		repositorio.borrar(air2);
 		repositorio.borrar(lava2);
@@ -93,7 +93,7 @@ public class TestJPAGeneral extends AbstractPersistenceTest implements WithGloba
 		unCliente.addDispositivo(comun);
 
 		DispositivoConModulo conModulo = unCliente.agrega_modulo_a_estandar(comun);
-		repositorio.persistir(conModulo);
+		repositorio.dispositivos().persistir(conModulo);
 		repositorio.borrar(conModulo);
 	}
 
@@ -107,18 +107,18 @@ public class TestJPAGeneral extends AbstractPersistenceTest implements WithGloba
 		unS.setNombre("sensor1");
 		unS.setTiempoDeEspera(30.0);
 
-		repositorio.persistir(unS);
+		repositorio.sensores().persistir(unS);
 
 		Comparador cmp = null;
 		cmp = new MayorIgual();
-		repositorio.persistir(cmp);
+		repositorio.comparaciones().persistir(cmp);
 
 		Condicion cond = null;
 		cond = new Condicion();
 		cond.setComparador(cmp);
 		cond.setSensor(unS);
 		cond.setValorEsperado(34.0);
-		repositorio.persistir(cond);
+		repositorio.condiciones().persistir(cond);
 
 		Regla unRegla = null;
 		unRegla = new Regla("regla 1");
@@ -127,7 +127,7 @@ public class TestJPAGeneral extends AbstractPersistenceTest implements WithGloba
 		AccionPrender prenderAire = new AccionPrender();
 		unRegla.agregarAccion(prenderAire);
 
-		repositorio.persistir(unRegla);
+		repositorio.reglas().persistir(unRegla);
 		repositorio.borrar(unRegla);
 
 	}
@@ -145,7 +145,7 @@ public class TestJPAGeneral extends AbstractPersistenceTest implements WithGloba
 		Transformador c = new Transformador();
 		c.setIdZona(4);
 		c.setUbicacion(new Ubicacion(1.0, 1.0));
-		repositorio.persistir(c);
+		repositorio.transformadores().persistir(c);
 		repositorio.borrar(c);
 	}
 
@@ -155,11 +155,12 @@ public class TestJPAGeneral extends AbstractPersistenceTest implements WithGloba
 		Cliente c = new Cliente("Carla", "Sanazki", "condarco 149", LocalDate.of(2017, 4, 7), "cazana", "menToL2017",
 				"Dni", 21321013, 1543312311);
 		c.setAhorroAutomatico(false);
-		c.setUbicacion(new Ubicacion(1.0, 1.0));
+		Ubicacion u  = repositorio.ubicaciones().getPersistente(1.0, 1.0);
+		c.setUbicacion(u);
 
 		Categoria unaCate = new Categoria("R0", 13.f, 0.05f, 1.5f, 10f);
 		c.setCategoria(unaCate);
-		repositorio.persistir(c);
+		repositorio.clientes().persistir(c);
 		repositorio.borrar(c);
 	}
 
@@ -168,7 +169,7 @@ public class TestJPAGeneral extends AbstractPersistenceTest implements WithGloba
 
 		Administrador admin = new Administrador("pedro", "saraska", "lavalle 148", LocalDate.of(2015, Month.APRIL, 19),
 				"pepe", "pasti");
-		repositorio.persistir(admin);
+		repositorio.persistirUsuario(admin);
 		repositorio.borrar(admin);
 	}
 
@@ -182,10 +183,11 @@ public class TestJPAGeneral extends AbstractPersistenceTest implements WithGloba
 		Cliente c = new Cliente("Carl", "adfg", "condarco 125", LocalDate.of(2017, 4, 7), "faras", "mencoco125", "Dni",
 				21321013, 1543312311);
 		c.setAhorroAutomatico(false);
-		c.setUbicacion(new Ubicacion(1.3, 2.1));
+		
+		c.setUbicacion(repositorio.ubicaciones().getPersistente(1.3 , 2.1));
 
 		ZonaGeografica zona = new ZonaGeografica();
-		zona.setCentro(new Ubicacion(1.2, 2.0));
+		zona.setCentro(repositorio.ubicaciones().getPersistente(1.2, 2.1));
 		zona.addCliente(c);
 		zona.setId(125);
 		zona.setNombre("zona1");

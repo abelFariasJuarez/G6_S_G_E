@@ -7,6 +7,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 
 import sge.modelo.dispositivo.*;
+import sge.modelo.posicionamiento.Ubicacion;
 import sge.modelo.regla.Regla;
 import sge.modelo.usuarios.Cliente;
 import utils.ImportadorDeJsonDispositivo;
@@ -35,7 +36,7 @@ public class Dispositivos extends Repositorio {
 
 		try {
 			this.Dispositivos.addAll(json.getDispositivos(disp));
-		} catch (IOException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -49,4 +50,9 @@ public class Dispositivos extends Repositorio {
 	{
 		return (List<Dispositivo>) this.allOf(Dispositivo.class);
 	}
+	
+	public void persistir(Dispositivo c1) {
+		super.persistir(c1);
+	}
+	
 }

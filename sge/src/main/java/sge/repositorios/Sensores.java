@@ -5,7 +5,9 @@ import java.util.List;
 import javax.persistence.EntityManager;
 
 import sge.modelo.posicionamiento.Transformador;
+import sge.modelo.posicionamiento.Ubicacion;
 import sge.modelo.regla.Sensor;
+import sge.modelo.usuarios.Cliente;
 
 public class Sensores extends Repositorio {
 
@@ -18,9 +20,13 @@ public class Sensores extends Repositorio {
 		return rhf;
 	}	
 
-	public List<Sensores> all()
+	public List<Sensor> all()
 	{
-		return (List<Sensores>) this.allOf(Sensores.class);
+		return (List<Sensor>) this.allOf(Sensor.class);
+	}
+	
+	public void persistir(Sensor c) {
+		super.persistir(c);
 	}
 
 }

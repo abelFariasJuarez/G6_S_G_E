@@ -27,9 +27,9 @@ public class GestorCliente {
 	}
 
 	public void cargarClientesZonasTransformadores() {
-		getRepoClientes().cargarClientesDesdeJson();
-		getRepoZonas().cargarZonas();
-		getRepoTransformadores().cargarTransformadores();
+		getRepoClientes().cargarGuardar();
+		getRepoZonas().cargarGuardar();
+		getRepoTransformadores().cargarGuardar();
 	}
 
 	public void transformadoresAsignacionZona() {

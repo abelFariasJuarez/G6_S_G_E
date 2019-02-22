@@ -9,6 +9,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -23,16 +24,16 @@ public class ZonaGeografica extends Persistible {
 	@Column(name = "nombre")
 	private String nombre;
 	
-	@Column(name = "id")
+	@Column(name = "id", unique=true)
 	private Integer id;
 	
-	@OneToOne(cascade = CascadeType.ALL)
+	@ManyToOne//(cascade = CascadeType.ALL)
 	private Ubicacion centro;
 	
 	@Column(name = "radio")
 	private Float radio;	
 	
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL)	
 	private List<Transformador> transformadores = new ArrayList<Transformador>();
 	
 	@OneToMany(cascade = CascadeType.ALL)

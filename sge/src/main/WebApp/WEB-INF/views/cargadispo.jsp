@@ -13,8 +13,7 @@
 	crossorigin="anonymous">
 </head>
 <body>
-${content}
-${file.getOriginalFilename()}
+
 	<div class="container tamanio bg-dark margen text-light " id="oculto2">
 		<form:form  action="/Administrador/cargadispo" method="POST" enctype="multipart/form-data">
 		Carga Dispositivo/s
@@ -51,24 +50,32 @@ ${file.getOriginalFilename()}
 				<div class="col align-self-start"></div>
 					<div class="col col-sm align-self-center ">
 
-						<table id="oculto" class="table table-dark ">
+    	<table id="oculto" class="table table-dark ">
+    	<thead>
+			<tr>
+			<th></th>
+			<th scope="col">Dispositivo</th>
+			<th scope="col">Equipo Concreto</th>
+			<th scope="col">¿Es inteligente?</th>
+			<th scope="col">¿Es Equipo de bajo consumo?</th>
+			<th scope="col">Consumo(Kwh)</th>	
+			</tr>
+			</thead>
+				<tbody>
+				
+				<c:forEach items="${dispositivosDisponibles}" var="dispositivoDisponible">
+							<tr>
 
-							<thead>
-								<tr>
-									<th scope="col">Codigo</th>
-									<th scope="col">Nombre</th>
-								</tr>
-							</thead>
-							<tbody>
-								<c:forEach items="${dispositivosDisponibles}" var="dispositivoDisponible">
-									<tr>
-										<td>${dispositivoDisponible.getCodigo()}</td>
-										<td>${dispositivoDisponible.getNombre()}</td>
-									</tr>
-								</c:forEach>
-							</tbody>
-						</table>
-
+								<td>${dispositivoDisponible.nombre}</td>
+								<td>${dispositivoDisponible.codigo}</td>
+								<td>${dispositivoDisponible.isInteligente }</td>
+								<td>${dispositivoDisponible.isBajoConsumo}</td>
+								<td>${dispositivoDisponible.consumoPorHora }</td>
+								<td>${dispositivoDisponible.codigoRestriccionHoras }<td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
 					</div>
 				<div class="col align-self-end"></div>
 			</div>

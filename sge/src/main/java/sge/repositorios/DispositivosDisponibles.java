@@ -9,6 +9,7 @@ import javax.persistence.EntityManager;
 import sge.modelo.dispositivo.Dispositivo;
 import sge.modelo.dispositivo.DispositivoDisponible;
 import sge.modelo.posicionamiento.Transformador;
+import sge.modelo.regla.Condicion;
 import sge.modelo.usuarios.Cliente;
 import utils.ImportadorDeJsonDisponible;
 import utils.ImportadorDeJsonDispositivo;
@@ -38,7 +39,7 @@ public class DispositivosDisponibles extends Repositorio {
 
 		try {
 			this.DispositivosDisponibles.addAll(json.getDispositivoDisponible(archivo));
-		} catch (IOException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -64,5 +65,9 @@ public class DispositivosDisponibles extends Repositorio {
 		transDAO.setConsumoPorHora(dis.getConsumoPorHora());
 		
 
+	}
+	
+	public void persistir(DispositivoDisponible c) {
+		super.persistir(c);
 	}
 }

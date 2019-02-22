@@ -8,12 +8,11 @@ import java.io.IOException;
 
 public class lectorDeArchivos {
 
-	private File archivo;
 	private FileReader fileReader;
 	private BufferedReader bufferedReader;
 
 	public lectorDeArchivos(String archi) throws FileNotFoundException {
-		archivo = new File(System.getProperty("user.dir") + "/src/test/" + archi);
+		File archivo = new File(archi);
 		fileReader = new FileReader(archivo);
 		bufferedReader = new BufferedReader(fileReader);
 	}
@@ -29,7 +28,6 @@ public class lectorDeArchivos {
 	public void cerrar() throws IOException {
 		bufferedReader.close();
 		fileReader.close();
-		// archivo.delete();
 	}
 
 }

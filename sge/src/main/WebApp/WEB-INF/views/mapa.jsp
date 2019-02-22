@@ -25,7 +25,7 @@
 	<div class="container text-light">
   <div class="row">
     <div class="col align-self-start"> 
-    <form:form method="POST" action="/demo/mapa">
+    <form:form method="POST" action="/mapa">
   <button type="submit" class="btn btn-info solid"  > Recargar transformadores</button> 
     <br>
      </form:form>
@@ -37,7 +37,7 @@ ${trans.ubicacion.latitud}
  </c:forEach>
     </div>
    <div class="col align-self-end"> 
-   <form:form method="POST" action="/demo/login">
+   <form:form method="POST" action="/login">
      <button type="submit" class="btn btn-info solid" name="vlvmp"  > volver</button> 
       </form:form>
    </div>
@@ -60,8 +60,10 @@ ${trans.ubicacion.latitud}
 	
 		
 		 <c:forEach items="${transs}" var="trans">
-		var marker = L.marker([${trans.ubicacion.latitud}, ${trans.ubicacion.longitud}]).addTo(mapa).bindPopup("<button class='btn btn-info' onclick='alert(\"t\")'>Transformador</button>");
-		 </c:forEach>
+		//var marker = L.marker([${trans.ubicacion.latitud}, ${trans.ubicacion.longitud}]).addTo(mapa).bindPopup("<button class='btn btn-info' onclick='alert(" + ${trans.energiaSuministrada()} + ")'>Transformador</button>");
+		var marker = L.marker([${trans.ubicacion.latitud}, ${trans.ubicacion.longitud}]).addTo(mapa).bindPopup("${trans.energiaSuministrada()}");
+		  
+		</c:forEach>
 		
 		
 	  <c:forEach items="${zonas}" var="zona">

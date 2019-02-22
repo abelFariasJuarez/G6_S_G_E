@@ -35,23 +35,38 @@ public class Transformadores extends Repositorio {
 
 		try {
 			this.transformadores.addAll(json.getTransformadores());
-		} catch (IOException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		this.persistir(this.transformadores);
-
 	}
+	
+	public void cargarGuardar() {
+		this.cargarTransformadores();
+		this.persistir(this.transformadores);
+	}
+	
+	
 	
 	public void persistir(List<Transformador> transformadores2) {
 		transformadores2.forEach(t -> this.persistir(t));		
 	}
 
 	public void persistir(Transformador t) {
+		
+		/*Double latitud = t.getUbicacion().getLatitud();
+		Double longitud = t.getUbicacion().getLongitud();
+		this.detach(t.getUbicacion());		
+
+		Ubicacion ubi = this.ubicaciones().getPersistente(longitud,latitud);
+		
 		Transformador t1 = this.getPersistenteBy("id",t.getId());
-		Ubicacion ubi = this.ubicaciones().getPersistente(t.getUbicacion().getLongitud(),t.getUbicacion().getLatitud());
-		t.setUbicacion(ubi);
-		t1.llenarAtributos(t);
+		t1.llenarAtributos(t);		
+		t1.setUbicacion(ubi);
+
+		super.clientes().persistir(t1.getClientes());
 		super.persistir(t1);
+		return t1;*/
+		super.persistir(t);
 	}
 	
 	private Transformador getPersistenteBy(String campo, Object valor) {

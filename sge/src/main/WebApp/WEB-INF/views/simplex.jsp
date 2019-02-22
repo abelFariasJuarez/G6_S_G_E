@@ -48,7 +48,9 @@ horas Totales Mensuales Hogar eficiente:${recomendacion.horasTotalesMensuales}
 <input type="submit" name="send"   />
 </form:form>
 
-
+				<form:form action="/Cliente" method="GET">
+					<button type=submit>Volver</button>
+				</form:form>
 
 </body>
 </html>

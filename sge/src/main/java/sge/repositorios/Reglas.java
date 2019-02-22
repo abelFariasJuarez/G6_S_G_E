@@ -4,7 +4,9 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
+import sge.modelo.posicionamiento.Ubicacion;
 import sge.modelo.regla.Regla;
+import sge.modelo.usuarios.Cliente;
 
 public class Reglas extends Repositorio {
 
@@ -20,5 +22,9 @@ public class Reglas extends Repositorio {
 	public List<Regla> all()
 	{
 		return (List<Regla>) this.allOf(Regla.class);
-	}	
+	}
+	
+	public void persistir(Regla c) {
+		super.persistir(c);
+	}
 }

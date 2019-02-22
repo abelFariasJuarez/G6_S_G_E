@@ -25,12 +25,12 @@ import sge.modelo.usuarios.Cliente;
 import sge.repositorios.Repositorio;
 
 public class TestEntrega3 {
-	private Repositorio repositorio;
+	private Repositorio repo;
 
 	@Before
 	public void setUp() throws Exception {
-		repositorio = new Repositorio();
-		repositorio.abrir();
+		repo = new Repositorio();
+		repo.abrir();
 		//repositorio.cargaDeDatosIniciales();
 	}
 
@@ -39,22 +39,21 @@ public class TestEntrega3 {
 
 		// Caso de prueba 1: Crear 1 usuario nuevo.
 		this.crearUsuarioDelCasoDePrueba();		
-		Cliente clienteOriginal = repositorio.clientes().findBy("username", "fperez");
-		
+		//Cliente clienteOriginal = repo.clientes().findBy("username", "fperez");		
 		// Persistirlo.
-		repositorio.persistir(clienteOriginal);
+		//repo.clientes().persistir(clienteOriginal);
 
 		// Recuperarlo,
-		Cliente clienteRecuperado = repositorio.clientes().findBy("username", "fperez");
+		Cliente clienteRecuperado = repo.clientes().findBy("username", "fperez");
 
 		// modificar la geolocalización
 		clienteRecuperado.getUbicacion().setLongitud(130.0);
 
 		// y grabarlo.
-		repositorio.persistir(clienteRecuperado);
+		repo.clientes().persistir(clienteRecuperado);
 
 		// Recuperarlo
-		Cliente clienteRecuperado2 = repositorio.clientes().findBy("username", "fperez");
+		Cliente clienteRecuperado2 = repo.clientes().findBy("username", "fperez");
 
 		// y evaluar que el cambio se haya realizado.
 		assertEquals(clienteRecuperado2.getUbicacion().getLongitud(), 130.0, 0);
@@ -66,7 +65,7 @@ public class TestEntrega3 {
 		this.crearDispositivoDelCasoDePrueba();
 
 		// Recuperar un dispositivo.
-		DispositivoInteligente unDispo = (DispositivoInteligente) repositorio.dispositivos().findBy("nombre",
+		DispositivoInteligente unDispo = (DispositivoInteligente) repo.dispositivos().findBy("nombre",
 				"DispoCasoPrueba");
 
 		// Mostrar por consola todos los intervalos que estuvo
@@ -78,10 +77,10 @@ public class TestEntrega3 {
 		unDispo.setBajoconsumo(false);
 
 		// y grabarlo.
-		repositorio.persistir(unDispo);
+		repo.dispositivos().persistir(unDispo);
 
 		// Recuperarlo
-		DispositivoInteligente unDispoRecuperado = (DispositivoInteligente) repositorio.dispositivos().findBy("nombre",
+		DispositivoInteligente unDispoRecuperado = (DispositivoInteligente) repo.dispositivos().findBy("nombre",
 				"DispoCasoPrueba");
 
 		// y evaluar que el nombre coincida con el esperado.
@@ -92,7 +91,7 @@ public class TestEntrega3 {
 	public void casoDePrueba3() {
 		
 		this.crearDispositivoDelCasoDePrueba();
-		DispositivoInteligente unDispo = (DispositivoInteligente) repositorio.dispositivos().findBy("nombre",
+		DispositivoInteligente unDispo = (DispositivoInteligente) repo.dispositivos().findBy("nombre",
 				"DispoCasoPrueba");
 		unDispo.apagar();
 		
@@ -102,22 +101,22 @@ public class TestEntrega3 {
 		// Asociarla a un dispositivo.
 		// Agregar condiciones
 		// y acciones.
-		Sensor unS = repositorio.sensores().findBy("nombre", "sensorCasoPrueba3");
+		Sensor unS = repo.sensores().findBy("nombre", "sensorCasoPrueba3");
 		if (unS == null) {
 			unS = new Sensor();
 		}
 
-		Comparador cmp = repositorio.comparaciones().findBy("oid", 1L);
+		Comparador cmp = repo.comparaciones().findBy("oid", 1L);
 		if (cmp == null) {
 			cmp = new MayorIgual();
 		}
 
-		Condicion cond = repositorio.condiciones().findBy("oid", 1L);
+		Condicion cond = repo.condiciones().findBy("oid", 1L);
 		if (cond == null) {
 			cond = new Condicion();
 		}
 
-		Condicion cond2 = repositorio.condiciones().findBy("oid", 2L);
+		Condicion cond2 = repo.condiciones().findBy("oid", 2L);
 		if (cond2 == null) {
 			cond2 = new Condicion();
 		}
@@ -134,7 +133,7 @@ public class TestEntrega3 {
 		cond2.setSensor(unS);
 		cond2.setValorEsperado(36.0);
 		
-		Regla unRegla = repositorio.reglas().findBy("name", "reglaCasoPrueba3");
+		Regla unRegla = repo.reglas().findBy("name", "reglaCasoPrueba3");
 		if (unRegla == null) {
 			unRegla = new Regla("reglaCasoPrueba3");
 			unRegla.agregarCondicion(cond);
@@ -143,10 +142,10 @@ public class TestEntrega3 {
 		}		
 
 		// Persistirla.		
-		repositorio.persistir(unRegla);
+		repo.reglas().persistir(unRegla);
 
 		// Recuperarla
-		Regla unReglaRecuperada = repositorio.reglas().findBy("name", "reglaCasoPrueba3");
+		Regla unReglaRecuperada = repo.reglas().findBy("name", "reglaCasoPrueba3");
 
 		// y ejecutarla.
 		assertEquals(unDispo.estoyON(), false);
@@ -157,10 +156,10 @@ public class TestEntrega3 {
 		cond2.setValorEsperado(20.0);
 
 		// y persistirla.
-		repositorio.persistir(cond2);
+		repo.condiciones().persistir(cond2);
 
 		// Recuperarla
-		Condicion cond2Recuperada = repositorio.condiciones().findBy("oid", cond2.getOid());
+		Condicion cond2Recuperada = repo.condiciones().findBy("oid", cond2.getOid());
 
 		// y evaluar que la condición modificada posea la última modificación.
 		assertEquals(cond2Recuperada.getValorEsperado(), 20.0, 0.0);
@@ -172,15 +171,15 @@ public class TestEntrega3 {
 		
 		// Agregar una instancia de Transformador al JSON de entradas. ***altere el orden de los pasos del caso de prueba
 		// Ejecutar el método de lectura y persistencia. ***altere el orden de los pasos del caso de prueba
-		repositorio.transformadores().cargarTransformadores();
-		repositorio.transformadores().guardarTransforamdores();
+		repo.transformadores().cargarTransformadores();
+		repo.transformadores().guardarTransforamdores();
 		
 		// Recuperar todos los transformadores persistidos.
-		List<Transformador> ts = repositorio.transformadores().buscarTodos(); 
+		List<Transformador> ts = repo.transformadores().buscarTodos(); 
 		
 		// Registrar la cantidad.		
 		Integer cantidadT1 = ts.size();
-		Integer cantidadT2 = repositorio.transformadores().getTransformadores().size();
+		Integer cantidadT2 = repo.transformadores().getTransformadores().size();
 		
 		// Evaluar que la cantidad actual sea la anterior + 1. ***original
 		// Evaluar que la cantidad de tranformadores en la BD sea igual ***reinterpretado
@@ -198,7 +197,7 @@ public class TestEntrega3 {
 		// Dado un dispositivo y un período, mostrar por consola su
 		// consumo promedio.
 		this.crearDispositivoDelCasoDePrueba();
-		DispositivoInteligente unDispo = (DispositivoInteligente) repositorio.dispositivos().findBy("nombre",
+		DispositivoInteligente unDispo = (DispositivoInteligente) repo.dispositivos().findBy("nombre",
 				"DispoCasoPrueba");	
 
 		Double consumoDispositivo = unDispo.consumo_periodo(instanteDesde, instanteHasta);		
@@ -207,16 +206,16 @@ public class TestEntrega3 {
 		// Dado un hogar y un período, mostrar por consola (interfaz de comandos) el
 		// consumo total.
 		this.crearUsuarioDelCasoDePrueba();		
-		Cliente unCliente = repositorio.clientes().findBy("username", "fperez");	
+		Cliente unCliente = repo.clientes().findBy("username", "fperez");	
 		unCliente.addDispositivo(unDispo);
 		Double consumoCliente =unCliente.consumoEnPeriodo(instanteDesde, instanteHasta);
 		System.out.println("\tconsumo promedio: " + consumoCliente + "del cliente en el periodo");
 		assertEquals(consumoDispositivo, consumoCliente, 0);
 		
 		// Dado un transformador y un período, mostrar su consumo promedio. 
-		repositorio.transformadores().cargarTransformadores();
-		repositorio.transformadores().guardarTransforamdores();
-		Transformador unTrans = repositorio.transformadores().findBy("oid", 1L);
+		repo.transformadores().cargarTransformadores();
+		repo.transformadores().guardarTransforamdores();
+		Transformador unTrans = repo.transformadores().findBy("oid", 1L);
 		unTrans.addCliente(unCliente);		
 		Double consumoTrans = unTrans.consumoEnPeriodo(instanteDesde, instanteHasta);
 		System.out.println("\tconsumo promedio: " + consumoTrans + "del Transformador en el periodo");
@@ -224,11 +223,11 @@ public class TestEntrega3 {
 		
 		// Recuperar un dispositivo asociado a un hogar de ese transformador e
 		// incrementar un 1000 % el consumo para ese período. 
-		DispositivoInteligente unDispoRecu = (DispositivoInteligente) repositorio.dispositivos().findBy("nombre",
+		DispositivoInteligente unDispoRecu = (DispositivoInteligente) repo.dispositivos().findBy("nombre",
 				"DispoCasoPrueba");
 		unDispoRecu.setConsumoPorHora(unDispoRecu.getConsumoPorHora() * 1000);		
 		// Persistir el dispositivo.
-		repositorio.persistir(unDispoRecu);
+		repo.dispositivos().persistir(unDispoRecu);
 		
 		// Nuevamente mostrar el consumo para ese transformador.
 		Double consumoTrans1000 = unTrans.consumoEnPeriodo(instanteDesde, instanteHasta);
@@ -236,16 +235,16 @@ public class TestEntrega3 {
 		assertEquals(consumoDispositivo * 1000, consumoTrans1000, 0);
 		
 		unCliente.removeDispositivo(unDispo);
-		repositorio.persistir(unCliente);
+		repo.clientes().persistir(unCliente);
 		
 		unTrans.removeCliente(unCliente);
-		repositorio.persistir(unTrans);
+		repo.transformadores().persistir(unTrans);
 		
 	}
 
 	private void crearDispositivoDelCasoDePrueba() {
 		//DISPOSITIVO 1
-		DispositivoInteligente unDispo = (DispositivoInteligente) repositorio.dispositivos().findBy("nombre",
+		DispositivoInteligente unDispo = (DispositivoInteligente) repo.dispositivos().findBy("nombre",
 				"DispoCasoPrueba");
 		if (unDispo == null) {
 			unDispo = new DispositivoInteligente("DispoCasoPrueba", 7.1, true, new DriverBasico());
@@ -257,10 +256,10 @@ public class TestEntrega3 {
 			unDispo.prender();
 			unDispo.apagar();
 			
-			repositorio.persistir(unDispo);	
+			repo.dispositivos().persistir(unDispo);	
 		}
 
-		unDispo = (DispositivoInteligente) repositorio.dispositivos().findBy("nombre",
+		unDispo = (DispositivoInteligente) repo.dispositivos().findBy("nombre",
 				"DispoCasoPrueba");
 		
 		if (unDispo != null) {			
@@ -298,14 +297,14 @@ public class TestEntrega3 {
 
 			unDispo.setBajoconsumo(true);
 			unDispo.setConsumoPorHora(7.1);
-			repositorio.persistir(unDispo);
+			repo.dispositivos().persistir(unDispo);
 		}
 		
 	}
 	
 	private void crearUsuarioDelCasoDePrueba() {
 		//Cliente 1
-		Cliente clienteOriginal = repositorio.clientes().findBy("username", "fperez");
+		Cliente clienteOriginal = repo.clientes().findBy("username", "fperez");
 		if (clienteOriginal == null) {
 			clienteOriginal = new Cliente("Felipe", "Perez", "Medrano 123", LocalDate.of(1995, 4, 7), "fperez",
 					"menToL2017", "Dni", 11222333, 1543312311);
@@ -313,11 +312,11 @@ public class TestEntrega3 {
 			clienteOriginal.setUbicacion(new Ubicacion(10.0, 90.0));
 		}
 		else
-		{
+		{			
 			clienteOriginal.getUbicacion().setLongitud(90.0);	
 		}
 		
-		repositorio.persistir(clienteOriginal);
+		repo.clientes().persistir(clienteOriginal);
 		
 	}	
 
@@ -326,7 +325,7 @@ public class TestEntrega3 {
 		LocalDateTime desde = LocalDateTime.of(2018,1,28,01,00,00);
 		LocalDateTime hasta = LocalDateTime.of(2018,12,30,20,00,00,15);
 		
-		repositorio.consumo_hogar_periodo(desde,hasta);
+		repo.consumo_hogar_periodo(desde,hasta);
 	}
 
 	@Test
@@ -334,7 +333,7 @@ public class TestEntrega3 {
 		LocalDateTime desde = LocalDateTime.of(2018,1,28,01,00,00);
 		LocalDateTime hasta = LocalDateTime.of(2018,12,28,20,00,00,15);
 		
-		repositorio.consumo_promedio_tipo_dispositivo_periodo(desde,hasta);
+		repo.consumo_promedio_tipo_dispositivo_periodo(desde,hasta);
 	}
 
 	@Test
@@ -342,18 +341,18 @@ public class TestEntrega3 {
 		LocalDateTime desde = LocalDateTime.of(2018,1,28,01,00,00);
 		LocalDateTime hasta = LocalDateTime.of(2018,12,28,20,00,00,15);
 		
-		repositorio.consumo_transformador_periodo(desde,hasta);
+		repo.consumo_transformador_periodo(desde,hasta);
 	}
 	
 	@Test
 	public void cargaTransformadores() {
 		
-		repositorio.transformadores().cargarTransformadores();
-		repositorio.transformadores().guardarTransforamdores();
+		repo.transformadores().cargarTransformadores();
+		repo.transformadores().guardarTransforamdores();
 	}
 	
 	@After
 	public void tearDown() throws Exception {
-		repositorio.cerrar();
+		repo.cerrar();
 	}
 }

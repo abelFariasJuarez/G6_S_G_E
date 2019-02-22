@@ -71,7 +71,7 @@
 				</table>
 
 				Su consumo en el último período fue de
-				${usuarioLogueado.consumoEnPeriodo(fechaPrincipioDePeriodo,fechaActual)}
+				${usuarioLogueado.miConsumoDelPeriodo()}
 
 			</div>
 			<div class="col align-self-end"></div>

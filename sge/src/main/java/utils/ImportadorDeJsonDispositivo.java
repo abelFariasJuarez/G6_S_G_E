@@ -14,44 +14,25 @@ import sge.modelo.dispositivo.Dispositivo;
 import sge.modelo.dispositivo.DispositivoEstandar;
 import sge.modelo.dispositivo.DispositivoInteligente;
 
-public class ImportadorDeJsonDispositivo {
+public class ImportadorDeJsonDispositivo extends ImportadorJson {
 
-	public List<Dispositivo> agregarDispositivos(lectorDeArchivos lector) throws IOException {
-
-		String dispositivosAux = "";
-
-		while (!lector.lecturaFinalizada()) {
-			dispositivosAux = dispositivosAux + lector.leerSiguiente();
-		}
-		lector.cerrar();
-
+	public List<Dispositivo> agregarDispositivos(String archivo) throws Exception {
+		this.setArchivoFuente(archivo);
 		Type tipoListaDispositivos = new TypeToken<List<DispositivoInteligente>>() {
 		}.getType();
 
-		Gson gson = new Gson();
-
-		return gson.fromJson(dispositivosAux, tipoListaDispositivos);
+		return (List<Dispositivo>) this.myFromJson(tipoListaDispositivos);
 	}
 
-	public List<Dispositivo> getDispositivos(String string) throws IOException {
-		String dispositivosInteligentes = "";
-		String dispositivosEstandar = "";
-		lectorDeArchivos lectorDeArchivos = new lectorDeArchivos("pruebaDispositivoInteligente.json");
-		lectorDeArchivos lectorDeArchivos2 = new lectorDeArchivos("pruebaDispositivoEstandar.json");
+	public List<Dispositivo> getDispositivos(String string) throws Exception {
 		List<Dispositivo> dispositivos = new ArrayList<Dispositivo>();
 
-		if (string == "todos") {
-
-			dispositivos.addAll(this.agregarDispositivos(lectorDeArchivos));
-			dispositivos.addAll(this.agregarDispositivos(lectorDeArchivos2));
+		if (string == "inteligente" || string == "todos") {
+			dispositivos.addAll(this.agregarDispositivos(System.getProperty("user.dir") + "/src/test/pruebaDispositivoInteligente.json"));
 		}
 
-		if (string == "inteligente") {
-			dispositivos.addAll(this.agregarDispositivos(lectorDeArchivos));
-		}
-
-		if (string == "estandar") {
-			dispositivos.addAll(this.agregarDispositivos(lectorDeArchivos2));
+		if (string == "estandar" || string == "todos") {
+			dispositivos.addAll(this.agregarDispositivos(System.getProperty("user.dir") + "/src/test/pruebaDispositivoEstandar.json"));
 		}
 
 		return dispositivos;

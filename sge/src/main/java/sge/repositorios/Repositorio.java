@@ -153,10 +153,14 @@ public class Repositorio {
 		emFactory.close();
 	}
 
-	public void persistir(IPersistible unPersistible) {
+	protected void persistir(IPersistible unPersistible) {
 		entityManager.getTransaction().begin();
 		entityManager.persist(unPersistible);
 		entityManager.getTransaction().commit();
+	}
+	
+	protected void detach(IPersistible unPersistible) {
+		entityManager.detach(unPersistible);
 	}
 
 	public void borrar(IPersistible unPersistible) {
@@ -351,7 +355,7 @@ public class Repositorio {
 		}		
 		admin.setUsername("admin");
 		admin.setPassword("1234");
-		this.persistir(admin);
+		this.persistirUsuario(admin);
 		
 		// Inicializamos las variables
 		Cliente cliente1 = new Cliente();
@@ -370,7 +374,7 @@ public class Repositorio {
 					"Dni", 11222333, 1543312311);
 			cliente1.setAhorroAutomatico(true);
 			cliente1.setUbicacion(new Ubicacion(10.0, 90.0));
-			this.persistir(cliente1);
+			this.clientes().persistir(cliente1);
 		}
 
 		// Cliente 2
@@ -380,7 +384,7 @@ public class Repositorio {
 					"Dni", 38888383, 1533333333);
 			cliente2.setAhorroAutomatico(false);
 			cliente2.setUbicacion(new Ubicacion(20.0, 95.0));
-			this.persistir(cliente2);
+			this.clientes().persistir(cliente2);
 		}
 
 		// Cliente 3
@@ -390,9 +394,12 @@ public class Repositorio {
 					"Dni", 38888384, 1533333334);
 			cliente3.setAhorroAutomatico(false);
 			cliente3.setUbicacion(new Ubicacion(20.0, 95.0));
-			this.persistir(cliente3);
+			this.clientes().persistir(cliente3);
 		}
 
+		Dispositivo air = DispositivoFactoryMethod.getDispositivoByCode("Aire2200");
+		air.setConsumoPorHora(10.0);
+		
 		// Agrego los dispositivos con sus respectivos dueños
 		// DISPOSITIVO 1 (Inteligente)
 		nombreDispo = "Aire acondicionado de 3500 frigorías";
@@ -404,7 +411,7 @@ public class Repositorio {
 			 RestriccionHorasFamilia rest_air = this.restriccionesHorasFamilia().findBy("codigo", "AIRCONDITIONER");
 			inteligente.setRestriccionHoras(rest_air);
 			cliente2.addDispositivo(inteligente);
-			this.persistir(cliente2);
+			this.clientes().persistir(cliente2);
 
 		}
 
@@ -416,7 +423,7 @@ public class Repositorio {
 			 RestriccionHorasFamilia rest_tv = this.restriccionesHorasFamilia().findBy("codigo", "TV");
 			 estandar.setRestriccionHoras(rest_tv);
 			cliente2.addDispositivo(estandar);
-			this.persistir(cliente2);
+			this.clientes().persistir(cliente2);
 		}
 
 		// DISPOSITIVO 3 (Inteligente)
@@ -429,7 +436,7 @@ public class Repositorio {
 			 RestriccionHorasFamilia rest_tv2 = this.restriccionesHorasFamilia().findBy("codigo", "TV");
 			 inteligente1.setRestriccionHoras(rest_tv2);
 			cliente1.addDispositivo(inteligente1);
-			this.persistir(cliente1);
+			this.clientes().persistir(cliente1);
 		}
 
 		// DISPOSITIVO 4 (Estandar)
@@ -441,7 +448,7 @@ public class Repositorio {
 			 RestriccionHorasFamilia rest_fan = this.restriccionesHorasFamilia().findBy("codigo", "FAN");
 			 estandar2.setRestriccionHoras(rest_fan);
 			cliente1.agrega_modulo_a_estandar(estandar2);
-			this.persistir(cliente1);
+			this.clientes().persistir(cliente1);
 		}
 
 		// DISPOSITIVO 5 (Inteligente)
@@ -454,9 +461,34 @@ public class Repositorio {
 			 RestriccionHorasFamilia rest_PC = this.restriccionesHorasFamilia().findBy("codigo", "COMPUTER");
 			 inteligente3.setRestriccionHoras(rest_PC);
 			cliente1.addDispositivo(inteligente3);
-			this.persistir(cliente1);
+			this.clientes().persistir(cliente1);
 		}
 
+		Dispositivo d1 = (Dispositivo) this.dispositivos().findBy("nombre",
+				"Convencional");
+		if (d1 == null) {
+			d1 = DispositivoFactoryMethod.getDispositivoByCode("Microondas");
+			cliente1.addDispositivo(d1);
+			d1.setConsumoPorHora(10.0);
+			this.clientes().persistir(cliente1);
+		}
+		
+		DispositivoInteligente d2 = (DispositivoInteligente) this.dispositivos().findBy("nombre",
+				"Con freezer");
+		if (d2 == null) {
+			d2 = (DispositivoInteligente) DispositivoFactoryMethod.getDispositivoByCode("RefriConFreezer");
+			cliente1.addDispositivo(d2);
+			d2.setConsumoPorHora(10.0);
+			d2.prender();
+			this.clientes().persistir(cliente1);
+		}
+	
+
+	}
+
+	public void persistirUsuario(UsuarioSGE u) {
+		this.persistir(u);
+		
 	}
 
 }

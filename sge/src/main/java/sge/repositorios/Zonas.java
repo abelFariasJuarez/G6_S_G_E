@@ -23,7 +23,7 @@ public class Zonas extends Repositorio {
 		super(entityManager);
 	}
 
-	public void guardarZona(ZonaGeografica zona) {
+	public void agregarZona(ZonaGeografica zona) {
 		zonas.add(zona);
 	}
 	
@@ -41,11 +41,14 @@ public class Zonas extends Repositorio {
 		ImportadorDeJsonZona json = new ImportadorDeJsonZona();
 		try {
 			this.zonas.addAll(json.getZona());
-		} catch (IOException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		this.persistir(this.zonas);
+	}
 
+	public void cargarGuardar() {
+		this.cargarZonas();
+		this.persistir(this.zonas);
 	}
 	
 	public void bajaTransformadores() {
@@ -64,11 +67,20 @@ public class Zonas extends Repositorio {
 	}
 
 	public void persistir(ZonaGeografica zona) {
-		ZonaGeografica zona1 = this.getPersistenteBy("id",zona.getId());
-		Ubicacion ubi = this.ubicaciones().getPersistente(zona.getCentro().getLongitud(),zona.getCentro().getLatitud());
-		zona.setCentro(ubi);
+		/*Double latitud = zona.getCentro().getLatitud();
+		Double longitud = zona.getCentro().getLongitud();
+		this.detach(zona.getCentro());
+		
+		Ubicacion ubi = this.ubicaciones().getPersistente(longitud,latitud);
+		
+		ZonaGeografica zona1 = this.getPersistenteBy("id",zona.getId());		
 		zona1.llenarAtributos(zona);
-		super.persistir(zona1);
+		zona1.setCentro(ubi);
+		super.clientes().persistir(zona1.getClientes());
+		super.transformadores().persistir(zona1.getTransformadores());
+		super.persistir(zona1);*/
+		super.persistir(zona.getCentro());
+		super.persistir(zona);
 	}
 
 	private ZonaGeografica getPersistenteBy(String campo, Object valor) {

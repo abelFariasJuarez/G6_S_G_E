@@ -36,12 +36,20 @@ public class AdministradorController {
 
 	@RequestMapping(value = "Administrador/cargadispo", method = RequestMethod.POST, params = "snd")
 	public String s(@RequestParam("file") MultipartFile file, ModelMap modelMap) {
-		modelMap.addAttribute("file", file);
+		List<DispositivoDisponible> disponibles = new ArrayList<DispositivoDisponible>();
 		Repositorio repo = new Repositorio();
 		repo.abrir();
+		
+	
+		modelMap.addAttribute("file", file);
+		
 		String content = new String(file.getOriginalFilename());
-		repo.dispositivosDisponibles().cargarDispositivos(content);
+		repo.dispositivosDisponibles().cargarDispositivos("pruebaCargaDisponible.json");// aca iria el content si le mando otro archivo
 		repo.dispositivosDisponibles().guardarDispositivosDisponibles();
+		
+		disponibles = repo.dispositivosDisponibles().all();
+		modelMap.addAttribute("dispositivosDisponibles", disponibles);
+		repo.cerrar();
 		return "cargadispo";
 	}
 

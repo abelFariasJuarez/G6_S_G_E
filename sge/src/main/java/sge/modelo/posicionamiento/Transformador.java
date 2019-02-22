@@ -7,6 +7,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -20,16 +21,16 @@ import sge.modelo.usuarios.Cliente;
 @NamedQuery(name = "buscarTodosTransformadores", query = "SELECT t FROM Transformador t")
 public class Transformador extends Persistible {
 
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL)
 	private List<Cliente> clientes = new ArrayList<Cliente>();
 	
-	@Column(name = "id")
+	@Column(name = "id", unique=true)
 	private Long id;
 	
 	@Column(name = "idZona")	
 	private Integer idZona;
 	
-	@OneToOne(cascade = CascadeType.ALL)
+	@ManyToOne//(cascade = CascadeType.ALL)
 	private Ubicacion ubicacion;
 
 	public Transformador() {

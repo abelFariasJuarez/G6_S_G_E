@@ -37,22 +37,34 @@ public class Clientes extends Repositorio {
 		ImportadorDeJSONCliente json = new ImportadorDeJSONCliente();
 		try {
 			this.clientesJson.addAll(json.getClientes());
-		} catch (IOException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		this.persistir(this.clientesJson);
 	}
+	
+	public void cargarGuardar() {
+		this.cargarClientesDesdeJson();
+		this.persistir(this.clientesJson);
+	}	
 
 	public void persistir(List<Cliente> clientesJson2) {
 		clientesJson2.forEach(c -> this.persistir(c));		
 	}
 	
-	public void persistir(Cliente c) {
-		Cliente c1 = this.getPersistenteBy("username",c.getUsername());
-		Ubicacion ubi = this.ubicaciones().getPersistente(c.getUbicacion().getLongitud(),c.getUbicacion().getLatitud());
-		c.setUbicacion(ubi);
-		c1.llenarAtributos(c);
-		super.persistir(c1);
+	public void persistir(Cliente c2) {
+
+		/*Double latitud = c2.getUbicacion().getLatitud();
+		Double longitud = c2.getUbicacion().getLongitud();
+		this.detach(c2.getUbicacion());
+		Ubicacion ubiC2 = this.ubicaciones().getPersistente(longitud,latitud);
+		
+		Cliente c1 = this.getPersistenteBy("username",c2.getUsername());		
+		c1.llenarAtributos(c2);
+		c1.setUbicacion(ubiC2);
+		
+		super.persistir(c1);*/
+		super.persistir(c2.getUbicacion());
+		super.persistir(c2);
 	}
 
 	private Cliente getPersistenteBy(String campo, Object valor) {

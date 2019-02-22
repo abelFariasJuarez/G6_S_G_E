@@ -1,17 +1,20 @@
 package sge.modelo.usuarios;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Convert;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 
 import com.google.gson.annotations.SerializedName;
 
+import sge.modelo.IPersistible;
 import sge.modelo.Persistible;
 import sge.repositorios.LocalDateTimeConverter;
 
@@ -20,7 +23,8 @@ import sge.repositorios.LocalDateTimeConverter;
 @Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(name = "userType")
 @Table(name = "UsuarioSGE")
-public abstract class UsuarioSGE extends Persistible {
+public abstract class UsuarioSGE implements Serializable, IPersistible {
+
 	@Column(name = "nombre")
 	private String nombre;
 	@Column(name = "apellido")
@@ -30,7 +34,8 @@ public abstract class UsuarioSGE extends Persistible {
 	@Column(name = "fechaIngreso")
 	private LocalDate fechaIngreso;
 	@SerializedName("username")
-	@Column(name = "username")
+	@Id
+	@Column(name = "username",unique = true)
 	private String username;
 	@Column(name = "password")
 	private String password;
@@ -112,4 +117,17 @@ public abstract class UsuarioSGE extends Persistible {
 		setUsername(u.getUsername());
 		setPassword(u.getPassword());
 	}
+	
+	@Override
+	public Long getOid() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setOid(Long id) {
+		// TODO Auto-generated method stub
+		
+	}
+	
 }

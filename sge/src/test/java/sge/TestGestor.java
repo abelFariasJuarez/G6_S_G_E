@@ -6,11 +6,13 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import sge.repositorios.Dispositivos;
+import sge.repositorios.Repositorio;
 import sge.modelo.dispositivo.Dispositivo;
 import sge.modelo.dispositivo.Inteligente;
 import sge.modelo.posicionamiento.Transformador;
@@ -26,9 +28,16 @@ public class TestGestor {
 	
 	@BeforeClass
 	public static void setUp() {
+		gestor.getRepositorio().abrir();
 		gestor.cargarClientesZonasTransformadores();
 		gestor.transformadoresAsignacionZona();
-		gestor.asignarClientesATransformadores();		
+		gestor.asignarClientesATransformadores();
+		gestor.getRepositorio().cerrar();
+	}
+
+	@Before
+	public void setUpBefore() throws Exception {
+		gestor.getRepositorio().abrir();
 	}
 	
 	@Test
@@ -53,5 +62,8 @@ public class TestGestor {
 		assertEquals(0,transfo.getClientes().size()); 		
 	}
 	
-
+	@After
+	public void tearDown() throws Exception {
+		gestor.getRepositorio().cerrar();
+	}
 }

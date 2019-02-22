@@ -2,6 +2,8 @@ package sge.modelo.dispositivo;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
@@ -10,6 +12,8 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import com.google.gson.annotations.SerializedName;
+
+import sge.modelo.regla.Regla;
 
 @Entity
 @DiscriminatorValue("E")
@@ -56,6 +60,10 @@ public class DispositivoEstandar extends Dispositivo {
 	
 	public String getNombreEstado() {
 		return "Indefinido";
+	}
+	
+	public List<Regla> getReglas() {
+		return new ArrayList<Regla>();
 	}
 
 }

@@ -10,31 +10,16 @@ import com.google.gson.reflect.TypeToken;
 
 import sge.modelo.posicionamiento.ZonaGeografica;
 
+public class ImportadorDeJsonZona extends ImportadorJson {
 
-public class ImportadorDeJsonZona {
-	
+	public List<ZonaGeografica> getZona() throws Exception {
 
-		public List<ZonaGeografica> getZona() throws IOException {
+		this.setArchivoFuente(System.getProperty("user.dir") + "/src/test/pruebazonas.json");
 
-			String zonasJSON = "";
-
-			lectorDeArchivos lectorDeArchivos = new lectorDeArchivos("pruebazonas.json");
-			while (!lectorDeArchivos.lecturaFinalizada()) {
-				zonasJSON = zonasJSON + lectorDeArchivos.leerSiguiente();
-			}
-			lectorDeArchivos.cerrar();
-
-			Gson gson = new  Gson();/*Builder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").create();*/
-			Type tipoListaZona = new TypeToken<List<ZonaGeografica>>() {
-			}.getType();
-			List<ZonaGeografica> zonas = gson.fromJson(zonasJSON, tipoListaZona );
-
-			return zonas;
-		}
-
-		
+		Type tipoListaZona = new TypeToken<List<ZonaGeografica>>() {
+		}.getType();
+		return (List<ZonaGeografica>) this.myFromJson(tipoListaZona);
 
 	}
 
-
-
+}
