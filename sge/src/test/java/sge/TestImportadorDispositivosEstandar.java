@@ -7,15 +7,14 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import sge.modelo.dispositivo.Dispositivo;
-import sge.modelo.dispositivo.DispositivoInteligente;
-import sge.repositorios.Dispositivos;
-import sge.repositorios.Repositorio;
+import sge.modelo.Repositorio;
+import sge.modelo.valueobjects.DispositivoInteligenteVO;
+import sge.modelo.valueobjects.DispositivoVO;
 
 public class TestImportadorDispositivosEstandar {
 
 	Dispositivos repoDispositivos = new Repositorio().dispositivos();
-	List<Dispositivo> dispositivos;
+	List<DispositivoVO> dispositivos;
 
 	@Before
 	public void setUp() {

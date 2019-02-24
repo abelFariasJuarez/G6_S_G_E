@@ -19,17 +19,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import sge.modelo.usuarios.Cliente;
-import sge.modelo.usuarios.UsuarioSGE;
-import sge.repositorios.Repositorio;
+import sge.modelo.Repositorio;
+import sge.modelo.valueobjects.ClienteVO;
+import sge.modelo.valueobjects.UsuarioVO;
 
 @Controller
-/* @RequestMapping("/Cliente/ConsumoPeriodo") */
+/* @RequestMapping("/ClienteVO/ConsumoPeriodo") */
 public class ConsumoPeriodoController {
 
 	/* @RequestMapping(method = RequestMethod.POST, params = "reporte") */
 
-	/*@RequestMapping(value = "/Cliente/ConsumoPeriodo", method = RequestMethod.POST)
+	/*@RequestMapping(value = "/ClienteVO/ConsumoPeriodo", method = RequestMethod.POST)
 	public String calcularConsumo(HttpServletRequest request, HttpServletResponse response,
 			@RequestParam("usuarioLogueado.username") String usuarioLogueado)
 			throws ServletException, IOException, ParseException {
@@ -52,7 +52,7 @@ public class ConsumoPeriodoController {
 		LocalDateTime hasta = convertToLocalDateTimeViaInstant(hastaDate);
 
 		modelAndView.addObject("desde",desde);
-		Cliente usu = (Cliente) repo.findBy(Cliente.class, "usuarioLogueado.username", user);
+		ClienteVO usu = (ClienteVO) repo.findBy(ClienteVO.class, "usuarioLogueado.username", user);
 		modelAndView.addObject("consumo", usu.consumoEnPeriodo(desde, hasta));
 		modelAndView.addObject("prueba", usu.getDispositivos());
 		modelAndView.addObject("reporte", usu.consumoEnPeriodo(desde, hasta));
@@ -60,7 +60,7 @@ public class ConsumoPeriodoController {
 		return "cosumoperiodo";
 	}*/
 
-	@RequestMapping(value = "/Cliente/ConsumoPeriodo/Consumo", method = RequestMethod.POST)
+	@RequestMapping(value = "/ClienteVO/ConsumoPeriodo/Consumo", method = RequestMethod.POST)
 	public String calcularConsumo(@RequestParam String datedesde, @RequestParam String datehasta, Model model) throws ParseException {
 		
 		if(!datedesde.equals("") && !datehasta.equals("")) {

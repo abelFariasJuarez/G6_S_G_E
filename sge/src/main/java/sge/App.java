@@ -8,26 +8,24 @@ import java.util.List;
 
 import com.google.gson.Gson;
 
+import sge.modelo.ActuadorAhorro;
+import sge.modelo.ActuadorApagar;
+import sge.modelo.ActuadorPrender;
+import sge.modelo.DriverBasico;
+import sge.modelo.RegistroReglas;
+import sge.modelo.RegistroSensores;
+import sge.modelo.Repositorio;
+import sge.modelo.Zonas;
 import sge.modelo.dispositivo.*;
-import sge.modelo.driver.ActuadorAhorro;
-import sge.modelo.driver.ActuadorApagar;
-import sge.modelo.driver.ActuadorPrender;
-import sge.modelo.driver.DriverBasico;
-import sge.modelo.posicionamiento.Transformador;
-import sge.modelo.posicionamiento.ZonaGeografica;
-import sge.modelo.regla.AccionPrender;
-import sge.modelo.regla.Condicion;
-import sge.modelo.regla.RegistroReglas;
-import sge.modelo.regla.RegistroSensores;
-import sge.modelo.regla.Regla;
-import sge.modelo.regla.Sensor;
 import sge.modelo.regla.comparador.*;
-import sge.modelo.usuarios.Cliente;
-import sge.modelo.usuarios.UsuarioSGE;
-import sge.repositorios.Clientes;
-import sge.repositorios.Repositorio;
-import sge.repositorios.Transformadores;
-import sge.repositorios.Zonas;
+import sge.modelo.valueobjects.AccionPrenderVO;
+import sge.modelo.valueobjects.ClienteVO;
+import sge.modelo.valueobjects.CondicionVO;
+import sge.modelo.valueobjects.ReglaVO;
+import sge.modelo.valueobjects.SensorVO;
+import sge.modelo.valueobjects.TransformadorVO;
+import sge.modelo.valueobjects.UsuarioVO;
+import sge.modelo.valueobjects.ZonaVO;
 import utils.ImportadorDeJsonDisponible;
 
 public class App {

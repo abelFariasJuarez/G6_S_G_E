@@ -12,12 +12,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-
-import sge.modelo.posicionamiento.Transformador;
-import sge.modelo.posicionamiento.Ubicacion;
-import sge.modelo.posicionamiento.ZonaGeografica;
-import sge.modelo.usuarios.UsuarioSGE;
-import sge.repositorios.Repositorio;
+import sge.modelo.Repositorio;
+import sge.modelo.valueobjects.TransformadorVO;
+import sge.modelo.valueobjects.UbicacionVO;
+import sge.modelo.valueobjects.UsuarioVO;
+import sge.modelo.valueobjects.ZonaVO;
 
 @Controller
 @RequestMapping("demo")
@@ -35,28 +34,28 @@ public class DemoController {
 	
 	/*@RequestMapping(value = "/mapa", method = { RequestMethod.GET, RequestMethod.POST })
 	public String mapa(Model model) {
-		/*Ubicacion ubi = new Ubicacion(-34.597316 ,-58.420175);
-		ZonaGeografica zona = new ZonaGeografica();
+		/*UbicacionVO ubi = new UbicacionVO(-34.597316 ,-58.420175);
+		ZonaVO zona = new ZonaVO();
 		zona.setCentro(ubi);
 		zona.setRadio((float) 500);
 		
-		Ubicacion ubi2 = new Ubicacion(-34.580000 ,-58.4000000);
-		ZonaGeografica zona2 = new ZonaGeografica();
+		UbicacionVO ubi2 = new UbicacionVO(-34.580000 ,-58.4000000);
+		ZonaVO zona2 = new ZonaVO();
 		zona2.setCentro(ubi2);
 		zona2.setRadio((float) 700);
 		
-	List<ZonaGeografica> zonas = new LinkedList<ZonaGeografica>();
+	List<ZonaVO> zonas = new LinkedList<ZonaVO>();
 	zonas.add(zona);
 	zonas.add(zona2);
 	model.addAttribute("zonas", zonas);
 		//////////////////////////////////////////
-		Ubicacion ubi3 = new Ubicacion(-34.597311 ,-58.420178);
-	Transformador trans= new Transformador();
-	Ubicacion ubi4 = new Ubicacion(-34.580000,-58.4000000);
-	Transformador trans2 = new Transformador();
+		UbicacionVO ubi3 = new UbicacionVO(-34.597311 ,-58.420178);
+	TransformadorVO trans= new TransformadorVO();
+	UbicacionVO ubi4 = new UbicacionVO(-34.580000,-58.4000000);
+	TransformadorVO trans2 = new TransformadorVO();
 		trans.setUbicacion(ubi3);
 		trans2.setUbicacion(ubi4);
-		List<Transformador> transs = new LinkedList<Transformador>();
+		List<TransformadorVO> transs = new LinkedList<TransformadorVO>();
 		transs.add(trans);
 		transs.add(trans2);
 		//model.addAttribute("transs", transs);
@@ -64,8 +63,8 @@ public class DemoController {
 		
 		Repositorio repo = new Repositorio();
 		repo.abrir();
-		List<ZonaGeografica> zonas=repo.zonas().all();
-		List<Transformador> transforms=repo.transformadores().all();
+		List<ZonaVO> zonas=repo.zonas().all();
+		List<TransformadorVO> transforms=repo.transformadores().all();
 		
 		model.addAttribute("transs", transforms);
 		model.addAttribute("zonas", zonas);
@@ -80,7 +79,7 @@ public class DemoController {
 
 			Repositorio repo = new Repositorio();
 			repo.abrir();
-			UsuarioSGE usu = repo.clientes().findBy("username", usuario);
+			UsuarioVO usu = repo.clientes().findBy("username", usuario);
 
 			ModelAndView model = new ModelAndView("home");
 			if (usu.getPassword().equalsIgnoreCase(contrasenia)) {

@@ -8,22 +8,23 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import sge.modelo.Repositorio;
 import sge.modelo.dispositivo.*;
-import sge.repositorios.Dispositivos;
-import sge.repositorios.Repositorio;
+import sge.modelo.valueobjects.DispositivoEstandarVO;
+import sge.modelo.valueobjects.DispositivoVO;
 
 public class TestDispositivos {
 
 	/* por que funciona solo con static? hay algo mal en los repo? */
 	static Dispositivos repoDispositivos = new Repositorio().dispositivos();
-	static List<Dispositivo> Dispositivos;
+	static List<DispositivoVO> Dispositivos;
 
 	@BeforeClass
 	public static void setUp() {
 		repoDispositivos.cargarDispositivos("todos");
 		Dispositivos = repoDispositivos.getDispositivos();
 
-		for (Dispositivo disp : Dispositivos) {
+		for (DispositivoVO disp : Dispositivos) {
 			disp.presentate();
 		}
 
@@ -37,7 +38,7 @@ public class TestDispositivos {
 
 	@Test
 	public void ConsumoDispositivoEstandar() {
-		DispositivoEstandar disestandar = new DispositivoEstandar("microondas", 12.0, "perez", false, 12.5);
+		DispositivoEstandarVO disestandar = new DispositivoEstandarVO("microondas", 12.0, "perez", false, 12.5);
 		LocalDateTime desde = LocalDateTime.parse("2018-05-18T20:30:00.775887700");
 		LocalDateTime hasta = LocalDateTime.parse("2018-06-18T20:30:00.775887700");
 		// seteo aproximado del cliente

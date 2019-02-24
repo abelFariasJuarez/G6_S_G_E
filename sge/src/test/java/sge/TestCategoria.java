@@ -4,7 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import sge.modelo.usuarios.Categoria;
+import sge.modelo.valueobjects.CategoriaVO;
 
 public class TestCategoria {
 
@@ -16,7 +16,7 @@ public class TestCategoria {
 		Float inf = 1.5f;
 		Float sup = 10f;
 
-		Categoria unaCate = new Categoria("R0", fijo, variable, inf, sup);
+		CategoriaVO unaCate = new CategoriaVO("R0", fijo, variable, inf, sup);
 		assertEquals(true, unaCate.estaEnTuRango(2f));
 	}
 
@@ -27,7 +27,7 @@ public class TestCategoria {
 		Float inf = 1.5f;
 		Float sup = 10f;
 
-		Categoria unaCate = new Categoria("R0", fijo, variable, inf, sup);
+		CategoriaVO unaCate = new CategoriaVO("R0", fijo, variable, inf, sup);
 		assertEquals(false, unaCate.estaEnTuRango(21f));
 	}
 	
@@ -38,7 +38,7 @@ public class TestCategoria {
 		Float inf = 0f;
 		Float sup = 1.5f;
 
-		Categoria unaCate = new Categoria("R0", fijo, variable, inf, sup);
+		CategoriaVO unaCate = new CategoriaVO("R0", fijo, variable, inf, sup);
 		assertEquals(true, unaCate.estaEnTuRango(1f));
 	}
 
@@ -49,7 +49,7 @@ public class TestCategoria {
 		Float inf = 0f;
 		Float sup = 1.5f;
 
-		Categoria unaCate = new Categoria("R0", fijo, variable, inf, sup);
+		CategoriaVO unaCate = new CategoriaVO("R0", fijo, variable, inf, sup);
 		assertEquals(false, unaCate.estaEnTuRango(2f));
 	}
 
@@ -60,7 +60,7 @@ public class TestCategoria {
 		Float inf = 20f;
 		Float sup =Float.MAX_VALUE;
 
-		Categoria unaCate = new Categoria("R0", fijo, variable, inf, sup);
+		CategoriaVO unaCate = new CategoriaVO("R0", fijo, variable, inf, sup);
 		assertEquals(true, unaCate.estaEnTuRango(21f));
 	}
 
@@ -71,7 +71,7 @@ public class TestCategoria {
 		Float inf = 20f;
 		Float sup = Float.MAX_VALUE;
 
-		Categoria unaCate = new Categoria("R0", fijo, variable, inf, sup);
+		CategoriaVO unaCate = new CategoriaVO("R0", fijo, variable, inf, sup);
 		assertEquals(false, unaCate.estaEnTuRango(2f));
 	}
 

@@ -12,25 +12,25 @@ import org.junit.Test;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.test.AbstractPersistenceTest;
 
-import sge.modelo.dispositivo.DispositivoConModulo;
-import sge.modelo.dispositivo.DispositivoEstandar;
-import sge.modelo.dispositivo.DispositivoInteligente;
-import sge.modelo.driver.DriverBasico;
-import sge.modelo.posicionamiento.Transformador;
-import sge.modelo.posicionamiento.Ubicacion;
-import sge.modelo.posicionamiento.ZonaGeografica;
-import sge.modelo.regla.AccionPrender;
-import sge.modelo.regla.Condicion;
-import sge.modelo.regla.Regla;
-import sge.modelo.regla.Sensor;
-import sge.modelo.regla.comparador.Comparador;
-import sge.modelo.regla.comparador.MayorIgual;
-import sge.modelo.usuarios.Administrador;
-import sge.modelo.usuarios.Categoria;
-import sge.modelo.usuarios.Cliente;
-import sge.repositorios.Repositorio;
-import sge.repositorios.Zonas;
-import sge.repositorios.RestriccionesHorasFamilia;
+import sge.modelo.DriverBasico;
+import sge.modelo.Repositorio;
+import sge.modelo.RestriccionesHorasFamilia;
+import sge.modelo.Zonas;
+import sge.modelo.valueobjects.AccionPrenderVO;
+import sge.modelo.valueobjects.AdministradorVO;
+import sge.modelo.valueobjects.CategoriaVO;
+import sge.modelo.valueobjects.ClienteVO;
+import sge.modelo.valueobjects.ComparadorVO;
+import sge.modelo.valueobjects.CondicionVO;
+import sge.modelo.valueobjects.DispositivoConModuloVO;
+import sge.modelo.valueobjects.DispositivoEstandarVO;
+import sge.modelo.valueobjects.DispositivoInteligenteVO;
+import sge.modelo.valueobjects.MayorIgualVO;
+import sge.modelo.valueobjects.ReglaVO;
+import sge.modelo.valueobjects.SensorVO;
+import sge.modelo.valueobjects.TransformadorVO;
+import sge.modelo.valueobjects.UbicacionVO;
+import sge.modelo.valueobjects.ZonaVO;
 
 public class TestJPAGeneral extends AbstractPersistenceTest implements WithGlobalEntityManager {
 
@@ -58,9 +58,9 @@ public class TestJPAGeneral extends AbstractPersistenceTest implements WithGloba
 	@Test
 	public void aPersistirInteligentes() {
 
-		DispositivoInteligente air2 = new DispositivoInteligente("heladera", 0.18, true, new DriverBasico());
-		DispositivoInteligente lava2 = new DispositivoInteligente("lavadora", 0.875, true, new DriverBasico());
-		DispositivoInteligente unVenti2 = new DispositivoInteligente("Ventilador", 0.06, true, new DriverBasico());
+		DispositivoInteligenteVO air2 = new DispositivoInteligenteVO("heladera", 0.18, true, new DriverBasico());
+		DispositivoInteligenteVO lava2 = new DispositivoInteligenteVO("lavadora", 0.875, true, new DriverBasico());
+		DispositivoInteligenteVO unVenti2 = new DispositivoInteligenteVO("Ventilador", 0.06, true, new DriverBasico());
 
 		air2.setRestriccionHoras(repositorio.restriccionesHorasFamilia().findBy("codigo", "AIRCONDITIONER"));
 		lava2.setRestriccionHoras(repositorio.restriccionesHorasFamilia().findBy("codigo", "WASHINGMACHINE"));
@@ -87,12 +87,12 @@ public class TestJPAGeneral extends AbstractPersistenceTest implements WithGloba
 
 	@Test
 	public void aPersistirConModulo() {
-		DispositivoEstandar comun = new DispositivoEstandar("microondas", 12.0, "pepe", false, 10.0);
-		Cliente unCliente = new Cliente("Pedro", "Ramon", "Plaza", LocalDate.of(1989, 11, 11), "pedro", "nikita", "dni",
+		DispositivoEstandarVO comun = new DispositivoEstandarVO("microondas", 12.0, "pepe", false, 10.0);
+		ClienteVO unCliente = new ClienteVO("Pedro", "Ramon", "Plaza", LocalDate.of(1989, 11, 11), "pedro", "nikita", "dni",
 				31032123, 115322011);
 		unCliente.addDispositivo(comun);
 
-		DispositivoConModulo conModulo = unCliente.agrega_modulo_a_estandar(comun);
+		DispositivoConModuloVO conModulo = unCliente.agrega_modulo_a_estandar(comun);
 		repositorio.dispositivos().persistir(conModulo);
 		repositorio.borrar(conModulo);
 	}
@@ -100,31 +100,31 @@ public class TestJPAGeneral extends AbstractPersistenceTest implements WithGloba
 	// Test reglas
 	@Test
 	public void aPersistirSensorComparadorCondicion() {
-		Sensor unS = null;
+		SensorVO unS = null;
 
-		unS = new Sensor();
+		unS = new SensorVO();
 		unS.setMedicion(0.0);
 		unS.setNombre("sensor1");
 		unS.setTiempoDeEspera(30.0);
 
 		repositorio.sensores().persistir(unS);
 
-		Comparador cmp = null;
-		cmp = new MayorIgual();
+		ComparadorVO cmp = null;
+		cmp = new MayorIgualVO();
 		repositorio.comparaciones().persistir(cmp);
 
-		Condicion cond = null;
-		cond = new Condicion();
+		CondicionVO cond = null;
+		cond = new CondicionVO();
 		cond.setComparador(cmp);
 		cond.setSensor(unS);
 		cond.setValorEsperado(34.0);
 		repositorio.condiciones().persistir(cond);
 
-		Regla unRegla = null;
-		unRegla = new Regla("regla 1");
+		ReglaVO unRegla = null;
+		unRegla = new ReglaVO("regla 1");
 		unRegla.agregarCondicion(cond);
 
-		AccionPrender prenderAire = new AccionPrender();
+		AccionPrenderVO prenderAire = new AccionPrenderVO();
 		unRegla.agregarAccion(prenderAire);
 
 		repositorio.reglas().persistir(unRegla);
@@ -142,9 +142,9 @@ public class TestJPAGeneral extends AbstractPersistenceTest implements WithGloba
 	@Test
 	public void aPersistirTransformadores() {
 
-		Transformador c = new Transformador();
+		TransformadorVO c = new TransformadorVO();
 		c.setIdZona(4);
-		c.setUbicacion(new Ubicacion(1.0, 1.0));
+		c.setUbicacion(new UbicacionVO(1.0, 1.0));
 		repositorio.transformadores().persistir(c);
 		repositorio.borrar(c);
 	}
@@ -152,13 +152,13 @@ public class TestJPAGeneral extends AbstractPersistenceTest implements WithGloba
 	// Test usuarios
 	@Test
 	public void aPersistirCliente() {
-		Cliente c = new Cliente("Carla", "Sanazki", "condarco 149", LocalDate.of(2017, 4, 7), "cazana", "menToL2017",
+		ClienteVO c = new ClienteVO("Carla", "Sanazki", "condarco 149", LocalDate.of(2017, 4, 7), "cazana", "menToL2017",
 				"Dni", 21321013, 1543312311);
 		c.setAhorroAutomatico(false);
-		Ubicacion u  = repositorio.ubicaciones().getPersistente(1.0, 1.0);
+		UbicacionVO u  = repositorio.ubicaciones().getPersistente(1.0, 1.0);
 		c.setUbicacion(u);
 
-		Categoria unaCate = new Categoria("R0", 13.f, 0.05f, 1.5f, 10f);
+		CategoriaVO unaCate = new CategoriaVO("R0", 13.f, 0.05f, 1.5f, 10f);
 		c.setCategoria(unaCate);
 		repositorio.clientes().persistir(c);
 		repositorio.borrar(c);
@@ -167,7 +167,7 @@ public class TestJPAGeneral extends AbstractPersistenceTest implements WithGloba
 	@Test
 	public void aPersistirAdministrador() {
 
-		Administrador admin = new Administrador("pedro", "saraska", "lavalle 148", LocalDate.of(2015, Month.APRIL, 19),
+		AdministradorVO admin = new AdministradorVO("pedro", "saraska", "lavalle 148", LocalDate.of(2015, Month.APRIL, 19),
 				"pepe", "pasti");
 		repositorio.persistirUsuario(admin);
 		repositorio.borrar(admin);
@@ -176,17 +176,17 @@ public class TestJPAGeneral extends AbstractPersistenceTest implements WithGloba
 	// Test zonas
 	@Test
 	public void aPersistirZonas() {
-		Transformador tran = new Transformador();
+		TransformadorVO tran = new TransformadorVO();
 		tran.setIdZona(6);
-		tran.setUbicacion(new Ubicacion(1.2, 2.0));
+		tran.setUbicacion(new UbicacionVO(1.2, 2.0));
 
-		Cliente c = new Cliente("Carl", "adfg", "condarco 125", LocalDate.of(2017, 4, 7), "faras", "mencoco125", "Dni",
+		ClienteVO c = new ClienteVO("Carl", "adfg", "condarco 125", LocalDate.of(2017, 4, 7), "faras", "mencoco125", "Dni",
 				21321013, 1543312311);
 		c.setAhorroAutomatico(false);
 		
 		c.setUbicacion(repositorio.ubicaciones().getPersistente(1.3 , 2.1));
 
-		ZonaGeografica zona = new ZonaGeografica();
+		ZonaVO zona = new ZonaVO();
 		zona.setCentro(repositorio.ubicaciones().getPersistente(1.2, 2.1));
 		zona.addCliente(c);
 		zona.setId(125);

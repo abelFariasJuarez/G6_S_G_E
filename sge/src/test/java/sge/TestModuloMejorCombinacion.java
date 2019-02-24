@@ -11,23 +11,28 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import sge.modelo.ActuadorAhorro;
+import sge.modelo.ActuadorApagar;
+import sge.modelo.ActuadorPrender;
+import sge.modelo.DispositivoFactoryMethod;
+import sge.modelo.DriverBasico;
+import sge.modelo.GestorCliente;
+import sge.modelo.Recomendacion;
+import sge.modelo.Repositorio;
+import sge.modelo.RestriccionesHorasFamilia;
 import sge.modelo.dispositivo.*;
-import sge.modelo.driver.ActuadorAhorro;
-import sge.modelo.driver.ActuadorApagar;
-import sge.modelo.driver.ActuadorPrender;
-import sge.modelo.driver.DriverBasico;
-import sge.modelo.hogareficiente.Recomendacion;
-import sge.modelo.usuarios.Cliente;
-import sge.modelo.usuarios.GestorCliente;
-import sge.repositorios.Repositorio;
-import sge.repositorios.RestriccionesHorasFamilia;
+import sge.modelo.valueobjects.ClienteVO;
+import sge.modelo.valueobjects.DispositivoEstandarVO;
+import sge.modelo.valueobjects.DispositivoInteligenteVO;
+import sge.modelo.valueobjects.DispositivoVO;
+import sge.modelo.valueobjects.RestriccionHorasFamiliaVO;
 
 public class TestModuloMejorCombinacion {
 
-	private RestriccionHorasFamilia rest_air;
-	private RestriccionHorasFamilia rest_lava;
-	private RestriccionHorasFamilia rest_venti;
-	private RestriccionHorasFamilia rest_pc;
+	private RestriccionHorasFamiliaVO rest_air;
+	private RestriccionHorasFamiliaVO rest_lava;
+	private RestriccionHorasFamiliaVO rest_venti;
+	private RestriccionHorasFamiliaVO rest_pc;
 
 	@Before
 	public void setUpGeneral() throws Exception {
@@ -45,7 +50,7 @@ public class TestModuloMejorCombinacion {
 	public void testSistemaCompatibleDeterminado() {
 		
 		DispositivoFactoryMethod.cargaBasica();
-		Cliente unCliente = new Cliente("Carlos", "Sanazki", "condarco 148", LocalDate.of(2017, 4, 7), "cazana",
+		ClienteVO unCliente = new ClienteVO("Carlos", "Sanazki", "condarco 148", LocalDate.of(2017, 4, 7), "cazana",
 				"menToL2017", "Dni", 21321012, 1543312310);
 
 		//DispositivoInteligente air = new DispositivoInteligente("heladera", 0.18, true, new DriverBasico());
@@ -54,13 +59,13 @@ public class TestModuloMejorCombinacion {
 		//air.setRestriccionHoras(rest_air);
 		//lava.setRestriccionHoras(rest_lava);
 		//unVenti.setRestriccionHoras(rest_venti);
-		Dispositivo air = DispositivoFactoryMethod.getDispositivoByCode("Aire2200");
+		DispositivoVO air = DispositivoFactoryMethod.getDispositivoByCode("Aire2200");
 		air.setConsumoPorHora(0.18);
 		
-		Dispositivo lava = DispositivoFactoryMethod.getDispositivoByCode("LavaSemiAuto");
+		DispositivoVO lava = DispositivoFactoryMethod.getDispositivoByCode("LavaSemiAuto");
 		lava.setConsumoPorHora(0.875);
 		
-		Dispositivo unVenti = DispositivoFactoryMethod.getDispositivoByCode("VentiladorPie");
+		DispositivoVO unVenti = DispositivoFactoryMethod.getDispositivoByCode("VentiladorPie");
 		unVenti.setConsumoPorHora(0.06);
 
 		unCliente.addDispositivo(air);
@@ -77,12 +82,12 @@ public class TestModuloMejorCombinacion {
 
 	@Test
 	public void canYouGetMejorCombinacionDispositivosFalse() {
-		Cliente unCliente = new Cliente("Carlos", "Sanazki", "condarco 148", LocalDate.of(2017, 4, 7), "cazana",
+		ClienteVO unCliente = new ClienteVO("Carlos", "Sanazki", "condarco 148", LocalDate.of(2017, 4, 7), "cazana",
 				"menToL2017", "Dni", 21321012, 1543312310);
 
-		DispositivoInteligente air = new DispositivoInteligente("heladera", 1000.0, true, new DriverBasico());
-		DispositivoEstandar pc = new DispositivoEstandar("Computadora", 2000.0, true);
-		DispositivoEstandar unVenti = new DispositivoEstandar("Ventilador", 3000.0, true);
+		DispositivoInteligenteVO air = new DispositivoInteligenteVO("heladera", 1000.0, true, new DriverBasico());
+		DispositivoEstandarVO pc = new DispositivoEstandarVO("Computadora", 2000.0, true);
+		DispositivoEstandarVO unVenti = new DispositivoEstandarVO("Ventilador", 3000.0, true);
 
 		air.setRestriccionHoras(rest_air);
 		pc.setRestriccionHoras(rest_pc);
@@ -98,13 +103,13 @@ public class TestModuloMejorCombinacion {
 	@Test
 	public void mejorarEficienciaHogares() {
 
-		Cliente cliente1 = new Cliente("Carlos", "Sanazki", "condarco 148", LocalDate.of(2017, 4, 7), "cazana",
+		ClienteVO cliente1 = new ClienteVO("Carlos", "Sanazki", "condarco 148", LocalDate.of(2017, 4, 7), "cazana",
 				"menToL2017", "Dni", 21321012, 1543312310);
 		cliente1.setAhorroAutomatico(true);
 
-		DispositivoInteligente air1 = new DispositivoInteligente("heladera", 0.18, true, new DriverBasico());
-		DispositivoInteligente lava1 = new DispositivoInteligente("lavadora", 0.875, true, new DriverBasico());
-		DispositivoInteligente unVenti1 = new DispositivoInteligente("Ventilador", 0.06, true, new DriverBasico());
+		DispositivoInteligenteVO air1 = new DispositivoInteligenteVO("heladera", 0.18, true, new DriverBasico());
+		DispositivoInteligenteVO lava1 = new DispositivoInteligenteVO("lavadora", 0.875, true, new DriverBasico());
+		DispositivoInteligenteVO unVenti1 = new DispositivoInteligenteVO("Ventilador", 0.06, true, new DriverBasico());
 
 		air1.setRestriccionHoras(rest_air);
 		lava1.setRestriccionHoras(rest_lava);
@@ -117,13 +122,13 @@ public class TestModuloMejorCombinacion {
 		lava1.prender();
 		unVenti1.prender();
 
-		Cliente cliente2 = new Cliente("Carla", "Sanazki", "condarco 149", LocalDate.of(2017, 4, 7), "cazana",
+		ClienteVO cliente2 = new ClienteVO("Carla", "Sanazki", "condarco 149", LocalDate.of(2017, 4, 7), "cazana",
 				"menToL2017", "Dni", 21321013, 1543312311);
 		cliente2.setAhorroAutomatico(true);
 
-		DispositivoInteligente air2 = new DispositivoInteligente("heladera", 0.18, true, new DriverBasico());
-		DispositivoInteligente lava2 = new DispositivoInteligente("lavadora", 0.875, true, new DriverBasico());
-		DispositivoInteligente unVenti2 = new DispositivoInteligente("Ventilador", 0.06, true, new DriverBasico());
+		DispositivoInteligenteVO air2 = new DispositivoInteligenteVO("heladera", 0.18, true, new DriverBasico());
+		DispositivoInteligenteVO lava2 = new DispositivoInteligenteVO("lavadora", 0.875, true, new DriverBasico());
+		DispositivoInteligenteVO unVenti2 = new DispositivoInteligenteVO("Ventilador", 0.06, true, new DriverBasico());
 
 		air2.setRestriccionHoras(rest_air);
 		lava2.setRestriccionHoras(rest_lava);
@@ -144,12 +149,12 @@ public class TestModuloMejorCombinacion {
 
 		GestorCliente unGestor = new GestorCliente();
 
-		List<Cliente> clientes = new ArrayList<Cliente>();
-		clientes.add(cliente1);
-		clientes.add(cliente2);
+		List<ClienteVO> clienteVOs = new ArrayList<ClienteVO>();
+		clienteVOs.add(cliente1);
+		clienteVOs.add(cliente2);
 
 		assertTrue(lava2.estoyON());
-		unGestor.mejorarEficienciaHogaresA(clientes);
+		unGestor.mejorarEficienciaHogaresA(clienteVOs);
 
 		assertTrue(lava1.estoyON());
 		assertTrue(lava2.estoyOFF());
@@ -158,13 +163,13 @@ public class TestModuloMejorCombinacion {
 	@Test
 	public void mejorarEficienciaHogaresNoActivoNoHacer() {
 
-		Cliente cliente2 = new Cliente("Carla", "Sanazki", "condarco 149", LocalDate.of(2017, 4, 7), "cazana",
+		ClienteVO cliente2 = new ClienteVO("Carla", "Sanazki", "condarco 149", LocalDate.of(2017, 4, 7), "cazana",
 				"menToL2017", "Dni", 21321013, 1543312311);
 		cliente2.setAhorroAutomatico(false);
 
-		DispositivoInteligente air2 = new DispositivoInteligente("heladera", 0.18, true, new DriverBasico());
-		DispositivoInteligente lava2 = new DispositivoInteligente("lavadora", 0.875, true, new DriverBasico());
-		DispositivoInteligente unVenti2 = new DispositivoInteligente("Ventilador", 0.06, true, new DriverBasico());
+		DispositivoInteligenteVO air2 = new DispositivoInteligenteVO("heladera", 0.18, true, new DriverBasico());
+		DispositivoInteligenteVO lava2 = new DispositivoInteligenteVO("lavadora", 0.875, true, new DriverBasico());
+		DispositivoInteligenteVO unVenti2 = new DispositivoInteligenteVO("Ventilador", 0.06, true, new DriverBasico());
 
 		air2.setRestriccionHoras(rest_air);
 		lava2.setRestriccionHoras(rest_lava);
@@ -185,9 +190,9 @@ public class TestModuloMejorCombinacion {
 
 		GestorCliente unGestor = new GestorCliente();
 
-		List<Cliente> clientes = new ArrayList<Cliente>();
-		clientes.add(cliente2);
-		unGestor.mejorarEficienciaHogaresA(clientes);
+		List<ClienteVO> clienteVOs = new ArrayList<ClienteVO>();
+		clienteVOs.add(cliente2);
+		unGestor.mejorarEficienciaHogaresA(clienteVOs);
 
 		assertTrue(lava2.estoyON());
 	}

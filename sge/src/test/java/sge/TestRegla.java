@@ -7,26 +7,35 @@ import java.util.List;
 
 import org.junit.Test;
 
-import sge.modelo.dispositivo.DispositivoInteligente;
-import sge.modelo.driver.ActuadorAhorro;
-import sge.modelo.driver.ActuadorApagar;
-import sge.modelo.driver.ActuadorPrender;
-import sge.modelo.driver.DriverBasico;
+import sge.modelo.ActuadorAhorro;
+import sge.modelo.ActuadorApagar;
+import sge.modelo.ActuadorPrender;
+import sge.modelo.DriverBasico;
+import sge.modelo.RegistroReglas;
+import sge.modelo.RegistroSensores;
 import sge.modelo.regla.*;
 import sge.modelo.regla.comparador.*;
+import sge.modelo.valueobjects.AccionApagarVO;
+import sge.modelo.valueobjects.AccionPrenderVO;
+import sge.modelo.valueobjects.CondicionVO;
+import sge.modelo.valueobjects.DispositivoInteligenteVO;
+import sge.modelo.valueobjects.IgualVO;
+import sge.modelo.valueobjects.MenorVO;
+import sge.modelo.valueobjects.ReglaVO;
+import sge.modelo.valueobjects.SensorVO;
 
 public class TestRegla {
 
-	Regla unRegla = new Regla("regla 1");
+	ReglaVO unRegla = new ReglaVO("regla 1");
 
 	@Test
 	public void cumpleCondicionesPrender() {
 		
-		DispositivoInteligente unAire = new DispositivoInteligente("AireAcondicionado", 2.3, "perez", false,false,new DriverBasico());
+		DispositivoInteligenteVO unAire = new DispositivoInteligenteVO("AireAcondicionado", 2.3, "perez", false,false,new DriverBasico());
 		// el constructor ya me da un dispo en estado apagado
 
-		Sensor temperatura = new Sensor(40.0, 10000.0, "temperatura");
-		Sensor humedad = new Sensor(100.0, 5000.0, "humedad");
+		SensorVO temperatura = new SensorVO(40.0, 10000.0, "temperatura");
+		SensorVO humedad = new SensorVO(100.0, 5000.0, "humedad");
 		
 		unAire.agregarSensor(temperatura);
 		unAire.agregarSensor(humedad);
@@ -34,16 +43,16 @@ public class TestRegla {
 		//Condicion condTemp = new Condicion(temperatura, new Mayor(), 32.0);
 		//Condicion condHume = new Condicion(humedad, new Mayor(), 90.0);
 
-		Condicion condTemp = new Condicion(temperatura, new Menor(), 32.0);
-		Condicion condHume = new Condicion(humedad, new Menor(), 90.0);
+		CondicionVO condTemp = new CondicionVO(temperatura, new MenorVO(), 32.0);
+		CondicionVO condHume = new CondicionVO(humedad, new MenorVO(), 90.0);
 
 		unRegla.agregarCondicion(condTemp);
 		unRegla.agregarCondicion(condHume);
 
-		AccionPrender prenderAire = new AccionPrender();
+		AccionPrenderVO prenderAire = new AccionPrenderVO();
 		unRegla.agregarAccion(prenderAire);
 		
-		List <Regla> reglas=new ArrayList<Regla>();
+		List <ReglaVO> reglas=new ArrayList<ReglaVO>();
 		reglas.add(unRegla);
 		
 		RegistroSensores.getInstance().registrarSensor(humedad, unAire);
@@ -60,18 +69,18 @@ public class TestRegla {
 	@Test
 	public void noCumpleCondicionesNoApagar() {
 		
-		DispositivoInteligente unAire = new DispositivoInteligente("AireAcondicionado", 2.8, "perez",false, true,new DriverBasico());
+		DispositivoInteligenteVO unAire = new DispositivoInteligenteVO("AireAcondicionado", 2.8, "perez",false, true,new DriverBasico());
 
-		Sensor temperatura2 = new Sensor(18, 2000.0, "temperatura2");
-		Condicion condTemp = new Condicion(temperatura2, new Igual(), 20.0);
+		SensorVO temperatura2 = new SensorVO(18, 2000.0, "temperatura2");
+		CondicionVO condTemp = new CondicionVO(temperatura2, new IgualVO(), 20.0);
 
 		unRegla.agregarCondicion(condTemp);
 
-		AccionApagar ApagarAire = new AccionApagar();
+		AccionApagarVO ApagarAire = new AccionApagarVO();
 		unRegla.agregarAccion(ApagarAire);
 
 		RegistroSensores.getInstance().registrarSensor(temperatura2, unAire);
-		List <Regla> reglas=new ArrayList<Regla>();
+		List <ReglaVO> reglas=new ArrayList<ReglaVO>();
 		reglas.add(unRegla);
 		RegistroReglas.getInstance().registrarReglas(unAire, reglas);
 		temperatura2.setMedicion(10);

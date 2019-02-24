@@ -11,15 +11,14 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import sge.repositorios.Dispositivos;
-import sge.repositorios.Repositorio;
-import sge.modelo.dispositivo.Dispositivo;
-import sge.modelo.dispositivo.Inteligente;
-import sge.modelo.posicionamiento.Transformador;
-import sge.modelo.posicionamiento.Ubicacion;
-import sge.modelo.posicionamiento.ZonaGeografica;
-import sge.modelo.usuarios.Cliente;
-import sge.modelo.usuarios.GestorCliente;
+import sge.modelo.GestorCliente;
+import sge.modelo.Repositorio;
+import sge.modelo.valueobjects.ClienteVO;
+import sge.modelo.valueobjects.DispositivoVO;
+import sge.modelo.valueobjects.InteligenteVO;
+import sge.modelo.valueobjects.TransformadorVO;
+import sge.modelo.valueobjects.UbicacionVO;
+import sge.modelo.valueobjects.ZonaVO;
 
 public class TestGestor {
 
@@ -42,23 +41,23 @@ public class TestGestor {
 	
 	@Test
 	public void clientePerteneceAZona() {
-		ZonaGeografica zona=gestor.getRepoZonas().getZonas().get(0);
-		Cliente cliente=gestor.getRepoClientes().getClientesJson().get(0);
-		assertEquals(true,zona.pertenece(cliente)); 
+		ZonaVO zona=gestor.getRepoZonas().getZonas().get(0);
+		ClienteVO clienteVO=gestor.getRepoClientes().getClientesJson().get(0);
+		assertEquals(true,zona.pertenece(clienteVO)); 
 		
 	}
 	
 	@Test
 	public void esClienteDeAlgunaZona() {
-		List<ZonaGeografica> zonas=gestor.getRepoZonas().getZonas();
-		Cliente cliente=gestor.getRepoClientes().getClientesJson().get(2);
-		assertEquals(true,zonas.stream().anyMatch(zona -> zona.pertenece(cliente))); 
+		List<ZonaVO> zonas=gestor.getRepoZonas().getZonas();
+		ClienteVO clienteVO=gestor.getRepoClientes().getClientesJson().get(2);
+		assertEquals(true,zonas.stream().anyMatch(zona -> zona.pertenece(clienteVO))); 
 		
 	}
 	
 	@Test
 	public void ClientePerteneceATransformador() {
-		Transformador transfo=gestor.getRepoTransformadores().getTransformadores().get(3);
+		TransformadorVO transfo=gestor.getRepoTransformadores().getTransformadores().get(3);
 		assertEquals(0,transfo.getClientes().size()); 		
 	}
 	

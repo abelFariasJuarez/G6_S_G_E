@@ -6,18 +6,19 @@ import java.time.LocalDateTime;
 
 import org.junit.Test;
 
+import sge.modelo.ActuadorAhorro;
+import sge.modelo.ActuadorApagar;
+import sge.modelo.ActuadorPrender;
+import sge.modelo.DriverBasico;
 import sge.modelo.dispositivo.*;
-import sge.modelo.driver.ActuadorAhorro;
-import sge.modelo.driver.ActuadorApagar;
-import sge.modelo.driver.ActuadorPrender;
-import sge.modelo.driver.DriverBasico;
+import sge.modelo.valueobjects.DispositivoInteligenteVO;
 
 public class TestDispositivoInteligente {
 
 	@Test
 	public void unaHoraPrendido() {
 		
-		DispositivoInteligente unDispo = new DispositivoInteligente("heladera", 2.3,"pepe",false, true,new DriverBasico());
+		DispositivoInteligenteVO unDispo = new DispositivoInteligenteVO("heladera", 2.3,"pepe",false, true,new DriverBasico());
 		// el constructor ya me da un dispo en estado prendido
 		unDispo.apagar();
 
@@ -34,7 +35,7 @@ public class TestDispositivoInteligente {
 	@Test
 	public void mediaHoraApagadoMediaHoraPrendido() {
 		
-		DispositivoInteligente unDispo = new DispositivoInteligente("heladera", 2.3,"perez",false, false,new DriverBasico());
+		DispositivoInteligenteVO unDispo = new DispositivoInteligenteVO("heladera", 2.3,"perez",false, false,new DriverBasico());
 		// el constructor ya me da un dispo en estado apagado
 		unDispo.prender();
 
@@ -55,7 +56,7 @@ public class TestDispositivoInteligente {
 	@Test
 	public void mediaHoraAhorroEnergiaMediaHoraPrendido() {
 
-		DispositivoInteligente unDispo = new DispositivoInteligente("heladera", 2.3,"pepe",false, false,new DriverBasico());
+		DispositivoInteligenteVO unDispo = new DispositivoInteligenteVO("heladera", 2.3,"pepe",false, false,new DriverBasico());
 		// el constructor ya me da un dispo en estado apagado
 		unDispo.ahorroDeEnergia();
 		unDispo.prender();
@@ -77,7 +78,7 @@ public class TestDispositivoInteligente {
 
 	@Test
 	public void prendidoPeroNoUltimaHora() {
-		DispositivoInteligente unDispo = new DispositivoInteligente("heladera", 2.3,"pepe",false, false,new DriverBasico());
+		DispositivoInteligenteVO unDispo = new DispositivoInteligenteVO("heladera", 2.3,"pepe",false, false,new DriverBasico());
 		// el constructor ya me da un dispo en estado prendido
 
 

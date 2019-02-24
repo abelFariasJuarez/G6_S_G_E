@@ -6,11 +6,11 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import sge.modelo.dispositivo.Dispositivo;
-import sge.modelo.dispositivo.DispositivoDisponible;
-import sge.modelo.dispositivo.DispositivoFactoryMethod;
-import sge.modelo.usuarios.Cliente;
-import sge.repositorios.Repositorio;
+import sge.modelo.DispositivoFactoryMethod;
+import sge.modelo.Repositorio;
+import sge.modelo.valueobjects.ClienteVO;
+import sge.modelo.valueobjects.DispositivoDisponibleVO;
+import sge.modelo.valueobjects.DispositivoVO;
 
 public class TestRepositorio {
 	private Repositorio repositorio;
@@ -27,11 +27,11 @@ public class TestRepositorio {
 	
 	@Test
 	public void metodoAllOf() {
-		 List<DispositivoDisponible> disponibles = repositorio.dispositivosDisponibles().all();
+		 List<DispositivoDisponibleVO> disponibles = repositorio.dispositivosDisponibles().all();
 		 
-		 List<Cliente> clientes = repositorio.clientes().all();
+		 List<ClienteVO> clienteVOs = repositorio.clientes().all();
 
-		 List<Dispositivo> dispositivos = repositorio.dispositivos().all();
+		 List<DispositivoVO> dispositivos = repositorio.dispositivos().all();
 	}
 	@After
 	public void tearDown() throws Exception {

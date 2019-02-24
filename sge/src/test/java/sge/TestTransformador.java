@@ -9,12 +9,10 @@ import java.util.List;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import sge.modelo.posicionamiento.Transformador;
-import sge.modelo.posicionamiento.ZonaGeografica;
-import sge.modelo.usuarios.Cliente;
-import sge.repositorios.Clientes;
-import sge.repositorios.Repositorio;
-import sge.repositorios.Transformadores;
+import sge.modelo.Repositorio;
+import sge.modelo.valueobjects.ClienteVO;
+import sge.modelo.valueobjects.TransformadorVO;
+import sge.modelo.valueobjects.ZonaVO;
 
 public class TestTransformador {
 	static Repositorio repositorio = new Repositorio();
@@ -30,20 +28,20 @@ public class TestTransformador {
 
 	@Test
 	public void DistanciaClienteACualquierTransformador() {
-		Transformador transfo = repoT.getTransformadores().get(0);
+		TransformadorVO transfo = repoT.getTransformadores().get(0);
 
-		Cliente cliente = repoC.getClientesJson().get(1);
-		assertEquals(584.3492609553148, transfo.Distancia(cliente), 0);
+		ClienteVO clienteVO = repoC.getClientesJson().get(1);
+		assertEquals(584.3492609553148, transfo.Distancia(clienteVO), 0);
 	}
 
 	@Test
 	public void DistanciaClienteATransformadorMasCercano() {
-		List<Transformador> transformadores = repoT.getTransformadores();
-		Cliente cliente = repoC.getClientesJson().get(1);
-		Transformador transfoCercano = Collections.min(transformadores,
-				Comparator.comparing(t -> t.Distancia(cliente)));
+		List<TransformadorVO> transformadores = repoT.getTransformadores();
+		ClienteVO clienteVO = repoC.getClientesJson().get(1);
+		TransformadorVO transfoCercano = Collections.min(transformadores,
+				Comparator.comparing(t -> t.Distancia(clienteVO)));
 
-		assertEquals(584.3373307553782, transfoCercano.Distancia(cliente), 0);
+		assertEquals(584.3373307553782, transfoCercano.Distancia(clienteVO), 0);
 
 	}
 

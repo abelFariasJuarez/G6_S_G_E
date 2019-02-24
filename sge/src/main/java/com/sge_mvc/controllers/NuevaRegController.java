@@ -16,14 +16,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import sge.modelo.dispositivo.Dispositivo;
-import sge.modelo.dispositivo.DispositivoDisponible;
-import sge.modelo.dispositivo.DispositivoFactoryMethod;
-import sge.modelo.usuarios.Cliente;
-import sge.modelo.usuarios.UsuarioSGE;
-import sge.repositorios.Clientes;
-import sge.repositorios.Dispositivos;
-import sge.repositorios.Repositorio;
+import sge.modelo.DispositivoFactoryMethod;
+import sge.modelo.Repositorio;
+import sge.modelo.valueobjects.ClienteVO;
+import sge.modelo.valueobjects.DispositivoDisponibleVO;
+import sge.modelo.valueobjects.DispositivoVO;
+import sge.modelo.valueobjects.UsuarioVO;
 
 
 @Controller

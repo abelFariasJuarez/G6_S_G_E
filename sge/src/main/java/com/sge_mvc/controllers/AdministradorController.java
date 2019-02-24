@@ -17,26 +17,26 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import sge.modelo.dispositivo.DispositivoDisponible;
-import sge.modelo.usuarios.Cliente;
-import sge.repositorios.Repositorio;
+import sge.modelo.Repositorio;
+import sge.modelo.valueobjects.ClienteVO;
+import sge.modelo.valueobjects.DispositivoDisponibleVO;
 
 @Controller
 public class AdministradorController {
 
-	@RequestMapping( value = "/Administrador",method = RequestMethod.POST)
+	@RequestMapping( value = "/AdministradorVO",method = RequestMethod.POST)
 	public String x() {
-		return "Administrador";
+		return "AdministradorVO";
 	}
 	
-	@RequestMapping( value = "/Administrador",method = RequestMethod.GET)
+	@RequestMapping( value = "/AdministradorVO",method = RequestMethod.GET)
 	public String T() {
-		return "Administrador";
+		return "AdministradorVO";
 	}
 
-	@RequestMapping(value = "Administrador/cargadispo", method = RequestMethod.POST, params = "snd")
+	@RequestMapping(value = "AdministradorVO/cargadispo", method = RequestMethod.POST, params = "snd")
 	public String s(@RequestParam("file") MultipartFile file, ModelMap modelMap) {
-		List<DispositivoDisponible> disponibles = new ArrayList<DispositivoDisponible>();
+		List<DispositivoDisponibleVO> disponibles = new ArrayList<DispositivoDisponibleVO>();
 		Repositorio repo = new Repositorio();
 		repo.abrir();
 		
@@ -61,9 +61,9 @@ public class AdministradorController {
 	*/
 
 	
-	@RequestMapping(value = "Administrador/cargadispo", method = RequestMethod.POST)
+	@RequestMapping(value = "AdministradorVO/cargadispo", method = RequestMethod.POST)
 	public String cargadispo(Model model) {
-		List<DispositivoDisponible> disponibles = new ArrayList<DispositivoDisponible>();
+		List<DispositivoDisponibleVO> disponibles = new ArrayList<DispositivoDisponibleVO>();
 		Repositorio repo = new Repositorio();
 		repo.abrir();
 		disponibles = repo.dispositivosDisponibles().all();
@@ -74,14 +74,14 @@ public class AdministradorController {
 
 	}
 	
-	@RequestMapping(value = "Administrador/consumo", method = RequestMethod.POST)
+	@RequestMapping(value = "AdministradorVO/consumo", method = RequestMethod.POST)
 	public ModelAndView consumo() {
-		List<Cliente> clientes = new ArrayList<Cliente>();
+		List<ClienteVO> clienteVOs = new ArrayList<ClienteVO>();
 		Repositorio repo = new Repositorio();
 		repo.abrir();
-		clientes = repo.clientes().all();
+		clienteVOs = repo.clientes().all();
 		ModelAndView modelAndView = new ModelAndView("consumo");
-		modelAndView.addObject("clientes", clientes);
+		modelAndView.addObject("clienteVOs", clienteVOs);
 		repo.cerrar();
 		return modelAndView;
 

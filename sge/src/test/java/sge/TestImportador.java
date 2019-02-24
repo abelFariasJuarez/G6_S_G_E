@@ -4,15 +4,12 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import sge.repositorios.Clientes;
-import sge.repositorios.Repositorio;
-import sge.repositorios.Dispositivos;
-import sge.repositorios.Transformadores;
-import sge.repositorios.Zonas;
-import sge.modelo.dispositivo.Dispositivo;
-import sge.modelo.posicionamiento.Transformador;
-import sge.modelo.posicionamiento.ZonaGeografica;
-import sge.modelo.usuarios.Cliente;
+import sge.modelo.Repositorio;
+import sge.modelo.Zonas;
+import sge.modelo.valueobjects.ClienteVO;
+import sge.modelo.valueobjects.DispositivoVO;
+import sge.modelo.valueobjects.TransformadorVO;
+import sge.modelo.valueobjects.ZonaVO;
 
 public class TestImportador {
 
@@ -23,7 +20,7 @@ public class TestImportador {
 
 		assertEquals(24, repoDispositivos.getDispositivos().size());
 
-		for (Dispositivo disp : repoDispositivos.getDispositivos()) {
+		for (DispositivoVO disp : repoDispositivos.getDispositivos()) {
 			disp.presentate();
 			System.out.println(disp.getClass());
 		}
@@ -36,7 +33,7 @@ public class TestImportador {
 
 		assertEquals(3, repoZonas.getZonas().size());
 
-		for (ZonaGeografica zona : repoZonas.getZonas()) {
+		for (ZonaVO zona : repoZonas.getZonas()) {
 
 			System.out.println(zona.getNombre());
 		}		
@@ -48,7 +45,7 @@ public class TestImportador {
 		repoTransfo.cargarTransformadores();
 		assertEquals(10, repoTransfo.getTransformadores().size());
 
-		for (Transformador transfo : repoTransfo.getTransformadores()) {
+		for (TransformadorVO transfo : repoTransfo.getTransformadores()) {
 
 			System.out.println(transfo.getId());
 		}
@@ -60,7 +57,7 @@ public class TestImportador {
 		repoClientes.cargarClientesDesdeJson();
 		assertEquals(4, repoClientes.getClientesJson().size());
 
-		for (Cliente cli : repoClientes.getClientesJson()) {
+		for (ClienteVO cli : repoClientes.getClientesJson()) {
 
 			cli.presentate();
 		}

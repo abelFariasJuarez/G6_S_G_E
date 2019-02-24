@@ -10,19 +10,19 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import sge.modelo.dispositivo.DispositivoInteligente;
-import sge.modelo.driver.DriverBasico;
-import sge.modelo.posicionamiento.Transformador;
-import sge.modelo.posicionamiento.Ubicacion;
-import sge.modelo.posicionamiento.ZonaGeografica;
-import sge.modelo.regla.AccionPrender;
-import sge.modelo.regla.Condicion;
-import sge.modelo.regla.Regla;
-import sge.modelo.regla.Sensor;
-import sge.modelo.regla.comparador.Comparador;
-import sge.modelo.regla.comparador.MayorIgual;
-import sge.modelo.usuarios.Cliente;
-import sge.repositorios.Repositorio;
+import sge.modelo.DriverBasico;
+import sge.modelo.Repositorio;
+import sge.modelo.valueobjects.AccionPrenderVO;
+import sge.modelo.valueobjects.ClienteVO;
+import sge.modelo.valueobjects.ComparadorVO;
+import sge.modelo.valueobjects.CondicionVO;
+import sge.modelo.valueobjects.DispositivoInteligenteVO;
+import sge.modelo.valueobjects.MayorIgualVO;
+import sge.modelo.valueobjects.ReglaVO;
+import sge.modelo.valueobjects.SensorVO;
+import sge.modelo.valueobjects.TransformadorVO;
+import sge.modelo.valueobjects.UbicacionVO;
+import sge.modelo.valueobjects.ZonaVO;
 
 public class TestEntrega3 {
 	private Repositorio repo;
@@ -39,12 +39,12 @@ public class TestEntrega3 {
 
 		// Caso de prueba 1: Crear 1 usuario nuevo.
 		this.crearUsuarioDelCasoDePrueba();		
-		//Cliente clienteOriginal = repo.clientes().findBy("username", "fperez");		
+		//ClienteVO clienteOriginal = repo.clientes().findBy("username", "fperez");		
 		// Persistirlo.
 		//repo.clientes().persistir(clienteOriginal);
 
 		// Recuperarlo,
-		Cliente clienteRecuperado = repo.clientes().findBy("username", "fperez");
+		ClienteVO clienteRecuperado = repo.clientes().findBy("username", "fperez");
 
 		// modificar la geolocalización
 		clienteRecuperado.getUbicacion().setLongitud(130.0);
@@ -53,7 +53,7 @@ public class TestEntrega3 {
 		repo.clientes().persistir(clienteRecuperado);
 
 		// Recuperarlo
-		Cliente clienteRecuperado2 = repo.clientes().findBy("username", "fperez");
+		ClienteVO clienteRecuperado2 = repo.clientes().findBy("username", "fperez");
 
 		// y evaluar que el cambio se haya realizado.
 		assertEquals(clienteRecuperado2.getUbicacion().getLongitud(), 130.0, 0);
@@ -65,7 +65,7 @@ public class TestEntrega3 {
 		this.crearDispositivoDelCasoDePrueba();
 
 		// Recuperar un dispositivo.
-		DispositivoInteligente unDispo = (DispositivoInteligente) repo.dispositivos().findBy("nombre",
+		DispositivoInteligenteVO unDispo = (DispositivoInteligenteVO) repo.dispositivos().findBy("nombre",
 				"DispoCasoPrueba");
 
 		// Mostrar por consola todos los intervalos que estuvo
@@ -80,7 +80,7 @@ public class TestEntrega3 {
 		repo.dispositivos().persistir(unDispo);
 
 		// Recuperarlo
-		DispositivoInteligente unDispoRecuperado = (DispositivoInteligente) repo.dispositivos().findBy("nombre",
+		DispositivoInteligenteVO unDispoRecuperado = (DispositivoInteligenteVO) repo.dispositivos().findBy("nombre",
 				"DispoCasoPrueba");
 
 		// y evaluar que el nombre coincida con el esperado.
@@ -91,7 +91,7 @@ public class TestEntrega3 {
 	public void casoDePrueba3() {
 		
 		this.crearDispositivoDelCasoDePrueba();
-		DispositivoInteligente unDispo = (DispositivoInteligente) repo.dispositivos().findBy("nombre",
+		DispositivoInteligenteVO unDispo = (DispositivoInteligenteVO) repo.dispositivos().findBy("nombre",
 				"DispoCasoPrueba");
 		unDispo.apagar();
 		
@@ -101,24 +101,24 @@ public class TestEntrega3 {
 		// Asociarla a un dispositivo.
 		// Agregar condiciones
 		// y acciones.
-		Sensor unS = repo.sensores().findBy("nombre", "sensorCasoPrueba3");
+		SensorVO unS = repo.sensores().findBy("nombre", "sensorCasoPrueba3");
 		if (unS == null) {
-			unS = new Sensor();
+			unS = new SensorVO();
 		}
 
-		Comparador cmp = repo.comparaciones().findBy("oid", 1L);
+		ComparadorVO cmp = repo.comparaciones().findBy("oid", 1L);
 		if (cmp == null) {
-			cmp = new MayorIgual();
+			cmp = new MayorIgualVO();
 		}
 
-		Condicion cond = repo.condiciones().findBy("oid", 1L);
+		CondicionVO cond = repo.condiciones().findBy("oid", 1L);
 		if (cond == null) {
-			cond = new Condicion();
+			cond = new CondicionVO();
 		}
 
-		Condicion cond2 = repo.condiciones().findBy("oid", 2L);
+		CondicionVO cond2 = repo.condiciones().findBy("oid", 2L);
 		if (cond2 == null) {
-			cond2 = new Condicion();
+			cond2 = new CondicionVO();
 		}
 
 		unS.setMedicion(40.0);
@@ -133,19 +133,19 @@ public class TestEntrega3 {
 		cond2.setSensor(unS);
 		cond2.setValorEsperado(36.0);
 		
-		Regla unRegla = repo.reglas().findBy("name", "reglaCasoPrueba3");
+		ReglaVO unRegla = repo.reglas().findBy("name", "reglaCasoPrueba3");
 		if (unRegla == null) {
-			unRegla = new Regla("reglaCasoPrueba3");
+			unRegla = new ReglaVO("reglaCasoPrueba3");
 			unRegla.agregarCondicion(cond);
 			unRegla.agregarCondicion(cond2);
-			unRegla.agregarAccion(new AccionPrender());
+			unRegla.agregarAccion(new AccionPrenderVO());
 		}		
 
 		// Persistirla.		
 		repo.reglas().persistir(unRegla);
 
 		// Recuperarla
-		Regla unReglaRecuperada = repo.reglas().findBy("name", "reglaCasoPrueba3");
+		ReglaVO unReglaRecuperada = repo.reglas().findBy("name", "reglaCasoPrueba3");
 
 		// y ejecutarla.
 		assertEquals(unDispo.estoyON(), false);
@@ -159,7 +159,7 @@ public class TestEntrega3 {
 		repo.condiciones().persistir(cond2);
 
 		// Recuperarla
-		Condicion cond2Recuperada = repo.condiciones().findBy("oid", cond2.getOid());
+		CondicionVO cond2Recuperada = repo.condiciones().findBy("oid", cond2.getOid());
 
 		// y evaluar que la condición modificada posea la última modificación.
 		assertEquals(cond2Recuperada.getValorEsperado(), 20.0, 0.0);
@@ -169,13 +169,13 @@ public class TestEntrega3 {
 	public void casoDePrueba4() {
 		// Caso de prueba 4:
 		
-		// Agregar una instancia de Transformador al JSON de entradas. ***altere el orden de los pasos del caso de prueba
+		// Agregar una instancia de TransformadorVO al JSON de entradas. ***altere el orden de los pasos del caso de prueba
 		// Ejecutar el método de lectura y persistencia. ***altere el orden de los pasos del caso de prueba
 		repo.transformadores().cargarTransformadores();
 		repo.transformadores().guardarTransforamdores();
 		
 		// Recuperar todos los transformadores persistidos.
-		List<Transformador> ts = repo.transformadores().buscarTodos(); 
+		List<TransformadorVO> ts = repo.transformadores().buscarTodos(); 
 		
 		// Registrar la cantidad.		
 		Integer cantidadT1 = ts.size();
@@ -197,7 +197,7 @@ public class TestEntrega3 {
 		// Dado un dispositivo y un período, mostrar por consola su
 		// consumo promedio.
 		this.crearDispositivoDelCasoDePrueba();
-		DispositivoInteligente unDispo = (DispositivoInteligente) repo.dispositivos().findBy("nombre",
+		DispositivoInteligenteVO unDispo = (DispositivoInteligenteVO) repo.dispositivos().findBy("nombre",
 				"DispoCasoPrueba");	
 
 		Double consumoDispositivo = unDispo.consumo_periodo(instanteDesde, instanteHasta);		
@@ -206,7 +206,7 @@ public class TestEntrega3 {
 		// Dado un hogar y un período, mostrar por consola (interfaz de comandos) el
 		// consumo total.
 		this.crearUsuarioDelCasoDePrueba();		
-		Cliente unCliente = repo.clientes().findBy("username", "fperez");	
+		ClienteVO unCliente = repo.clientes().findBy("username", "fperez");	
 		unCliente.addDispositivo(unDispo);
 		Double consumoCliente =unCliente.consumoEnPeriodo(instanteDesde, instanteHasta);
 		System.out.println("\tconsumo promedio: " + consumoCliente + "del cliente en el periodo");
@@ -215,15 +215,15 @@ public class TestEntrega3 {
 		// Dado un transformador y un período, mostrar su consumo promedio. 
 		repo.transformadores().cargarTransformadores();
 		repo.transformadores().guardarTransforamdores();
-		Transformador unTrans = repo.transformadores().findBy("oid", 1L);
+		TransformadorVO unTrans = repo.transformadores().findBy("oid", 1L);
 		unTrans.addCliente(unCliente);		
 		Double consumoTrans = unTrans.consumoEnPeriodo(instanteDesde, instanteHasta);
-		System.out.println("\tconsumo promedio: " + consumoTrans + "del Transformador en el periodo");
+		System.out.println("\tconsumo promedio: " + consumoTrans + "del TransformadorVO en el periodo");
 		assertEquals(consumoDispositivo, consumoTrans, 0);
 		
 		// Recuperar un dispositivo asociado a un hogar de ese transformador e
 		// incrementar un 1000 % el consumo para ese período. 
-		DispositivoInteligente unDispoRecu = (DispositivoInteligente) repo.dispositivos().findBy("nombre",
+		DispositivoInteligenteVO unDispoRecu = (DispositivoInteligenteVO) repo.dispositivos().findBy("nombre",
 				"DispoCasoPrueba");
 		unDispoRecu.setConsumoPorHora(unDispoRecu.getConsumoPorHora() * 1000);		
 		// Persistir el dispositivo.
@@ -231,7 +231,7 @@ public class TestEntrega3 {
 		
 		// Nuevamente mostrar el consumo para ese transformador.
 		Double consumoTrans1000 = unTrans.consumoEnPeriodo(instanteDesde, instanteHasta);
-		System.out.println("\tconsumo promedio * 1000 : " + consumoTrans + "del Transformador en el periodo");
+		System.out.println("\tconsumo promedio * 1000 : " + consumoTrans + "del TransformadorVO en el periodo");
 		assertEquals(consumoDispositivo * 1000, consumoTrans1000, 0);
 		
 		unCliente.removeDispositivo(unDispo);
@@ -244,10 +244,10 @@ public class TestEntrega3 {
 
 	private void crearDispositivoDelCasoDePrueba() {
 		//DISPOSITIVO 1
-		DispositivoInteligente unDispo = (DispositivoInteligente) repo.dispositivos().findBy("nombre",
+		DispositivoInteligenteVO unDispo = (DispositivoInteligenteVO) repo.dispositivos().findBy("nombre",
 				"DispoCasoPrueba");
 		if (unDispo == null) {
-			unDispo = new DispositivoInteligente("DispoCasoPrueba", 7.1, true, new DriverBasico());
+			unDispo = new DispositivoInteligenteVO("DispoCasoPrueba", 7.1, true, new DriverBasico());
 
 			unDispo.prender();
 			unDispo.apagar();
@@ -259,7 +259,7 @@ public class TestEntrega3 {
 			repo.dispositivos().persistir(unDispo);	
 		}
 
-		unDispo = (DispositivoInteligente) repo.dispositivos().findBy("nombre",
+		unDispo = (DispositivoInteligenteVO) repo.dispositivos().findBy("nombre",
 				"DispoCasoPrueba");
 		
 		if (unDispo != null) {			
@@ -303,13 +303,13 @@ public class TestEntrega3 {
 	}
 	
 	private void crearUsuarioDelCasoDePrueba() {
-		//Cliente 1
-		Cliente clienteOriginal = repo.clientes().findBy("username", "fperez");
+		//ClienteVO 1
+		ClienteVO clienteOriginal = repo.clientes().findBy("username", "fperez");
 		if (clienteOriginal == null) {
-			clienteOriginal = new Cliente("Felipe", "Perez", "Medrano 123", LocalDate.of(1995, 4, 7), "fperez",
+			clienteOriginal = new ClienteVO("Felipe", "Perez", "Medrano 123", LocalDate.of(1995, 4, 7), "fperez",
 					"menToL2017", "Dni", 11222333, 1543312311);
 			clienteOriginal.setAhorroAutomatico(false);
-			clienteOriginal.setUbicacion(new Ubicacion(10.0, 90.0));
+			clienteOriginal.setUbicacion(new UbicacionVO(10.0, 90.0));
 		}
 		else
 		{			

@@ -9,7 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import sge.modelo.usuarios.Administrador;
+import sge.modelo.valueobjects.AdministradorVO;
 
 @Controller
 public class HomeController {
@@ -19,7 +19,7 @@ public class HomeController {
 	}
 	@RequestMapping(value="/detail", method=RequestMethod.GET)
 	public String mostrarDetalle(Model model) {
-		Administrador adm = new Administrador("carlos","picho","olazabal",null,"cpich","123");
+		AdministradorVO adm = new AdministradorVO("carlos","picho","olazabal",null,"cpich","123");
 		model.addAttribute("Admin", adm);
 		return "detail";
 	}

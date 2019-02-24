@@ -23,50 +23,49 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import sge.modelo.dispositivo.Dispositivo;
-import sge.modelo.dispositivo.DispositivoDisponible;
-import sge.modelo.dispositivo.DispositivoFactoryMethod;
-import sge.modelo.hogareficiente.Recomendacion;
-import sge.modelo.usuarios.Cliente;
-import sge.modelo.usuarios.GestorCliente;
-import sge.modelo.usuarios.UsuarioSGE;
-import sge.repositorios.Clientes;
-import sge.repositorios.Repositorio;
+import sge.modelo.DispositivoFactoryMethod;
+import sge.modelo.GestorCliente;
+import sge.modelo.Recomendacion;
+import sge.modelo.Repositorio;
+import sge.modelo.valueobjects.ClienteVO;
+import sge.modelo.valueobjects.DispositivoDisponibleVO;
+import sge.modelo.valueobjects.DispositivoVO;
+import sge.modelo.valueobjects.UsuarioVO;
 
 @Controller
 public class UsuarioController {
 
-	@RequestMapping(value = "/Cliente", method = RequestMethod.GET)
+	@RequestMapping(value = "/ClienteVO", method = RequestMethod.GET)
 	public String mostrarHomeCliente() {
-		return "Cliente";
+		return "ClienteVO";
 	}
 
-	@RequestMapping(value = "/Cliente/MiHogar", method = RequestMethod.POST)
+	@RequestMapping(value = "/ClienteVO/MiHogar", method = RequestMethod.POST)
 	public String miHogar() {
 		return "mihogar";
 	}
 	
-	@RequestMapping(value = "/Cliente/ConsumoPeriodo", method = RequestMethod.POST)
+	@RequestMapping(value = "/ClienteVO/ConsumoPeriodo", method = RequestMethod.POST)
 	public String consumoPeriodo() {
 		return "consumoperiodo";
 	}
 	
-	@RequestMapping(value = "/Cliente/CargarDispositivos", method = RequestMethod.POST)
+	@RequestMapping(value = "/ClienteVO/CargarDispositivos", method = RequestMethod.POST)
 	public String cargarDispositivos(Model model) {
 		Repositorio repositorio = new Repositorio();
 		repositorio.abrir();
-		List<DispositivoDisponible> disponibles = repositorio.dispositivosDisponibles().all();
+		List<DispositivoDisponibleVO> disponibles = repositorio.dispositivosDisponibles().all();
 		model.addAttribute("disponibles", disponibles);
 		repositorio.cerrar();
 		return "cargardispositivos";
 	}
 	
-	@RequestMapping(value = "/Cliente/Simplex", method = RequestMethod.POST)
+	@RequestMapping(value = "/ClienteVO/Simplex", method = RequestMethod.POST)
 	public String ejecutarSimplex() {
 		return "simplex";
 	}
 
-	@RequestMapping(value = "/Cliente/ABMDispositivos", method = RequestMethod.POST)
+	@RequestMapping(value = "/ClienteVO/ABMDispositivos", method = RequestMethod.POST)
 	public String abmDispositivos(HttpServletRequest request) {
 		  
 		  //HttpSession misession= (HttpSession) request.getSession();
@@ -75,15 +74,15 @@ public class UsuarioController {
 		  //repositorio.abrir();
 		  //List<Dispositivo> dispositivos = (List<Dispositivo>)
 		  //repositorio.dispositivos().findBy("username", usu); 
-		  //Cliente usuarioBD = () repositorio.clientes().findBy("username", usu);
-		  //Cliente usuarioBD = (Cliente) repositorio.findBy(UsuarioSGE.class, "username", usu);
+		  //ClienteVO usuarioBD = () repositorio.clientes().findBy("username", usu);
+		  //ClienteVO usuarioBD = (ClienteVO) repositorio.findBy(Usuario.class, "username", usu);
 		  //ModelAndView modelAndView = new ModelAndView("abmdispositivos");
 		  //modelAndView.addObject("usuarioBD", usuarioBD);
 		  //System.out.println(usu+"       MABEEEEEEEEEEEEEEEEEEEEEl");
 		  //System.out.println(usuarioBD.getDispositivos()+"       --------------------------------");
 		return "abmdispositivos";
 	}
-	@RequestMapping(value = "/Cliente/ABMReglas", method = RequestMethod.POST)
+	@RequestMapping(value = "/ClienteVO/ABMReglas", method = RequestMethod.POST)
 	public String abmReglas(HttpServletRequest request,Model model) {
 		/*
 		 * Repositorio repositorio = new Repositorio(); repositorio.abrir();
@@ -93,9 +92,9 @@ public class UsuarioController {
 		 * modelAndView.addObject("dispositivos", dispositivos);
 		 */
 		 HttpSession misession= (HttpSession) request.getSession();
-		 Cliente usu =  (Cliente) misession.getAttribute("usuarioLogueado");
+		 ClienteVO usu =  (ClienteVO) misession.getAttribute("usuarioLogueado");
 		 model.addAttribute("dispositivosInt",usu.misInteligentes().toArray());
-		 Stream<Dispositivo> dispositivosInteligentes = usu.misInteligentes();
+		 Stream<DispositivoVO> dispositivosInteligentes = usu.misInteligentes();
 		 //dispositivosInteligentes.forEach(p -> System.out.println(p));
 		 return "abmreglas";
 	}
@@ -121,10 +120,10 @@ public class UsuarioController {
 		return dateToConvert.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
 	}
 	*/
-	@RequestMapping(value = "Cliente/simplex", method = RequestMethod.POST)
+	@RequestMapping(value = "ClienteVO/simplex", method = RequestMethod.POST)
 	public String simplex(HttpServletRequest request,Model model) {
 		  HttpSession misession= (HttpSession) request.getSession();
-		  Cliente usu =  (Cliente) misession.getAttribute("usuarioLogueado");
+		  ClienteVO usu =  (ClienteVO) misession.getAttribute("usuarioLogueado");
 		  model.addAttribute("dispositivos", usu.getDispositivos());
 		 Recomendacion reco = usu.getMejorCombinacionDispositivos();
 		 model.addAttribute("recomendacion", usu.getMejorCombinacionDispositivos());
@@ -136,10 +135,10 @@ public class UsuarioController {
 		  
 	}
 	
-	@RequestMapping(value = "Cliente/simplex", method = RequestMethod.POST,params="send")
+	@RequestMapping(value = "ClienteVO/simplex", method = RequestMethod.POST,params="send")
 	public String simplex2(HttpServletRequest request,Model model) {
 		  HttpSession misession= (HttpSession) request.getSession();
-		  Cliente usu =  (Cliente) misession.getAttribute("usuarioLogueado");
+		  ClienteVO usu =  (ClienteVO) misession.getAttribute("usuarioLogueado");
 		  model.addAttribute("dispositivos", usu.getDispositivos());
 		 Recomendacion reco = usu.getMejorCombinacionDispositivos();
 		 model.addAttribute("recomendacion", usu.getMejorCombinacionDispositivos());
@@ -152,7 +151,7 @@ public class UsuarioController {
 		  
 	}
 	
-	@RequestMapping(value = "Cliente/simplex", method = RequestMethod.GET)
+	@RequestMapping(value = "ClienteVO/simplex", method = RequestMethod.GET)
 	public String Simplex2() {
 	
 		return "simplex";

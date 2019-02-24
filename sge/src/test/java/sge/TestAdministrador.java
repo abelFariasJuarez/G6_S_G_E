@@ -9,13 +9,13 @@ import java.time.Month;
 
 import org.junit.Test;
 
-import sge.modelo.usuarios.Administrador;
+import sge.modelo.valueobjects.AdministradorVO;
 
 public class TestAdministrador {
 
 	
 	
-	Administrador admin = new Administrador("pedro", "saraska", "lavalle 148", LocalDate.of(2015, Month.APRIL, 19),
+	AdministradorVO admin = new AdministradorVO("pedro", "saraska", "lavalle 148", LocalDate.of(2015, Month.APRIL, 19),
 			"pepe", "pasti");
 	@Test
 	public void MesesAdministrando() {		

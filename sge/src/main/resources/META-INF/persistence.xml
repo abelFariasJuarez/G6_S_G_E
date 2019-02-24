@@ -9,44 +9,43 @@
 		transaction-type="RESOURCE_LOCAL">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 
-		<class>sge.modelo.posicionamiento.Transformador</class>
-		<class>sge.modelo.posicionamiento.ZonaGeografica</class>
-		<class>sge.modelo.posicionamiento.Ubicacion</class>
-		<class>sge.modelo.dispositivo.EstadoDispositivo</class>
-		<class>sge.modelo.dispositivo.EstadoAhorroDeEnergia</class>
-		<class>sge.modelo.dispositivo.EstadoApagado</class>
-		<class>sge.modelo.dispositivo.EstadoPrendido</class>
-		<class>sge.modelo.dispositivo.RestriccionHorasFamilia</class>
-		<class>sge.modelo.dispositivo.Intervalo</class>
-		<class>sge.modelo.dispositivo.Inteligente</class>
-		<class>sge.modelo.dispositivo.DispositivoInteligente</class>
-		<class>sge.modelo.dispositivo.DispositivoEstandar</class>
-		<class>sge.modelo.dispositivo.DispositivoConModulo</class>
+		<class>sge.dao.Transformador</class>
+		<class>sge.dao.Zona</class>
+		<class>sge.dao.Ubicacion</class>
+		<class>sge.dao.EstadoDispositivo</class>
+		<class>sge.dao.EstadoAhorroDeEnergia</class>
+		<class>sge.dao.EstadoApagado</class>
+		<class>sge.dao.EstadoPrendido</class>
+		<class>sge.dao.RestriccionHorasFamilia</class>
+		<class>sge.dao.Intervalo</class>
+		<class>sge.dao.DispositivoInteligente</class>
+		<class>sge.dao.DispositivoEstandar</class>
+		<class>sge.dao.DispositivoConModulo</class>
 
-		<class>sge.modelo.regla.Sensor</class>
+		<class>sge.dao.Sensor</class>
 
-		<class>sge.modelo.regla.comparador.Comparador</class>
-		<class>sge.modelo.regla.comparador.Igual</class>
-		<class>sge.modelo.regla.comparador.Mayor</class>
-		<class>sge.modelo.regla.comparador.MayorIgual</class>
-		<class>sge.modelo.regla.comparador.Menor</class>
-		<class>sge.modelo.regla.comparador.MenorIgual</class>
-		<class>sge.modelo.regla.Condicion</class>
-		<class>sge.modelo.regla.Accion</class>
-		<class>sge.modelo.regla.AccionAhorrro</class>
-		<class>sge.modelo.regla.AccionApagar</class>
-		<class>sge.modelo.regla.AccionPrender</class>
-		<class>sge.modelo.regla.Regla</class>
+		<class>sge.dao.Comparador</class>
+		<class>sge.dao.Igual</class>
+		<class>sge.dao.Mayor</class>
+		<class>sge.dao.MayorIgual</class>
+		<class>sge.dao.Menor</class>
+		<class>sge.dao.MenorIgual</class>
+		<class>sge.modelo.Condicion</class>
+		<class>sge.dao.Accion</class>
+		<class>sge.dao.AccionAhorrro</class>
+		<class>sge.dao.AccionApagar</class>
+		<class>sge.dao.AccionPrender</class>
+		<class>sge.dao.Regla</class>
 
 
-		<class>sge.modelo.usuarios.UsuarioSGE</class>
-		<class>sge.modelo.usuarios.Categoria</class>
-		<class>sge.modelo.usuarios.Cliente</class>		
-		<class>sge.modelo.usuarios.Administrador</class>
+		<class>sge.dao.Usuario</class>
+		<class>sge.dao.Categoria</class>
+		<class>sge.dao.Cliente</class>		
+		<class>sge.dao.Administrador</class>
 		
-		<class>sge.modelo.dispositivo.DispositivoDisponible</class>
-
-		<class>sge.modelo.regla.MedicionLog</class>
+		<class>sge.dao.DispositivoDisponible</class>
+		
+		<class>sge.dao.MedicionLog</class>
 		<properties>
 			<property name="hibernate.archive.autodetection"
 				value="class" />

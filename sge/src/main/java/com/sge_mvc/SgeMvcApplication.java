@@ -3,7 +3,7 @@ package com.sge_mvc;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import sge.repositorios.Repositorio;
+import sge.modelo.Repositorio;
 
 @SpringBootApplication
 public class SgeMvcApplication {

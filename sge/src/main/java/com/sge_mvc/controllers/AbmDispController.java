@@ -17,18 +17,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import sge.modelo.dispositivo.Dispositivo;
-import sge.modelo.dispositivo.DispositivoDisponible;
-import sge.modelo.dispositivo.DispositivoFactoryMethod;
-import sge.modelo.usuarios.Cliente;
-import sge.modelo.usuarios.UsuarioSGE;
-import sge.repositorios.Clientes;
-import sge.repositorios.Dispositivos;
-import sge.repositorios.Repositorio;
+import sge.modelo.DispositivoFactoryMethod;
+import sge.modelo.Repositorio;
+import sge.modelo.valueobjects.ClienteVO;
+import sge.modelo.valueobjects.DispositivoDisponibleVO;
+import sge.modelo.valueobjects.DispositivoVO;
+import sge.modelo.valueobjects.UsuarioVO;
 
 
 @Controller
-@RequestMapping("/Cliente/ABMDispositivos")
+@RequestMapping("/ClienteVO/ABMDispositivos")
 public class AbmDispController {
 	
 	String usuario;
@@ -37,7 +35,7 @@ public class AbmDispController {
 	public ModelAndView abmDisp(@RequestParam("user") String user) {
 		Repositorio repositorio = new Repositorio();
 		repositorio.abrir(); 
-		 List<Dispositivo> dispositivos = (List<Dispositivo>) repositorio.dispositivos().findBy("username", user)  ;
+		 List<DispositivoVO> dispositivos = (List<DispositivoVO>) repositorio.dispositivos().findBy("username", user)  ;
 		  ModelAndView modelAndView = new ModelAndView("abm");
 		  modelAndView.addObject("dispositivos", dispositivos);
 		  return modelAndView;
@@ -48,7 +46,7 @@ public class AbmDispController {
 		Repositorio repositorio = new Repositorio();
 		repositorio.abrir();
 		usuario = user;
-		List<Dispositivo> dispositivos = (List<Dispositivo>) repositorio.dispositivos().findBy("username", user)  ;
+		List<DispositivoVO> dispositivos = (List<DispositivoVO>) repositorio.dispositivos().findBy("username", user)  ;
 		  ModelAndView modelAndView = new ModelAndView("abm");
 		  modelAndView.addObject("dispositivos", dispositivos);
 		  return modelAndView;
@@ -63,7 +61,7 @@ public class AbmDispController {
 	public String nuevoDispositivo(Model model) throws ServletException, IOException {
 			Repositorio repo = new Repositorio();
 			repo.abrir();
-			List<DispositivoDisponible> disponibles = repo.dispositivosDisponibles().all();
+			List<DispositivoDisponibleVO> disponibles = repo.dispositivosDisponibles().all();
 			model.addAttribute("disponibles", disponibles);
 			repo.cerrar();
 			//ModelAndView modelAndView = new ModelAndView("nuevodisp");
@@ -85,8 +83,8 @@ public class AbmDispController {
 	public ModelAndView abmDispo(@RequestParam("dispositivo") String dispositivo) {
 			Repositorio repo = new Repositorio();
 			repo.abrir();
-			List<Dispositivo> dispositivos = (List<Dispositivo>) repo.dispositivos().findBy("username", usuario);
-			Dispositivo dispo = repo.dispositivos().findBy("nombre",dispositivo);
+			List<DispositivoVO> dispositivos = (List<DispositivoVO>) repo.dispositivos().findBy("username", usuario);
+			DispositivoVO dispo = repo.dispositivos().findBy("nombre",dispositivo);
 			repo.borrar(dispo);
 			ModelAndView modelAndView = new ModelAndView("abmDisp");
 		return modelAndView;

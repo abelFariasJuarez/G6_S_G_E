@@ -17,20 +17,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import sge.modelo.dispositivo.Dispositivo;
-import sge.modelo.dispositivo.DispositivoDisponible;
-import sge.modelo.dispositivo.DispositivoFactoryMethod;
-import sge.modelo.dispositivo.Inteligente;
-import sge.modelo.regla.Regla;
-import sge.modelo.usuarios.Cliente;
-import sge.modelo.usuarios.UsuarioSGE;
-import sge.repositorios.Clientes;
-import sge.repositorios.Dispositivos;
-import sge.repositorios.Repositorio;
+import sge.modelo.DispositivoFactoryMethod;
+import sge.modelo.Repositorio;
+import sge.modelo.valueobjects.ClienteVO;
+import sge.modelo.valueobjects.DispositivoDisponibleVO;
+import sge.modelo.valueobjects.DispositivoVO;
+import sge.modelo.valueobjects.InteligenteVO;
+import sge.modelo.valueobjects.ReglaVO;
+import sge.modelo.valueobjects.UsuarioVO;
 
 
 @Controller
-@RequestMapping("/Cliente/ABMReglas")
+@RequestMapping("/ClienteVO/ABMReglas")
 public class AbmRegController {
 
 	String usuario;
@@ -39,7 +37,7 @@ public class AbmRegController {
 	public ModelAndView abmDisp(@RequestParam("user") String user) {
 		Repositorio repositorio = new Repositorio();
 		repositorio.abrir(); 
-		 List<Dispositivo> dispositivos = (List<Dispositivo>) repositorio.dispositivos().findBy("username", user)  ;
+		 List<DispositivoVO> dispositivos = (List<DispositivoVO>) repositorio.dispositivos().findBy("username", user)  ;
 		  ModelAndView modelAndView = new ModelAndView("abm");
 		  modelAndView.addObject("dispositivos", dispositivos);
 		  return modelAndView;
@@ -50,7 +48,7 @@ public class AbmRegController {
 		Repositorio repositorio = new Repositorio();
 		repositorio.abrir();
 		usuario = user;
-		List<Dispositivo> dispositivos = (List<Dispositivo>) repositorio.dispositivos().findBy("username", user)  ;
+		List<DispositivoVO> dispositivos = (List<DispositivoVO>) repositorio.dispositivos().findBy("username", user)  ;
 		  ModelAndView modelAndView = new ModelAndView("abm");
 		  modelAndView.addObject("dispositivos", dispositivos);
 		  return modelAndView;
@@ -81,14 +79,14 @@ public class AbmRegController {
 		
 	}
 	
-	@RequestMapping(value="/Cliente/ABMReglas",method=RequestMethod.POST,params="SelectDisp")
+	@RequestMapping(value="/ClienteVO/ABMReglas",method=RequestMethod.POST,params="SelectDisp")
 	public Model SelectDispo(@RequestParam("value") String dispSeleccionado,HttpServletRequest request, Model model) {
 		Repositorio repo = new Repositorio();
 		repo.abrir();
 		//checkear como busca las reglas, no me cierra algo
 		//List<Dispositivo> dispositivos = (List<Dispositivo>) repo.dispositivos().findBy("username", usuario);
-		Dispositivo dispo = repo.dispositivos().findBy("nombre",dispSeleccionado);
-		List<Regla> reglasUser = ((Inteligente) dispo).getReglas();
+		DispositivoVO dispo = repo.dispositivos().findBy("nombre",dispSeleccionado);
+		List<ReglaVO> reglasUser = ((InteligenteVO) dispo).getReglas();
 		  model.addAttribute("reglas",reglasUser);
 		  //modelAndView.addObject("dispositivoElegido", dispSeleccionado);
 		  return model;

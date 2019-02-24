@@ -17,12 +17,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import sge.modelo.posicionamiento.Transformador;
-import sge.modelo.posicionamiento.ZonaGeografica;
-import sge.modelo.usuarios.Cliente;
-import sge.modelo.usuarios.UsuarioSGE;
-import sge.repositorios.Clientes;
-import sge.repositorios.Repositorio;
+import sge.modelo.Repositorio;
+import sge.modelo.valueobjects.ClienteVO;
+import sge.modelo.valueobjects.TransformadorVO;
+import sge.modelo.valueobjects.UsuarioVO;
+import sge.modelo.valueobjects.ZonaVO;
 
 @Controller
 public class LoginController {
@@ -38,7 +37,7 @@ public class LoginController {
 		Repositorio repo = new Repositorio();
 		repo.abrir();
 		Clientes usuarios = repo.clientes();
-		UsuarioSGE usu = (UsuarioSGE) repo.findBy(UsuarioSGE.class, "username", username);
+		UsuarioVO usu = (UsuarioVO) repo.findBy(UsuarioVO.class, "username", username);
 
 		if (usu == null || !usu.getPassword().equalsIgnoreCase(password)) {
 			model.addAttribute("loginError", "Usuario o contraseña incorrectos.");
@@ -52,7 +51,7 @@ public class LoginController {
 			return "redirect:/" + clazzName;
 			/*
 			 * String clazzName = usu.getClass().getSimpleName(); if
-			 * (clazzName.equals("Cliente")) clazzName="Usuario";
+			 * (clazzName.equals("ClienteVO")) clazzName="Usuario";
 			 */
 		}
 
@@ -69,8 +68,8 @@ public class LoginController {
 		
 		Repositorio repo = new Repositorio();
 		repo.abrir();
-		List<ZonaGeografica> zonas=repo.zonas().all();
-		List<Transformador> transforms=repo.transformadores().all();
+		List<ZonaVO> zonas=repo.zonas().all();
+		List<TransformadorVO> transforms=repo.transformadores().all();
 		
 		model.addAttribute("transs", transforms);
 		model.addAttribute("zonas", zonas);
@@ -88,7 +87,7 @@ public class LoginController {
  * ModelAndView(); Repositorio repo = new Repositorio(); repo.abrir(); String
  * usuario = request.getParameter("username"); String password =
  * request.getParameter("password"); Clientes usuarios = repo.clientes();
- * UsuarioSGE usu = (UsuarioSGE) repo.findBy(UsuarioSGE.class, "username",
+ * Usuario usu = (Usuario) repo.findBy(Usuario.class, "username",
  * usuario);
  * 
  * 
@@ -98,7 +97,7 @@ public class LoginController {
  * "Usuario o Contraseña incorrecta");
  * 
  * } else { String clazzName = usu.getClass().getSimpleName(); if
- * (clazzName.equals("Cliente")) clazzName="Usuario";
+ * (clazzName.equals("ClienteVO")) clazzName="Usuario";
  * modelAndView.setViewName(clazzName); modelAndView.addObject("usuarios",
  * usuarios); modelAndView.addObject("message", usu.getClass().toString());
  * modelAndView.addObject("user", usuario); modelAndView.addObject("password",
@@ -112,7 +111,7 @@ public class LoginController {
  * ModelAndView home( HttpServletRequest request, HttpServletResponse response)
  * { //try { String user=request.getParameter("usuario"); String
  * password=request.getParameter("password"); Repositorio repo = new
- * Repositorio(); repo.abrir(); UsuarioSGE usu =
+ * Repositorio(); repo.abrir(); Usuario usu =
  * repo.clientes().findBy("username", user);
  * 
  * if ( usu!=null) { ModelAndView model = new ModelAndView("home"); if
