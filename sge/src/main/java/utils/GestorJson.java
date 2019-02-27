@@ -6,9 +6,14 @@ import java.lang.reflect.Type;
 import java.util.List;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
 
-public abstract class ImportadorJson {
+import sge.modelo.dispositivo.Dispositivo;
+
+public abstract class GestorJson {
 	private String archivoFuente;
+	static GsonBuilder builder;
 
 	public String getArchivoFuente() {
 		return archivoFuente;
@@ -18,7 +23,7 @@ public abstract class ImportadorJson {
 		this.archivoFuente = archivo;
 	}
 
-	public String getStringJson() throws Exception {
+	public String getStringForJson() throws Exception {
 		String txt = "";
 		lectorDeArchivos lectorDeArchivos = new lectorDeArchivos(this.getArchivoFuente());
 		while (!lectorDeArchivos.lecturaFinalizada()) {
@@ -29,9 +34,22 @@ public abstract class ImportadorJson {
 	}
 	
 	public List<?> myFromJson(Type typeToken) throws Exception {
-		String stringJson = this.getStringJson();
+		String stringJson = this.getStringForJson();
 		Gson gson = new Gson();
 		return gson.fromJson(stringJson, typeToken);
 	}
 
+	public static String toJson(Object xxx) {
+		Gson gson = getGson();
+		String json = gson.toJson(xxx);
+		return json;
+	}	
+	
+	private static Gson getGson()
+	{
+		builder = new GsonBuilder(); 
+		builder.setPrettyPrinting();
+		 Gson gson = builder.create();
+		 return gson;
+	}
 }

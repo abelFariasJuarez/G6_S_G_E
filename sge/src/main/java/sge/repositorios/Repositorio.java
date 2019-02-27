@@ -4,12 +4,14 @@ import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Month;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.TimeZone;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.PersistenceContext;
 
 import org.hibernate.Criteria;
 import org.hibernate.Query;
@@ -25,6 +27,7 @@ import sge.modelo.dispositivo.DispositivoFactoryMethod;
 import sge.modelo.dispositivo.DispositivoInteligente;
 import sge.modelo.dispositivo.RestriccionHorasFamilia;
 import sge.modelo.driver.DriverBasico;
+import sge.modelo.posicionamiento.Transformador;
 import sge.modelo.posicionamiento.Ubicacion;
 import sge.modelo.regla.Sensor;
 import sge.modelo.usuarios.Administrador;
@@ -35,6 +38,7 @@ import sge.modelo.usuarios.UsuarioSGE;
 public class Repositorio {
 
 	private static final String PERSISTENCE_UNIT_NAME = "db";
+	@PersistenceContext
 	protected EntityManager entityManager;
 	EntityManagerFactory emFactory;
 
@@ -49,9 +53,19 @@ public class Repositorio {
 	private RestriccionesHorasFamilia restriccionesHorasFamilia;
 	private Zonas zonas;
 	private Ubicaciones ubicaciones;
+    private static Repositorio instance;
+    
+    private Repositorio(){}
+    
+    public static Repositorio getInstance(){
+        if(instance == null){
+            instance = new Repositorio();
+        }
+        return instance;
+    }	
 
-	public Repositorio() {
-	}
+	/*public Repositorio() {
+	}*/
 
 	public Repositorio(EntityManager em) {
 		this.entityManager = em;
@@ -211,14 +225,26 @@ public class Repositorio {
 	
 	
 	
-	public void consumo_hogar_periodo(LocalDateTime desde, LocalDateTime hasta) {
+	public List<RowReport> consumo_hogar_periodo(LocalDateTime desde, LocalDateTime hasta) {
 
 		TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
 		LocalDateTimeConverter converter = new LocalDateTimeConverter();
 		Timestamp p_desde = converter.convertToDatabaseColumn(desde);
 		Timestamp p_hasta = converter.convertToDatabaseColumn(hasta);
-
-		String consulta = "    SELECT oid, username, sum(IFNULL(consumo,0)) from ("
+		
+		List<RowReport> rows = new ArrayList<RowReport>(); 
+		
+		for(Cliente c : this .clientes().all() )
+		{
+			RowReport row = new RowReport();
+			row.setOid(c.getOid());
+			row.setUsername(c.getUsername());
+			row.setConsumo(c.consumoEnPeriodo(desde, hasta));
+			rows.add(row);
+		}
+		return rows;
+		/*
+		String consulta = "    SELECT oid, username, sum(IFNULL(consumo,0)) as consumo from ("
 				+ "            SELECT r.oid, r.username, r.consumoPorHora * TIMESTAMPDIFF(SECOND, r.inicio, r.fin) / (3600) as consumo"
 				+ "            FROM " + "                (SELECT " + "                    c.oid, "
 				+ "                    u.username, "
@@ -226,18 +252,18 @@ public class Repositorio {
 				+ "                    IF(i.inicio < :desde, :desde, i.inicio) as inicio, "
 				+ "                    IF(IFNULL(i.fin,now()) < :hasta,IFNULL(i.fin,now()), :hasta) as fin "
 				+ "                FROM cliente c" + "                    inner join usuariosge u on c.oid = u.oid "
-				+ "                    inner join cliente_dispositivo cd on c.oid = cd.cliente_oid "
-				+ "                    inner join inteligente as s on cd.dispositivos_oid = s.oid "
-				+ "                    inner join dispositivo as d on s.oid = d.oid "
-				+ "                    inner join inteligente_intervalo as si on s.oid = si.inteligente_oid "
-				+ "                    inner join intervalo as i on si.intervalos_oid = i.oid and i.inicio <= :hasta and i.fin > :desde "
-				+ "                    inner join estadodispositivo ed on i.estado_oid = ed.oid ) as r"
+				+ "                    left join cliente_dispositivo cd on c.oid = cd.cliente_oid "
+				+ "                    left join inteligente as s on cd.dispositivos_oid = s.oid "
+				+ "                    left join dispositivo as d on s.oid = d.oid "
+				+ "                    left join inteligente_intervalo as si on s.oid = si.inteligente_oid "
+				+ "                    left join intervalo as i on si.intervalos_oid = i.oid and i.inicio <= :hasta and i.fin > :desde "
+				+ "                    left join estadodispositivo ed on i.estado_oid = ed.oid ) as r"
 				+ "            union "
 				+ "            SELECT c.oid, u.username, IFNULL(d.consumoPorHora,0) * IFNULL(de.horasEncendidoPorDia,0) * TIMESTAMPDIFF(SECOND, :desde, :hasta) / (3600) as consumo"
 				+ "            FROM cliente c" + "                inner join usuariosge u on c.oid = u.oid "
-				+ "                inner join cliente_dispositivo cd on c.oid = cd.cliente_oid "
-				+ "                inner join dispositivoestandar de on cd.dispositivos_oid = de.oid "
-				+ "                inner join dispositivo as d on de.oid = d.oid " + "    ) as h "
+				+ "                left join cliente_dispositivo cd on c.oid = cd.cliente_oid "
+				+ "                left join dispositivoestandar de on cd.dispositivos_oid = de.oid "
+				+ "                left join dispositivo as d on de.oid = d.oid " + "    ) as h "
 				+ "    GROUP BY oid, username";
 
 		Session session = this.getSession();
@@ -252,16 +278,17 @@ public class Repositorio {
 		for (Object[] row : rows) {
 			System.out.println(row[0].toString() + ";" + row[1].toString() + ";" + row[2].toString());
 		}
+		return rows;*/
 	}
 
-	public void consumo_promedio_tipo_dispositivo_periodo(LocalDateTime desde, LocalDateTime hasta) {
+	public List<RowReport> consumo_promedio_tipo_dispositivo_periodo(LocalDateTime desde, LocalDateTime hasta) {
 
 		TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
 		LocalDateTimeConverter converter = new LocalDateTimeConverter();
 		Timestamp p_desde = converter.convertToDatabaseColumn(desde);
 		Timestamp p_hasta = converter.convertToDatabaseColumn(hasta);
-
-		String consulta = "    SELECT deviceType, AVG(IFNULL(consumo,0)) from ("
+		List<RowReport> rows = new ArrayList<RowReport>(); 
+		String consulta = "    SELECT deviceType, AVG(IFNULL(consumo,0)) as promedio from ("
 				+ "            SELECT r.deviceType, r.consumoPorHora * TIMESTAMPDIFF(SECOND, r.inicio, r.fin) / (3600) as consumo"
 				+ "            FROM " + "                (SELECT " + "                    d.deviceType, "
 				+ "                    ed.factor * d.consumoPorHora as consumoPorHora, "
@@ -269,9 +296,9 @@ public class Repositorio {
 				+ "                    IF(IFNULL(i.fin,now()) < :hasta,IFNULL(i.fin,now()), :hasta) as fin "
 				+ "                FROM inteligente as s "
 				+ "                    inner join dispositivo as d on s.oid = d.oid "
-				+ "                    inner join inteligente_intervalo as si on s.oid = si.inteligente_oid "
-				+ "                    inner join intervalo as i on si.intervalos_oid = i.oid and i.inicio <= :hasta and i.fin > :desde "
-				+ "                    inner join estadodispositivo ed on i.estado_oid = ed.oid ) as r"
+				+ "                    left join inteligente_intervalo as si on s.oid = si.inteligente_oid "
+				+ "                    left join intervalo as i on si.intervalos_oid = i.oid and i.inicio <= :hasta and i.fin > :desde "
+				+ "                    left join estadodispositivo ed on i.estado_oid = ed.oid ) as r"
 				+ "            union "
 				+ "            SELECT d.deviceType, d.consumoPorHora * de.horasEncendidoPorDia * TIMESTAMPDIFF(SECOND, :desde, :hasta) / (3600) as consumo"
 				+ "            FROM dispositivoestandar de "
@@ -286,42 +313,56 @@ public class Repositorio {
 		query.setTimestamp("desde", p_desde);
 		query.setTimestamp("hasta", p_hasta);
 
-		List<Object[]> rows = query.list();
-		for (Object[] row : rows) {
+		List<Object[]> list = query.list();
+		for (Object[] row : list) {
+			RowReport r = new RowReport();
 			System.out.println(row[0].toString() + ";" + row[1].toString());
+			r.setDeviceType(row[0].toString());
+			r.setPromedio((Double) row[1]);
+			rows.add(r);
 		}
+		return rows;
 	}
 
-	public void consumo_transformador_periodo(LocalDateTime desde, LocalDateTime hasta) {
+	public List<RowReport> consumo_transformador_periodo(LocalDateTime desde, LocalDateTime hasta) {
 
 		TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
 		LocalDateTimeConverter converter = new LocalDateTimeConverter();
 		Timestamp p_desde = converter.convertToDatabaseColumn(desde);
 		Timestamp p_hasta = converter.convertToDatabaseColumn(hasta);
-
-		String consulta = "    SELECT oid, sum(IFNULL(consumo,0)) from ("
+		List<RowReport> rows = new ArrayList<RowReport>(); 
+		
+		for(Transformador t : this.transformadores().all() )
+		{
+			RowReport row = new RowReport();
+			row.setOid(t.getOid());			
+			row.setConsumo(t.consumoEnPeriodo(desde, hasta));
+			rows.add(row);
+		}
+		return rows;
+		/*String consulta = "    SELECT oid, sum(IFNULL(consumo,0)) as consumo from ("
 				+ "            SELECT r.oid, r.consumoPorHora * TIMESTAMPDIFF(SECOND, r.inicio, r.fin) / (3600) as consumo"
 				+ "            FROM " + "                (SELECT " + "                    t.oid, "
 				+ "                    ed.factor * d.consumoPorHora as consumoPorHora, "
 				+ "                    IF(i.inicio < :desde, :desde, i.inicio) as inicio, "
 				+ "                    IF(IFNULL(i.fin,now()) < :hasta,IFNULL(i.fin,now()), :hasta) as fin "
 				+ "                FROM transformador t"
-				+ "                    inner join transformador_cliente tc on t.oid = tc.transformador_oid "
-				+ "                    inner join cliente c on tc.clientes_oid = c.oid "
-				+ "                    inner join cliente_dispositivo cd on c.oid = cd.cliente_oid "
-				+ "                    inner join inteligente as s on cd.dispositivos_oid = s.oid "
-				+ "                    inner join dispositivo as d on s.oid = d.oid "
-				+ "                    inner join inteligente_intervalo as si on s.oid = si.inteligente_oid "
-				+ "                    inner join intervalo as i on si.intervalos_oid = i.oid and i.inicio <= :hasta and i.fin > :desde "
-				+ "                    inner join estadodispositivo ed on i.estado_oid = ed.oid ) as r"
+				+ "                    left join transformador_cliente tc on t.oid = tc.transformador_oid "
+				+ "                    left join cliente c on tc.clientes_oid = c.oid "
+				+ "                    left join cliente_dispositivo cd on c.oid = cd.cliente_oid "
+				+ "                    left join inteligente as s on cd.dispositivos_oid = s.oid "
+				+ "                    left join dispositivo as d on s.oid = d.oid "
+				+ "                    left join inteligente_intervalo as si on s.oid = si.inteligente_oid "
+				+ "                    left join intervalo as i on si.intervalos_oid = i.oid and i.inicio <= :hasta and i.fin > :desde "
+				+ "                    left join estadodispositivo ed on i.estado_oid = ed.oid ) as r"
 				+ "            union "
 				+ "            SELECT c.oid, IFNULL(d.consumoPorHora,0) * IFNULL(de.horasEncendidoPorDia,0) * TIMESTAMPDIFF(SECOND, :desde, :hasta) / (3600) as consumo"
 				+ "            FROM transformador t"
-				+ "                inner join transformador_cliente tc on t.oid = tc.transformador_oid "
-				+ "                inner join cliente c on tc.clientes_oid = c.oid "
-				+ "                inner join cliente_dispositivo cd on c.oid = cd.cliente_oid "
-				+ "                inner join dispositivoestandar de on cd.dispositivos_oid = de.oid "
-				+ "                inner join dispositivo as d on de.oid = d.oid " + "    ) as h " + "    GROUP BY oid";
+				+ "                left join transformador_cliente tc on t.oid = tc.transformador_oid "
+				+ "                left join cliente c on tc.clientes_oid = c.oid "
+				+ "                left join cliente_dispositivo cd on c.oid = cd.cliente_oid "
+				+ "                left join dispositivoestandar de on cd.dispositivos_oid = de.oid "
+				+ "                left join dispositivo as d on de.oid = d.oid " + "    ) as h " + "    GROUP BY oid";
 
 		Session session = this.getSession();
 
@@ -335,6 +376,7 @@ public class Repositorio {
 		for (Object[] row : rows) {
 			System.out.println(row[0].toString() + ";" + row[1].toString());
 		}
+		return rows;*/
 	}
 
 	

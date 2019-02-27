@@ -14,155 +14,66 @@
 <link rel="stylesheet"
 	href="<c:url value="/resources/CSS/adminCSS.css"/>">
 
-
-
-<!--  
-<script>
-function myFunction(boton) {
-    var boton1 = document.getElementById(boton);
-   
-   /* var botones = document.getElementsByClassName("btn");
-    var i; */
-    console.log(window.location);
-    
-      if (boton1.style.visibility === "hidden") {
-    	
-    
-    
-    	  boton1.style.visibility = "visible";}
-    
-        
-    else {
-        boton1.style.visibility = "hidden";
-    }
- /*   for(i=0;i<botones.length;i++){
-  if(botones[i].name != boton1.id && boton1.style.visibility ==="visible"){
-
-    botones[i].disabled = true;
-  }
-  else{
-    botones[i].disabled= false;
-  }
-
-   
-
-    }*/
-
-
-  
-   
-}
-</script>
--->
-
 </head>
 <body>
 
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark text-light">
 		<p class="navbar-brand">Panel Administrador</p>
-
-
 		<div>
 			<div class="navbar-nav">
-			<form:form action="/Administrador/consumo" method="POST">
-				<button type="submit" name="oculto" class="btn btn-info solid"
-					onClick=myFunction("oculto") >Consumo hogares</button>
-				<span class="sr-only">(current)</span>
-               </form:form>
-               <form:form action="/Administrador/cargadispo" method="POST">
-				<button type="submit" name="oculto2" class="btn btn-info solid"
-					onClick=myFunction("oculto2")>Cargar Dispositivo/s</button>
-				<span class="sr-only">(current)</span>
+				<form:form action="/Administrador/consumo" method="POST">
+					<button type="submit" name="oculto" class="btn btn-info solid"
+						onClick=myFunction("oculto") >Consumo hogares</button>
+					<span class="sr-only">(current)</span>
 				</form:form>
- <form:form action="/Administrador/reporte" method="POST">
-				<button type="submit" name="oculto3" class="btn btn-info solid"
-					onClick=myFunction("oculto3") >Ver reportes</button>
-				<span class="sr-only">(current)</span>
+				<form:form action="/Administrador/cargadispo" method="POST">
+					<button type="submit" name="oculto2" class="btn btn-info solid"
+						onClick=myFunction("oculto2")>Cargar Dispositivo/s</button>
+					<span class="sr-only">(current)</span>
 				</form:form>
-				 <a class="btn  btn-success"
-					href="/login">Cerrar Sesion</a>
+				<form:form action="/Administrador/restriccionesHorarias" method="POST">
+					<button type="submit" name="oculto4" class="btn btn-info solid"
+						onClick=myFunction("oculto4") >Restricciones Horarias</button>
+					<span class="sr-only">(current)</span>
+				</form:form>				
+				<a class="btn  btn-success" href="/login">Cerrar Sesion</a>
 			</div>
 		</div>
 	</nav>
-     ${tipo}
-	<c:forEach items="${clientes}" var="cliente">
-	                  ${cliente.username}
-						
-						</c:forEach>
-
-
-	
-
-
-	<!--  <input type="text" id="Dispositivo" placeholder="FamiliaDispositivo"
-					name="Dispositivo" class="form-control" /> <input type="text"
-					id="Dispositivo" placeholder="Consumo" name="Dispositivo"
-					class="form-control" /> <input type="checkbox" id="BajoConsumo"
-					placeholder="BajoConsumo" name="BajoConsumo" /> Bajo consumo <br>
-				<input type="checkbox" id="Inteligente" placeholder="Inteligente"
-					name="Inteligente" /> Es Inteligente? <br>
-				<button class="btn btn-success bg-sucess "
-					data-toggle="confirmation" id="botondispositivo"
-					placeholder="Crear" name="botondispositivo" />
-				Crear Dispositivo
-				
-				-->
-
-
-
-	<div class="container margen ">
-		<div class="row">
-			<div class="col align-self-start"></div>
-			<div class="col col-sm align-self-center ">
-
-				<table id="oculto" class="table table-dark "
-					style="visibility: hidden">
-					
-					<thead>
-						<tr>
-							<th scope="col">Cliente</th>
-							<th scope="col">Consumo</th>
-						</tr>
-					</thead>
-					<tbody>
-						<c:forEach items="${clientes}" var="cliente">
-							<tr>
-
-								<td>${cliente.username}</td>
-								<td>${cliente.consumo()}</td>
-							</tr>
-						</c:forEach>
-					</tbody>
-				</table>
-
-			</div>
-			<div class="col align-self-end"></div>
-		</div>
+	<div>
+		<br>
 	</div>
-
-
-
-
-
-	<div class="container" id="oculto3" style="visibility: hidden">
-		<div class="row">
-			<div class="col align-self-start">
-				<label class="colorfont text-light">Desde:</label> <input
-					type="date" />
-			</div>
-			<div class="col align-self-center">
-				<label class="colorfont text-light">Hasta:</label> <input
-					type="date" />
-			</div>
-			<div class="col align-self-end">
-				<button class="btn  btn-success" type="button"
-					data-toogle="confirmation" data-title="Estas seguro?">Ver
-					reporte</button>
+	<nav class="container tamanio bg-dark margen text-light">
+		<div>
+			<div class="navbar-nav">
+				<form:form action="/Administrador/reportes" method="GET">
+					<div class="col align-self-start">
+						<label class="colorfont">Reporte:</label>
+						<select id="codReporte" name="codReporte" style="width: 220px; " class="form-control">
+			                <option SELECTED value="hogares">Consumo por hogar</option>
+			                <option value="dispositivos">Consumo promedio por tipo de dispositivo</option>
+			                <option value="transdormadores">Consumo por transformador</option>
+			            </select>
+	            	</div>			
+					<div class="col align-self-start">
+						<label class="colorfont">Desde:</label>
+						<input type="datetime-local" id="datedesde" placeholder="Desde"
+							name="datedesde" class="form-control" />
+					</div>
+					<div class="col align-self-center">
+						<label class="colorfont">Hasta:</label> 
+						<input type="datetime-local" id="datehasta" placeholder="Hasta"
+							name="datehasta" class="form-control" />
+					</div>
+					<div class="col align-self-end">
+						<br>
+						<button type="submit" name="verreporte" class="btn btn-info solid">Ver reporte</button>
+						<span class="sr-only">(current)</span>
+					</div>
+				</form:form>
 			</div>
 		</div>
-	</div>
-
-
+	</nav>	
 
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

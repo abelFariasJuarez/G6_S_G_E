@@ -10,7 +10,7 @@ import com.google.gson.reflect.TypeToken;
 import sge.modelo.posicionamiento.Transformador;
 
 
-public class ImportadorDeJsonTransformador extends ImportadorJson {
+public class ImportadorDeJsonTransformador extends GestorJson {
 	
 	public List<Transformador> getTransformadores() throws Exception {
 		

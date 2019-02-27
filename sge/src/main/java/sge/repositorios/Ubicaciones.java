@@ -7,8 +7,6 @@ import sge.modelo.posicionamiento.ZonaGeografica;
 import sge.modelo.usuarios.Cliente;
 
 public class Ubicaciones extends Repositorio{
-	public Ubicaciones() {
-	};
 
 	public Ubicaciones(EntityManager entityManager) {
 		super(entityManager);

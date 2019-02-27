@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.util.TimerTask;
 
 @SuppressWarnings("unused")
-public class ImportadorDeJSONCliente extends ImportadorJson {
+public class ImportadorDeJSONCliente extends GestorJson {
 
 	public List<Cliente> getClientes() throws Exception {
 		this.setArchivoFuente(System.getProperty("user.dir") + "/src/test/pruebacliente.json");

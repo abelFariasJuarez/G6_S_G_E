@@ -33,7 +33,7 @@
 		<class>sge.modelo.regla.comparador.MenorIgual</class>
 		<class>sge.modelo.regla.Condicion</class>
 		<class>sge.modelo.regla.Accion</class>
-		<class>sge.modelo.regla.AccionAhorrro</class>
+		<class>sge.modelo.regla.AccionAhorro</class>
 		<class>sge.modelo.regla.AccionApagar</class>
 		<class>sge.modelo.regla.AccionPrender</class>
 		<class>sge.modelo.regla.Regla</class>

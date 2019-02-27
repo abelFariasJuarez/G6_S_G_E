@@ -14,7 +14,7 @@ import sge.modelo.dispositivo.Dispositivo;
 import sge.modelo.dispositivo.DispositivoEstandar;
 import sge.modelo.dispositivo.DispositivoInteligente;
 
-public class ImportadorDeJsonDispositivo extends ImportadorJson {
+public class ImportadorDeJsonDispositivo extends GestorJson {
 
 	public List<Dispositivo> agregarDispositivos(String archivo) throws Exception {
 		this.setArchivoFuente(archivo);

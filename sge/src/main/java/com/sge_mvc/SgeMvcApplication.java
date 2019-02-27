@@ -9,10 +9,8 @@ import sge.repositorios.Repositorio;
 public class SgeMvcApplication {
 
 	public static void main(String[] args) {
-		Repositorio repo = new Repositorio();
-		repo.abrir();
-		repo.cargaDeDatosIniciales();
-		repo.cerrar();
+		Repositorio.getInstance().abrir();
 		SpringApplication.run(SgeMvcApplication.class, args);
+		Repositorio.getInstance().cerrar();
 	}
 }

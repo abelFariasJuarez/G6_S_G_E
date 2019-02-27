@@ -16,9 +16,6 @@ public class Dispositivos extends Repositorio {
 
 	public List<Dispositivo> Dispositivos = new ArrayList<Dispositivo>();
 
-	public Dispositivos() {
-	};
-
 	public Dispositivos(EntityManager entityManager) {
 		super(entityManager);
 	}

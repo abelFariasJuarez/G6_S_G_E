@@ -35,7 +35,7 @@ public class LoginController {
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String verificarLogin(@RequestParam String username, @RequestParam String password, HttpSession session,
 			Model model) {
-		Repositorio repo = new Repositorio();
+		Repositorio repo = Repositorio.getInstance();
 		repo.abrir();
 		Clientes usuarios = repo.clientes();
 		UsuarioSGE usu = (UsuarioSGE) repo.findBy(UsuarioSGE.class, "username", username);
@@ -48,12 +48,8 @@ public class LoginController {
 			String clazzName = usu.getClass().getSimpleName();
 			session.setAttribute("usuarioLogueado", usu);
 			session.setAttribute("username", usu.getUsername());
-			System.out.println(usu.getUsername()+"        ACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+			System.out.println(usu.getUsername());
 			return "redirect:/" + clazzName;
-			/*
-			 * String clazzName = usu.getClass().getSimpleName(); if
-			 * (clazzName.equals("Cliente")) clazzName="Usuario";
-			 */
 		}
 
 	}
@@ -67,8 +63,7 @@ public class LoginController {
 	@RequestMapping(value = "/mapa", method = { RequestMethod.GET, RequestMethod.POST })
 	public String mapa(Model model) {
 		
-		Repositorio repo = new Repositorio();
-		repo.abrir();
+		Repositorio repo = Repositorio.getInstance();
 		List<ZonaGeografica> zonas=repo.zonas().all();
 		List<Transformador> transforms=repo.transformadores().all();
 		

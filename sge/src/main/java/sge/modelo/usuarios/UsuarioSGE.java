@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -23,8 +24,11 @@ import sge.repositorios.LocalDateTimeConverter;
 @Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(name = "userType")
 @Table(name = "UsuarioSGE")
-public abstract class UsuarioSGE implements Serializable, IPersistible {
+public abstract class UsuarioSGE extends Persistible {
 
+	@Transient
+	@SerializedName("type")
+	private String typeName;
 	@Column(name = "nombre")
 	private String nombre;
 	@Column(name = "apellido")
@@ -34,13 +38,13 @@ public abstract class UsuarioSGE implements Serializable, IPersistible {
 	@Column(name = "fechaIngreso")
 	private LocalDate fechaIngreso;
 	@SerializedName("username")
-	@Id
 	@Column(name = "username",unique = true)
 	private String username;
 	@Column(name = "password")
 	private String password;
 
 	public UsuarioSGE() {
+		typeName = getClass().getName();
 	}
 
 	public UsuarioSGE(String _nombre, String _apellido, String _domicilio, LocalDate _fechaIngreso, String _username,
@@ -116,18 +120,6 @@ public abstract class UsuarioSGE implements Serializable, IPersistible {
 		setFechaingreso(u.getFechaIngreso());
 		setUsername(u.getUsername());
 		setPassword(u.getPassword());
-	}
-	
-	@Override
-	public Long getOid() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	}	
 
-	@Override
-	public void setOid(Long id) {
-		// TODO Auto-generated method stub
-		
-	}
-	
 }

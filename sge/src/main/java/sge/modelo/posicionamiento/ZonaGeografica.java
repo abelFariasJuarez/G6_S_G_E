@@ -27,7 +27,7 @@ public class ZonaGeografica extends Persistible {
 	@Column(name = "id", unique=true)
 	private Integer id;
 	
-	@ManyToOne//(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL)
 	private Ubicacion centro;
 	
 	@Column(name = "radio")

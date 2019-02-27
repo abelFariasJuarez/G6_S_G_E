@@ -2,6 +2,7 @@ package sge.modelo.dispositivo;
 
 import java.time.LocalDateTime;
 
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Convert;
@@ -25,6 +26,9 @@ import sge.repositorios.LocalDateTimeConverter;
 @Table(name = "Dispositivo")
 public abstract class Dispositivo extends Persistible {
 
+	@Transient
+	@SerializedName("typeName")
+	private String typeName;
 	@SerializedName("username")
 	@Transient
 	protected String username;
@@ -41,6 +45,15 @@ public abstract class Dispositivo extends Persistible {
 	protected Boolean bajoconsumo;
 
 	public Dispositivo() {
+		typeName = getClass().getName();
+	}
+
+	public String getTypeName() {
+		return typeName;
+	}
+
+	public void setTypeName(String typeName) {
+		this.typeName = typeName;
 	}
 
 	public Dispositivo(String _nombre, Double _consumoPorHora, String _username, Boolean _bajoconsumo) {
@@ -61,11 +74,11 @@ public abstract class Dispositivo extends Persistible {
 		instanteDeCreacion = _instanteDeCreacion;
 	}
 
-	public Boolean getBajoconsumo() {
+	public Boolean getBajoConsumo() {
 		return bajoconsumo;
 	}
 
-	public void setBajoconsumo(Boolean bajoconsumo) {
+	public void setBajoConsumo(Boolean bajoconsumo) {
 		this.bajoconsumo = bajoconsumo;
 	}
 

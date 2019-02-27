@@ -6,38 +6,71 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Nuevo Dispositivo</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	crossorigin="anonymous">
+        <style>
+            table tr:not(:first-child){
+                cursor: pointer;transition: all .25s ease-in-out;
+            }
+            table tr:not(:first-child):hover{background-color: #ddd;}
+        </style>
+      
 </head>
+
 <body>
 
 <div class="container text-light" >
   <div class="row">
-    <div class="col align-self-start"> 
-    	<h1>Dispositivos Disponibles</h1>
-			<select name="dispo" size="10" width="1000">
-				
-				<c:forEach items="${disponibles}" var="disponible">
+    <div class="col align-self-start">
+		<div class="container tamanio bg-dark margen text-light"  >  	
+			<h3>Dispositivos Disponibles</h3>
+			<div class="col align-self-end"> 
+   				<form:form action="/Cliente/ABMDispositivos" method="POST">
+					Familia:<input type="text" name="fcodigo" id="fcodigo" required><br><br>
+					Nombre:<input type="text" name="fname" id="fname" required><br><br>
+   					<button type="submit" name="nuevoDisp" class="btn btn-dark" > Agregar </button> 
+   				</form:form>
+   				<form:form action="/Cliente/ABMDispositivos" method="POST">
+   					<button type="submit" name="cancel" class="btn btn-dark" > Cancelar </button> 
+   				</form:form>
+			</div>
+		    <table id="table" class="table table-dark ">
 				<tr>
-					<option>${disponible.nombre} + ${disponible.codigo} + ${disponible.nombre} + {disponible.isInteligente} + ${disponible.isBajoConsumo} + ${disponible.consumoPorHora}</option>
+					<th scope="col">Familia</th>
+					<th scope="col">Nombre</th>
+					<th scope="col">Es Inteligente</th>
+					<th scope="col">Bajo Consumo</th>
+					<th scope="col">Consumo Por Hora</th>							
 				</tr>
-						</c:forEach>
-			</select>
-
-
-			
+				<c:forEach items="${disponibles}" var="disponible">
+					<tr>		
+						<td>${disponible.getCodigo()}</td>
+						<td>${disponible.getNombre()}</td>
+						<td>${disponible.getIsInteligente()}</td>
+						<td>${disponible.getIsBajoConsumo()}</td>
+						<td>${disponible.getConsumoPorHora()}</td>								
+					</tr>
+				</c:forEach>
+			</table>
+		</div>		
     </div>
-    <div class="col align-self-center"> 
-    </div>
-    
-   	<div class="col align-self-end"> 
-   		<form:form action="/demo/login/Usuario/abmReg/nuevaReg?dispositivo=${dispositivo}" method="POST">
-   		<button type="submit" name="NuevoDisp" class="btn btn-dark" > Seleccionar </button> 
-   		</form:form>
-   		<form:form action="/demo/login/Usuario/abmDisp" method="POST">
-   		<button type="submit" name="cancel" class="btn btn-dark" > Cancelar </button> 
-   		</form:form>
-   	   	</div>
   </div>
 </div>
+
+
+<script>
+	var table = document.getElementById('table');
+	for(var i = 1; i < table.rows.length; i++)
+	{
+		table.rows[i].onclick = function()
+		{
+            document.getElementById("fcodigo").value = this.cells[0].innerHTML;
+            document.getElementById("fname").value = this.cells[1].innerHTML;
+		};
+	}    
+</script>
 </body>
 </html>

@@ -8,14 +8,12 @@ import javax.persistence.EntityManager;
 import sge.modelo.posicionamiento.Transformador;
 import sge.modelo.posicionamiento.Ubicacion;
 import sge.modelo.posicionamiento.ZonaGeografica;
+import sge.modelo.usuarios.Cliente;
 import utils.ImportadorDeJsonTransformador;
 
 
 public class Transformadores extends Repositorio {
 	private List<Transformador> transformadores= new ArrayList<Transformador>();
-
-	public Transformadores() {
-	};
 
 	public Transformadores(EntityManager entityManager) {
 		super(entityManager);
@@ -42,13 +40,20 @@ public class Transformadores extends Repositorio {
 	
 	public void cargarGuardar() {
 		this.cargarTransformadores();
-		this.persistir(this.transformadores);
+		this.transformadores = this.persistir(this.transformadores);
 	}
 	
 	
 	
-	public void persistir(List<Transformador> transformadores2) {
-		transformadores2.forEach(t -> this.persistir(t));		
+	public List<Transformador> persistir(List<Transformador> transformadores) {
+		List<Transformador> transformadoresPer = new ArrayList<Transformador>(); 
+		for (Transformador t : transformadores) {
+			Transformador t1 = this.getPersistenteBy("id",t.getId());
+			t1.llenarAtributos(t);
+			this.persistir(t1);			
+			transformadoresPer.add(t1);
+		}	
+		return transformadoresPer; 		
 	}
 
 	public void persistir(Transformador t) {

@@ -16,9 +16,6 @@ public class Zonas extends Repositorio {
 
 	private List<ZonaGeografica> zonas= new ArrayList<ZonaGeografica>();
 
-	public Zonas() {
-	};
-
 	public Zonas(EntityManager entityManager) {
 		super(entityManager);
 	}
@@ -48,7 +45,7 @@ public class Zonas extends Repositorio {
 
 	public void cargarGuardar() {
 		this.cargarZonas();
-		this.persistir(this.zonas);
+		this.zonas = this.persistir(this.zonas);
 	}
 	
 	public void bajaTransformadores() {
@@ -62,8 +59,15 @@ public class Zonas extends Repositorio {
 		return (List<ZonaGeografica>) this.allOf(ZonaGeografica.class);
 	}
 
-	public void persistir(List<ZonaGeografica> zonas2) {
-		zonas2.forEach(z -> this.persistir(z));		
+	public List<ZonaGeografica> persistir(List<ZonaGeografica> zonas) {
+		List<ZonaGeografica> zonasPer = new ArrayList<ZonaGeografica>(); 
+		for (ZonaGeografica z : zonas) {
+			ZonaGeografica z1 = this.getPersistenteBy("id",z.getId());
+			z1.llenarAtributos(z);
+			this.persistir(z1);			
+			zonasPer.add(z1);
+		}	
+		return zonasPer; 	
 	}
 
 	public void persistir(ZonaGeografica zona) {
@@ -78,8 +82,8 @@ public class Zonas extends Repositorio {
 		zona1.setCentro(ubi);
 		super.clientes().persistir(zona1.getClientes());
 		super.transformadores().persistir(zona1.getTransformadores());
-		super.persistir(zona1);*/
-		super.persistir(zona.getCentro());
+		super.persistir(zona1);
+		super.persistir(zona.getCentro());*/
 		super.persistir(zona);
 	}
 

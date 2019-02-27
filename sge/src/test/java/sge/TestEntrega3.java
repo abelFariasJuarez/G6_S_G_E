@@ -29,9 +29,8 @@ public class TestEntrega3 {
 
 	@Before
 	public void setUp() throws Exception {
-		repo = new Repositorio();
+		repo = Repositorio.getInstance();
 		repo.abrir();
-		//repositorio.cargaDeDatosIniciales();
 	}
 
 	@Test
@@ -39,9 +38,6 @@ public class TestEntrega3 {
 
 		// Caso de prueba 1: Crear 1 usuario nuevo.
 		this.crearUsuarioDelCasoDePrueba();		
-		//Cliente clienteOriginal = repo.clientes().findBy("username", "fperez");		
-		// Persistirlo.
-		//repo.clientes().persistir(clienteOriginal);
 
 		// Recuperarlo,
 		Cliente clienteRecuperado = repo.clientes().findBy("username", "fperez");
@@ -74,7 +70,7 @@ public class TestEntrega3 {
 		unDispo.mostrarIntervalosEncendidos();
 
 		// Modificar su nombre (o cualquier otro atributo editable)
-		unDispo.setBajoconsumo(false);
+		unDispo.setBajoConsumo(false);
 
 		// y grabarlo.
 		repo.dispositivos().persistir(unDispo);
@@ -84,7 +80,7 @@ public class TestEntrega3 {
 				"DispoCasoPrueba");
 
 		// y evaluar que el nombre coincida con el esperado.
-		assertEquals(unDispoRecuperado.getBajoconsumo(), false);
+		assertEquals(unDispoRecuperado.getBajoConsumo(), false);
 	}
 
 	@Test
@@ -295,7 +291,7 @@ public class TestEntrega3 {
 			unDispo.getIntervalos().get(5).setInicio(desde);
 			unDispo.getIntervalos().get(5).setFin(hasta);
 
-			unDispo.setBajoconsumo(true);
+			unDispo.setBajoConsumo(true);
 			unDispo.setConsumoPorHora(7.1);
 			repo.dispositivos().persistir(unDispo);
 		}

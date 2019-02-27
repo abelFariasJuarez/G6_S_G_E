@@ -12,12 +12,11 @@ import sge.modelo.IPersistible;
 import sge.modelo.Persistible;
 
 @Entity
-@Table(name = "Ubicacion",uniqueConstraints = {@UniqueConstraint(columnNames = {"latitud", "longitud"}) })
-public class Ubicacion implements Serializable, IPersistible {
-	@Id
+@Table(name = "Ubicacion")
+public class Ubicacion extends Persistible {
+	
 	@Column(name = "latitud")
 	private Double latitud;
-	@Id
 	@Column(name = "longitud")
 	private Double longitud;
 	
@@ -44,18 +43,5 @@ public class Ubicacion implements Serializable, IPersistible {
 	public void setLongitud(Double longitud) {
 		this.longitud = longitud;
 	}
-
-	@Override
-	public Long getOid() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void setOid(Long id) {
-		// TODO Auto-generated method stub
-		
-	}
-	
 	
 }

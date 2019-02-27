@@ -8,8 +8,8 @@ import sge.modelo.dispositivo.Inteligente;
 
 @Entity
 @DiscriminatorValue("AH")
-@Table(name = "AccionAhorrro")
-public class AccionAhorrro extends Accion {
+@Table(name = "AccionAhorro")
+public class AccionAhorro extends Accion {
 	
 	
 	public void ejecutar(Inteligente dispo) {

@@ -20,7 +20,7 @@ public class TestAdministrador {
 	@Test
 	public void MesesAdministrando() {		
 
-		assertEquals(45, admin.cantMesesAdministrando());
+		assertEquals(46, admin.cantMesesAdministrando());
 
 	}
 	

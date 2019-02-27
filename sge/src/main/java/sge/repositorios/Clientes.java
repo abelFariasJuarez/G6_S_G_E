@@ -21,9 +21,6 @@ public class Clientes extends Repositorio {
 		super(entityManager);
 	};
 
-	public Clientes() {
-	}
-
 	public void guardarCliente(Cliente cliente) {
 		clientesJson.add(cliente);
 	}
@@ -44,11 +41,18 @@ public class Clientes extends Repositorio {
 	
 	public void cargarGuardar() {
 		this.cargarClientesDesdeJson();
-		this.persistir(this.clientesJson);
+		this.clientesJson = this.persistir(this.clientesJson);
 	}	
 
-	public void persistir(List<Cliente> clientesJson2) {
-		clientesJson2.forEach(c -> this.persistir(c));		
+	public List<Cliente> persistir(List<Cliente> clientes) {
+		List<Cliente> clientesPer = new ArrayList<Cliente>(); 
+		for (Cliente c : clientes) {
+			Cliente c1 = this.getPersistenteByUsername(c.getUsername());
+			c1.llenarAtributos(c);
+			this.persistir(c1);			
+			clientesPer.add(c1);
+		}	
+		return clientesPer; 
 	}
 	
 	public void persistir(Cliente c2) {
@@ -62,13 +66,22 @@ public class Clientes extends Repositorio {
 		c1.llenarAtributos(c2);
 		c1.setUbicacion(ubiC2);
 		
-		super.persistir(c1);*/
-		super.persistir(c2.getUbicacion());
+		super.persistir(c1);
+		super.persistir(c2.getUbicacion());*/
 		super.persistir(c2);
 	}
 
 	private Cliente getPersistenteBy(String campo, Object valor) {
 		Cliente transDAO = this.findBy(campo, valor);
+		if(transDAO == null)
+		{
+			transDAO = new Cliente();
+		}
+		return transDAO;
+	}
+	
+	private Cliente getPersistenteByUsername(Object valor) {
+		Cliente transDAO = this.findBy("username", valor);
 		if(transDAO == null)
 		{
 			transDAO = new Cliente();

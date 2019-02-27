@@ -38,7 +38,7 @@ public class TestJPAGeneral extends AbstractPersistenceTest implements WithGloba
 
 	@Before
 	public void setUpGeneral() throws Exception {
-		repositorio = new Repositorio();
+		repositorio = Repositorio.getInstance();
 		repositorio.abrir();
 	}
 
@@ -152,16 +152,18 @@ public class TestJPAGeneral extends AbstractPersistenceTest implements WithGloba
 	// Test usuarios
 	@Test
 	public void aPersistirCliente() {
-		Cliente c = new Cliente("Carla", "Sanazki", "condarco 149", LocalDate.of(2017, 4, 7), "cazana", "menToL2017",
-				"Dni", 21321013, 1543312311);
-		c.setAhorroAutomatico(false);
-		Ubicacion u  = repositorio.ubicaciones().getPersistente(1.0, 1.0);
-		c.setUbicacion(u);
-
-		Categoria unaCate = new Categoria("R0", 13.f, 0.05f, 1.5f, 10f);
-		c.setCategoria(unaCate);
+		Cliente c = repositorio.clientes().findBy("username", "cazana");
+		if (c == null) {
+			c = new Cliente("Carla", "Sanazki", "condarco 149", LocalDate.of(2017, 4, 7), "cazana", "menToL2017", "Dni",
+					21321013, 1543312311);
+			c.setAhorroAutomatico(false);
+			Ubicacion u = new Ubicacion(1.0, 1.0);
+			c.setUbicacion(u);
+			Categoria unaCate = new Categoria("R0", 13.f, 0.05f, 1.5f, 10f);
+			c.setCategoria(unaCate);
+		}
 		repositorio.clientes().persistir(c);
-		repositorio.borrar(c);
+
 	}
 
 	@Test
@@ -184,10 +186,10 @@ public class TestJPAGeneral extends AbstractPersistenceTest implements WithGloba
 				21321013, 1543312311);
 		c.setAhorroAutomatico(false);
 		
-		c.setUbicacion(repositorio.ubicaciones().getPersistente(1.3 , 2.1));
+		c.setUbicacion(new Ubicacion(1.3 , 2.1));
 
 		ZonaGeografica zona = new ZonaGeografica();
-		zona.setCentro(repositorio.ubicaciones().getPersistente(1.2, 2.1));
+		zona.setCentro(new Ubicacion(1.2, 2.1));
 		zona.addCliente(c);
 		zona.setId(125);
 		zona.setNombre("zona1");

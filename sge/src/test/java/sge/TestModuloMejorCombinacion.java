@@ -31,7 +31,7 @@ public class TestModuloMejorCombinacion {
 
 	@Before
 	public void setUpGeneral() throws Exception {
-		Repositorio repositorio = new Repositorio();
+		Repositorio repositorio = Repositorio.getInstance();
 		repositorio.abrir();
 		rest_air = repositorio.restriccionesHorasFamilia().findBy("codigo", "AIRCONDITIONER");
 		rest_lava = repositorio.restriccionesHorasFamilia().findBy("codigo", "WASHINGMACHINE");

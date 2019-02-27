@@ -14,7 +14,7 @@ import sge.repositorios.Repositorio;
 
 public class TestImportadorDispositivosEstandar {
 
-	Dispositivos repoDispositivos = new Repositorio().dispositivos();
+	Dispositivos repoDispositivos = Repositorio.getInstance().dispositivos();
 	List<Dispositivo> dispositivos;
 
 	@Before

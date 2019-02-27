@@ -37,8 +37,7 @@ public class AbmRegController {
 	
 	@RequestMapping(value="abmDisp",method=RequestMethod.POST)
 	public ModelAndView abmDisp(@RequestParam("user") String user) {
-		Repositorio repositorio = new Repositorio();
-		repositorio.abrir(); 
+		Repositorio repositorio = Repositorio.getInstance();
 		 List<Dispositivo> dispositivos = (List<Dispositivo>) repositorio.dispositivos().findBy("username", user)  ;
 		  ModelAndView modelAndView = new ModelAndView("abm");
 		  modelAndView.addObject("dispositivos", dispositivos);
@@ -47,8 +46,7 @@ public class AbmRegController {
 	
 	@RequestMapping(value="abmDisp",method=RequestMethod.GET)
 	public ModelAndView abmdis(@RequestParam("user") String user) {
-		Repositorio repositorio = new Repositorio();
-		repositorio.abrir();
+		Repositorio repositorio = Repositorio.getInstance();
 		usuario = user;
 		List<Dispositivo> dispositivos = (List<Dispositivo>) repositorio.dispositivos().findBy("username", user)  ;
 		  ModelAndView modelAndView = new ModelAndView("abm");
@@ -83,8 +81,7 @@ public class AbmRegController {
 	
 	@RequestMapping(value="/Cliente/ABMReglas",method=RequestMethod.POST,params="SelectDisp")
 	public Model SelectDispo(@RequestParam("value") String dispSeleccionado,HttpServletRequest request, Model model) {
-		Repositorio repo = new Repositorio();
-		repo.abrir();
+		Repositorio repo = Repositorio.getInstance();		
 		//checkear como busca las reglas, no me cierra algo
 		//List<Dispositivo> dispositivos = (List<Dispositivo>) repo.dispositivos().findBy("username", usuario);
 		Dispositivo dispo = repo.dispositivos().findBy("nombre",dispSeleccionado);
@@ -93,14 +90,5 @@ public class AbmRegController {
 		  //modelAndView.addObject("dispositivoElegido", dispSeleccionado);
 		  return model;
 	}
-	
-/*	@RequestMapping(value="/refresh")
-	@ResponseBody 
-	    public List<Regla> startCheckingStatus(@RequestParam("dispSeleccionado") Dispositivo dispSeleccionado){
-		
-		List<Regla> reglas = ((Inteligente) dispSeleccionado).getReglas();
-		return reglas; 
-	}*/
-	
-	
+
 }

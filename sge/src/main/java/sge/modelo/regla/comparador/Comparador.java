@@ -10,14 +10,19 @@ import javax.persistence.MappedSuperclass;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-import sge.modelo.Persistible;
+import com.google.gson.annotations.SerializedName;
 
+import sge.modelo.Persistible;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "comparatorType")
 @Table(name = "Comparador")
 public abstract class Comparador extends Persistible{
+	
+	@Transient
+	@SerializedName("type")
+	private String typeName;
 	@Transient 
 	BiFunction<Double, Double, Boolean> cmp;
 	
@@ -25,8 +30,9 @@ public abstract class Comparador extends Persistible{
 		return cmp.apply(valorActual,valorEsperado);
 	}
 
-	public Comparador() {
+	public Comparador() {		
 		super();
+		typeName = getClass().getName();
 	}
 	
 	

@@ -8,6 +8,8 @@ import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import com.google.gson.annotations.SerializedName;
+
 import sge.modelo.Persistible;
 
 @Entity
@@ -16,9 +18,17 @@ import sge.modelo.Persistible;
 @Table(name = "EstadoDispositivo")
 public abstract class EstadoDispositivo extends Persistible{
 
+	@Transient
+	@SerializedName("type")
+	private String typeName;
+	
 	@Column(name = "factor")
 	double factor;
 
+	public EstadoDispositivo() {
+	    typeName = getClass().getName();
+	}
+	
 	public void prender(Inteligente dispositivoInteligente) {
 		dispositivoInteligente.setEncendido(true);
 	}

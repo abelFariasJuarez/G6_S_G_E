@@ -46,7 +46,7 @@ public class Cliente extends UsuarioSGE  {
 	private List<Dispositivo> dispositivos = new ArrayList<Dispositivo>();
 	@Column(name = "puntos")
 	private Integer puntos = 0;
-	@ManyToOne//(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL)
 	private Ubicacion ubicacion;
 	@Column(name = "ahorroAutomatico")
 	private boolean ahorroAutomatico = false; // o accion automatica o accione por si solo
@@ -118,8 +118,16 @@ public class Cliente extends UsuarioSGE  {
 
 	}
 
-	public Stream<Dispositivo> misInteligentes() {
-		return dispositivos.stream().filter(dis -> dis instanceof Inteligente);
+	public Stream<Inteligente> misInteligentes() {
+		List<Inteligente> list = new ArrayList<Inteligente>();
+		dispositivos.stream().forEach((d)-> {
+			if(d instanceof Inteligente)
+			{
+				list.add((Inteligente) d);
+			}
+        });
+
+		return list.stream();
 	}
 
 	public Double ConsumoActualDispositivosInteligentes() {

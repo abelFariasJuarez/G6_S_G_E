@@ -11,7 +11,7 @@ import sge.repositorios.Transformadores;
 import sge.repositorios.Zonas;
 
 public class GestorCliente {
-	private Repositorio repositorio = new Repositorio();
+	private Repositorio repositorio = Repositorio.getInstance();
 
 
 	public Repositorio getRepositorio() {

@@ -12,6 +12,7 @@ import org.junit.Test;
 
 import sge.repositorios.Clientes;
 import sge.repositorios.Repositorio;
+import utils.GestorJson;
 import sge.repositorios.Dispositivos;
 import sge.modelo.dispositivo.*;
 import sge.modelo.driver.ActuadorAhorro;
@@ -23,7 +24,7 @@ import sge.modelo.usuarios.Cliente;
 
 public class TestCliente {
 
-	static Repositorio repo1 = new Repositorio();
+	static Repositorio repo1 = Repositorio.getInstance();
 	static Clientes repoClientes = repo1.clientes();
 	static List<Cliente> clientes;
 	static Cliente cli, cli2;

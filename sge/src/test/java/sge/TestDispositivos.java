@@ -14,8 +14,7 @@ import sge.repositorios.Repositorio;
 
 public class TestDispositivos {
 
-	/* por que funciona solo con static? hay algo mal en los repo? */
-	static Dispositivos repoDispositivos = new Repositorio().dispositivos();
+	static Dispositivos repoDispositivos = Repositorio.getInstance().dispositivos();
 	static List<Dispositivo> Dispositivos;
 
 	@BeforeClass

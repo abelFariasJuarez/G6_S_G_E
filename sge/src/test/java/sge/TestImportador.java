@@ -18,7 +18,7 @@ public class TestImportador {
 
 	@Test
 	public void ImportadorJsonDispositivo() {
-		Dispositivos repoDispositivos = new Repositorio().dispositivos();
+		Dispositivos repoDispositivos = Repositorio.getInstance().dispositivos();
 		repoDispositivos.cargarDispositivos("todos");
 
 		assertEquals(24, repoDispositivos.getDispositivos().size());
@@ -31,7 +31,7 @@ public class TestImportador {
 
 	@Test
 	public void ImportadorJsonZona() {
-		Zonas repoZonas = new Zonas();
+		Zonas repoZonas = Repositorio.getInstance().zonas();
 		repoZonas.cargarZonas();
 
 		assertEquals(3, repoZonas.getZonas().size());
@@ -44,7 +44,7 @@ public class TestImportador {
 
 	@Test
 	public void ImportadorJsonTransformador() {
-		Transformadores repoTransfo = new Repositorio().transformadores();
+		Transformadores repoTransfo = Repositorio.getInstance().transformadores();
 		repoTransfo.cargarTransformadores();
 		assertEquals(10, repoTransfo.getTransformadores().size());
 
@@ -56,7 +56,7 @@ public class TestImportador {
 
 	@Test
 	public void ImportadorJsonCliente() {
-		Clientes repoClientes = (new Repositorio()).clientes();
+		Clientes repoClientes = Repositorio.getInstance().clientes();
 		repoClientes.cargarClientesDesdeJson();
 		assertEquals(4, repoClientes.getClientesJson().size());
 

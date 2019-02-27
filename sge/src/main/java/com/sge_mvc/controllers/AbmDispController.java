@@ -35,8 +35,7 @@ public class AbmDispController {
 
 	@RequestMapping(value="abmdispositivos",method=RequestMethod.POST)
 	public ModelAndView abmDisp(@RequestParam("user") String user) {
-		Repositorio repositorio = new Repositorio();
-		repositorio.abrir(); 
+		Repositorio repositorio = Repositorio.getInstance();
 		 List<Dispositivo> dispositivos = (List<Dispositivo>) repositorio.dispositivos().findBy("username", user)  ;
 		  ModelAndView modelAndView = new ModelAndView("abm");
 		  modelAndView.addObject("dispositivos", dispositivos);
@@ -45,8 +44,7 @@ public class AbmDispController {
 	
 	@RequestMapping(value="abmdispositivos",method=RequestMethod.GET)
 	public ModelAndView abmdis(@RequestParam("user") String user) {
-		Repositorio repositorio = new Repositorio();
-		repositorio.abrir();
+		Repositorio repositorio = Repositorio.getInstance();
 		usuario = user;
 		List<Dispositivo> dispositivos = (List<Dispositivo>) repositorio.dispositivos().findBy("username", user)  ;
 		  ModelAndView modelAndView = new ModelAndView("abm");
@@ -61,11 +59,9 @@ public class AbmDispController {
 	
 	@RequestMapping(value="nuevodisp", method = RequestMethod.POST)
 	public String nuevoDispositivo(Model model) throws ServletException, IOException {
-			Repositorio repo = new Repositorio();
-			repo.abrir();
+			Repositorio repo = Repositorio.getInstance();
 			List<DispositivoDisponible> disponibles = repo.dispositivosDisponibles().all();
 			model.addAttribute("disponibles", disponibles);
-			repo.cerrar();
 			//ModelAndView modelAndView = new ModelAndView("nuevodisp");
 			//modelAndView.addObject("dispdisponibles", dispdisponibles);
 			return "nuevodisp";
@@ -73,8 +69,7 @@ public class AbmDispController {
 	}
 	@RequestMapping(value="modifDisp", method = RequestMethod.POST)
 	public ModelAndView modificarDispositivo() throws ServletException, IOException {
-			Repositorio repo = new Repositorio();
-			repo.abrir();
+			Repositorio repo = Repositorio.getInstance();
 			ModelAndView modelAndView = new ModelAndView("modifDisp");
 			//modelAndView.addObject("dispdisponibles", dispdisponibles);
 			return modelAndView;
@@ -83,8 +78,7 @@ public class AbmDispController {
 	
 	@RequestMapping(method=RequestMethod.GET, params="EliminDisp")
 	public ModelAndView abmDispo(@RequestParam("dispositivo") String dispositivo) {
-			Repositorio repo = new Repositorio();
-			repo.abrir();
+			Repositorio repo = Repositorio.getInstance();
 			List<Dispositivo> dispositivos = (List<Dispositivo>) repo.dispositivos().findBy("username", usuario);
 			Dispositivo dispo = repo.dispositivos().findBy("nombre",dispositivo);
 			repo.borrar(dispo);

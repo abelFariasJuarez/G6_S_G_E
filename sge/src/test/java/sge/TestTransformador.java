@@ -17,7 +17,7 @@ import sge.repositorios.Repositorio;
 import sge.repositorios.Transformadores;
 
 public class TestTransformador {
-	static Repositorio repositorio = new Repositorio();
+	static Repositorio repositorio = Repositorio.getInstance();
 	static Transformadores repoT = repositorio.transformadores();
 	static Clientes repoC = repositorio.clientes();
 
@@ -33,7 +33,7 @@ public class TestTransformador {
 		Transformador transfo = repoT.getTransformadores().get(0);
 
 		Cliente cliente = repoC.getClientesJson().get(1);
-		assertEquals(584.3492609553148, transfo.Distancia(cliente), 0);
+		assertEquals(0.020173799865175417, transfo.Distancia(cliente), 0);
 	}
 
 	@Test
@@ -43,7 +43,7 @@ public class TestTransformador {
 		Transformador transfoCercano = Collections.min(transformadores,
 				Comparator.comparing(t -> t.Distancia(cliente)));
 
-		assertEquals(584.3373307553782, transfoCercano.Distancia(cliente), 0);
+		assertEquals(0.010039931324470846, transfoCercano.Distancia(cliente), 0);
 
 	}
 

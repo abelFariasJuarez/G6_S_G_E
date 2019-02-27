@@ -10,7 +10,7 @@ import com.google.gson.reflect.TypeToken;
 
 import sge.modelo.posicionamiento.ZonaGeografica;
 
-public class ImportadorDeJsonZona extends ImportadorJson {
+public class ImportadorDeJsonZona extends GestorJson {
 
 	public List<ZonaGeografica> getZona() throws Exception {
 
@@ -19,7 +19,5 @@ public class ImportadorDeJsonZona extends ImportadorJson {
 		Type tipoListaZona = new TypeToken<List<ZonaGeografica>>() {
 		}.getType();
 		return (List<ZonaGeografica>) this.myFromJson(tipoListaZona);
-
 	}
-
 }

@@ -59,40 +59,55 @@ function myFunctionx() {
 <body>
 
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <p class="navbar-brand" >${usuarioLogueado.username}</p>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<p class="navbar-brand">${usuarioLogueado.nombre}</p>
 
-  
-  <div >
-    <div class="navbar-nav">
-    
-    
-      <form:form action="/Cliente/MiHogar" method="POST">
-      <button type="submit" name="oculto"  class="btn btn-info solid" >Mi Hogar</button><span class="sr-only">(current)</span>
-      </form:form>
-      
-      <form:form action="/Cliente/ConsumoPeriodo" method="POST">
-      <button type="submit" name="oculto2"  class="btn btn-info solid" >Consumo por periodo</button><span class="sr-only">(current)</span>
-      </form:form>
-      
-      <form:form action="/Cliente/simplex" method="POST">
-      <button type="submit" name="oculto4" class="btn btn-info solid"  >Monitor Hogar Eficiente</button><span class="sr-only">(current)</span>
-      </form:form>
-      
-      <form:form action="/Cliente/ABMDispositivos" method="POST">
-      <button type="submit" name="oculto5" class="btn btn-info solid"  >ABM dispositivos</button><span class="sr-only">(current)</span>
-      </form:form>
-      
-      <form:form action="/Cliente/ABMReglas" method="POST">
-      <button type="submit" name="oculto6" class="btn btn-info solid"  >ABM reglas</button><span class="sr-only">(current)</span>
-      </form:form>
-      
-      <a class="btn  btn-success" href="logout" >Cerrar Sesion</a>
-    </div>
-  </div>
-</nav>
- 
-<div class="container text-light" >
+
+		<div>
+			<div class="navbar-nav">
+
+				<form:form action="/Cliente/MiHogar" method="POST">
+					<button type="submit" name="oculto" class="btn btn-info solid">Mi
+						Hogar</button>
+					<span class="sr-only">(current)</span>
+				</form:form>
+
+				<form:form action="/Cliente/ConsumoPeriodo" method="POST">
+					<button type="submit" name="oculto2" class="btn btn-info solid">Consumo
+						por periodo</button>
+					<span class="sr-only">(current)</span>
+				</form:form>
+
+				<form:form action="/Cliente/simplex" method="POST">
+					<button type="submit" name="oculto4" class="btn btn-info solid">Monitor
+						Hogar Eficiente</button>
+					<span class="sr-only">(current)</span>
+				</form:form>
+
+				<form:form action="/Cliente/ABMDispositivos" method="POST">
+					<button type="submit" name="oculto5" class="btn btn-info solid">ABM
+						dispositivos</button>
+					<span class="sr-only">(current)</span>
+				</form:form>
+
+				<form:form action="/Cliente/ABMReglas" method="POST">
+					<button type="submit" name="oculto6" class="btn btn-info solid">ABM
+						reglas</button>
+					<span class="sr-only">(current)</span>
+				</form:form>
+
+				<a class="btn  btn-success" href="logout">Cerrar Sesion</a>
+			</div>
+		</div>
+	</nav>
+
+
+
+
+
+
+
+	<div class="container text-light" >
   <div class="row" style="visibility:hidden" id="oculto">
      <div class="col align-self-start"   id="oculto" >
      

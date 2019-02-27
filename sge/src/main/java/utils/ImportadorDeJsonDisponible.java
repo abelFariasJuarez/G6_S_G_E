@@ -10,7 +10,7 @@ import com.google.gson.reflect.TypeToken;
 
 import sge.modelo.dispositivo.DispositivoDisponible;
 
-public class ImportadorDeJsonDisponible extends ImportadorJson {
+public class ImportadorDeJsonDisponible extends GestorJson {
 
 	public List<DispositivoDisponible> getDispositivoDisponible(String archivo) throws Exception {
 		this.setArchivoFuente(archivo);

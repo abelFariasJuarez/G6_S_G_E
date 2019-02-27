@@ -6,7 +6,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Admin</title>
+<title>MiHogara</title>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
 	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
@@ -38,7 +38,6 @@
 			<div class="col col-sm align-self-center ">
 
 				<table id="oculto68" class="table table-dark ">
-
 					<thead>
 						<tr>
 							<th scope="col">Dispositivo</th>
@@ -48,21 +47,14 @@
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach items="${usuarioLogueado.getDispositivos()}"
-							var="dispositivo">
+						<c:forEach items="${misInteligentes}" var="dispositivo">
 							<tr>
-
 								<td>${dispositivo.getNombre()}</td>
 								<td>${dispositivo.getNombreEstado()}</td>
-								<td><c:choose>
-										<c:when test="${dispositivo.getReglas().size()==0}">
-        Ninguno
-        <br />
-										</c:when>
-										<c:otherwise>
-        ${dispositivo.getReglas()}
-        <br />
-										</c:otherwise>
+								<td>
+									<c:choose>
+										<c:when test="${dispositivo.getReglas().size()==0}">Ninguno</c:when>
+										<c:otherwise>${dispositivo.getReglas()}</c:otherwise>
 									</c:choose></td>
 									<td>x</td>
 							</tr>
@@ -81,10 +73,7 @@
 
 	<div class="container margen ">
 		<div class="row">
-			<div class="col align-self-start"></div>
-			<div class="col col-sm align-self-center "></div>
 			<div class="col align-self-end">
-
 				<form:form action="/Cliente" method="GET">
 					<button type=submit>Volver</button>
 				</form:form>

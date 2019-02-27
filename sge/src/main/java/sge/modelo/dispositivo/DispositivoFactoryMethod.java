@@ -11,8 +11,8 @@ public class DispositivoFactoryMethod {
 	}
 
 	public static void cargaBasica() {
-		Repositorio repositorio = new Repositorio();
-		repositorio.abrir();
+		Repositorio repositorio = Repositorio.getInstance();
+		//repositorio.abrir();
 
 		DispositivoDisponible check = null;
 		check = repositorio.dispositivosDisponibles().findBy("codigo", "Aire3500");
@@ -210,8 +210,8 @@ public class DispositivoFactoryMethod {
 
 	public static Dispositivo getDispositivoByCode(String code) {
 		Dispositivo objeto = null;
-		Repositorio repositorio = new Repositorio();
-		repositorio.abrir();
+		Repositorio repositorio = Repositorio.getInstance();
+		//repositorio.abrir();
 
 		DispositivoDisponible template = repositorio.dispositivosDisponibles().findBy("codigo", code);
 
@@ -227,7 +227,7 @@ public class DispositivoFactoryMethod {
 				template.getCodigoRestriccionHoras());
 		objeto.setRestriccionHoras(restriccion);
 
-		repositorio.cerrar();
+		//repositorio.cerrar();
 		return objeto;
 	}
 

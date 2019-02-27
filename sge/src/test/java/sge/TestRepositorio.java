@@ -16,7 +16,7 @@ public class TestRepositorio {
 	private Repositorio repositorio;
 	@Before
 	public void setUp() throws Exception {
-		repositorio = new Repositorio();
+		repositorio = Repositorio.getInstance();
 		repositorio.abrir();
 	}
 

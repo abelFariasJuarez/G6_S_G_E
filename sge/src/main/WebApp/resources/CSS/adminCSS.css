@@ -9,7 +9,13 @@ body{background-color: black;
 
 .margen{
 	margin-top:0.4%;
+	margin-bottom: 1%;
 }
 
 .solid{border-color: white;
 	border-style: solid 1px;}
+	
+.dropdown {
+  position: relative;
+  display: inline-block;
+}	

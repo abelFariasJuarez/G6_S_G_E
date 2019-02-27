@@ -14,7 +14,7 @@ import sge.repositorios.Repositorio;
 
 public class TestImportadorDispositivosInteligentes {
 
-	static Dispositivos repoDispositivos = new Repositorio().dispositivos();
+	static Dispositivos repoDispositivos = Repositorio.getInstance().dispositivos();
 	static List<Dispositivo> dispositivos;
 
 	@Before

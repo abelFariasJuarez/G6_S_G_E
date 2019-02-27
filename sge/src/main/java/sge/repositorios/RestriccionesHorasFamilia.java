@@ -17,10 +17,6 @@ import sge.modelo.usuarios.Cliente;
 public class RestriccionesHorasFamilia extends Repositorio {
 	private List<RestriccionesHorasFamilia> restriccionesHorasFamilia = new ArrayList<RestriccionesHorasFamilia>();
 
-	public RestriccionesHorasFamilia() {
-		this.crearRetriccionesSiNoExisten();
-	};
-
 	public RestriccionesHorasFamilia(EntityManager entityManager) {
 		super(entityManager);
 	}

@@ -30,7 +30,7 @@ public class Transformador extends Persistible {
 	@Column(name = "idZona")	
 	private Integer idZona;
 	
-	@ManyToOne//(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL)
 	private Ubicacion ubicacion;
 
 	public Transformador() {
